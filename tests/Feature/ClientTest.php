@@ -40,7 +40,7 @@ class ClientTest extends TestCase
 
         $client = $this->create(Client::class);
 
-        $this->assertSame(Hashids::connection('clients')->encode(1), $client->fresh()->url_id);
+        $this->assertSame(Hashids::connection('client')->encode(1), $client->fresh()->url_id);
     }
 
 

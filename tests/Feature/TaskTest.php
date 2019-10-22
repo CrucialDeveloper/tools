@@ -59,13 +59,13 @@ class TaskTest extends TestCase
         $task = factory(Task::class)->create([
             'status' => 'Not Started',
             'user_id' => 1,
+            'client_id' => 1,
             'project_id' => 1,
         ]);
 
         $this->assertDatabaseHas('tasks', ['status' => 'Not Started']);
 
-        $this->post('/task/status', [
-            'id' => $task->id,
+        $this->post("/task/$task->url_id", [
             'status' => 'In Progress',
         ]);
 
@@ -90,37 +90,5 @@ class TaskTest extends TestCase
         );
 
         $this->assertDatabaseHas('tasks', ['title' => 'updated']);
-    }
-
-    /**
-     * @test
-     */
-    public function a_task_knows_if_it_is_past_due()
-    {
-        $this->withoutExceptionHandling();
-
-        $task = $this->create(Task::class, [
-            'user_id' => 1,
-            'project_id' => 1,
-            'due_date' => Carbon::yesterday()
-        ]);
-
-        $this->assertTrue($task->past_due);
-    }
-
-    /**
-     * @test
-     */
-    public function a_task_knows_if_it_is_not_past_due()
-    {
-        $this->withoutExceptionHandling();
-
-        $task = $this->create(Task::class, [
-            'user_id' => 1,
-            'project_id' => 1,
-            'due_date' => Carbon::tomorrow()
-        ]);
-
-        $this->assertFalse($task->past_due);
     }
 }
