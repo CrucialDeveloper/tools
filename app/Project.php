@@ -50,4 +50,9 @@ class Project extends Model
     {
         return $this->morphMany('App\Comment', 'commentable');
     }
+
+    public function work_entry()
+    {
+        return $this->hasMany(WorkEntry::class);
+    }
 }

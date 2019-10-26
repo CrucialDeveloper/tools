@@ -32,4 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('clients/{client}/projects/{project}/comments', 'CommentController@store');
     Route::patch('/comments/{comment}', 'CommentController@update');
+
+    Route::post('clients/{client}/projects/{project}/work', 'WorkEntryController@store');
+    Route::patch('clients/{client}/projects/{project}/work/{entry}', 'WorkEntryController@update');
 });

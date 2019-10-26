@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function work_items()
+    {
+        return $this->hasMany(WorkEntry::class);
+    }
 }
