@@ -56,6 +56,10 @@ return [
             'salt' => 'tasks',
             'length' => 10,
         ],
+        'comment' => [
+            'salt' => 'comments',
+            'length' => 10,
+        ],
 
     ],
 

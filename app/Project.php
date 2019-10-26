@@ -50,9 +50,4 @@ class Project extends Model
     {
         return $this->morphMany('App\Comment', 'commentable');
     }
-
-    public function files()
-    {
-        return $this->morphMany('App\File', 'fileable');
-    }
 }

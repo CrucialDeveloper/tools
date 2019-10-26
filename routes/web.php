@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/clients/{client}/projects/{project}/tasks', 'TaskController@store');
     Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'TaskController@update');
-
     Route::post('/task/{task}', 'TaskStatusController@update');
+
+    Route::post('clients/{client}/projects/{project}/comments', 'CommentController@store');
+    Route::patch('/comments/{comment}', 'CommentController@update');
 });
