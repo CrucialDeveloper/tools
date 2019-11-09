@@ -13,7 +13,9 @@ use App\User;
 |
 */
 
-auth()->login(User::first());
+if (app('env') != "testing") {
+    auth()->loginUsingId(1);
+}
 
 Route::auth();
 

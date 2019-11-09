@@ -18,6 +18,10 @@ class CreateClientsTable extends Migration
             $table->bigInteger('user_id');
             $table->string('company_name');
             $table->string('address');
+            $table->string('city');
+            $table->string('state');
+            $table->string('zip');
+            $table->string('country')->default('USA');
             $table->string('phone_number');
             $table->string('url_id')->nullable();
             $table->timestamps();

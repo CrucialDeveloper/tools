@@ -20,11 +20,7 @@ class ClientTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $client = $this->create(Client::class, [
-            'company_name' => 'Company Name',
-            'address' => '123 Example St.',
-            'phone_number' => '555-555-5555',
-        ]);
+        $client = $this->create(Client::class);
 
         $this->assertDatabaseHas('clients', $client->toArray());
     }
