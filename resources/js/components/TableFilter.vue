@@ -151,7 +151,7 @@ export default {
       search: "",
       searchCount: "",
       paginator: {
-        perPage: 10,
+        perPage: 25,
         currentPage: 1,
         totalPages: null
       },

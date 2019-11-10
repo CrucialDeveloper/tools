@@ -17,12 +17,13 @@ class CreateClientsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->string('company_name');
-            $table->string('address');
-            $table->string('city');
-            $table->string('state');
-            $table->string('zip');
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip')->nullable();
             $table->string('country')->default('USA');
-            $table->string('phone_number');
+            $table->string('phone_number')->nullable();
+            $table->string('website')->nullable();
             $table->string('url_id')->nullable();
             $table->timestamps();
         });

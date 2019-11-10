@@ -15,5 +15,6 @@ $factory->define(Client::class, function (Faker $faker) {
         'zip' => $faker->postcode,
         'country' => 'USA',
         'phone_number' => $faker->phoneNumber,
+        'website' => $faker->url
     ];
 });

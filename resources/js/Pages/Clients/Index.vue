@@ -11,7 +11,7 @@
         ></table-filter>
       </div>
       <div class="h-full w-2/3 pl-4">
-        <client-information :client="activeClient"></client-information>
+        <client-information :client="activeClient" v-if="activeClient"></client-information>
       </div>
     </div>
   </standard-layout>
