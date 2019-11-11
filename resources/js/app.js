@@ -8,10 +8,13 @@ import './bootstrap';
 
 
 import { InertiaApp } from '@inertiajs/inertia-vue'
+import VModal from 'vue-js-modal'
 import Vue from 'vue'
+
 window.Vue = Vue
 
 Vue.use(InertiaApp)
+Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
 
 
 const app = document.getElementById('app')

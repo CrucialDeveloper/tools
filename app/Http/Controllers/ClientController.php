@@ -15,19 +15,27 @@ class ClientController extends Controller
         ]);
     }
 
+    public function show(Client $client)
+    {
+        return Inertia::render('Clients/Show', [
+            'clients' => auth()->user()->clients,
+            'client' => $client
+        ]);
+    }
+
     public function store(Request $request)
     {
         $client = Client::make($request->all());
 
         auth()->user()->clients()->save($client);
 
-        return '';
+        return redirect()->route('clients.show', $client);
     }
 
     public function update(Request $request, Client $client)
     {
         $client->update($request->all());
 
-        return '';
+        return redirect()->route('clients.show', $client);
     }
 }

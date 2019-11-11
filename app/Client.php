@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     protected $fillable = ['user_id', 'company_name', 'address', 'city', 'state', 'zip', 'country', 'phone_number', 'website', 'url_id'];
+    protected $appends = ['path'];
 
     public function getRouteKeyName()
     {
@@ -32,5 +33,10 @@ class Client extends Model
     public function projects()
     {
         return $this->hasMany(Project::class);
+    }
+
+    public function getPathAttribute()
+    {
+        return "/clients/$this->url_id";
     }
 }

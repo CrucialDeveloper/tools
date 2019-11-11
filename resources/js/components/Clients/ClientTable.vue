@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="mb-4">
+      <button
+        class="bg-blue text-white py-2 px-4 rounded"
+        @click="openCreateClientModal"
+      >Create New Client</button>
+    </div>
     <div class="flex items-center justify-between mb-4 w-full">
       <div class="flex items-center w-full">
         <label>Items Per Page:</label>
@@ -24,6 +30,7 @@
       <table class="text-sm w-full overflow-hidden relative">
         <tbody class="block overflow-y-scroll w-full" :style="{'height':bodyHeight}">
           <tr class="w-full">
+            <th class="bg-gray-500 p-2 font-bold whitespace-no-wrap"></th>
             <th
               class="bg-gray-500 p-2 font-bold whitespace-no-wrap"
               v-for="column in columns"
@@ -63,16 +70,26 @@
             v-for="item in filteredItems"
             :key="item.id"
             style="vertical-align:baseline;"
-            @click="clicked(item)"
           >
+            <td class="flex items-center justify-center">
+              <button class="h-5 w-5 text-gray-500" @click="editClient(item)">
+                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                  <path
+                    d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"
+                  />
+                </svg>
+              </button>
+            </td>
             <td class="p-2" v-for="column in columns" :key="column">
               <span v-if="dateColumns.includes(column)" v-html="formatDate(item[column])"></span>
               <span v-else-if="linkColumn===column">
                 <inertia-link
                   class="hover:underline"
+                  preserve-state
                   :href="item[linkField] || item.link"
                   v-html="item[column]"
                   v-if="!fileLinks"
+                  preset
                 ></inertia-link>
                 <a
                   class="hover:underline"
@@ -127,8 +144,10 @@
 <script>
 import Vue from "vue";
 import { format } from "date-fns";
+import ClientModal from "../Clients/ClientModal";
 
 export default {
+  components: { ClientModal },
   props: {
     items: Array,
     columns: Array,
@@ -192,13 +211,36 @@ export default {
     },
     clicked(item) {
       this.$emit("clickedItem", item);
+    },
+    openCreateClientModal() {
+      this.$modal.show(
+        ClientModal,
+        {},
+        {
+          adaptive: true,
+          height: "auto"
+        }
+      );
+    },
+    editClient(client) {
+      this.$modal.show(
+        ClientModal,
+        { editClient: client },
+        {
+          adaptive: true,
+          height: "auto"
+        }
+      );
     }
   },
   computed: {
     beforePages: function() {
       let vm = this;
       return _.uniq([
-        vm.paginator.currentPage - 3,
+        // vm.paginator.currentPage > 4 ? 1 : "",
+        vm.paginator.currentPage > 5 ? 2 : "",
+        vm.paginator.currentPage > 6 ? 3 : "",
+        // vm.paginator.currentPage - 3,
         vm.paginator.currentPage - 2,
         vm.paginator.currentPage - 1
       ]).filter(function(page) {
@@ -211,8 +253,8 @@ export default {
       return _.uniq([
         vm.paginator.currentPage + 1,
         vm.paginator.currentPage + 2,
-        vm.paginator.currentPage + 3,
-        vm.paginator.totalPages - 3,
+        // vm.paginator.currentPage + 3,
+        // vm.paginator.totalPages - 3,
         vm.paginator.totalPages - 2,
         vm.paginator.totalPages - 1
       ]).filter(function(page) {
@@ -272,7 +314,7 @@ export default {
   },
   updated() {
     // this.bodyHeight = window.innerHeight - this.$el.offsetTop - 140 + "px";
-    this.bodyHeight = window.innerHeight - 200 + "px";
+    this.bodyHeight = window.innerHeight - 250 + "px";
   }
 };
 </script>

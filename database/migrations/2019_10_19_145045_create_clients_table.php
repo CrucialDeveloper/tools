@@ -21,7 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zip')->nullable();
-            $table->string('country')->default('USA');
+            $table->string('country')->default('USA')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('website')->nullable();
             $table->string('url_id')->nullable();

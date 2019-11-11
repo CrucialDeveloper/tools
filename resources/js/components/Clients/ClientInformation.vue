@@ -2,11 +2,27 @@
   <div>
     <div class="bg-white rounded p-4 shadow-md flex">
       <div class="w-1/2 mr-4">
-        <google-map :client="client"></google-map>
+        <google-map :client="client" v-if="client.address"></google-map>
+        <img
+          v-if="!client.address"
+          class="rounded"
+          style="height:400px; width:400px"
+          src="/images/no-address.png"
+          alt="No Address For This Client"
+        />
       </div>
       <div class="w-1/2">
         <div class="flex items-start justify-between mb-4">
-          <h2 class="text-2xl mr-4">{{client.company_name}}</h2>
+          <div class="flex items-center mr-4">
+            <h2 class="text-2xl mr-4">{{client.company_name}}</h2>
+            <button class="h-5 w-5 text-gray-500" @click="editClient(client)">
+              <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                <path
+                  d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"
+                />
+              </svg>
+            </button>
+          </div>
           <a class="text-blue hover:underline" :href="client.website" target="_blank">Visit Website</a>
         </div>
         <div class="flex items-start justify-between mb-4">
@@ -49,9 +65,22 @@
 
 <script>
 import GoogleMap from "../../components/GoogleMap";
+import ClientModal from "./ClientModal";
 
 export default {
-  components: { GoogleMap },
-  props: ["client"]
+  components: { GoogleMap, ClientModal },
+  props: ["client"],
+  methods: {
+    editClient(client) {
+      this.$modal.show(
+        ClientModal,
+        { editClient: client },
+        {
+          adaptive: true,
+          height: "auto"
+        }
+      );
+    }
+  }
 };
 </script>

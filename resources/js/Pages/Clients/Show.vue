@@ -12,7 +12,7 @@
         ></client-table>
       </div>
       <div class="h-full w-2/3 pl-4">
-        <client-information :client="activeClient" v-if="activeClient"></client-information>
+        <client-information :client="client"></client-information>
       </div>
     </div>
   </standard-layout>
@@ -25,25 +25,6 @@ import ClientInformation from "../../components/Clients/ClientInformation";
 
 export default {
   components: { StandardLayout, ClientTable, ClientInformation },
-  props: ["clients"],
-  data() {
-    return {
-      activeClient: null
-    };
-  },
-  methods: {
-    setActiveClient(client) {
-      this.activeClient = client;
-      window.location.hash = this.activeClient.url_id;
-    }
-  },
-  mounted() {
-    if (window.location.hash.length > 0) {
-      this.activeClient = this.clients.filter(client => {
-        console.log(window.location.hash);
-        return client.url_id === window.location.hash.slice(1);
-      })[0];
-    }
-  }
+  props: ["clients", "client"]
 };
 </script>

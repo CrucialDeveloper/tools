@@ -9,7 +9,9 @@
       </div>
     </div>
     <div class="flex h-full">
-      <div class="bg-gray-500 w-24 h-full px-2 py-8 text-center">Clients</div>
+      <div class="bg-gray-500 w-24 h-full px-2 py-8 text-center">
+        <inertia-link href="/clients" class="hover:underline" preserve-state>Clients</inertia-link>
+      </div>
       <div class="p-8 w-full">
         <slot></slot>
       </div>

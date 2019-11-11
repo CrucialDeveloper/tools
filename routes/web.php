@@ -23,6 +23,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/clients', 'ClientController@index')->name('clients.index');
+    Route::get('/clients/{client}', 'ClientController@show')->name('clients.show');
     Route::post('/clients', 'ClientController@store')->name('clients.store');
     Route::patch('/clients/{client}', 'ClientController@update')->name('clients.update');
 
