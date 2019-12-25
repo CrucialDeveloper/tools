@@ -1,38 +1,61 @@
 <template>
   <div>
-    <div class="mb-4">
-      <button
-        class="bg-blue text-white py-2 px-4 rounded"
-        @click="openCreateClientModal"
-      >Create New Client</button>
-    </div>
-    <div class="flex items-center justify-between mb-4 w-full">
-      <div class="flex items-center w-full">
-        <label>Items Per Page:</label>
-        <select class="bg-white rounded border" name id v-model="paginator.perPage">
-          <option value="5" selected>5</option>
-          <option value="10">10</option>
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </select>
-      </div>
-      <div class="w-full flex items-center justify-end" v-if="filterable">
-        <label>Search:</label>
-        <div class="rounded ml-2 flex items-center border rounded">
-          <input type="text" class="p-1 w-full" v-model="search" />
-          <button class="bg-gray-500 p-1 h-full" @click="clearSearch">x</button>
+    <div class="mb-4 flex items-center w-full">
+      <div class="flex items-center flex-1">
+        <div class="inline-block relative min-w-24 w-24 mr-4">
+          <select
+            class="block appearance-none w-full bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+            v-model="paginator.perPage"
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+          <div
+            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+          >
+            <svg
+              class="fill-current h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+            </svg>
+          </div>
+        </div>
+        <div class="flex items-center w-full mr-4">
+          <input
+            class="appearance-none h-full w-full p-2 rounded-l leading-tight focus:outline-none shadow"
+            type="text"
+            placeholder="Search clients ..."
+            aria-label="search"
+            v-model="search"
+          />
+          <button
+            class="block p-2 round-r shadow bg-gray-400 leading-tight fill-current"
+            type="button"
+            @click="clearSearch"
+          >x</button>
         </div>
       </div>
+      <button
+        class="w-8 h-8 flex items-center justify-center bg-blue rounded-full text-white leading-none p-2 fill-current shadow"
+        @click="openCreateClientModal"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 16">
+          <path d="M4 7V4H3v3H0v1h3v3h1V8h3V7H4z" />
+        </svg>
+      </button>
     </div>
 
     <div ref="table">
       <table class="text-sm w-full overflow-hidden relative">
-        <tbody class="block overflow-y-scroll w-full" :style="{'height':bodyHeight}">
+        <thead>
           <tr class="w-full">
-            <th class="bg-gray-500 p-2 font-bold whitespace-no-wrap"></th>
             <th
-              class="bg-gray-500 p-2 font-bold whitespace-no-wrap"
+              class="bg-gray-400 p-2 font-bold whitespace-no-wrap"
               v-for="column in columns"
               :key="column"
             >
@@ -65,21 +88,14 @@
               </span>
             </th>
           </tr>
+        </thead>
+        <tbody>
           <tr
-            class="w-full border-b hover:bg-blue hover:text-white"
+            class="w-full hover:bg-gray-200"
             v-for="item in filteredItems"
             :key="item.id"
             style="vertical-align:baseline;"
           >
-            <td class="flex items-center justify-center">
-              <button class="h-5 w-5 text-gray-500" @click="editClient(item)">
-                <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-                  <path
-                    d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"
-                  />
-                </svg>
-              </button>
-            </td>
             <td class="p-2" v-for="column in columns" :key="column">
               <span v-if="dateColumns.includes(column)" v-html="formatDate(item[column])"></span>
               <span v-else-if="linkColumn===column">

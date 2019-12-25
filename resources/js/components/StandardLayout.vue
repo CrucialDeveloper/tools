@@ -9,10 +9,10 @@
       </div>
     </div>
     <div class="flex h-full">
-      <div class="bg-gray-500 w-24 h-full px-2 py-8 text-center">
-        <inertia-link href="/clients" class="hover:underline" preserve-state>Clients</inertia-link>
+      <div class="bg-gray-400 w-24 h-full px-2 py-8 text-center">
+        <a class="hover:underline" href="/clients">Clients</a>
       </div>
-      <div class="p-8 w-full">
+      <div class="p-8 w-full h-full">
         <slot></slot>
       </div>
     </div>
@@ -20,5 +20,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    visitUrl(url) {
+      this.$inertia.visit(url);
+    }
+  }
+};
 </script>

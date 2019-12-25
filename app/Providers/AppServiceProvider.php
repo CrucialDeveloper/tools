@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
                 return Session::get('errors')
                     ? Session::get('errors')->getBag('default')->getMessages()
                     : (object) [];
-            },
+            }
         ]);
     }
 

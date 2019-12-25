@@ -1,7 +1,7 @@
 <template>
-  <standard-layout>
-    <div class="flex">
-      <div class="max-h-full w-2/5 flex-1 border-r-4 pr-4">
+  <div class="flex w-2/5 h-full pb-4 overflow-y-scroll">
+    <div class="max-h-full flex-1 pr-4 mb-4 border-r-4">
+      <div class="bg-white p-4 rounded shadow">
         <client-table
           class="w-full"
           :items="clients"
@@ -11,11 +11,8 @@
           linkField="path"
         ></client-table>
       </div>
-      <div class="h-full w-2/3 pl-4">
-        <client-information :client="activeClient" v-if="activeClient"></client-information>
-      </div>
     </div>
-  </standard-layout>
+  </div>
 </template>
 
 <script>
@@ -24,6 +21,7 @@ import ClientTable from "../../components/Clients/ClientTable";
 import ClientInformation from "../../components/Clients/ClientInformation";
 
 export default {
+  layout: StandardLayout,
   components: { StandardLayout, ClientTable, ClientInformation },
   props: ["clients"],
   data() {

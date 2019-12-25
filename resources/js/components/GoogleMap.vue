@@ -1,12 +1,6 @@
 <template>
-  <div class="shadow rounded-lg overflow-hidden border-none">
-    <iframe
-      ref="map"
-      :width="width"
-      :height="height"
-      style="position:relative; z-index=0"
-      :src="address"
-    ></iframe>
+  <div class="shadow rounded-lg overflow-hidden border-none w-full">
+    <iframe ref="map" width="100%" height="400" style="position:relative; z-index=0" :src="address"></iframe>
   </div>
 </template>
 
