@@ -19,7 +19,7 @@ class ClientController extends Controller
     {
         return Inertia::render('Clients/Show', [
             'clients' => auth()->user()->clients,
-            'client' => $client
+            'client' => $client->load('projects')
         ]);
     }
 

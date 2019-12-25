@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full">
+  <div class="flex w-full bg-white p-4 rounded shadow">
     <div class="w-1/2 mr-4">
       <div class="shadow rounded">
         <google-map :client="client" v-if="client.address"></google-map>
@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import GoogleMap from "../../components/GoogleMap";
+import GoogleMap from "../../components/UI/GoogleMap";
 import ClientModal from "./ClientModal";
 
 export default {

@@ -2,7 +2,7 @@
   <div class="p-4">
     <h3
       class="text-2xl mb-4"
-    >{{(editClient === undefined || Object.keys(editClient).length ===0)? 'New Client' : 'Edit Client'}}</h3>
+    >{{Object.keys(editProject).length ===0 ? 'New Project' : 'Edit Project'}}</h3>
     <div class="mb-4 flex items-center">
       <label class="mr-2 w-48 text-right" for="company_name">Company Name</label>
       <input

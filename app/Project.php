@@ -10,7 +10,7 @@ class Project extends Model
 {
     protected $fillable = ['user_id', 'title', 'description', 'status', 'start_date', 'due_date', 'priority', 'available_status', 'url_id'];
 
-    protected $appends = ['past_due'];
+    protected $appends = ['past_due', 'path'];
 
     public function getRouteKeyName()
     {
@@ -31,6 +31,11 @@ class Project extends Model
         });
     }
 
+    public function getPathAttribute()
+    {
+        return "/clients/" . $this->client->url_id . "/projects/" . $this->url_id;
+    }
+
     public function getPastDueAttribute()
     {
         return $this->due_date < Carbon::now() && $this->status != "Completed";
@@ -39,6 +44,11 @@ class Project extends Model
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
     }
 
     public function tasks()

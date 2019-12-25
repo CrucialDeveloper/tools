@@ -29,7 +29,7 @@
           <input
             class="appearance-none h-full w-full p-2 rounded-l leading-tight focus:outline-none shadow"
             type="text"
-            placeholder="Search clients ..."
+            placeholder="Search Projects ..."
             aria-label="search"
             v-model="search"
           />
@@ -42,7 +42,7 @@
       </div>
       <button
         class="w-8 h-8 flex items-center justify-center bg-blue rounded-full text-white leading-none p-2 fill-current shadow"
-        @click="openCreateClientModal"
+        @click="openCreateProjectModal"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 16">
           <path d="M4 7V4H3v3H0v1h3v3h1V8h3V7H4z" />
@@ -160,10 +160,10 @@
 <script>
 import Vue from "vue";
 import { format } from "date-fns";
-import ClientModal from "../Clients/ClientModal";
+import ProjectModal from "./ProjectModal";
 
 export default {
-  components: { ClientModal },
+  components: { ProjectModal },
   props: {
     items: Array,
     columns: Array,
@@ -228,20 +228,10 @@ export default {
     clicked(item) {
       this.$emit("clickedItem", item);
     },
-    openCreateClientModal() {
+    openCreateProjectModal() {
       this.$modal.show(
-        ClientModal,
+        ProjectModal,
         {},
-        {
-          adaptive: true,
-          height: "auto"
-        }
-      );
-    },
-    editClient(client) {
-      this.$modal.show(
-        ClientModal,
-        { editClient: client },
         {
           adaptive: true,
           height: "auto"
@@ -327,10 +317,6 @@ export default {
     sortColumns() {
       return this.sortable || this.columns;
     }
-  },
-  updated() {
-    // this.bodyHeight = window.innerHeight - this.$el.offsetTop - 140 + "px";
-    this.bodyHeight = window.innerHeight - 250 + "px";
   }
 };
 </script>

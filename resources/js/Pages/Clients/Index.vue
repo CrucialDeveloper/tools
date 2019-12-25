@@ -1,28 +1,29 @@
 <template>
-  <div class="flex w-2/5 h-full pb-4 overflow-y-scroll">
-    <div class="max-h-full flex-1 pr-4 mb-4 border-r-4">
-      <div class="bg-white p-4 rounded shadow">
-        <client-table
-          class="w-full"
-          :items="clients"
-          :columns="['company_name','phone_number', 'address','city','state']"
-          :sortable="['company_name','city','state']"
-          linkColumn="company_name"
-          linkField="path"
-        ></client-table>
+  <div class="flex h-full">
+    <div class="flex w-2/5 max-h-full bg-white p-4 rounded shadow overflow-y-scroll mr-8 mb-16">
+      <div class="h-full flex-1 pr-4">
+        <div class="pb-4">
+          <client-table
+            class="w-full"
+            :items="clients"
+            :columns="['company_name','phone_number', 'address','city','state']"
+            :sortable="['company_name','city','state']"
+            linkColumn="company_name"
+            linkField="path"
+          ></client-table>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import StandardLayout from "../../components/StandardLayout";
+import StandardLayout from "../../components/Layouts/StandardLayout";
 import ClientTable from "../../components/Clients/ClientTable";
-import ClientInformation from "../../components/Clients/ClientInformation";
 
 export default {
   layout: StandardLayout,
-  components: { StandardLayout, ClientTable, ClientInformation },
+  components: { StandardLayout, ClientTable },
   props: ["clients"],
   data() {
     return {
