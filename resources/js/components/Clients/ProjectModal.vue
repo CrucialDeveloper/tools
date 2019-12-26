@@ -2,7 +2,7 @@
   <div class="p-4">
     <h3
       class="text-2xl mb-4"
-    >{{Object.keys(editProject).length ===0 ? 'New Project' : 'Edit Project'}}</h3>
+    >{{(editProject === undefined || Object.keys(editProject).length ===0)? 'New Project' : 'Edit Project'}}</h3>
     <div class="mb-4 flex items-center">
       <label class="mr-2 w-48 text-right" for="company_name">Company Name</label>
       <input
@@ -10,7 +10,7 @@
         name="company_name"
         class="p-2 border rounded w-full"
         placeholder="Best Hardware and Sons"
-        v-model="client.company_name"
+        v-model="project.company_name"
       />
     </div>
     <div class="mb-4 flex items-center">
@@ -20,7 +20,7 @@
         name="address"
         class="p-2 border rounded w-full"
         placeholder="123 Example St."
-        v-model="client.address"
+        v-model="project.address"
       />
     </div>
     <div class="mb-4 flex items-center">
@@ -30,12 +30,12 @@
         name="city"
         class="p-2 border rounded w-full"
         placeholder="Example Town"
-        v-model="client.city"
+        v-model="project.city"
       />
     </div>
     <div class="mb-4 flex items-center">
       <label class="mr-2 w-48 text-right" for="state">State</label>
-      <select class="appearance-none p-2 border rounded w-full" v-model="client.state">
+      <select class="appearance-none p-2 border rounded w-full" v-model="project.state">
         <option disabled selected hidden>Select State ...</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
@@ -97,7 +97,7 @@
         name="zip"
         class="p-2 border rounded w-full"
         placeholder="62285"
-        v-model="client.zip"
+        v-model="project.zip"
       />
     </div>
     <div class="mb-4 flex items-center">
@@ -107,7 +107,7 @@
         name="zip"
         class="p-2 border rounded w-full"
         placeholder="USA"
-        v-model="client.country"
+        v-model="project.country"
       />
     </div>
     <div class="mb-4 flex items-center">
@@ -117,7 +117,7 @@
         name="phone_number"
         class="p-2 border rounded w-full"
         placeholder="555-555-5555"
-        v-model="client.phone_number"
+        v-model="project.phone_number"
       />
     </div>
     <div class="mb-4 flex items-center">
@@ -127,7 +127,7 @@
         name="website"
         class="p-2 border rounded w-full"
         placeholder="https://examplesite.com"
-        v-model="client.website"
+        v-model="project.website"
       />
     </div>
 
@@ -135,57 +135,39 @@
       <button class="text-gray-600 underline" @click="reset">Cancel</button>
       <button
         class="text-white bg-blue px-4 py-2 rounded"
-        @click="saveClient"
-        v-if="editClient === undefined || Object.keys(editClient).length===0"
+        @click="saveProject"
+        v-if="editProject === undefined || Object.keys(editProject).length===0"
       >Save</button>
-      <button class="text-white bg-blue px-4 py-2 rounded" @click="updateClient" v-else>Save</button>
+      <button class="text-white bg-blue px-4 py-2 rounded" @click="updateProject" v-else>Save</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["editClient"],
+  props: ["editProject"],
   data() {
     return {
-      client: {
-        company_name: "",
-        address: "",
-        city: "",
-        state: "",
-        zip: "",
-        country: "",
-        phone_number: "",
-        website: ""
-      }
+      project: {}
     };
   },
   methods: {
     reset() {
-      this.client = {
-        company_name: "",
-        address: "",
-        city: "",
-        state: "",
-        zip: "",
-        country: "",
-        phone_number: "",
-        website: ""
-      };
+      this.project = {};
       this.$modal.hide(this.$parent.name);
     },
-    saveClient() {
-      this.$inertia.post("/clients", this.client);
+    saveProject() {
+      this.$inertia.post("/projects", this.project);
       this.reset();
     },
-    updateClient() {
-      this.$inertia.patch(this.editClient.path, this.client);
+    updateProject() {
+      this.$inertia.patch(this.editProject.path, this.project);
       this.reset();
     }
   },
   created() {
-    if (this.editClient) {
-      this.client = { ...this.editClient };
+    if (this.editProject) {
+      this.project = { ...this.editProject };
     }
   }
 };

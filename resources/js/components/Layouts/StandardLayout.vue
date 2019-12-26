@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen h-screen bg-gray-200 overflow-hidden">
     <div class="px-4 w-full h-16 bg-slate text-white flex items-center justify-between">
-      <div>CrucialCRM</div>
+      <div>CrucialDev</div>
       <div>
         <div
           class="h-10 w-10 rounded-full bg-gray-900 text-white flex items-center justify-center"
