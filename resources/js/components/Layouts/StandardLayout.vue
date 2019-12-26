@@ -5,7 +5,7 @@
       <div>
         <div
           class="h-10 w-10 rounded-full bg-gray-900 text-white flex items-center justify-center"
-        >JL</div>
+        >{{ $page.user.initials || 'G'}}</div>
       </div>
     </div>
     <div class="flex h-full">
