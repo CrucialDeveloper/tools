@@ -22,10 +22,12 @@
         <div class="w-full bg-white mt-4 p-4 rounded shadow">
           <div class="flex items-center justify-between">
             <h4 class="text-xl">Recent Projects</h4>
-            <inertia-link href="#" class="underline text-gray-600">View All Projects</inertia-link>
+            <inertia-link
+              :href="`/clients/${client.url_id}/projects`"
+              class="underline text-gray-600"
+            >View All Projects</inertia-link>
           </div>
           <client-projects-table
-            header="Recent Projects"
             :items="client.projects"
             :columns="['title','description','status', 'start_date','due_date', 'priority']"
             :dateColumns="['start_date','due_date']"

@@ -1,10 +1,13 @@
 <template>
   <div class="flex w-full bg-white p-4 rounded shadow">
     <div class="w-1/2 mr-4">
-      <div class="shadow rounded">
-        <google-map :client="client" v-if="client.address"></google-map>
+      <div class="rounded" :class="client.address ? 'shadow' : ''">
+        <google-map
+          :client="client"
+          v-if="client.address || client.city || client.state || client.country"
+        ></google-map>
         <img
-          v-if="!client.address"
+          v-else
           class="rounded"
           style="height:400px; width:400px"
           src="/images/no-address.png"

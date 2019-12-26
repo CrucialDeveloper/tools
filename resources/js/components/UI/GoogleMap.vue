@@ -15,15 +15,20 @@ export default {
   },
   computed: {
     address() {
+      let address =
+        this.client.address != null ? this.client.address + "%20" : "";
+      let city = this.client.city != null ? this.client.city + "%2C%20" : "";
+      let state = this.client.state != null ? this.client.state + "%20" : "";
+      let zip = this.client.zip != null ? this.client.zip + "%20" : "";
+      let country = this.client.country != null ? this.client.country : "";
+      // return "https://maps.google.com/maps?q=stamford%2C%20CT%20USA&output=embed";
       return (
-        "https://www.google.com/maps/embed/v1/place?key=AIzaSyCeY6Gu_CaKRqesdQZKUxca8YoSB4iZX4g&q=" +
-        this.client.address +
-        " " +
-        this.client.city +
-        ", " +
-        this.client.state +
-        " " +
-        this.client.zip
+        "https://maps.google.com/maps?q=" +
+        address +
+        city +
+        state +
+        country +
+        "&output=embed"
       );
     }
   },
@@ -33,3 +38,5 @@ export default {
   }
 };
 </script>
+
+// <div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=stamford%2C%20ct+()&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.maps.ie/coordinates.html">gps coordinates</a></iframe></div><br />

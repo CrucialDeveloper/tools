@@ -13,7 +13,7 @@ class ClientsTableSeeder extends Seeder
      */
     public function run()
     {
-        $clients = factory(Client::class, 50)->create();
+        $clients = factory(Client::class, 5)->create();
 
         foreach ($clients as $client) {
             factory(Project::class, 10)->create(['client_id' => $client->id]);

@@ -28,9 +28,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/clients', 'ClientController@store')->name('clients.store');
     Route::patch('/clients/{client}', 'ClientController@update')->name('clients.update');
 
-    Route::post('/clients/{client}/projects', 'ProjectController@store');
-    Route::patch('/clients/{client}/projects/{project}', 'ProjectController@update');
-    Route::delete('/clients/{client}/projects/{project}', 'ProjectController@destroy');
+    Route::get('/clients/{client}/projects', 'ClientProjectController@index');
+    Route::get('/clients/{client}/projects/{project}', 'ClientProjectController@show');
+    Route::post('/clients/{client}/projects', 'ClientProjectController@store');
+    Route::patch('/clients/{client}/projects/{project}', 'ClientProjectController@update');
+    Route::delete('/clients/{client}/projects/{project}', 'ClientProjectController@destroy');
 
     Route::post('/clients/{client}/projects/{project}/tasks', 'TaskController@store');
     Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'TaskController@update');
@@ -41,4 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('clients/{client}/projects/{project}/work', 'WorkEntryController@store');
     Route::patch('clients/{client}/projects/{project}/work/{entry}', 'WorkEntryController@update');
+
+    Route::get('/projects', 'ProjectController@index');
 });
