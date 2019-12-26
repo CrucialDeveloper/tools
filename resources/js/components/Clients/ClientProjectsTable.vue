@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="mb-4 flex items-center w-full">
+    <div class="my-4 flex items-center w-full">
       <div class="flex items-center flex-1">
-        <div class="inline-block relative min-w-24 w-24 mr-4">
+        <div class="inline-block relative min-w-24 w-24 mr-4" v-if="paginate">
           <select
             class="block appearance-none w-full bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none"
             v-model="paginator.perPage"
@@ -159,12 +159,13 @@
 
 <script>
 import Vue from "vue";
-import { format } from "date-fns";
+import moment from "moment";
 import ProjectModal from "./ProjectModal";
 
 export default {
   components: { ProjectModal },
   props: {
+    header: String,
     items: Array,
     columns: Array,
     dateColumns: {
@@ -173,6 +174,7 @@ export default {
       }
     },
     searchable: Array,
+    paginate: { Boolean, default: true },
     sortable: Array,
     filterable: {
       default: true
@@ -216,7 +218,7 @@ export default {
         .join(" ");
     },
     formatDate(date) {
-      return `${dateFns.format(date, "MM/DD/YYYY")}`;
+      return `${moment(date).format("MM/DD/YYYY")}`;
     },
     sort: function(key, order) {
       if (key in this.sortBy && this.sortBy[key] === order) {

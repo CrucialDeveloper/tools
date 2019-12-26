@@ -28,6 +28,7 @@ module.exports = {
         '72': '18rem',
         '76': '19rem',
         '88': '22rem',
+        '122': '30.5rem',
       },
       colors: {
         transparent: 'transparent',

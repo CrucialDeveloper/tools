@@ -2,9 +2,9 @@
   <div>
     <div class="mb-4 flex items-center w-full">
       <div class="flex items-center flex-1">
-        <div class="inline-block relative min-w-24 w-24 mr-4">
+        <div class="inline-block relative min-w-24 w-24 mr-4" v-if="paginate">
           <select
-            class="block appearance-none w-full bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none"
+            class="block appearance-none w-full bg-white px-4 pr-8 py-2 rounded shadow leading-tight focus:outline-none"
             v-model="paginator.perPage"
           >
             <option value="5">5</option>
@@ -52,7 +52,7 @@
 
     <div ref="table">
       <table class="text-sm w-full overflow-hidden relative">
-        <thead>
+        <thead class="w-full">
           <tr class="w-full">
             <th
               class="bg-gray-400 p-2 font-bold whitespace-no-wrap"
@@ -159,7 +159,7 @@
 
 <script>
 import Vue from "vue";
-import { format } from "date-fns";
+import moment from "moment";
 import ClientModal from "../Clients/ClientModal";
 
 export default {
@@ -173,6 +173,7 @@ export default {
       }
     },
     searchable: Array,
+    paginate: { Boolean, default: true },
     sortable: Array,
     filterable: {
       default: true
