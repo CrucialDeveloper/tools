@@ -125,4 +125,65 @@ class ProjectTest extends TestCase
 
         $this->assertFalse($project->past_due);
     }
+
+    /**
+     * @test
+     */
+    public function a_project_can_be_viewed_on_a_page()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = $this->signIn();
+        $client = $this->create(Client::class);
+        $project = $this->create(Project::class);
+
+        $response = $this->get($project->path);
+
+        $response->assertStatus(200);
+        $this->assertArrayHasKey('project', $response->getOriginalContent()->getData()['page']['props']);
+        $this->assertEquals($project->id, $response->getOriginalContent()->getData()['page']['props']['project']['id']);
+    }
+
+    /**
+     * @test
+     */
+    public function a_user_can_view_all_of_their_projects()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = $this->signIn();
+        $client1 = $this->create(Client::class);
+        $projects1 = $this->create(Project::class, ['client_id' => $client1->id], 3);
+
+        $client2 = $this->create(Client::class);
+        $projects2 = $this->create(Project::class, ['client_id' => $client2->id], 3);
+
+        $response = $this->get('/projects');
+
+        $response->assertStatus(200);
+        $this->assertArrayHasKey('projects', $response->getOriginalContent()->getData()['page']['props']);
+        $this->AssertEquals($user->projects->modelKeys(), $response->getOriginalContent()->getData()['page']['props']['projects']->modelKeys());
+    }
+
+    /**
+     * @test
+     */
+    public function projects_for_a_client_can_be_viewed_on_a_page()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = $this->signIn();
+        $client1 = $this->create(Client::class);
+        $projects1 = $this->create(Project::class, ['client_id' => $client1->id], 3);
+
+        $client2 = $this->create(Client::class);
+        $projects2 = $this->create(Project::class, ['client_id' => $client2->id], 3);
+
+        $response = $this->get("/clients/$client1->url_id/projects");
+
+        $response->assertStatus(200);
+        $this->assertArrayHasKey('projects', $response->getOriginalContent()->getData()['page']['props']);
+        $this->AssertEquals($client1->projects->modelKeys(), $response->getOriginalContent()->getData()['page']['props']['projects']->modelKeys());
+        $this->AssertNotEquals($client2->projects->modelKeys(), $response->getOriginalContent()->getData()['page']['props']['projects']->modelKeys());
+    }
 }

@@ -25,9 +25,9 @@
             </svg>
           </div>
         </div>
-        <div class="flex items-center w-full mr-4">
+        <div class="flex items-center w-full">
           <input
-            class="appearance-none h-full w-full p-2 rounded-l leading-tight focus:outline-none shadow"
+            class="appearance-none h-full w-full p-2 rounded-l leading-tight focus:outline-none shadow placeholder-gray-600"
             type="text"
             placeholder="Search Projects ..."
             aria-label="search"
@@ -40,14 +40,14 @@
           >x</button>
         </div>
       </div>
-      <button
+      <!-- <button
         class="w-8 h-8 flex items-center justify-center bg-blue rounded-full text-white leading-none p-2 fill-current shadow"
         @click="openCreateProjectModal"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 16">
           <path d="M4 7V4H3v3H0v1h3v3h1V8h3V7H4z" />
         </svg>
-      </button>
+      </button>-->
     </div>
 
     <div ref="table">
@@ -65,7 +65,7 @@
                   <button
                     class="h-4 w-4"
                     @click="sort(column, 'asc')"
-                    :class="sortBy.hasOwnProperty(column) && sortBy[column]==='asc' ? 'text-blue fill-current' : ''"
+                    :class="sortIndicator(column, 'asc') ? 'text-blue fill-current' : ''"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                       <path
@@ -76,7 +76,7 @@
                   <button
                     class="h-4 w-4"
                     @click="sort(column, 'desc')"
-                    :class="sortBy.hasOwnProperty(column) && sortBy[column]==='desc' ? 'text-blue fill-current' : ''"
+                    :class="sortIndicator(column, 'desc')? 'text-blue fill-current' : ''"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                       <path
@@ -97,25 +97,28 @@
             style="vertical-align:baseline;"
           >
             <td class="p-2" v-for="column in columns" :key="column">
-              <span v-if="dateColumns.includes(column)" v-html="formatDate(item[column])"></span>
+              <span
+                v-if="dateColumns.includes(column)"
+                v-html="formatDate(getColumnValue(item,column))"
+              ></span>
               <span v-else-if="linkColumn===column">
                 <inertia-link
                   class="hover:underline"
                   preserve-state
                   :href="item[linkField] || item.link"
-                  v-html="item[column]"
+                  v-html="getColumnValue(item,column)"
                   v-if="!fileLinks"
                   preset
                 ></inertia-link>
                 <a
                   class="hover:underline"
                   :href="item[linkField] || item.link"
-                  v-html="item[column]"
+                  v-html="getColumnValue(item,column)"
                   v-if="fileLinks"
                   download
                 ></a>
               </span>
-              <span v-else v-html="item[column]"></span>
+              <span v-else v-html="getColumnValue(item,column)"></span>
             </td>
           </tr>
         </tbody>
@@ -160,12 +163,9 @@
 <script>
 import Vue from "vue";
 import moment from "moment";
-import ProjectModal from "./ProjectModal";
 
 export default {
-  components: { ProjectModal },
   props: {
-    header: String,
     items: Array,
     columns: Array,
     dateColumns: {
@@ -213,6 +213,9 @@ export default {
       this.paginator.currentPage = page;
     },
     toTitleCase(str) {
+      if (str.includes(":")) {
+        str = str.split(":")[0];
+      }
       return str
         .split("_")
         .map(w => w[0].toUpperCase() + w.substr(1).toLowerCase())
@@ -221,12 +224,33 @@ export default {
     formatDate(date) {
       return `${moment(date).format(this.dateFormat)}`;
     },
+    getColumnValue(item, column) {
+      if (column.includes(":")) {
+        let parent = column.split(":")[1].split(".")[0];
+        let child = column.split(":")[1].split(".")[1];
+        return item[parent][child];
+      }
+
+      return item[column];
+    },
     sort: function(key, order) {
+      if (key.includes(":")) {
+        key = key.split(":")[1];
+      }
+
       if (key in this.sortBy && this.sortBy[key] === order) {
         Vue.delete(this.sortBy, key);
       } else {
         Vue.set(this.sortBy, key, order);
       }
+    },
+    sortIndicator(column, direction) {
+      if (column.includes(":")) {
+        column = column.split(":")[1];
+      }
+      return (
+        this.sortBy.hasOwnProperty(column) && this.sortBy[column] === direction
+      );
     },
     clicked(item) {
       this.$emit("clickedItem", item);
@@ -282,13 +306,18 @@ export default {
       let results = [];
       if (vm.search) {
         results = vm.items.filter(function(item) {
-          return vm.searchColumns.some(function(term) {
-            if (term.includes(".")) {
+          return vm.searchColumns.some(function(column) {
+            if (column.includes(":")) {
+              column = column.split(":")[1];
+            }
+            if (column.includes(".")) {
               return eval(
-                `item.${term}.toLowerCase().includes(vm.search.toLowerCase())`
+                `item.${column}.toLowerCase().includes(vm.search.toLowerCase())`
               );
             } else {
-              return item[term].toLowerCase().includes(vm.search.toLowerCase());
+              return item[column]
+                .toLowerCase()
+                .includes(vm.search.toLowerCase());
             }
           });
         });
