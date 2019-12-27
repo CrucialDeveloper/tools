@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-full">
-    <div class="flex max-h-full bg-white p-4 rounded shadow overflow-y-scroll mb-16">
+    <div class="flex max-h-full bg-white p-4 rounded shadow overflow-y-scroll mb-16 w-full">
       <div class="h-full flex-1">
         <h2 class="text-2xl">All Projects</h2>
         <div class="pb-4">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="my-4 flex items-center w-full">
+    <div class="my-4 flex items-center w-full min-w-full">
       <div class="flex items-center flex-1">
         <div class="inline-block relative min-w-24 w-24 mr-4" v-if="paginate">
           <select
