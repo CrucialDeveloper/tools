@@ -27,17 +27,34 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
+        $this->validateRequest($request);
+
         $client = Client::make($request->all());
 
         auth()->user()->clients()->save($client);
 
-        return redirect()->route('clients.show', $client);
+        return  $client->path;
     }
 
     public function update(Request $request, Client $client)
     {
+        $this->validateRequest($request);
+
         $client->update($request->all());
 
-        return redirect()->route('clients.show', $client);
+        return $client->path;
+    }
+
+    public function validateRequest(Request $request)
+    {
+        $request->validate([
+            'company_name' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zip' => 'required',
+            'country' => 'required',
+            'phone_number' => 'required',
+        ]);
     }
 }

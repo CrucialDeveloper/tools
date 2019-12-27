@@ -18,7 +18,15 @@ class AppServiceProvider extends ServiceProvider
         Inertia::version(function () {
             return md5_file(public_path('mix-manifest.json'));
         });
+    }
 
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
         Inertia::share([
             'errors' => function () {
                 return Session::get('errors')
@@ -32,17 +40,6 @@ class AppServiceProvider extends ServiceProvider
                 ]
                     : null;
             }
-
         ]);
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
     }
 }
