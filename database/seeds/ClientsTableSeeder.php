@@ -16,7 +16,10 @@ class ClientsTableSeeder extends Seeder
         $clients = factory(Client::class, 5)->create();
 
         foreach ($clients as $client) {
-            factory(Project::class, 10)->create(['client_id' => $client->id]);
+            factory(Project::class, 10)->create([
+                'client_id' => $client->id,
+                'parent_url_id' => $client->url_id
+            ]);
         }
     }
 }

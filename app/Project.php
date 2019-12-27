@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $fillable = ['user_id', 'title', 'description', 'status', 'start_date', 'due_date', 'priority', 'available_status', 'url_id'];
+    protected $fillable = ['user_id', 'parent_url_id', 'title', 'description', 'status', 'start_date', 'due_date', 'priority', 'available_status', 'url_id'];
 
     protected $appends = ['past_due', 'path'];
 
@@ -33,7 +33,7 @@ class Project extends Model
 
     public function getPathAttribute()
     {
-        return "/clients/" . $this->client->url_id . "/projects/" . $this->url_id;
+        return "/clients/" . $this->parent_url_id . "/projects/" . $this->url_id;
     }
 
     public function getPastDueAttribute()

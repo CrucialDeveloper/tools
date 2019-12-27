@@ -23,6 +23,7 @@ class ProjectTest extends TestCase
         $project = $this->create(Project::class, [
             'user_id' => $user->id,
             'client_id' => factory(Client::class)->create(['user_id' => $user->id]),
+            'parent_url_id' => '1234abcd',
             'title' => 'A project Title',
             'description' => 'Project Description',
             'status' => 'Not Started',
@@ -35,6 +36,7 @@ class ProjectTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('projects', [
+            'parent_url_id' => '1234abcd',
             'title' => 'A project Title',
             'description' => 'Project Description',
             'status' => 'Not Started',

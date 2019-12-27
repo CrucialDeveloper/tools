@@ -17,6 +17,7 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('client_id');
+            $table->string('parent_url_id');
             $table->string('title');
             $table->longText('description');
             $table->string('status');

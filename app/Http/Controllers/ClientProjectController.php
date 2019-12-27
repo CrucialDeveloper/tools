@@ -42,6 +42,7 @@ class ClientProjectController extends Controller
         $project = Project::make([
             'title' => $request->title,
             'user_id' => auth()->user()->id,
+            'parent_url_id' => $client->url_id,
             'description' => $request->description,
             'status' => $request->status,
             'start_date' => $request->start_date,
@@ -50,8 +51,6 @@ class ClientProjectController extends Controller
             'available_status' => $request->available_status,
         ]);
         $client->projects()->save($project);
-
-        return "/b/$client->slug/";
     }
 
     public function edit(Client $client, Project $project)

@@ -9,6 +9,7 @@ $factory->define(App\Project::class, function (Faker $faker) {
     return [
         'user_id' => 1,
         'client_id' => 1,
+        'parent_url_id' => 'abc123',
         'title' => $title,
         'description' => $faker->paragraph,
         'status' => $faker->randomElement(['Not Started', 'In Progress', 'Complete']),

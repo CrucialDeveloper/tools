@@ -11,14 +11,14 @@ class ClientController extends Controller
     public function index()
     {
         return Inertia::render('Clients/Index', [
-            'clients' => auth()->user()->clients
+            'clients' => auth()->user()->clients()->latest()->get()
         ]);
     }
 
     public function show(Client $client)
     {
         return Inertia::render('Clients/Show', [
-            'clients' => auth()->user()->clients,
+            'clients' => auth()->user()->clients()->latest()->get(),
             'client' => $client->load(['projects' => function ($query) {
                 $query->latest()->take(5);
             }])
