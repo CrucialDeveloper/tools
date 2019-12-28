@@ -57,4 +57,11 @@ class ClientController extends Controller
             'phone_number' => 'required',
         ]);
     }
+
+    public function destroy(Client $client)
+    {
+        $client->delete();
+
+        return '/clients';
+    }
 }

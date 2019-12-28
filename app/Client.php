@@ -2,11 +2,16 @@
 
 namespace App;
 
+use App\User;
+use App\Project;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = ['user_id', 'company_name', 'address', 'city', 'state', 'zip', 'country', 'phone_number', 'website', 'url_id'];
     protected $appends = ['path'];
 

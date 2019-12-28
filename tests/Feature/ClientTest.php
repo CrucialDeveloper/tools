@@ -39,9 +39,6 @@ class ClientTest extends TestCase
         $this->assertSame(Hashids::connection('client')->encode(1), $client->fresh()->url_id);
     }
 
-
-
-
     /**
      * @test
      */
@@ -138,5 +135,45 @@ class ClientTest extends TestCase
         $this->assertDatabaseHas('clients', [
             'company_name' => 'New Name'
         ]);
+    }
+
+    /**
+     * @test
+     */
+    public function a_client_is_soft_deleted_upon_deletion_by_user()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = $this->signIn();
+
+        $client = $this->create(Client::class);
+
+        $this->assertCount(1, Client::all());
+
+        $client->delete();
+
+        $this->assertCount(0, Client::all());
+        $this->assertCount(1, Client::withTrashed()->get());
+        $this->assertNotNull(Client::withTrashed()->first()->deleted_at);
+    }
+
+    /**
+     * @test
+     */
+    public function a_client_can_be_deleted_through_a_delete_request()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = $this->signIn();
+
+        $client = $this->create(Client::class);
+
+        $this->assertCount(1, Client::all());
+
+        $response = $this->delete($client->path);
+
+        $this->assertCount(0, Client::all());
+        $this->assertCount(1, Client::withTrashed()->get());
+        $this->assertNotNull(Client::withTrashed()->first()->deleted_at);
     }
 }

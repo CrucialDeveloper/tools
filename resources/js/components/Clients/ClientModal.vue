@@ -143,13 +143,18 @@
     </div>
 
     <div class="flex items-center justify-between">
-      <button class="text-gray-600 underline" @click="reset">Cancel</button>
-      <button
-        class="text-white bg-blue px-4 py-2 rounded"
-        @click="saveClient"
-        v-if="editClient === undefined || Object.keys(editClient).length===0"
-      >Save</button>
-      <button class="text-white bg-blue px-4 py-2 rounded" @click="updateClient" v-else>Save</button>
+      <div class="flex items-center mr-4">
+        <button class="text-red-500 underline mr-4" @click="deleteClient">Delete</button>
+      </div>
+      <div class="flex items-center">
+        <button class="text-gray-600 underline mr-4" @click="reset">Cancel</button>
+        <button
+          class="text-white bg-blue px-4 py-2 rounded"
+          @click="saveClient"
+          v-if="editClient === undefined || Object.keys(editClient).length===0"
+        >Save</button>
+        <button class="text-white bg-blue px-4 py-2 rounded" @click="updateClient" v-else>Save</button>
+      </div>
     </div>
   </div>
 </template>
@@ -201,6 +206,13 @@ export default {
         .catch(errors => {
           console.log(errors);
         });
+    },
+    deleteClient() {
+      this.client.delete(this.client.path).then(response => {
+        this.client.reset();
+        this.$modal.hide(this.$parent.name);
+        this.$inertia.visit(response);
+      });
     }
   },
   created() {

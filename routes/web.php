@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/clients/{client}', 'ClientController@show')->name('clients.show');
     Route::post('/clients', 'ClientController@store')->name('clients.store');
     Route::patch('/clients/{client}', 'ClientController@update')->name('clients.update');
+    Route::delete('/clients/{client}', 'ClientController@destroy')->name('clients.destroy');
 
     Route::get('/clients/{client}/projects', 'ClientProjectController@index');
     Route::get('/clients/{client}/projects/{project}', 'ClientProjectController@show');
