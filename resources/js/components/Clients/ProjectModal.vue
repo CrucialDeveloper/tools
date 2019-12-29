@@ -3,133 +3,158 @@
     <h3
       class="text-2xl mb-4"
     >{{(editProject === undefined || Object.keys(editProject).length ===0)? 'New Project' : 'Edit Project'}}</h3>
-    <div class="mb-4 flex items-center">
-      <label class="mr-2 w-48 text-right" for="company_name">Company Name</label>
-      <input
-        type="text"
-        name="company_name"
-        class="p-2 border rounded w-full"
-        placeholder="Best Hardware and Sons"
-        v-model="project.company_name"
-      />
-    </div>
-    <div class="mb-4 flex items-center">
-      <label class="mr-2 w-48 text-right" for="address">Address</label>
-      <input
-        type="text"
-        name="address"
-        class="p-2 border rounded w-full"
-        placeholder="123 Example St."
-        v-model="project.address"
-      />
-    </div>
-    <div class="mb-4 flex items-center">
-      <label class="mr-2 w-48 text-right" for="city">City</label>
-      <input
-        type="text"
-        name="city"
-        class="p-2 border rounded w-full"
-        placeholder="Example Town"
-        v-model="project.city"
-      />
-    </div>
-    <div class="mb-4 flex items-center">
-      <label class="mr-2 w-48 text-right" for="state">State</label>
-      <select class="appearance-none p-2 border rounded w-full" v-model="project.state">
-        <option disabled selected hidden>Select State ...</option>
-        <option value="AL">Alabama</option>
-        <option value="AK">Alaska</option>
-        <option value="AZ">Arizona</option>
-        <option value="AR">Arkansas</option>
-        <option value="CA">California</option>
-        <option value="CO">Colorado</option>
-        <option value="CT">Connecticut</option>
-        <option value="DE">Delaware</option>
-        <option value="DC">District Of Columbia</option>
-        <option value="FL">Florida</option>
-        <option value="GA">Georgia</option>
-        <option value="HI">Hawaii</option>
-        <option value="ID">Idaho</option>
-        <option value="IL">Illinois</option>
-        <option value="IN">Indiana</option>
-        <option value="IA">Iowa</option>
-        <option value="KS">Kansas</option>
-        <option value="KY">Kentucky</option>
-        <option value="LA">Louisiana</option>
-        <option value="ME">Maine</option>
-        <option value="MD">Maryland</option>
-        <option value="MA">Massachusetts</option>
-        <option value="MI">Michigan</option>
-        <option value="MN">Minnesota</option>
-        <option value="MS">Mississippi</option>
-        <option value="MO">Missouri</option>
-        <option value="MT">Montana</option>
-        <option value="NE">Nebraska</option>
-        <option value="NV">Nevada</option>
-        <option value="NH">New Hampshire</option>
-        <option value="NJ">New Jersey</option>
-        <option value="NM">New Mexico</option>
-        <option value="NY">New York</option>
-        <option value="NC">North Carolina</option>
-        <option value="ND">North Dakota</option>
-        <option value="OH">Ohio</option>
-        <option value="OK">Oklahoma</option>
-        <option value="OR">Oregon</option>
-        <option value="PA">Pennsylvania</option>
-        <option value="RI">Rhode Island</option>
-        <option value="SC">South Carolina</option>
-        <option value="SD">South Dakota</option>
-        <option value="TN">Tennessee</option>
-        <option value="TX">Texas</option>
-        <option value="UT">Utah</option>
-        <option value="VT">Vermont</option>
-        <option value="VA">Virginia</option>
-        <option value="WA">Washington</option>
-        <option value="WV">West Virginia</option>
-        <option value="WI">Wisconsin</option>
-        <option value="WY">Wyoming</option>
-      </select>
-    </div>
-    <div class="mb-4 flex items-center">
-      <label class="mr-2 w-48 text-right" for="zip">Zip</label>
-      <input
-        type="text"
-        name="zip"
-        class="p-2 border rounded w-full"
-        placeholder="62285"
-        v-model="project.zip"
-      />
-    </div>
-    <div class="mb-4 flex items-center">
-      <label class="mr-2 w-48 text-right" for="country">Country</label>
-      <input
-        type="text"
-        name="zip"
-        class="p-2 border rounded w-full"
-        placeholder="USA"
-        v-model="project.country"
-      />
-    </div>
-    <div class="mb-4 flex items-center">
-      <label class="mr-2 w-48 text-right" for="phone_number">Phone Number</label>
-      <input
-        type="text"
-        name="phone_number"
-        class="p-2 border rounded w-full"
-        placeholder="555-555-5555"
-        v-model="project.phone_number"
-      />
-    </div>
-    <div class="mb-4 flex items-center">
-      <label class="mr-2 w-48 text-right" for="website">Website</label>
-      <input
-        type="text"
-        name="website"
-        class="p-2 border rounded w-full"
-        placeholder="https://examplesite.com"
-        v-model="project.website"
-      />
-    </div>
+    <tabs-nav>
+      <tab-panel>
+        <div class="mb-4">
+          <label for="name" class="font-bold block">
+            Title:
+            <span
+              class="ml-2 text-sm text-red font-normal"
+              v-if="project.errors.errors.title"
+            >{{project.errors.errors.title[0]}}</span>
+          </label>
+          <input
+            class="p-2 rounded border-2 w-full"
+            id="name"
+            type="text"
+            :class="project.errors.errors.title ? 'border-red':''"
+            v-model="project.title"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="description" class="font-bold block">
+            Description:
+            <span
+              class="ml-2 text-sm text-red font-normal"
+              v-if="project.errors.errors.description"
+            >{{project.errors.errors.description[0]}}</span>
+          </label>
+          <textarea
+            cols="30"
+            rows="10"
+            class="p-2 rounded border-2 w-full"
+            v-model="project.descripton"
+          ></textarea>
+        </div>
+        <div class="flex flex-col md:flex-row md:items-center">
+          <div class="mr-8 w-full md:w-1/2">
+            <div class="mb-4 w-full">
+              <label for="status" class="mr-2 flex-shrink-0 font-bold">
+                Status:
+                <span
+                  class="ml-2 text-sm text-red font-normal"
+                  v-if="project.errors.errors.status"
+                >{{project.errors.errors.status[0]}}</span>
+              </label>
+              <select-input
+                :options="project.available_status"
+                placeholder="Select Status ..."
+                v-model="project.status"
+                :class="project.errors.errors.status ? 'border-red border-2 rounded':''"
+              ></select-input>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2">
+            <div class="mb-4">
+              <label for="status" class="mr-2 flex-shrink-0 font-bold">
+                Priority:
+                <span
+                  class="ml-2 text-sm text-red font-normal"
+                  v-if="project.errors.errors.priority"
+                >{{project.errors.errors.priority[0]}}</span>
+              </label>
+              <select-input
+                :options="[['P1','P1'],['P2','P2'],['P3','P3']]"
+                placeholder="Select Priority ..."
+                v-model="project.priority"
+                :class="project.errors.errors.priority ? 'border-red border-2 rounded':''"
+              ></select-input>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row md:items-center">
+          <div class="mr-8 w-full md:w-1/2 mb-4">
+            <label for="start_date" class="mr-2 flex-shrink-0 font-bold">
+              Start Date:
+              <span
+                class="ml-2 text-sm text-red font-normal"
+                v-if="project.errors.errors.start_date"
+              >{{project.errors.errors.start_date[0]}}</span>
+            </label>
+            <div>
+              <date-picker
+                :class="project.errors.errors.start_date ? 'border-red border-2 rounded':'border-2 rounded w-full'"
+                v-model="project.start_date"
+              ></date-picker>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 mb-4">
+            <label for="due_date" class="mr-2 flex-shrink-0 font-bold">
+              Due Date:
+              <span
+                class="ml-2 text-sm text-red font-normal"
+                v-if="project.errors.errors.due_date"
+              >{{project.errors.errors.due_date[0]}}</span>
+            </label>
+            <div>
+              <date-picker
+                :class="project.errors.errors.due_date ? 'border-red border-2 rounded':'border-2 rounded w-full'"
+                v-model="project.due_date"
+              ></date-picker>
+            </div>
+          </div>
+        </div>-->
+      </tab-panel>
+      <tab-panel name="Configure">
+        <div class="mb-4">
+          <label for="new_status" class="font-bold block">
+            Availble Task Status:
+            <span
+              class="ml-2 text-sm text-red font-normal"
+              v-if="project.errors.errors.available_status"
+            >{{project.errors.errors.available_status[0]}}</span>
+          </label>
+          <div class="flex items-center mb-2">
+            <input
+              class="p-2 rounded border-2 w-full mr-4 flex-1"
+              id="new_status"
+              ref="new_status"
+              type="text"
+              :class="project.errors.errors.available_status ? 'border-red':''"
+              v-model="new_status"
+              @keyup.enter="addStatus"
+            />
+            <button class="btn btn-gray" @click="addStatus">Add Status</button>
+          </div>
+          <div v-if="project.available_status.length >0">
+            <p class="text-sm">Drag and drop to control the order for the dropdowns and Kanban board</p>
+            <ol>
+              <!-- <draggable :list="project.available_status" group="default"> -->
+              <li
+                class="mb-1 flex items-center"
+                v-for="(status, index) in project.available_status"
+                :key="status[0]"
+              >
+                <span class="mr-2 w-4">{{index + 1}}.</span>
+                <span
+                  class="rounded py-1 px-2 bg-gray text-white mr-2 mb-2 w-32 flex items-center justify-between"
+                >
+                  <span class="rounded mr-2">{{status[0]}}</span>
+                  <button class="h-3 w-3 fill-current" @click="removeStatus(index)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </li>
+              <!-- </draggable> -->
+            </ol>
+          </div>
+        </div>
+      </tab-panel>
+    </tabs-nav>
 
     <div class="flex items-center justify-between">
       <button class="text-gray-600 underline" @click="reset">Cancel</button>
@@ -144,11 +169,31 @@
 </template>
 
 <script>
+import TabsNav from "../UI/Tabs/TabsNav";
+import TabPanel from "../UI/Tabs/TabPanel";
+import SelectInput from "../UI/SelectInput";
+import DatePicker from "../UI/DatePicker";
+import Form from "@johnlowery74/crucial-form";
+
 export default {
+  components: { TabsNav, TabPanel, SelectInput, DatePicker },
   props: ["editProject"],
   data() {
     return {
-      project: {}
+      project: new Form({
+        title: "",
+        description: "",
+        status: "",
+        start_date: "",
+        due_date: "",
+        priority: "",
+        available_status: [
+          ["Not Started", "Not Started"],
+          ["In Progress", "In Progress"],
+          ["Complete", "Complete"]
+        ]
+      }),
+      new_status: ""
     };
   },
   methods: {
@@ -163,6 +208,19 @@ export default {
     updateProject() {
       this.$inertia.patch(this.editProject.path, this.project);
       this.reset();
+    },
+    addStatus() {
+      if (
+        this.new_status &&
+        !this.project.available_status.includes(this.new_status)
+      ) {
+        this.project.available_status.push([this.new_status, this.new_status]);
+      }
+      this.new_status = "";
+      this.$refs.new_status.focus();
+    },
+    removeStatus(index) {
+      this.project.available_status.splice(index, 1);
     }
   },
   created() {
