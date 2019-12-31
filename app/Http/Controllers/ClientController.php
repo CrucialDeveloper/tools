@@ -48,13 +48,13 @@ class ClientController extends Controller
     public function validateRequest(Request $request)
     {
         $request->validate([
-            'company_name' => 'required',
-            'address' => 'required',
-            'city' => 'required',
-            'state' => 'required',
-            'zip' => 'required',
-            'country' => 'required',
-            'phone_number' => 'required',
+            'company_name' => 'sometimes|required',
+            'address' => 'sometimes|required',
+            'city' => 'sometimes|required',
+            'state' => 'sometimes|required',
+            'zip' => 'sometimes|required',
+            'country' => 'sometimes|required',
+            'phone_number' => 'sometimes|required',
         ]);
     }
 

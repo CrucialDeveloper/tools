@@ -132,6 +132,7 @@ class ClientTest extends TestCase
             'company_name' => 'New Name'
         ]);
 
+        $response->assertStatus(200);
         $this->assertDatabaseHas('clients', [
             'company_name' => 'New Name'
         ]);

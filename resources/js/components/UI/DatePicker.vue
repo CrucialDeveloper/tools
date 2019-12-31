@@ -1,29 +1,19 @@
 <template>
-  <div class="w-full focus:shadow-outline">
-    <flat-pickr
-      class="w-full p-0 m-0 h-10 px-2"
-      v-model="update_value"
-      :config="config"
-      :placeholder="placeholder"
-      @input="setValue"
-      name="date"
-    ></flat-pickr>
-  </div>
+  <input type="text" @input="setValue" v-model="update_value" />
 </template>
 
 <script>
-import flatPickr from "vue-flatpickr-component";
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.css";
 
 export default {
   name: "DatePicker",
   props: ["placeholder", "value"],
-  components: { flatPickr },
   data() {
     return {
       config: {
         altInput: true,
         dateFormat: "Y-m-d H:i:ss",
-        altFormat: "D F J, Y h:i K",
         enableTime: true,
         disableMobile: "true"
       },
@@ -35,6 +25,15 @@ export default {
     setValue: function() {
       this.$emit("input", this.update_value);
     }
+  },
+  mounted() {
+    flatpickr(this.$el, this.config);
   }
 };
 </script>
+
+<style lang="css" scoped>
+.flatpickr-monthDropdown-months {
+  appearance: none;
+}
+</style>

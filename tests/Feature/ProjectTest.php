@@ -137,7 +137,8 @@ class ProjectTest extends TestCase
 
         $user = $this->signIn();
         $client = $this->create(Client::class);
-        $project = $this->create(Project::class);
+        $project = $this->create(Project::class, ['parent_url_id' => $client->url_id]);
+
 
         $response = $this->get($project->path);
 

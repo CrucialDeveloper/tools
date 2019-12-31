@@ -83,7 +83,8 @@
             </label>
             <div>
               <date-picker
-                :class="project.errors.errors.start_date ? 'border-red border-2 rounded':'border-2 rounded w-full'"
+                class="p-2"
+                :class="project.errors.errors.start_date ? 'border-red border rounded':'border rounded w-full'"
                 v-model="project.start_date"
               ></date-picker>
             </div>
@@ -98,12 +99,13 @@
             </label>
             <div>
               <date-picker
-                :class="project.errors.errors.due_date ? 'border-red border-2 rounded':'border-2 rounded w-full'"
+                class="p-2"
+                :class="project.errors.errors.due_date ? 'border-red border rounded':'border rounded w-full'"
                 v-model="project.due_date"
               ></date-picker>
             </div>
           </div>
-        </div>-->
+        </div>
       </tab-panel>
       <tab-panel name="Configure">
         <div class="mb-4">
