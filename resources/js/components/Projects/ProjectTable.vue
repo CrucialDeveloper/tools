@@ -101,11 +101,11 @@
                 v-if="dateColumns.includes(column)"
                 v-html="formatDate(getColumnValue(item,column))"
               ></span>
-              <span v-else-if="linkColumn===column">
+              <span v-else-if="linkColumn.includes(column)">
                 <inertia-link
                   class="hover:underline"
                   preserve-state
-                  :href="item[linkField] || item.link"
+                  :href="getLinkField(item,column) || item.link"
                   v-html="getColumnValue(item,column)"
                   v-if="!fileLinks"
                   preset
@@ -180,8 +180,8 @@ export default {
     filterable: {
       default: true
     },
-    linkColumn: String,
-    linkField: String,
+    linkColumn: Array,
+    linkField: Array,
     fileLinks: Boolean
   },
   data() {
@@ -232,6 +232,15 @@ export default {
       }
 
       return item[column];
+    },
+    getLinkField(item, column) {
+      let index = this.linkColumn.indexOf(column);
+      if (this.linkField[index].includes(".")) {
+        return item[this.linkField[index].split(".")[0]][
+          this.linkField[index].split(".")[1]
+        ];
+      }
+      return item[this.linkField[index]];
     },
     sort: function(key, order) {
       if (key.includes(":")) {

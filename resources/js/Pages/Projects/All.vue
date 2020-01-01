@@ -9,8 +9,8 @@
             :items="projects"
             :columns="['title','description','status', 'client:client.company_name','start_date','due_date', 'priority']"
             :dateColumns="['start_date','due_date']"
-            linkColumn="title"
-            linkField="path"
+            :linkColumn="['title', 'client:client.company_name']"
+            :linkField="['path', 'client.path']"
           ></project-table>
         </div>
       </div>
