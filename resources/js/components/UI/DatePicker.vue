@@ -14,8 +14,10 @@ export default {
       config: {
         altInput: true,
         dateFormat: "Y-m-d H:i:ss",
-        enableTime: true,
-        disableMobile: "true"
+        enableTime: false,
+        disableMobile: "true",
+        allowInput: true,
+        closeOnSelect: true
       },
       classes: "p-2 border-2 rounded",
       update_value: this.value
@@ -31,9 +33,3 @@ export default {
   }
 };
 </script>
-
-<style lang="css" scoped>
-.flatpickr-monthDropdown-months {
-  appearance: none;
-}
-</style>

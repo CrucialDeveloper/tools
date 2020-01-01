@@ -17,6 +17,7 @@ module.exports = {
         '32': '8rem',
         '48': '12rem',
         '56': '14rem',
+        '3/4': '75%',
       },
       minWidth: {
         '24': '6rem',
@@ -29,6 +30,7 @@ module.exports = {
         '76': '19rem',
         '88': '22rem',
         '122': '30.5rem',
+        '3/4': '75%',
       },
       colors: {
         transparent: 'transparent',

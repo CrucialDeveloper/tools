@@ -158,7 +158,6 @@
 </template>
 
 <script>
-import Vue from "vue";
 import moment from "moment";
 import ProjectModal from "./ProjectModal";
 
@@ -234,10 +233,13 @@ export default {
     openCreateProjectModal() {
       this.$modal.show(
         ProjectModal,
-        {},
+        { client: this.$page.client },
         {
           adaptive: true,
-          height: "auto"
+          height: "85%",
+          minHeight: 800,
+          scrollable: true,
+          resizable: true
         }
       );
     }

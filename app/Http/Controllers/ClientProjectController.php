@@ -36,8 +36,7 @@ class ClientProjectController extends Controller
 
     public function store(Request $request, Client $client)
     {
-
-        $this->validateRequest($request);
+        $this->validateRequest($request, $client);
 
         $project = Project::make([
             'title' => $request->title,
@@ -51,6 +50,8 @@ class ClientProjectController extends Controller
             'available_status' => $request->available_status,
         ]);
         $client->projects()->save($project);
+
+        return $project->path;
     }
 
     public function edit(Client $client, Project $project)
@@ -63,7 +64,7 @@ class ClientProjectController extends Controller
 
     public function update(Request $request, Client $client, Project $project)
     {
-        $this->validateRequest($request, $project);
+        $this->validateRequest($request, $client, $project);
 
         $project->update([
             'title' => $request->title,
@@ -79,7 +80,7 @@ class ClientProjectController extends Controller
 
         $project->save();
 
-        return "/clients/$client->url_id/projects/$project->url_id";
+        return $project->path;
     }
 
     public function destroy(Request $request, Client $client, Project $project)
@@ -89,10 +90,16 @@ class ClientProjectController extends Controller
         return "/clients/$client->slug/";
     }
 
-    public function validateRequest($request, $project = null)
+    public function validateRequest($request, $client, $project = null)
     {
         $request->validate([
-            'title' => ['required', $project ? Rule::unique('projects', 'title')->ignore($project->id) : ''],
+            'title' => [
+                'required',
+                $project ? Rule::unique('projects', 'title')->ignore($project->id) : '',
+                Rule::unique('projects', 'title')->where(function ($query) use ($client) {
+                    return $query->where('client_id', $client->id);
+                })
+            ],
             'description' => 'required',
             'status' => 'required',
             'start_date' => 'required',

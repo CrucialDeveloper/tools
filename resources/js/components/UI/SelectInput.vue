@@ -10,7 +10,7 @@
       <span v-else class="text-gray-500">{{placeholder}}</span>
     </button>
     <div
-      class="max-h-64 flex flex-col rounded-b border bg-gray-500 absolute w-full z-10 shadow-lg"
+      class="flex flex-col rounded-b border bg-gray-500 absolute w-full z-10 shadow-lg"
       v-show="isOpen"
     >
       <input
@@ -23,7 +23,7 @@
         @keydown.enter.prevent="selectHighlighted"
         @keydown.esc="close"
       />
-      <ul class="h-56 overflow-y-scroll" ref="options">
+      <ul class="overflow-y-scroll" ref="options">
         <li
           class="px-4 py-2 w-full"
           :class="[highlightedIndex === index ? 'bg-blue-500' :'']"

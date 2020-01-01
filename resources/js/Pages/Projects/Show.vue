@@ -10,19 +10,44 @@
         <span class="mx-2">></span>
         <span>{{project.title}}</span>
       </div>
-      <h2 class="text-2xl">{{project.title}}</h2>
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl mr-4">{{project.title}}</h2>
+        <button class="h-5 w-5 text-gray-500" @click="editProject">
+          <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+            <path
+              d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import StandardLayout from "../../components/Layouts/StandardLayout";
+import ProjectModal from "../../components/Clients/ProjectModal";
 
 export default {
   layout: StandardLayout,
   components: {
     StandardLayout
   },
-  props: ["client", "project"]
+  props: ["client", "project"],
+  methods: {
+    editProject() {
+      this.$modal.show(
+        ProjectModal,
+        { client: this.client, editProject: this.project },
+        {
+          adaptive: true,
+          height: "85%",
+          minHeight: 800,
+          scrollable: true,
+          resizable: true
+        }
+      );
+    }
+  }
 };
 </script>

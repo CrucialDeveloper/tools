@@ -1,10 +1,10 @@
 <template>
-  <div class="p-4">
+  <div class="p-4 h-full flex flex-col">
     <h3
       class="text-2xl mb-4"
     >{{(editProject === undefined || Object.keys(editProject).length ===0)? 'New Project' : 'Edit Project'}}</h3>
-    <tabs-nav>
-      <tab-panel>
+    <tabs-nav class="flex-grow h-full overflow-y-scroll pb-16">
+      <tab-panel name="Details" class="h-full">
         <div class="mb-4">
           <label for="name" class="font-bold block">
             Title:
@@ -14,7 +14,7 @@
             >{{project.errors.errors.title[0]}}</span>
           </label>
           <input
-            class="p-2 rounded border-2 w-full"
+            class="p-2 rounded border w-full"
             id="name"
             type="text"
             :class="project.errors.errors.title ? 'border-red':''"
@@ -32,8 +32,8 @@
           <textarea
             cols="30"
             rows="10"
-            class="p-2 rounded border-2 w-full"
-            v-model="project.descripton"
+            class="p-2 rounded border w-full"
+            v-model="project.description"
           ></textarea>
         </div>
         <div class="flex flex-col md:flex-row md:items-center">
@@ -50,7 +50,7 @@
                 :options="project.available_status"
                 placeholder="Select Status ..."
                 v-model="project.status"
-                :class="project.errors.errors.status ? 'border-red border-2 rounded':''"
+                :class="project.errors.errors.status ? 'border-red border rounded':''"
               ></select-input>
             </div>
           </div>
@@ -67,7 +67,7 @@
                 :options="[['P1','P1'],['P2','P2'],['P3','P3']]"
                 placeholder="Select Priority ..."
                 v-model="project.priority"
-                :class="project.errors.errors.priority ? 'border-red border-2 rounded':''"
+                :class="project.errors.errors.priority ? 'border-red border rounded':''"
               ></select-input>
             </div>
           </div>
@@ -107,7 +107,7 @@
           </div>
         </div>
       </tab-panel>
-      <tab-panel name="Configure">
+      <tab-panel name="Configure" class="h-full">
         <div class="mb-4">
           <label for="new_status" class="font-bold block">
             Availble Task Status:
@@ -118,7 +118,7 @@
           </label>
           <div class="flex items-center mb-2">
             <input
-              class="p-2 rounded border-2 w-full mr-4 flex-1"
+              class="p-2 rounded border w-full mr-4 flex-1"
               id="new_status"
               ref="new_status"
               type="text"
@@ -126,7 +126,10 @@
               v-model="new_status"
               @keyup.enter="addStatus"
             />
-            <button class="btn btn-gray" @click="addStatus">Add Status</button>
+            <button
+              class="border bg-gray-300 hover:bg-gray p-2 rounded"
+              @click="addStatus"
+            >Add Status</button>
           </div>
           <div v-if="project.available_status.length >0">
             <p class="text-sm">Drag and drop to control the order for the dropdowns and Kanban board</p>
@@ -157,8 +160,7 @@
         </div>
       </tab-panel>
     </tabs-nav>
-
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between w-full mt-auto">
       <button class="text-gray-600 underline" @click="reset">Cancel</button>
       <button
         class="text-white bg-blue px-4 py-2 rounded"
@@ -179,7 +181,7 @@ import Form from "@johnlowery74/crucial-form";
 
 export default {
   components: { TabsNav, TabPanel, SelectInput, DatePicker },
-  props: ["editProject"],
+  props: ["client", "editProject"],
   data() {
     return {
       project: new Form({
@@ -200,16 +202,30 @@ export default {
   },
   methods: {
     reset() {
-      this.project = {};
+      this.project = new Form({});
       this.$modal.hide(this.$parent.name);
     },
     saveProject() {
-      this.$inertia.post("/projects", this.project);
-      this.reset();
+      this.project
+        .post(this.client.path + "/projects", this.project)
+        .then(response => {
+          this.$inertia.visit(response);
+          this.reset();
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
     },
     updateProject() {
-      this.$inertia.patch(this.editProject.path, this.project);
-      this.reset();
+      this.project
+        .patch(this.project.path, this.project)
+        .then(response => {
+          this.$inertia.visit(response);
+          this.reset();
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
     },
     addStatus() {
       if (
@@ -227,7 +243,7 @@ export default {
   },
   created() {
     if (this.editProject) {
-      this.project = { ...this.editProject };
+      this.project = new Form({ ...this.editProject });
     }
   }
 };
