@@ -237,7 +237,9 @@ export default {
         {
           adaptive: true,
           height: "85%",
+          width: "1000px",
           minHeight: 800,
+          minWith: 400,
           scrollable: true,
           resizable: true
         }

@@ -20,6 +20,9 @@
           </svg>
         </button>
       </div>
+      <div class="mt-2">
+        <p v-html="project.description"></p>
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +45,9 @@ export default {
         {
           adaptive: true,
           height: "85%",
+          width: "1000px",
           minHeight: 800,
+          minWith: 400,
           scrollable: true,
           resizable: true
         }

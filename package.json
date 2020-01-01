@@ -30,6 +30,7 @@
         "@johnlowery74/crucial-form": "^1.0.8",
         "flatpickr": "^4.6.3",
         "moment": "^2.24.0",
+        "suneditor": "^2.23.4",
         "tailwindcss": "^1.1.4",
         "vue-js-modal": "^1.3.31",
         "vuedraggable": "^2.23.2"

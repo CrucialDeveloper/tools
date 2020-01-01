@@ -1,11 +1,11 @@
 <template>
-  <div class="p-4 h-full flex flex-col">
+  <div class="p-4 h-full flex flex-col overflow-x-hidden">
     <h3
       class="text-2xl mb-4"
     >{{(editProject === undefined || Object.keys(editProject).length ===0)? 'New Project' : 'Edit Project'}}</h3>
-    <tabs-nav class="flex-grow h-full overflow-y-scroll pb-16">
+    <tabs-nav class="flex-grow h-full overflow-x-hidden pb-16">
       <tab-panel name="Details" class="h-full">
-        <div class="mb-4">
+        <div class="mb-4 overflow-y-scroll">
           <label for="name" class="font-bold block">
             Title:
             <span
@@ -29,12 +29,7 @@
               v-if="project.errors.errors.description"
             >{{project.errors.errors.description[0]}}</span>
           </label>
-          <textarea
-            cols="30"
-            rows="10"
-            class="p-2 rounded border w-full"
-            v-model="project.description"
-          ></textarea>
+          <content-editor v-model="project.description" :default="project.description"></content-editor>
         </div>
         <div class="flex flex-col md:flex-row md:items-center">
           <div class="mr-8 w-full md:w-1/2">
@@ -177,11 +172,19 @@ import TabsNav from "../UI/Tabs/TabsNav";
 import TabPanel from "../UI/Tabs/TabPanel";
 import SelectInput from "../UI/SelectInput";
 import DatePicker from "../UI/DatePicker";
+import ContentEditor from "../UI/ContentEditor";
 import Form from "@johnlowery74/crucial-form";
 import Draggable from "vuedraggable";
 
 export default {
-  components: { TabsNav, TabPanel, SelectInput, DatePicker, Draggable },
+  components: {
+    TabsNav,
+    TabPanel,
+    SelectInput,
+    DatePicker,
+    Draggable,
+    ContentEditor
+  },
   props: ["client", "editProject"],
   data() {
     return {
