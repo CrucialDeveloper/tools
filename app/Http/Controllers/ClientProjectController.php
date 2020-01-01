@@ -95,8 +95,9 @@ class ClientProjectController extends Controller
         $request->validate([
             'title' => [
                 'required',
-                $project ? Rule::unique('projects', 'title')->ignore($project->id) : '',
-                Rule::unique('projects', 'title')->where(function ($query) use ($client) {
+                $project ? Rule::unique('projects', 'title')->where(function ($query) use ($client) {
+                    return $query->where('client_id', $client->id);
+                })->ignore($project->id) : Rule::unique('projects', 'title')->where(function ($query) use ($client) {
                     return $query->where('client_id', $client->id);
                 })
             ],

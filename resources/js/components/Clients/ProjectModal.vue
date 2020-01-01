@@ -134,27 +134,27 @@
           <div v-if="project.available_status.length >0">
             <p class="text-sm">Drag and drop to control the order for the dropdowns and Kanban board</p>
             <ol>
-              <!-- <draggable :list="project.available_status" group="default"> -->
-              <li
-                class="mb-1 flex items-center"
-                v-for="(status, index) in project.available_status"
-                :key="status[0]"
-              >
-                <span class="mr-2 w-4">{{index + 1}}.</span>
-                <span
-                  class="rounded py-1 px-2 bg-gray text-white mr-2 mb-2 w-32 flex items-center justify-between"
+              <draggable :list="project.available_status" group="default">
+                <li
+                  class="mb-1 flex items-center"
+                  v-for="(status, index) in project.available_status"
+                  :key="status[0]"
                 >
-                  <span class="rounded mr-2">{{status[0]}}</span>
-                  <button class="h-3 w-3 fill-current" @click="removeStatus(index)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                      <path
-                        d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z"
-                      />
-                    </svg>
-                  </button>
-                </span>
-              </li>
-              <!-- </draggable> -->
+                  <span class="mr-2 w-4">{{index + 1}}.</span>
+                  <span
+                    class="rounded py-1 px-2 bg-gray text-white mr-2 mb-2 w-32 flex items-center justify-between"
+                  >
+                    <span class="rounded mr-2">{{status[0]}}</span>
+                    <button class="h-3 w-3 fill-current" @click="removeStatus(index)">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path
+                          d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z"
+                        />
+                      </svg>
+                    </button>
+                  </span>
+                </li>
+              </draggable>
             </ol>
           </div>
         </div>
@@ -178,9 +178,10 @@ import TabPanel from "../UI/Tabs/TabPanel";
 import SelectInput from "../UI/SelectInput";
 import DatePicker from "../UI/DatePicker";
 import Form from "@johnlowery74/crucial-form";
+import Draggable from "vuedraggable";
 
 export default {
-  components: { TabsNav, TabPanel, SelectInput, DatePicker },
+  components: { TabsNav, TabPanel, SelectInput, DatePicker, Draggable },
   props: ["client", "editProject"],
   data() {
     return {
