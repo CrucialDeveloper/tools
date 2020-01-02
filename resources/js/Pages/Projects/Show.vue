@@ -24,6 +24,8 @@
         <p v-html="project.description"></p>
       </div>
     </div>
+    <div class="bg-white p-4 rounded shadow mt-4">Tasks</div>
+    <div class="bg-white p-4 rounded shadow mt-4">Comments, Files, Etc</div>
   </div>
 </template>
 
