@@ -11,13 +11,13 @@ import { InertiaApp } from '@inertiajs/inertia-vue'
 import VModal from 'vue-js-modal'
 import Vue from 'vue'
 
-window.Vue = Vue
+window.Vue = Vue;
 
-Vue.use(InertiaApp)
-Vue.use(VModal, { dynamic: true, injectModalsContainer: true })
+Vue.use(InertiaApp);
+Vue.use(VModal, { dynamic: true, injectModalsContainer: true });
 
 
-const app = document.getElementById('app')
+const app = document.getElementById('app');
 
 new Vue({
     render: h => h(InertiaApp, {
@@ -26,4 +26,4 @@ new Vue({
             resolveComponent: name => import(`./Pages/${name}`).then(module => module.default),
         },
     }),
-}).$mount(app)
+}).$mount(app);

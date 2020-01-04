@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
+use Inertia\Response;
 
 class ProjectController extends Controller
 {
+    /**
+     * @return Response
+     */
     public function index()
     {
         return Inertia::render('Projects/All', [
