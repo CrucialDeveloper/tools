@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-full">
-    <div class="flex max-h-full bg-white p-4 rounded shadow overflow-y-scroll mb-16 w-full">
+    <div class="flex max-h-full bg-white p-4 rounded shadow overflow-y-scroll w-full">
       <div class="h-full flex-1">
         <div class="flex items-center mb-4 text-sm text-gray-600">
           <inertia-link class="hover:underline" href="/clients">Clients</inertia-link>

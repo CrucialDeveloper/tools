@@ -32,13 +32,7 @@ export default {
     return {
       available_status: [],
       exclude_status: [],
-      shown_status: [
-        "New",
-        "Not Started",
-        "In Progress",
-        "On Hold",
-        "Completed"
-      ]
+      shown_status: ["New", "Not Started", "In Progress", "On Hold", "Complete"]
     };
   },
   methods: {
