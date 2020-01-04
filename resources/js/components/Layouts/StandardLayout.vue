@@ -8,7 +8,7 @@
         >{{ $page.user.initials || 'G'}}</div>
       </div>
     </div>
-    <div class="flex h-full">
+    <div class="flex content-body">
       <div class="bg-gray-400 min-w-24 w-24 h-full px-2 py-8">
         <a
           class="inline-block px-2 pb-2 w-full rounded hover:underline hover:bg-blue hover:text-white"

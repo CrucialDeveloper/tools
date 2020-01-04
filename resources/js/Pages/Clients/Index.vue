@@ -1,8 +1,6 @@
 <template>
   <div class="flex h-full">
-    <div
-      class="flex min-w-122 w-1/4 max-h-full bg-white p-4 rounded shadow overflow-y-scroll mr-4 mb-16"
-    >
+    <div class="flex min-w-122 w-1/4 max-h-full bg-white p-4 rounded shadow overflow-y-scroll mr-4">
       <div class="h-full flex-1">
         <div class="pb-4">
           <client-table

@@ -1,15 +1,15 @@
 <template>
-  <div class="h-full">
-    <div class="bg-white p-4 rounded shadow">
-      <div class="flex items-center mb-4 text-sm text-gray-600">
-        <inertia-link class="hover:underline" href="/clients">Clients</inertia-link>
-        <span class="mx-2">></span>
-        <inertia-link class="hover:underline" :href="client.path">{{client.company_name}}</inertia-link>
-        <span class="mx-2">></span>
-        <inertia-link class="hover:underline" :href="`${client.path}/projects`">Projects</inertia-link>
-        <span class="mx-2">></span>
-        <span>{{project.title}}</span>
-      </div>
+  <div class="flex flex-col h-full">
+    <div class="flex items-start mb-4 text-sm text-gray-600">
+      <inertia-link class="hover:underline" href="/clients">Clients</inertia-link>
+      <span class="mx-2">></span>
+      <inertia-link class="hover:underline" :href="client.path">{{client.company_name}}</inertia-link>
+      <span class="mx-2">></span>
+      <inertia-link class="hover:underline" :href="`${client.path}/projects`">Projects</inertia-link>
+      <span class="mx-2">></span>
+      <span>{{project.title}}</span>
+    </div>
+    <div class="p-4 rounded bg-white shadow">
       <div class="flex items-center justify-between">
         <h2 class="text-2xl mr-4">{{project.title}}</h2>
         <button class="h-5 w-5 text-gray-500" @click="editProject">
@@ -20,23 +20,42 @@
           </svg>
         </button>
       </div>
-      <div class="mt-2">
-        <p v-html="project.description"></p>
-      </div>
+      <p v-html="project.description"></p>
     </div>
-    <div class="bg-white p-4 rounded shadow mt-4">Tasks</div>
-    <div class="bg-white p-4 rounded shadow mt-4">Comments, Files, Etc</div>
+    <div class="flex items-start h-full mb-4">
+      <div class="bg-white p-4 rounded shadow mt-4 mr-4 w-3/4 h-full">
+        <tabs-nav>
+          <tab-panel name="Dashboard">
+            <div class="px-4 pb-4 mt-4">Dashboard</div>
+          </tab-panel>
+          <tab-panel name="Tasks">
+            <div class="px-4 pb-4 mt-4">Tasks</div>
+          </tab-panel>
+          <tab-panel name="Files">
+            <div class="px-4 pb-4 mt-4">Files</div>
+          </tab-panel>
+          <tab-panel name="Billing">
+            <div class="px-4 pb-4 mt-4">Billing</div>
+          </tab-panel>
+        </tabs-nav>
+      </div>
+      <div class="bg-white p-4 rounded shadow mt-4 w-1/4 h-full">Comments</div>
+    </div>
   </div>
 </template>
 
 <script>
 import StandardLayout from "../../components/Layouts/StandardLayout";
 import ProjectModal from "../../components/Clients/ProjectModal";
+import TabsNav from "../../components/UI/Tabs/TabsNav";
+import TabPanel from "../../components/UI/Tabs/TabPanel";
 
 export default {
   layout: StandardLayout,
   components: {
-    StandardLayout
+    StandardLayout,
+    TabsNav,
+    TabPanel
   },
   props: ["client", "project"],
   methods: {
