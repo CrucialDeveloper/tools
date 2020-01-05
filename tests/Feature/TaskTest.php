@@ -38,12 +38,10 @@ class TaskTest extends TestCase
         $this->withoutExceptionHandling();
 
         $task = $this->raw(Task::class);
-
         $user = $this->signIn();
-        $client = $this->create(Client::class, ['user_id' => $user->id]);
-        $project = $this->create(Project::class, ['user_id' => $user->id, 'client_id' => $client->id]);
 
-        $task['board_id'] = $project->id;
+        $client = $this->create(Client::class, ['user_id' => $user->id]);
+        $project = Project::first();
 
         $this->post("/clients/$client->url_id/projects/$project->url_id/tasks", $task);
         $this->assertDatabaseHas('tasks', ['title' => $task['title']]);

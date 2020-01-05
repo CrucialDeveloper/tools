@@ -29,8 +29,9 @@
             <div class="px-4 pb-4 mt-4">Dashboard</div>
           </tab-panel>
           <tab-panel name="Tasks">
-            <div class="px-4 pb-4 mt-4">Tasks</div>
+            <task-views :client="client" :project="project" :tasks="project.tasks"></task-views>
           </tab-panel>
+
           <tab-panel name="Files">
             <div class="px-4 pb-4 mt-4">Files</div>
           </tab-panel>
@@ -49,13 +50,15 @@ import StandardLayout from "../../components/Layouts/StandardLayout";
 import ProjectModal from "../../components/Clients/ProjectModal";
 import TabsNav from "../../components/UI/Tabs/TabsNav";
 import TabPanel from "../../components/UI/Tabs/TabPanel";
+import TaskViews from "../../components/Tasks/TaskViews";
 
 export default {
   layout: StandardLayout,
   components: {
     StandardLayout,
     TabsNav,
-    TabPanel
+    TabPanel,
+    TaskViews
   },
   props: ["client", "project"],
   methods: {

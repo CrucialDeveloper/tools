@@ -32,7 +32,13 @@ export default {
     return {
       available_status: [],
       exclude_status: [],
-      shown_status: ["New", "Not Started", "In Progress", "On Hold", "Complete"]
+      shown_status: [
+        "New",
+        "Not Started",
+        "In Progress",
+        "On Hold",
+        "Completed"
+      ]
     };
   },
   methods: {
@@ -57,7 +63,7 @@ export default {
       }
     }
   },
-  mounted() {
+  created() {
     this.available_status = _.uniq(
       this.items
         .map(item => {

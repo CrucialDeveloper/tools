@@ -28,6 +28,7 @@ class TaskController extends Controller
             'user_id' => auth()->user()->id,
             'client_id' => $client->id,
             'project_id' => $project->id,
+            'parent_url_id' => $project->url_id,
             'title' => $request->title,
             'description' => $request->description,
             'status' => $request->status,

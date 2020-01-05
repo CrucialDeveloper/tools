@@ -1,7 +1,7 @@
 <template>
   <inertia-link
     :href="viewPath()"
-    class="flex flex-col items-stretch justify-between rounded p-2 mb-4 shadow-md bg-blue-200"
+    class="flex flex-col items-stretch justify-between rounded p-2 mb-4 shadow-md bg-blue-300"
     :class="{'border-l-4 border-red-800': project.past_due}"
   >
     <div>

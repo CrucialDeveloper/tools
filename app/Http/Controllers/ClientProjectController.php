@@ -23,7 +23,7 @@ class ClientProjectController extends Controller
     {
         return Inertia::render('Projects/Show', [
             'client' => $client,
-            'project' => $project
+            'project' => $project->load('tasks')
         ]);
     }
 
