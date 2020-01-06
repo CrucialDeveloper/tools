@@ -33,6 +33,9 @@ class ProjectTest extends TestCase
             'available_status' => [
                 'Not Started', 'In Progress',
             ],
+            'work_type' => json_encode([
+                ['Standard', 'Standard', 100],
+            ])
         ]);
 
         $this->assertDatabaseHas('projects', [

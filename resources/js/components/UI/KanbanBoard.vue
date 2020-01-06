@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="md:min-w-64 w-full h-full flex flex-col lg:flex-row mt-4">
+    <div class="md:min-w-64 w-full h-full flex flex-col lg:flex-row">
       <div
         class="w-full md:max-w-md border-gray-500 border-t border-l border-r p-2"
         v-for="status in shown_status"

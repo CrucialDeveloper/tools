@@ -29,11 +29,14 @@ export default {
       });
       this.$children[index].show = true;
       this.activeTab = index;
+      localStorage.setItem(window.location.pathname, index);
     }
   },
   mounted() {
     this.tabs = this.$children;
+    // let index = Number(localStorage.getItem(window.location.pathname));
     this.showTab(0);
+    // this.activeTab = index;
   }
 };
 </script>

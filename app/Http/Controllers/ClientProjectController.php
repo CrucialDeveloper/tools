@@ -48,6 +48,7 @@ class ClientProjectController extends Controller
             'due_date' => $request->due_date,
             'priority' => $request->priority,
             'available_status' => $request->available_status,
+            'work_type' => $request->work_type,
         ]);
         $client->projects()->save($project);
 
@@ -75,7 +76,8 @@ class ClientProjectController extends Controller
             'start_date' => $request->start_date,
             'due_date' => $request->due_date,
             'priority' => $request->priority,
-            'available_status' => $request->available_status
+            'available_status' => $request->available_status,
+            'work_type' => $request->work_type
         ]);
 
         $project->save();
@@ -107,6 +109,7 @@ class ClientProjectController extends Controller
             'due_date' => 'required',
             'priority' => 'required',
             'available_status' => 'required',
+            'work_type' => 'required',
         ]);
     }
 }

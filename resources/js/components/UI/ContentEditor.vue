@@ -1,7 +1,7 @@
 <template>
   <div>
     <div ref="wrapper">
-      <textarea ref="editor" class="sun-editor-editable" id="editor"></textarea>
+      <textarea :id="id" ref="editor" class="sun-editor-editable"></textarea>
     </div>
   </div>
 </template>
@@ -14,7 +14,26 @@ import plugins from "suneditor/src/plugins";
 import suneditor from "suneditor";
 
 export default {
-  props: ["default"],
+  props: {
+    default: {
+      type: String
+    },
+    height: {
+      type: String,
+      default: "300px"
+    }
+  },
+  data() {
+    return {
+      id:
+        Math.random()
+          .toString(36)
+          .substring(2, 15) +
+        Math.random()
+          .toString(36)
+          .substring(2, 15)
+    };
+  },
   methods: {
     setPastedImageListener: function() {
       this.$refs.wrapper.addEventListener("paste", function(e) {
@@ -37,7 +56,7 @@ export default {
     }
   },
   mounted() {
-    window.suneditor = suneditor.create("editor", {
+    window.suneditor = suneditor.create(document.getElementById(this.id), {
       plugins: plugins,
       buttonList: [
         ["undo", "redo"],
@@ -53,11 +72,13 @@ export default {
         ["fullScreen", "showBlocks", "codeView"]
       ],
       width: "100%",
-      height: "300px"
+      height: "200px"
     });
 
     window.suneditor.onChange = contents => this.$emit("input", contents);
-    window.suneditor.setContents(this.default);
+    if (this.default) {
+      window.suneditor.setContents(this.default);
+    }
   }
 };
 </script>
@@ -72,5 +93,23 @@ export default {
 }
 .sun-editor .se-btn-module-enter {
   display: none;
+}
+
+.sun-editor .se-toolbar {
+  padding: 0px !important;
+}
+
+.sun-editor .se-btn {
+  margin: 0px !important;
+  height: unset !important;
+  line-height: 21px !important;
+}
+
+.sun-editor .se-toolbar [class*="se-icon-"]::before {
+  line-height: 1.5 !important;
+}
+
+.sun-editor [class*="se-icon-"]::before {
+  font-size: 12px !important;
 }
 </style>

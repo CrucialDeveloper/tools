@@ -58,4 +58,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(WorkEntry::class);
     }
+
+    public function timekeeping()
+    {
+        return $this->hasMany(TimeKeeping::class);
+    }
 }

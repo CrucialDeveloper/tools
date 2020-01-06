@@ -154,6 +154,61 @@
           </div>
         </div>
       </tab-panel>
+      <tab-panel name="Work Types & Rates">
+        <div class="mb-4 flex items-center justify-between">
+          <div class="mr-4 flex items-center flex-1">
+            <label for="new_work_type" class="font-bold mr-2">Work Type:</label>
+            <input
+              class="p-2 rounded border w-full mr-4 flex-1"
+              id="new_work_type"
+              ref="new_work_type"
+              type="text"
+              :class="project.errors.errors.work_type ? 'border-red':''"
+              v-model="new_work_type"
+            />
+          </div>
+          <div class="flex items-center">
+            <label for="new_status" class="font-bold mr-2">Work Rate:</label>
+            <input
+              class="p-2 rounded border w-full mr-4 flex-1"
+              id="new_work_rate"
+              ref="new_work_rate"
+              type="text"
+              :class="project.errors.errors.work_type ? 'border-red':''"
+              v-model="new_work_rate"
+            />
+          </div>
+          <button
+            class="border bg-gray-300 hover:bg-gray p-2 rounded"
+            @click="addWorkType"
+          >Add Work Type</button>
+        </div>
+        <div v-if="project.work_type.length >0">
+          <ol>
+            <draggable :list="project.work_type" group="default">
+              <li
+                class="mb-1 flex items-center"
+                v-for="(type, index) in project.work_type"
+                :key="type[0]"
+              >
+                <span class="mr-2 w-4">{{index + 1}}.</span>
+                <span
+                  class="rounded py-1 px-2 bg-gray text-white mr-2 mb-2 w-56 flex items-center justify-between"
+                >
+                  <span class="rounded mr-2">{{type[0]}} @ ${{type[2]}}/hour</span>
+                  <button class="h-3 w-3 fill-current" @click="removeWorkType(index)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </li>
+            </draggable>
+          </ol>
+        </div>
+      </tab-panel>
     </tabs-nav>
     <div class="flex items-center justify-between w-full mt-auto">
       <button class="text-gray-600 underline" @click="reset">Cancel</button>
@@ -199,9 +254,19 @@ export default {
           ["Not Started", "Not Started"],
           ["In Progress", "In Progress"],
           ["Complete", "Complete"]
+        ],
+        work_type: [
+          ["Standard", "Standard", 50],
+          ["Coding", "Coding", 50],
+          ["Spike", "Spike", 35],
+          ["Meeting", "Meeting", 50],
+          ["Bug Fix", "Bug Fix", 35],
+          ["Other", "Other", 40]
         ]
       }),
-      new_status: ""
+      new_status: "",
+      new_work_type: "",
+      new_work_rate: ""
     };
   },
   methods: {
@@ -243,6 +308,25 @@ export default {
     },
     removeStatus(index) {
       this.project.available_status.splice(index, 1);
+    },
+    addWorkType() {
+      if (
+        this.new_work_type &&
+        this.new_work_rate &&
+        !this.project.work_type.includes(this.new_work_type)
+      ) {
+        this.project.work_type.push([
+          this.new_work_type,
+          this.new_work_type,
+          this.new_work_rate
+        ]);
+      }
+      this.new_work_type = "";
+      this.new_work_rate = "";
+      this.$refs.new_work_type.focus();
+    },
+    removeWorkType(index) {
+      this.project.work_type.splice(index, 1);
     }
   },
   created() {

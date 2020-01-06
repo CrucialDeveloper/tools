@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $fillable = ['user_id', 'parent_url_id', 'title', 'description', 'status', 'start_date', 'due_date', 'priority', 'available_status', 'url_id'];
+    protected $fillable = ['user_id', 'parent_url_id', 'title', 'description', 'status', 'start_date', 'due_date', 'priority', 'available_status', 'work_type', 'url_id'];
 
     protected $appends = ['past_due', 'path'];
 
@@ -18,7 +18,8 @@ class Project extends Model
     }
 
     protected $casts = [
-        'available_status' => 'json',
+        'available_status' => 'array',
+        'work_type' => 'array',
     ];
 
     public static function boot()

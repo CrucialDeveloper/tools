@@ -16,8 +16,9 @@ $factory->define(App\Project::class, function (Faker $faker) {
         'start_date' => Carbon::now(),
         'due_date' => $faker->dateTimeBetween('now', '+1 year', null),
         'priority' => $faker->randomElement(['P1', 'P2', 'P3']),
-        'available_status' => [
-            'Not Started', 'In Progress',
-        ],
+        'available_status' => [['Not Started', 'Not Started'], ['In Progress', 'In Progress']],
+        'work_type' => [
+            ['Standard', 'Standard', 100],
+        ]
     ];
 });

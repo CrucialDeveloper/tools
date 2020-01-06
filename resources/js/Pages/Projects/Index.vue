@@ -11,7 +11,7 @@
         </div>
         <h2 class="text-2xl">Client Projects</h2>
         <div class="mt-2 mb-4">
-          <div class="flex items-center">
+          <div class="flex items-center mb-4">
             <button
               class="h-5 w-5 text-gray-500 fill-current mr-4"
               @click="setView('tile')"

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center">
+    <div class="flex items-center mb-4">
       <button
         class="h-5 w-5 text-gray-500 fill-current mr-4"
         @click="setView('tile')"
@@ -89,11 +89,14 @@ export default {
   },
   methods: {
     setView(view) {
+      localStorage.setItem("tasksView", view);
       this.view = view;
     }
   },
-  mounted() {
-    console.log(this);
+  created() {
+    this.view = localStorage.getItem("tasksView")
+      ? localStorage.getItem("tasksView")
+      : "tile";
   }
 };
 </script>

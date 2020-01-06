@@ -39,7 +39,6 @@ export default {
   mounted() {
     if (window.location.hash.length > 0) {
       this.activeClient = this.clients.filter(client => {
-        console.log(window.location.hash);
         return client.url_id === window.location.hash.slice(1);
       })[0];
     }
