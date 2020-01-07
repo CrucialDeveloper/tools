@@ -6,8 +6,8 @@
         <!-- play -->
         <button
           class="w-6 h-6 text-gray-500 fill-current"
-          :class="[mode==='running' || elapsedTime>0 ? 'cursor-not-allowed': '']"
-          :disabled="mode==='running' || elapsedTime>0"
+          :class="[mode==='running' || entry.duration>0 ? 'cursor-not-allowed': '']"
+          :disabled="mode==='running' || entry.duration>0"
           @click="start"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -50,53 +50,68 @@
         </button>
       </div>
     </div>
-    <div class="mt-4">
-      <select-input class="mb-4" v-model="work_type"></select-input>
-      <content-editor v-model="description"></content-editor>
-    </div>
-    <!-- save -->
-    <!-- <button
-        class="w-6 h-6 text-gray-500 fill-current"
-        :class="[mode != 'stopped' || elapsedTime === 0 ? 'cursor-not-allowed': '']"
-        :disabled="mode !='stopped' ||elapsedTime ===0"
-        @click="save"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-          <path
-            d="M34 6H10c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V14l-8-8zM24 38c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm6-20H10v-8h20v8z"
+    <div class="mt-4" v-if="mode==='stopped'">
+      <div class="flex items-center justify-between">
+        <select-input
+          class="mb-4 mr-4"
+          v-model="entry.work_type"
+          :options="project.work_type"
+          placeholder="Select Work Type ..."
+        ></select-input>
+        <div class="flex items-center">
+          <input
+            id="billable"
+            type="checkbox"
+            class="mr-2 p-2"
+            v-model="entry.billable"
+            :checked="entry.billable===true"
           />
-        </svg>
-    </button>-->
+          <label for="billable">Billable</label>
+        </div>
+      </div>
+      <content-editor v-model="entry.description"></content-editor>
+      <button
+        class="w-full bg-gray-500 hover:bg-gray-600 fill-current rounded p-2 mt-4"
+        :class="[mode != 'stopped' || entry.duration === 0 ? 'cursor-not-allowed': '']"
+        :disabled="mode !='stopped' ||entry.duration ===0"
+        @click="save"
+      >Save</button>
+    </div>
   </div>
 </template>
 
 <script>
 import ContentEditor from "../UI/ContentEditor";
 import SelectInput from "../UI/SelectInput";
+import Form from "@johnlowery74/crucial-form";
 
 export default {
-  components: { ContentEditor, SelectInput },
+  components: { ContentEditor, SelectInput, Form },
+  props: ["project"],
   data() {
     return {
-      mode: "stopped",
+      mode: "new",
       time: "",
       timerTime: null,
-      startTime: null,
       pausedTime: null,
-      endTime: null,
-      elapsedTime: 0,
-      work_type: "",
-      description: ""
+      entry: new Form({
+        start_time: null,
+        end_time: null,
+        duration: 0,
+        work_type: "",
+        description: "",
+        billable: true
+      })
     };
   },
   methods: {
     start() {
-      if (this.mode === "stopped") {
-        this.startTime = Date.now();
-        this.timerTime = this.startTime;
+      if (this.mode === "stopped" || this.mode === "new") {
+        this.entry.start_time = Date.now();
+        this.timerTime = this.entry.start_time;
         this.mode = "running";
         this.stopWatch = setInterval(() => {
-          this.elapsedTime = Date.now() - this.timerTime;
+          this.entry.duration = Date.now() - this.timerTime;
         }, 10);
       }
       if (this.mode === "paused") {
@@ -116,42 +131,43 @@ export default {
       this.mode = "running";
       this.timerTime = this.timerTime - (this.pausedTime - Date.now());
       this.stopWatch = setInterval(() => {
-        this.elapsedTime = Date.now() - this.timerTime;
+        this.entry.duration = Date.now() - this.timerTime;
       }, 10);
     },
     stop() {
       this.mode = "stopped";
-      this.endTime = Date.now();
+      this.entry.end_time = Date.now();
       clearInterval(this.stopWatch);
     },
     refresh() {
-      this.mode = "stopped";
+      this.mode = "new";
       this.time = "";
       this.timerTime = null;
-      this.startTime = null;
       this.pausedTime = null;
-      this.endTime = null;
-      this.elapsedTime = 0;
-      (this.type = ""), (this.description = "");
+      this.entry.start_time = null;
+      this.entry.end_time = null;
+      this.entry.duration = 0;
+      this.entry.work_type = "";
+      this.entry.description = "";
+      this.entry.billable = true;
       clearInterval(this.stopWatch);
     },
     save() {
-      this.$emit("recordTime", {
-        start: this.startTime,
-        end: this.endTime,
-        elapsed: this.elapsedTime,
-        type: this.time,
-        description: this.description
-      });
-      this.refresh();
+      this.entry
+        .post(this.project.path + "/timekeep", this.entry)
+        .then(response => {
+          this.refresh();
+          this.$inertia.reload();
+        })
+        .catch(errors => console.log(errors));
     }
   },
   computed: {
     timer() {
-      let milliseconds = parseInt((this.elapsedTime % 1000) / 10);
-      let seconds = Math.floor((this.elapsedTime / 1000) % 60);
-      let minutes = Math.floor((this.elapsedTime / (1000 * 60)) % 60);
-      let hours = Math.floor((this.elapsedTime / (1000 * 60 * 60)) % 24);
+      let milliseconds = parseInt((this.entry.duration % 1000) / 10);
+      let seconds = Math.floor((this.entry.duration / 1000) % 60);
+      let minutes = Math.floor((this.entry.duration / (1000 * 60)) % 60);
+      let hours = Math.floor((this.entry.duration / (1000 * 60 * 60)) % 24);
       hours = hours < 10 ? "0" + hours : hours;
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;

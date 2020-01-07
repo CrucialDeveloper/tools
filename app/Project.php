@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\TimeKeeping;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Database\Eloquent\Model;
 
@@ -62,8 +63,8 @@ class Project extends Model
         return $this->morphMany('App\Comment', 'commentable');
     }
 
-    public function work_entry()
+    public function time_keepings()
     {
-        return $this->hasMany(WorkEntry::class);
+        return $this->hasMany(TimeKeeping::class);
     }
 }

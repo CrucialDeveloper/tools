@@ -20,6 +20,7 @@ class CreateTimeKeepingsTable extends Migration
             $table->bigInteger('project_id');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
+            $table->string('work_type');
             $table->text('description');
             $table->bigInteger('duration');
             $table->boolean('billable');

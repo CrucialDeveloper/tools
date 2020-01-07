@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TimeKeeping extends Model
 {
-    protected $fillable = ['user_id', 'client_id', 'project_id', 'start_time', 'end_time', 'description', 'billable', 'client_url_id', 'project_url_id'];
+    protected $fillable = ['user_id', 'client_id', 'project_id', 'start_time', 'end_time', 'work_type', 'description', 'duration', 'billable', 'client_url_id', 'project_url_id'];
     protected $dates = ['start_time', 'end_time'];
     protected $appends = ['path'];
 

@@ -29,7 +29,7 @@
           :class="[highlightedIndex === index ? 'bg-blue-500' :'']"
           v-for="(item, index) in filteredOptions"
           @click="setSelected(item)"
-          @mouseover="highlightedIndex = item"
+          @mouseover="highlightedIndex = index"
           :key="item[0]"
           :value="item[0]"
         >{{item[1]}}</li>

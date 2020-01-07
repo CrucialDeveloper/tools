@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-hidden">
     <div class="flex items-center w-full mt-4">
       <div class="w-full flex flex-col" v-if="filters">
         <div class="flex items-center mx-2 mb-4 flex-wrap w-full md:w-auto">

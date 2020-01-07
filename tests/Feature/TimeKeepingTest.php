@@ -37,11 +37,12 @@ class TimeKeepingTest extends TestCase
             'user_id' => 1,
             'client_id' => 1,
             'project_id' => 1,
-            'start_time' => Carbon::now()->subMinutes(60),
-            'end_time' => Carbon::now(),
-            'description' => 'This is the description',
-            'duration' => 60,
-            'billable' => true,
+            "start_time" => Carbon::createFromTimestampMs(1578361322011),
+            "end_time" => Carbon::createFromTimestampMs(1578361332080),
+            'work_type' => "Standard",
+            "billable" => true,
+            "description" => "",
+            "duration" => 10067,
             'client_url_id' => 'client url id',
             'project_url_id' => 'project url id'
         ]);
@@ -50,11 +51,12 @@ class TimeKeepingTest extends TestCase
             'user_id' => 1,
             'client_id' => 1,
             'project_id' => 1,
-            'start_time' => Carbon::now()->subMinutes(60),
-            'end_time' => Carbon::now(),
-            'description' => 'This is the description',
-            'duration' => 60,
-            'billable' => true,
+            "start_time" => Carbon::createFromTimestampMs(1578361322011),
+            "end_time" => Carbon::createFromTimestampMs(1578361332080),
+            'work_type' => "Standard",
+            "billable" => true,
+            "description" => "",
+            "duration" => 10067,
             'client_url_id' => 'client url id',
             'project_url_id' => 'project url id'
         ]);
@@ -91,7 +93,7 @@ class TimeKeepingTest extends TestCase
             'start_time' => $entry->start_time,
             'end_time' => $entry->end_time,
             'description' => 'Updated description',
-            'duration' => 135
+            'duration' => 8100000
         ]);
     }
 

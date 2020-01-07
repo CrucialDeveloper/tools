@@ -36,7 +36,7 @@
             <div class="px-4 pb-4 mt-4">Files</div>
           </tab-panel>
           <tab-panel name="Time Tracking">
-            <time-keeping></time-keeping>
+            <time-keeping :project="project"></time-keeping>
           </tab-panel>
           <tab-panel name="Billing">
             <div class="px-4 pb-4 mt-4">Billing</div>
