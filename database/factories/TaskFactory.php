@@ -15,6 +15,7 @@ $factory->define(Task::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'description' => $faker->paragraph,
         'status' => $faker->randomElement(['In Progress', 'Not Started', "Completed"]),
-        'parent_url_id' => factory(Project::class)->create()->url_id
+        'parent_url_id' => Project::first()->url_id
+
     ];
 });

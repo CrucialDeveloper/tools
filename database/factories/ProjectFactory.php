@@ -1,15 +1,16 @@
 <?php
 
+use App\Client;
 use Carbon\Carbon;
-use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
 $factory->define(App\Project::class, function (Faker $faker) {
     $title = $faker->sentence;
     return [
         'user_id' => 1,
         'client_id' => 1,
-        'parent_url_id' => 'abc123',
+        'parent_url_id' => Client::first()->url_id,
         'title' => $title,
         'description' => $faker->paragraph,
         'status' => $faker->randomElement(['Not Started', 'In Progress', 'Complete']),

@@ -93,23 +93,6 @@
                 v-if="dateColumns.includes(column)"
                 v-html="formatDate(getColumnValue(item,column))"
               ></span>
-              <span v-else-if="linkColumn.includes(column)">
-                <inertia-link
-                  class="hover:underline"
-                  preserve-state
-                  :href="getLinkField(item,column) || item.link"
-                  v-html="getColumnValue(item,column)"
-                  v-if="!fileLinks"
-                  preset
-                ></inertia-link>
-                <a
-                  class="hover:underline"
-                  :href="item[linkField] || item.link"
-                  v-html="getColumnValue(item,column)"
-                  v-if="fileLinks"
-                  download
-                ></a>
-              </span>
               <span v-else v-html="getColumnValue(item,column)"></span>
             </td>
           </tr>
@@ -171,10 +154,7 @@ export default {
     sortable: Array,
     filterable: {
       default: true
-    },
-    linkColumn: Array,
-    linkField: Array,
-    fileLinks: Boolean
+    }
   },
   data() {
     return {
