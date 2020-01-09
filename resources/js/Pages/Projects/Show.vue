@@ -35,8 +35,8 @@
           <tab-panel name="Files">
             <div class="px-4 pb-4 mt-4">Files</div>
           </tab-panel>
-          <tab-panel name="Time Tracking">
-            <time-keeping :project="project"></time-keeping>
+          <tab-panel name="Work Entries">
+            <work-entry :project="project"></work-entry>
           </tab-panel>
           <tab-panel name="Billing">
             <div class="px-4 pb-4 mt-4">Billing</div>
@@ -54,7 +54,7 @@ import ProjectModal from "../../components/Clients/ProjectModal";
 import TabsNav from "../../components/UI/Tabs/TabsNav";
 import TabPanel from "../../components/UI/Tabs/TabPanel";
 import TaskViews from "../../components/Tasks/TaskViews";
-import TimeKeeping from "../../components/TimeKeeping/TimeKeeping";
+import WorkEntry from "../../components/WorkEntry/WorkEntry";
 
 export default {
   layout: StandardLayout,
@@ -63,7 +63,7 @@ export default {
     TabsNav,
     TabPanel,
     TaskViews,
-    TimeKeeping
+    WorkEntry
   },
   props: ["client", "project"],
   methods: {

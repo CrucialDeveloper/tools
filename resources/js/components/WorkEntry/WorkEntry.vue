@@ -1,10 +1,10 @@
 <template>
   <div class="flex" style="height:654px">
     <div class="w-2/3 mr-8 overflow-y-scroll">
-      <timekeeping-table
-        :items="project.time_keepings"
+      <work-entry-table
+        :items="project.work_entries"
         :columns="['start_time', 'end_time','duration', 'work_type', 'description', 'billable','billed']"
-      ></timekeeping-table>
+      ></work-entry-table>
     </div>
     <div class="w-1/3 flex flex-col">
       <time-tracker :project="project"></time-tracker>
@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import TimekeepingTable from "../TimeKeeping/TimekeepingTable";
+import WorkEntryTable from "../WorkEntry/WorkEntryTable";
 import TimeTracker from "./TimeTracker";
 export default {
   props: ["project"],
-  components: { TimeTracker, TimekeepingTable }
+  components: { TimeTracker, WorkEntryTable }
 };
 </script>
