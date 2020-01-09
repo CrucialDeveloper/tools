@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Client;
 use App\Project;
 use App\WorkEntry;
+use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,77 +14,107 @@ class WorkEntryTest extends TestCase
 {
     use RefreshDatabase;
 
-    /**
-     * @test
-     */
-    public function a_time_tracking_item_has_attributes()
+    protected $user;
+    protected $client;
+    protected $project;
+
+    public function setUp(): void
     {
-        $this->withoutExceptionHandling();
-
-        $user = $this->signIn();
-        $entry = $this->create(WorkEntry::class, ['user_id' => $user->id]);
-
-
-        $this->assertDatabaseHas('work_entries', [
-            'id' => $entry->id,
-            'user_id' => $user->id,
-            'start_date' => $entry->start_date,
-            'end_date' => $entry->end_date,
-            'description' => $entry->description,
-            'billable' => $entry->billable
-        ]);
+        parent::setUp();
+        $this->user = $this->signIn();
+        $this->client = $this->create(Client::class);
+        $this->project = $this->create(Project::class);
     }
 
     /**
      * @test
      */
-    public function a_work_entry_item_can_be_created_from_a_post_request()
+    public function a_timekeeping_entry_has_attributes()
     {
         $this->withoutExceptionHandling();
 
-        $user = $this->signIn();
-        $client = $this->create(Client::class);
-        $project = $this->create(Project::class);
-        $entry = $this->raw(WorkEntry::class, ['user_id' => $user->id]);
-
-        $this->post("/clients/$client->url_id/projects/$project->url_id/work", $entry);
-
-        $this->assertDatabaseHas('work_entries', $entry);
-    }
-
-    /**
-     * @test
-     */
-    public function a_work_entry_item_can_be_updated_with_and_patch_request()
-    {
-        $this->withoutExceptionHandling();
-
-        $user = $this->signIn();
-        $client = $this->create(Client::class);
-        $project = $this->create(Project::class);
-        $entry = $this->create(WorkEntry::class, ['user_id' => $user->id]);
-
-        $this->patch("/clients/$client->url_id/projects/$project->url_id/work/$entry->url_id", [
-            'description' => 'Updated Description'
+        $entry = $this->create(WorkEntry::class, [
+            'user_id' => 1,
+            'client_id' => 1,
+            'project_id' => 1,
+            "start_time" => Carbon::createFromTimestampMs(1578361322011),
+            "end_time" => Carbon::createFromTimestampMs(1578361332080),
+            'work_type' => "Standard",
+            "billable" => 'Yes',
+            'billed' => 'No',
+            "description" => "",
+            "duration" => 10067,
+            'client_url_id' => 'client url id',
+            'project_url_id' => 'project url id'
         ]);
 
         $this->assertDatabaseHas('work_entries', [
-            'description' => 'Updated Description'
+            'user_id' => 1,
+            'client_id' => 1,
+            'project_id' => 1,
+            "start_time" => Carbon::createFromTimestampMs(1578361322011),
+            "end_time" => Carbon::createFromTimestampMs(1578361332080),
+            'work_type' => "Standard",
+            "billable" => "Yes",
+            'billed' => 'No',
+            "description" => "",
+            "duration" => 10067,
+            'client_url_id' => 'client url id',
+            'project_url_id' => 'project url id'
         ]);
     }
 
     /**
      * @test
      */
-    public function a_user_can_get_all_of_their_work_entries()
+    public function a_timekeeping_entry_can_be_created_from_a_post_route()
+    {
+        $this->withoutExceptionHandling();
+        $entry = $this->raw(WorkEntry::class);
+        $response = $this->post("/clients/{$this->client->url_id}/projects/{$this->project->url_id}/timekeep", $entry);
+
+        $this->assertCount(1, WorkEntry::all());
+    }
+
+    /**
+     * @test
+     */
+    public function a_timekeeping_entry_can_be_updated_from_an_update_route()
     {
         $this->withoutExceptionHandling();
 
-        $user = $this->signIn();
-        $entries = $this->create(WorkEntry::class, ['user_id' => $user->id], 5);
+        $entry = $this->create(WorkEntry::class);
 
-        $this->assertCount(5, WorkEntry::all());
+        $entry->start_time = Carbon::now()->subMinutes(120);
+        $entry->end_time = Carbon::now()->addMinutes(15);
+        $entry->description = "Updated description";
 
-        $this->assertCount(5, $user->work_items);
+        $response = $this->patch("/clients/{$this->client->url_id}/projects/{$this->project->url_id}/timekeep/{$entry->id}", $entry->toArray());
+
+        $this->assertDatabaseHas('work_entries', [
+            'start_time' => $entry->start_time,
+            'end_time' => $entry->end_time,
+            'description' => 'Updated description',
+            'duration' => 8100000
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function a_timekeeping_entry_can_be_deleted()
+    {
+        $this->withoutExceptionHandling();
+
+        $entry = $this->create(WorkEntry::class, [
+            'client_url_id' => $this->client->url_id,
+            'project_url_id' => $this->project->url_id
+        ]);
+
+        $this->assertCount(1, WorkEntry::all());
+
+        $response = $this->delete($entry->path);
+
+        $this->assertCount(0, WorkEntry::all());
     }
 }

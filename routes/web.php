@@ -42,12 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('clients/{client}/projects/{project}/comments', 'CommentController@store');
     Route::patch('/comments/{comment}', 'CommentController@update');
 
-    Route::post('clients/{client}/projects/{project}/work', 'WorkEntryController@store');
-    Route::patch('clients/{client}/projects/{project}/work/{entry}', 'WorkEntryController@update');
-
-    Route::post('/clients/{client}/projects/{project}/timekeep', 'TimeKeepingController@store');
-    Route::patch('/clients/{client}/projects/{project}/timekeep/{entry}', 'TimeKeepingController@update');
-    Route::delete('/clients/{client}/projects/{project}/timekeep/{entry}', 'TimeKeepingController@destroy');
+    Route::post('/clients/{client}/projects/{project}/timekeep', 'WorkEntryController@store');
+    Route::patch('/clients/{client}/projects/{project}/timekeep/{entry}', 'WorkEntryController@update');
+    Route::delete('/clients/{client}/projects/{project}/timekeep/{entry}', 'WorkEntryController@destroy');
 
 
     Route::get('/projects', 'ProjectController@index');

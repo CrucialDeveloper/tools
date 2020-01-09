@@ -9,7 +9,6 @@
 
 
 <script>
-import "suneditor/dist/css/suneditor.min.css";
 import plugins from "suneditor/src/plugins";
 import suneditor from "suneditor";
 
@@ -82,34 +81,3 @@ export default {
   }
 };
 </script>
-
-<style lang="css">
-.sun-editor .se-btn-module-border {
-  border: none;
-}
-
-.sun-editor .se-toolbar {
-  padding: none;
-}
-.sun-editor .se-btn-module-enter {
-  display: none;
-}
-
-.sun-editor .se-toolbar {
-  padding: 0px !important;
-}
-
-.sun-editor .se-btn {
-  margin: 0px !important;
-  height: unset !important;
-  line-height: 21px !important;
-}
-
-.sun-editor .se-toolbar [class*="se-icon-"]::before {
-  line-height: 1.5 !important;
-}
-
-.sun-editor [class*="se-icon-"]::before {
-  font-size: 12px !important;
-}
-</style>

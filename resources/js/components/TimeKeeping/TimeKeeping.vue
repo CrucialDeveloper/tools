@@ -3,8 +3,7 @@
     <div class="w-2/3 mr-8 overflow-y-scroll">
       <timekeeping-table
         :items="project.time_keepings"
-        :searchable="['start_time', 'end_time', 'work_type', 'description']"
-        :columns="['start_time', 'end_time','duration', 'work_type', 'description', 'billable']"
+        :columns="['start_time', 'end_time','duration', 'work_type', 'description', 'billable','billed']"
       ></timekeeping-table>
     </div>
     <div class="w-1/3 flex flex-col">

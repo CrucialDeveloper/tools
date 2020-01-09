@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTimeKeepingsTable extends Migration
+class CreateWorkEntriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTimeKeepingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('time_keepings', function (Blueprint $table) {
+        Schema::create('work_entries', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->bigInteger('client_id');
@@ -23,7 +23,8 @@ class CreateTimeKeepingsTable extends Migration
             $table->string('work_type');
             $table->text('description');
             $table->bigInteger('duration');
-            $table->boolean('billable');
+            $table->string('billable');
+            $table->string('billed')->default('No');
             $table->string('client_url_id');
             $table->string('project_url_id');
             $table->timestamps();

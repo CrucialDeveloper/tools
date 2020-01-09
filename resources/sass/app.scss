@@ -1,5 +1,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import "~flatpickr/dist/flatpickr.css";
+@import "~suneditor/dist/css/suneditor.min.css";
 
 @import "tailwindcss/base";
 
@@ -7,7 +9,37 @@
 
 @import "tailwindcss/utilities";
 
-@import "/node_modules/flatpickr/dist/flatpickr.css";
+
+.sun-editor .se-btn-module-border {
+  border: none;
+}
+
+.sun-editor .se-toolbar {
+  padding: none;
+}
+.sun-editor .se-btn-module-enter {
+  display: none;
+}
+
+.sun-editor .se-toolbar {
+  padding: 0px !important;
+}
+
+.sun-editor .se-btn {
+  margin: 0px !important;
+  height: unset !important;
+  line-height: 21px !important;
+}
+
+.sun-editor .se-toolbar [class*="se-icon-"]::before {
+  line-height: 1.5 !important;
+}
+
+.sun-editor [class*="se-icon-"]::before {
+  font-size: 12px !important;
+}
+
+
 
 .content-body {
   height: calc(100vh - 56px);

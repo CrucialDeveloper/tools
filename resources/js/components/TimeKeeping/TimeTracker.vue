@@ -64,7 +64,9 @@
             type="checkbox"
             class="mr-2 p-2"
             v-model="entry.billable"
-            :checked="entry.billable===true"
+            true-value="Yes"
+            false-value="No"
+            :checked="entry.billable==='Yes'"
           />
           <label for="billable">Billable</label>
         </div>
@@ -100,7 +102,7 @@ export default {
         duration: 0,
         work_type: "",
         description: "",
-        billable: true
+        billable: "Yes"
       })
     };
   },
@@ -149,7 +151,7 @@ export default {
       this.entry.duration = 0;
       this.entry.work_type = "";
       this.entry.description = "";
-      this.entry.billable = true;
+      this.entry.billable = "Yes";
       clearInterval(this.stopWatch);
     },
     save() {
