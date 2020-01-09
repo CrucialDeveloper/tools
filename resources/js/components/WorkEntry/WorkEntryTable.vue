@@ -46,18 +46,14 @@
       <table class="text-sm w-full overflow-hidden relative">
         <thead>
           <tr class="w-full">
-            <th
-              class="bg-gray-400 p-2 font-bold whitespace-no-wrap"
-              v-for="column in columns"
-              :key="column"
-            >
+            <th class="bg-gray-400 p-2 font-bold whitespace-no-wrap">
               <span class="flex items-center">
-                <span class="mr-4">{{toTitleCase(column)}}</span>
-                <span class="flex flex-col" v-if="sortColumns.includes(column)">
+                <span class="mr-4">Start Time</span>
+                <span class="flex flex-col">
                   <button
                     class="h-4 w-4"
-                    @click="sort(column, 'asc')"
-                    :class="sortIndicator(column, 'asc') ? 'text-blue fill-current' : ''"
+                    @click="sort('start_time', 'asc')"
+                    :class="sortIndicator('start_time', 'asc') ? 'text-blue fill-current' : ''"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                       <path
@@ -67,8 +63,188 @@
                   </button>
                   <button
                     class="h-4 w-4"
-                    @click="sort(column, 'desc')"
-                    :class="sortIndicator(column, 'desc')? 'text-blue fill-current' : ''"
+                    @click="sort('start_time', 'desc')"
+                    :class="sortIndicator('start_time', 'desc')? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </span>
+            </th>
+
+            <th class="bg-gray-400 p-2 font-bold whitespace-no-wrap">
+              <span class="flex items-center">
+                <span class="mr-4">End Time</span>
+                <span class="flex flex-col">
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('end_time', 'asc')"
+                    :class="sortIndicator('end_time', 'asc') ? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('end_time', 'desc')"
+                    :class="sortIndicator('end_time', 'desc')? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </span>
+            </th>
+
+            <th class="bg-gray-400 p-2 font-bold whitespace-no-wrap">
+              <span class="flex items-center">
+                <span class="mr-4">Work Time</span>
+                <span class="flex flex-col">
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('work_time', 'asc')"
+                    :class="sortIndicator('work_time', 'asc') ? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('work_time', 'desc')"
+                    :class="sortIndicator('work_time', 'desc')? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </span>
+            </th>
+
+            <th class="bg-gray-400 p-2 font-bold whitespace-no-wrap">
+              <span class="flex items-center">
+                <span class="mr-4">Work Type</span>
+                <span class="flex flex-col">
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('work_type', 'asc')"
+                    :class="sortIndicator('work_type', 'asc') ? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('work_type', 'desc')"
+                    :class="sortIndicator('work_type', 'desc')? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </span>
+            </th>
+
+            <th class="bg-gray-400 p-2 font-bold whitespace-no-wrap">
+              <span class="flex items-center">
+                <span class="mr-4">Description</span>
+                <span class="flex flex-col">
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('description', 'asc')"
+                    :class="sortIndicator('description', 'asc') ? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('description', 'desc')"
+                    :class="sortIndicator('description', 'desc')? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </span>
+            </th>
+
+            <th class="bg-gray-400 p-2 font-bold whitespace-no-wrap">
+              <span class="flex items-center">
+                <span class="mr-4">Billable</span>
+                <span class="flex flex-col">
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('billable', 'asc')"
+                    :class="sortIndicator('billable', 'asc') ? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('billable', 'desc')"
+                    :class="sortIndicator('billable', 'desc')? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                      />
+                    </svg>
+                  </button>
+                </span>
+              </span>
+            </th>
+
+            <th class="bg-gray-400 p-2 font-bold whitespace-no-wrap">
+              <span class="flex items-center">
+                <span class="mr-4">Billed</span>
+                <span class="flex flex-col">
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('billed', 'asc')"
+                    :class="sortIndicator('billed', 'asc') ? 'text-blue fill-current' : ''"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path
+                        d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="h-4 w-4"
+                    @click="sort('billed', 'desc')"
+                    :class="sortIndicator('billed', 'desc')? 'text-blue fill-current' : ''"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                       <path
@@ -88,13 +264,13 @@
             :key="item.id"
             style="vertical-align:baseline;"
           >
-            <td class="p-2" v-for="column in columns" :key="column">
-              <span
-                v-if="dateColumns.includes(column)"
-                v-html="formatDate(getColumnValue(item,column))"
-              ></span>
-              <span v-else v-html="getColumnValue(item,column)"></span>
-            </td>
+            <td class="p-2">{{item.start_time}}</td>
+            <td class="p-2">{{item.end_time}}</td>
+            <td class="p-2">{{item.work_time}}</td>
+            <td class="p-2">{{item.work_type}}</td>
+            <td class="p-2" v-html="item.description"></td>
+            <td class="p-2">{{item.billable}}</td>
+            <td class="p-2">{{item.billed}}</td>
           </tr>
         </tbody>
       </table>

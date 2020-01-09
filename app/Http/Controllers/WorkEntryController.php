@@ -25,7 +25,7 @@ class WorkEntryController extends Controller
             "description" => $request->description,
             "billable" => $request->billable,
             "billed" => $request->billed,
-            "duration" => $request->duration,
+            "work_time" => $request->work_time,
             "client_url_id" => $client->url_id,
             "project_url_id" => $project->url_id
         ]);
@@ -50,7 +50,7 @@ class WorkEntryController extends Controller
         $entry->start_time = $request->start_time;
         $entry->end_time = $request->end_time;
         $entry->description = $request->description;
-        $entry->duration = $entry->end_time->diffInRealMilliseconds($entry->start_time);
+        $entry->work_time = $entry->end_time->diffInRealMilliseconds($entry->start_time);
         $entry->save();
 
         return $entry;

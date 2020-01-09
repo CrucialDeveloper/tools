@@ -22,7 +22,7 @@ class CreateWorkEntriesTable extends Migration
             $table->dateTime('end_time');
             $table->string('work_type');
             $table->text('description');
-            $table->bigInteger('duration');
+            $table->bigInteger('work_time');
             $table->string('billable');
             $table->string('billed')->default('No');
             $table->string('client_url_id');

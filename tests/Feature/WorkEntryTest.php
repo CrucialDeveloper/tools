@@ -43,7 +43,7 @@ class WorkEntryTest extends TestCase
             "billable" => 'Yes',
             'billed' => 'No',
             "description" => "",
-            "duration" => 10067,
+            "work_time" => 10067,
             'client_url_id' => 'client url id',
             'project_url_id' => 'project url id'
         ]);
@@ -58,7 +58,7 @@ class WorkEntryTest extends TestCase
             "billable" => "Yes",
             'billed' => 'No',
             "description" => "",
-            "duration" => 10067,
+            "work_time" => 10067,
             'client_url_id' => 'client url id',
             'project_url_id' => 'project url id'
         ]);

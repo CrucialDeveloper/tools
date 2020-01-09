@@ -6,8 +6,8 @@
         <!-- play -->
         <button
           class="w-6 h-6 text-gray-500 fill-current"
-          :class="[mode==='running' || entry.duration>0 ? 'cursor-not-allowed': '']"
-          :disabled="mode==='running' || entry.duration>0"
+          :class="[mode==='running' || entry.work_time>0 ? 'cursor-not-allowed': '']"
+          :disabled="mode==='running' || entry.work_time>0"
           @click="start"
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
@@ -74,8 +74,8 @@
       <content-editor v-model="entry.description"></content-editor>
       <button
         class="w-full bg-gray-500 hover:bg-gray-600 fill-current rounded p-2 mt-4"
-        :class="[mode != 'stopped' || entry.duration === 0 ? 'cursor-not-allowed': '']"
-        :disabled="mode !='stopped' ||entry.duration ===0"
+        :class="[mode != 'stopped' || entry.work_time === 0 ? 'cursor-not-allowed': '']"
+        :disabled="mode !='stopped' ||entry.work_time ===0"
         @click="save"
       >Save</button>
     </div>
@@ -99,7 +99,7 @@ export default {
       entry: new Form({
         start_time: null,
         end_time: null,
-        duration: 0,
+        work_time: 0,
         work_type: "",
         description: "",
         billable: "Yes"
@@ -113,7 +113,7 @@ export default {
         this.timerTime = this.entry.start_time;
         this.mode = "running";
         this.stopWatch = setInterval(() => {
-          this.entry.duration = Date.now() - this.timerTime;
+          this.entry.work_time = Date.now() - this.timerTime;
         }, 10);
       }
       if (this.mode === "paused") {
@@ -133,7 +133,7 @@ export default {
       this.mode = "running";
       this.timerTime = this.timerTime - (this.pausedTime - Date.now());
       this.stopWatch = setInterval(() => {
-        this.entry.duration = Date.now() - this.timerTime;
+        this.entry.work_time = Date.now() - this.timerTime;
       }, 10);
     },
     stop() {
@@ -148,7 +148,7 @@ export default {
       this.pausedTime = null;
       this.entry.start_time = null;
       this.entry.end_time = null;
-      this.entry.duration = 0;
+      this.entry.work_time = 0;
       this.entry.work_type = "";
       this.entry.description = "";
       this.entry.billable = "Yes";
@@ -166,10 +166,10 @@ export default {
   },
   computed: {
     timer() {
-      let milliseconds = parseInt((this.entry.duration % 1000) / 10);
-      let seconds = Math.floor((this.entry.duration / 1000) % 60);
-      let minutes = Math.floor((this.entry.duration / (1000 * 60)) % 60);
-      let hours = Math.floor((this.entry.duration / (1000 * 60 * 60)) % 24);
+      let milliseconds = parseInt((this.entry.work_time % 1000) / 10);
+      let seconds = Math.floor((this.entry.work_time / 1000) % 60);
+      let minutes = Math.floor((this.entry.work_time / (1000 * 60)) % 60);
+      let hours = Math.floor((this.entry.work_time / (1000 * 60 * 60)) % 24);
       hours = hours < 10 ? "0" + hours : hours;
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;

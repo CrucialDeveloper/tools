@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class WorkEntry extends Model
 
 {
-    protected $fillable = ['user_id', 'client_id', 'project_id', 'start_time', 'end_time', 'work_type', 'description', 'duration', 'billable', 'client_url_id', 'project_url_id'];
+    protected $fillable = ['user_id', 'client_id', 'project_id', 'start_time', 'end_time', 'work_type', 'description', 'work_time', 'billable', 'client_url_id', 'project_url_id'];
     protected $dates = ['start_time', 'end_time'];
     protected $appends = ['path'];
 
@@ -32,7 +32,7 @@ class WorkEntry extends Model
         return "/clients/{$this->client_url_id}/projects/{$this->project_url_id}/timekeep/{$this->id}";
     }
 
-    public function getDurationAttribute($value)
+    public function getWorkTimeAttribute($value)
     {
         return  Carbon::createFromTimestampMs($value)->format('H:i:s');
     }
