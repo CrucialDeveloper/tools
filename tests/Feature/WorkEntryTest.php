@@ -29,7 +29,7 @@ class WorkEntryTest extends TestCase
     /**
      * @test
      */
-    public function a_timekeeping_entry_has_attributes()
+    public function a_work_entry_has_attributes()
     {
         $this->withoutExceptionHandling();
 
@@ -67,7 +67,7 @@ class WorkEntryTest extends TestCase
     /**
      * @test
      */
-    public function a_timekeeping_entry_can_be_created_from_a_post_route()
+    public function a_work_entry_can_be_created_from_a_post_route()
     {
         $this->withoutExceptionHandling();
         $entry = $this->raw(WorkEntry::class);
@@ -79,7 +79,7 @@ class WorkEntryTest extends TestCase
     /**
      * @test
      */
-    public function a_timekeeping_entry_can_be_updated_from_an_update_route()
+    public function a_work_entry_can_be_updated_from_an_update_route()
     {
         $this->withoutExceptionHandling();
 
@@ -95,14 +95,14 @@ class WorkEntryTest extends TestCase
             'start_time' => $entry->start_time,
             'end_time' => $entry->end_time,
             'description' => 'Updated description',
-            'duration' => 8100000
+            'work_time' => 8100000
         ]);
     }
 
     /**
      * @test
      */
-    public function a_timekeeping_entry_can_be_deleted()
+    public function a_work_entry_can_be_deleted()
     {
         $this->withoutExceptionHandling();
 

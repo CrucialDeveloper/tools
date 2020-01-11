@@ -56,10 +56,10 @@ class ProjectTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $project = $this->raw(Project::class);
-
         $user = $this->signIn();
         $client = $this->create(Client::class, ['user_id' => $user->id]);
+        $project = $this->raw(Project::class);
+
 
         $project['client_id'] = $client->id;
 
@@ -106,6 +106,7 @@ class ProjectTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $client = $this->create(Client::class);
         $project = $this->create(Project::class, [
             'user_id' => 1,
             'client_id' => 1,
@@ -122,6 +123,7 @@ class ProjectTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $client = $this->create(Client::class);
         $project = $this->create(Project::class, [
             'user_id' => 1,
             'client_id' => 1,

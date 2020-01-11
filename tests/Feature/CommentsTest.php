@@ -65,7 +65,7 @@ class CommentsTest extends TestCase
         $this->withoutExceptionHandling();
 
         $user = $this->signIn();
-
+        $client = $this->create(Client::class);
         $project = $this->create(Project::class);
 
         $comments = $this->create(Comment::class, [
@@ -89,6 +89,7 @@ class CommentsTest extends TestCase
 
         $user = $this->signIn();
 
+        $client = $this->create(Client::class);
         $project = $this->create(Project::class);
 
         $comment = $this->create(Comment::class, [

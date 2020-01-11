@@ -20,7 +20,8 @@ class TaskTest extends TestCase
     public function tasks_have_attributes()
     {
         $this->withoutExceptionHandling();
-
+        $client = $this->create(Client::class);
+        $project = $this->create(Project::class);
         $task = $this->create(Task::class);
 
         $this->assertDatabaseHas('tasks', [
@@ -37,6 +38,8 @@ class TaskTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
+        $client = $this->create(Client::class);
+        $project = $this->create(Project::class);
         $task = $this->raw(Task::class);
         $user = $this->signIn();
 
@@ -54,6 +57,8 @@ class TaskTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->signIn();
+        $client = $this->create(Client::class);
+        $project = $this->create(Project::class);
         $task = factory(Task::class)->create([
             'status' => 'Not Started',
             'user_id' => 1,
