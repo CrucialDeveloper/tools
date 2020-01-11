@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full bg-white p-4 rounded shadow">
+  <div class="flex w-full p-4 bg-white rounded shadow">
     <div class="w-1/2 mr-4">
       <div class="rounded" :class="client.address ? 'shadow' : ''">
           <google-map
@@ -16,10 +16,10 @@
       </div>
     </div>
     <div class="w-1/2">
-      <div class="flex items-start justify-between mb-4 w-full">
-        <div class="flex items-center justify-between mr-4 w-full">
-          <h2 class="text-2xl mr-4">{{client.company_name}}</h2>
-          <button class="h-5 w-5 text-gray-500" @click="editClient(client)">
+      <div class="flex items-start justify-between w-full mb-4">
+        <div class="flex items-center justify-between w-full mr-4">
+          <h2 class="mr-4 text-2xl">{{client.company_name}}</h2>
+          <button class="w-5 h-5 text-gray-500" @click="editClient(client)">
             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
               <path
                 d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"

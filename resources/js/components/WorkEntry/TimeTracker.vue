@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="w-56 mx-auto">
-      <div class="text-center text-2xl font-mono text-gray-700">{{timer}}</div>
+      <div class="font-mono text-2xl text-center text-gray-700">{{timer}}</div>
       <div class="flex items-center justify-between mt-2">
         <!-- play -->
         <button
@@ -62,7 +62,7 @@
           <input
             id="billable"
             type="checkbox"
-            class="mr-2 p-2"
+            class="p-2 mr-2"
             v-model="entry.billable"
             true-value="Yes"
             false-value="No"
@@ -73,7 +73,7 @@
       </div>
       <content-editor v-model="entry.description"></content-editor>
       <button
-        class="w-full bg-gray-500 hover:bg-gray-600 fill-current rounded p-2 mt-4"
+        class="w-full p-2 mt-4 bg-gray-500 rounded fill-current hover:bg-gray-600"
         :class="[mode != 'stopped' || entry.work_time === 0 ? 'cursor-not-allowed': '']"
         :disabled="mode !='stopped' ||entry.work_time ===0"
         @click="save"

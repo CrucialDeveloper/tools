@@ -1,25 +1,25 @@
 <template>
-  <div class="w-screen h-screen bg-gray-200 overflow-hidden">
-    <div class="px-4 w-full h-16 bg-slate text-white flex items-center justify-between">
+  <div class="w-screen h-screen overflow-hidden bg-gray-200">
+    <div class="flex items-center justify-between w-full h-16 px-4 text-white bg-slate">
       <div>CrucialDev</div>
       <div>
         <div
-          class="h-10 w-10 rounded-full bg-gray-900 text-white flex items-center justify-center"
+          class="flex items-center justify-center w-10 h-10 text-white bg-gray-900 rounded-full"
         >{{ $page.user.initials || 'G'}}</div>
       </div>
     </div>
     <div class="flex content-body">
-      <div class="bg-gray-400 min-w-24 w-24 h-full px-2 py-8">
+      <div class="w-24 h-full px-2 py-8 bg-gray-400 min-w-24">
         <a
-          class="inline-block px-2 pb-2 w-full rounded hover:underline hover:bg-blue hover:text-white"
+          class="inline-block w-full px-2 pb-2 rounded hover:underline hover:bg-blue hover:text-white"
           href="/clients"
         >Clients</a>
         <a
-          class="inline-block p-2 w-full rounded hover:underline hover:bg-blue hover:text-white"
+          class="inline-block w-full p-2 rounded hover:underline hover:bg-blue hover:text-white"
           href="/projects"
         >Projects</a>
       </div>
-      <div class="p-8 w-full h-full">
+      <div class="w-full h-full p-8">
         <slot></slot>
       </div>
     </div>

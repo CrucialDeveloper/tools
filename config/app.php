@@ -67,8 +67,8 @@ return [
     |
     */
 
-    // 'timezone' => 'UTC',
-    'timezone' => 'US/Central',
+    'timezone' => 'UTC',
+    // 'timezone' => 'US/Central',
 
     /*
     |--------------------------------------------------------------------------

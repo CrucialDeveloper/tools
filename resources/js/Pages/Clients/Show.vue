@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-full">
-    <div class="flex min-w-122 w-1/4 bg-white p-4 rounded shadow overflow-y-scroll mr-4">
-      <div class="h-full flex-1">
+    <div class="flex w-1/4 p-4 mr-4 overflow-y-scroll bg-white rounded shadow min-w-122">
+      <div class="flex-1 h-full">
         <div class="pb-4">
           <client-table
             class="w-full"
@@ -14,15 +14,15 @@
         </div>
       </div>
     </div>
-    <div class="flex w-3/4 max-h-full pl-4 pr-1 rounded overflow-y-scroll mb-16">
-      <div class="h-full flex-1">
+    <div class="flex w-3/4 max-h-full pl-4 pr-1 mb-16 overflow-y-scroll rounded">
+      <div class="flex-1 h-full">
         <client-details :client="client"></client-details>
-        <div class="w-full bg-white mt-4 p-4 rounded shadow">
+        <div class="w-full p-4 mt-4 bg-white rounded shadow">
           <div class="flex items-center justify-between">
             <h4 class="text-xl">Recent Projects</h4>
             <inertia-link
               :href="`/clients/${client.url_id}/projects`"
-              class="underline text-gray-600"
+              class="text-gray-600 underline"
             >View All Projects</inertia-link>
           </div>
           <client-projects-table

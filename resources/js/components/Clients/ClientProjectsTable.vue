@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="my-4 flex items-center w-full">
+    <div class="flex items-center w-full my-4">
       <div class="flex items-center flex-1">
-        <div class="inline-block relative min-w-24 w-24 mr-4" v-if="paginate">
+        <div class="relative inline-block w-24 mr-4 min-w-24" v-if="paginate">
           <select
-            class="block appearance-none w-full bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none"
+            class="block w-full px-4 py-2 pr-8 leading-tight bg-white rounded shadow appearance-none focus:outline-none"
             v-model="paginator.perPage"
           >
             <option value="5">5</option>
@@ -14,10 +14,10 @@
             <option value="100">100</option>
           </select>
           <div
-            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+            class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none"
           >
             <svg
-              class="fill-current h-4 w-4"
+              class="w-4 h-4 fill-current"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
             >
@@ -27,21 +27,21 @@
         </div>
         <div class="flex items-center w-full mr-4">
           <input
-            class="appearance-none h-full w-full p-2 rounded-l leading-tight focus:outline-none shadow"
+            class="w-full h-full p-2 leading-tight rounded-l shadow appearance-none focus:outline-none"
             type="text"
             placeholder="Search Projects ..."
             aria-label="search"
             v-model="search"
           />
           <button
-            class="block p-2 round-r shadow bg-gray-400 leading-tight fill-current"
+            class="block p-2 leading-tight bg-gray-400 shadow fill-current round-r"
             type="button"
             @click="clearSearch"
           >x</button>
         </div>
       </div>
       <button
-        class="w-8 h-8 flex items-center justify-center bg-blue rounded-full text-white leading-none p-2 fill-current shadow"
+        class="flex items-center justify-center w-8 h-8 p-2 leading-none text-white rounded-full shadow fill-current bg-blue"
         @click="openCreateProjectModal"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 16">
@@ -51,11 +51,11 @@
     </div>
 
     <div ref="table">
-      <table class="text-sm w-full overflow-hidden relative">
+      <table class="relative w-full overflow-hidden text-sm">
         <thead>
           <tr class="w-full">
             <th
-              class="bg-gray-400 p-2 font-bold whitespace-no-wrap"
+              class="p-2 font-bold whitespace-no-wrap bg-gray-400"
               v-for="column in columns"
               :key="column"
             >
@@ -63,7 +63,7 @@
                 <span class="mr-4">{{toTitleCase(column)}}</span>
                 <span class="flex flex-col" v-if="sortColumns.includes(column)">
                   <button
-                    class="h-4 w-4"
+                    class="w-4 h-4"
                     @click="sort(column, 'asc')"
                     :class="sortBy.hasOwnProperty(column) && sortBy[column]==='asc' ? 'text-blue fill-current' : ''"
                   >
@@ -74,7 +74,7 @@
                     </svg>
                   </button>
                   <button
-                    class="h-4 w-4"
+                    class="w-4 h-4"
                     @click="sort(column, 'desc')"
                     :class="sortBy.hasOwnProperty(column) && sortBy[column]==='desc' ? 'text-blue fill-current' : ''"
                   >
@@ -122,34 +122,34 @@
       </table>
     </div>
 
-    <div ref="paginator" class="mt-4 flex items-center" v-if="paginator.totalPages>1">
+    <div ref="paginator" class="flex items-center mt-4" v-if="paginator.totalPages>1">
       <button
-        class="bg-gray-500 p-1 rounded mr-4"
+        class="p-1 mr-4 bg-gray-500 rounded"
         :disabled="paginator.currentPage===1"
         @click.prevent="paginator.currentPage=1"
       >First</button>
 
       <button
-        class="bg-gray-500 p-1 rounded mr-4 min-w-10"
+        class="p-1 mr-4 bg-gray-500 rounded min-w-10"
         v-for="page in beforePages"
         :key="page"
         @click.prevent="goToPage(page)"
       >{{page}}</button>
 
       <button
-        class="bg-blue-500 text-white py-1 px-2 rounded mr-4 cursor-default min-w-10"
+        class="px-2 py-1 mr-4 text-white bg-blue-500 rounded cursor-default min-w-10"
         disabled
       >{{paginator.currentPage}}</button>
 
       <button
-        class="bg-gray-500 p-1 rounded mr-4 min-w-10"
+        class="p-1 mr-4 bg-gray-500 rounded min-w-10"
         v-for="page in afterPages"
         :key="page"
         @click.prevent="goToPage(page)"
       >{{page}}</button>
 
       <button
-        class="bg-gray-500 p-1 rounded"
+        class="p-1 bg-gray-500 rounded"
         :disabled="paginator.currentPage===paginator.totalPages"
         @click.prevent="goToPage(paginator.totalPages)"
       >Last</button>

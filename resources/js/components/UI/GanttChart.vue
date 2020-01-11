@@ -12,16 +12,16 @@
           >{{date.month}} {{date.year}}</th>
         </tr>
         <tr>
-          <th class="min-w-64 w-64 bg-white">&nbsp;</th>
+          <th class="w-64 bg-white min-w-64">&nbsp;</th>
           <template v-for="date in dates">
             <th class="pr-2 text-left" v-for="day in date.days">{{day}}</th>
           </template>
         </tr>
         <tr v-for="item in sortedItems" :key="item.id">
-          <th class="w-24 max-w-24 md:max-w-64 md:w-64 py-2 pr-4 bg-white text-left">{{item.title}}</th>
+          <th class="w-24 py-2 pr-4 text-left bg-white max-w-24 md:max-w-64 md:w-64">{{item.title}}</th>
           <template v-for="date in dates">
             <template v-for="day in date.days">
-              <td class="m-0 p-0">
+              <td class="p-0 m-0">
                 <div
                   :class="{'h-3 w-full bg-blue-300 border-blue-300':inDay(item, date, day)}"
                   :title="inDay(item, date, day) ? dateRange(item) : ''"

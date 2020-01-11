@@ -1,11 +1,11 @@
 <template>
   <div class="overflow-hidden">
     <div class="flex items-center w-full mt-4">
-      <div class="w-full flex flex-col" v-if="filters">
-        <div class="flex items-center mx-2 mb-4 flex-wrap w-full md:w-auto">
+      <div class="flex flex-col w-full" v-if="filters">
+        <div class="flex flex-wrap items-center w-full mx-2 mb-4 md:w-auto">
           <span class="mr-2">Filters:</span>
           <button
-            class="btn shadow-none border mr-4 hover:bg-gray-500 text-sm md:text-base p-1 rounded"
+            class="p-1 mr-4 text-sm border rounded shadow-none btn hover:bg-gray-500 md:text-base"
             :class="[activeFilters.includes(filter)?'bg-gray': '']"
             v-for="filter in available_filters"
             :key="filter"
@@ -14,9 +14,9 @@
         </div>
         <div class="flex items-center self-start w-full mb-4">
           <label for>Search:</label>
-          <div class="rounded ml-2 flex items-center border rounded w-full md:w-3/5">
-            <input type="text" class="p-1 w-full" v-model="search" />
-            <button class="bg-gray-500 p-1 h-full w-10 shadow" @click="clearSearch">x</button>
+          <div class="flex items-center w-full ml-2 border rounded md:w-3/5">
+            <input type="text" class="w-full p-1" v-model="search" />
+            <button class="w-10 h-full p-1 bg-gray-500 shadow" @click="clearSearch">x</button>
           </div>
         </div>
       </div>

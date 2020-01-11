@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-full">
-    <div class="flex max-h-full bg-white p-4 rounded shadow overflow-y-scroll w-full">
-      <div class="h-full flex-1">
+    <div class="flex w-full max-h-full p-4 overflow-y-scroll bg-white rounded shadow">
+      <div class="flex-1 h-full">
         <div class="flex items-center mb-4 text-sm text-gray-600">
           <inertia-link class="hover:underline" href="/clients">Clients</inertia-link>
           <span class="mx-2">></span>
@@ -13,7 +13,7 @@
         <div class="mt-2 mb-4">
           <div class="flex items-center mb-4">
             <button
-              class="h-5 w-5 text-gray-500 fill-current mr-4"
+              class="w-5 h-5 mr-4 text-gray-500 fill-current"
               @click="setView('tile')"
               :class="[view==='tile' ? 'text-gray-800' :'text-gray-500']"
               title="View as Tiles"
@@ -25,7 +25,7 @@
               </svg>
             </button>
             <button
-              class="h-6 w-6 fill-current mr-4"
+              class="w-6 h-6 mr-4 fill-current"
               @click="setView('kanban')"
               :class="[view==='kanban' ? 'text-gray-800' :'text-gray-500']"
               title="View as Kanban"
@@ -35,7 +35,7 @@
               </svg>
             </button>
             <button
-              class="h-6 w-6 fill-current mr-4"
+              class="w-6 h-6 mr-4 fill-current"
               @click="setView('table')"
               :class="[view==='table' ? 'text-gray-800' :'text-gray-500']"
               title="View as Table"
@@ -47,7 +47,7 @@
               </svg>
             </button>
             <button
-              class="h-6 w-6 fill-current mr-4 rotate-90"
+              class="w-6 h-6 mr-4 fill-current rotate-90"
               @click="setView('gantt')"
               :class="[view==='gantt' ? 'text-gray-800' :'text-gray-500']"
               title="View as Gantt"
@@ -73,9 +73,9 @@
             :filters="true"
             :searchable="['title','description']"
           >
-            <div class="-mx-4 flex items-stretch flex-wrap" slot-scope="{items}">
+            <div class="flex flex-wrap items-stretch -mx-4" slot-scope="{items}">
               <div
-                class="md:min-w-70 md:w-1/5 p-2 md:p-0 w-full mb-2 md:mb-4 mx-2 md:mx-4 flex items-stretch"
+                class="flex items-stretch w-full p-2 mx-2 mb-2 md:min-w-70 md:w-1/5 md:p-0 md:mb-4 md:mx-4"
                 v-for="item in items"
                 :key="item.id"
               >

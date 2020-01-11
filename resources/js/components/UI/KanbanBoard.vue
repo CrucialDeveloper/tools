@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="md:min-w-64 w-full h-full flex flex-col lg:flex-row">
+    <div class="flex flex-col w-full h-full md:min-w-64 lg:flex-row">
       <div
-        class="w-full md:max-w-md border-gray-500 border-t border-l border-r p-2"
+        class="w-full p-2 border-t border-l border-r border-gray-500 md:max-w-md"
         v-for="status in shown_status"
         :key="status"
       >
-        <div class="text-center font-bold border-b">{{status}}</div>
+        <div class="font-bold text-center border-b">{{status}}</div>
         <div class="pt-2">
           <draggable
             :list="byStatus(status)"

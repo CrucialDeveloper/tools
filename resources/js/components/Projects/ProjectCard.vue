@@ -1,16 +1,16 @@
 <template>
   <inertia-link
     :href="viewPath()"
-    class="flex flex-col items-stretch justify-between rounded p-2 mb-4 shadow-md bg-blue-300"
+    class="flex flex-col items-stretch justify-between p-2 mb-4 bg-blue-300 rounded shadow-md"
     :class="{'border-l-4 border-red-800': project.past_due}"
   >
     <div>
       <div class="flex justify-between">
-        <h2 class="font-bold block capitalize text-center w-full">{{project.title}}</h2>
+        <h2 class="block w-full font-bold text-center capitalize">{{project.title}}</h2>
       </div>
-      <span class="font-sm block flex-grow" v-html="project.description"></span>
+      <span class="flex-grow block font-sm" v-html="project.description"></span>
     </div>
-    <div class="text-sm border-t-2 border-gray-700 mt-2 pt-2">
+    <div class="pt-2 mt-2 text-sm border-t-2 border-gray-700">
       <div class="flex items-center justify-between">
         <div class="mr-2">
           <span class="font-bold">Tasks:</span>

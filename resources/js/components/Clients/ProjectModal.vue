@@ -1,20 +1,20 @@
 <template>
-  <div class="p-4 h-full flex flex-col overflow-x-hidden">
+  <div class="flex flex-col h-full p-4 overflow-x-hidden">
     <h3
-      class="text-2xl mb-4"
+      class="mb-4 text-2xl"
     >{{(editProject === undefined || Object.keys(editProject).length ===0)? 'New Project' : 'Edit Project'}}</h3>
-    <tabs-nav class="flex-grow h-full overflow-x-hidden pb-16">
+    <tabs-nav class="flex-grow h-full pb-16 overflow-x-hidden">
       <tab-panel name="Details" class="h-full">
         <div class="mb-4 overflow-y-scroll">
-          <label for="name" class="font-bold block">
+          <label for="name" class="block font-bold">
             Title:
             <span
-              class="ml-2 text-sm text-red font-normal"
+              class="ml-2 text-sm font-normal text-red"
               v-if="project.errors.errors.title"
             >{{project.errors.errors.title[0]}}</span>
           </label>
           <input
-            class="p-2 rounded border w-full"
+            class="w-full p-2 border rounded"
             id="name"
             type="text"
             :class="project.errors.errors.title ? 'border-red':''"
@@ -22,22 +22,22 @@
           />
         </div>
         <div class="mb-4">
-          <label for="description" class="font-bold block">
+          <label for="description" class="block font-bold">
             Description:
             <span
-              class="ml-2 text-sm text-red font-normal"
+              class="ml-2 text-sm font-normal text-red"
               v-if="project.errors.errors.description"
             >{{project.errors.errors.description[0]}}</span>
           </label>
           <content-editor v-model="project.description" :default="project.description"></content-editor>
         </div>
         <div class="flex flex-col md:flex-row md:items-center">
-          <div class="mr-8 w-full md:w-1/2">
-            <div class="mb-4 w-full">
-              <label for="status" class="mr-2 flex-shrink-0 font-bold">
+          <div class="w-full mr-8 md:w-1/2">
+            <div class="w-full mb-4">
+              <label for="status" class="flex-shrink-0 mr-2 font-bold">
                 Status:
                 <span
-                  class="ml-2 text-sm text-red font-normal"
+                  class="ml-2 text-sm font-normal text-red"
                   v-if="project.errors.errors.status"
                 >{{project.errors.errors.status[0]}}</span>
               </label>
@@ -51,10 +51,10 @@
           </div>
           <div class="w-full md:w-1/2">
             <div class="mb-4">
-              <label for="status" class="mr-2 flex-shrink-0 font-bold">
+              <label for="status" class="flex-shrink-0 mr-2 font-bold">
                 Priority:
                 <span
-                  class="ml-2 text-sm text-red font-normal"
+                  class="ml-2 text-sm font-normal text-red"
                   v-if="project.errors.errors.priority"
                 >{{project.errors.errors.priority[0]}}</span>
               </label>
@@ -68,11 +68,11 @@
           </div>
         </div>
         <div class="flex flex-col md:flex-row md:items-center">
-          <div class="mr-8 w-full md:w-1/2 mb-4">
-            <label for="start_date" class="mr-2 flex-shrink-0 font-bold">
+          <div class="w-full mb-4 mr-8 md:w-1/2">
+            <label for="start_date" class="flex-shrink-0 mr-2 font-bold">
               Start Date:
               <span
-                class="ml-2 text-sm text-red font-normal"
+                class="ml-2 text-sm font-normal text-red"
                 v-if="project.errors.errors.start_date"
               >{{project.errors.errors.start_date[0]}}</span>
             </label>
@@ -84,11 +84,11 @@
               ></date-picker>
             </div>
           </div>
-          <div class="w-full md:w-1/2 mb-4">
-            <label for="due_date" class="mr-2 flex-shrink-0 font-bold">
+          <div class="w-full mb-4 md:w-1/2">
+            <label for="due_date" class="flex-shrink-0 mr-2 font-bold">
               Due Date:
               <span
-                class="ml-2 text-sm text-red font-normal"
+                class="ml-2 text-sm font-normal text-red"
                 v-if="project.errors.errors.due_date"
               >{{project.errors.errors.due_date[0]}}</span>
             </label>
@@ -104,16 +104,16 @@
       </tab-panel>
       <tab-panel name="Configure" class="h-full">
         <div class="mb-4">
-          <label for="new_status" class="font-bold block">
+          <label for="new_status" class="block font-bold">
             Availble Task Status:
             <span
-              class="ml-2 text-sm text-red font-normal"
+              class="ml-2 text-sm font-normal text-red"
               v-if="project.errors.errors.available_status"
             >{{project.errors.errors.available_status[0]}}</span>
           </label>
           <div class="flex items-center mb-2">
             <input
-              class="p-2 rounded border w-full mr-4 flex-1"
+              class="flex-1 w-full p-2 mr-4 border rounded"
               id="new_status"
               ref="new_status"
               type="text"
@@ -122,7 +122,7 @@
               @keyup.enter="addStatus"
             />
             <button
-              class="border bg-gray-300 hover:bg-gray p-2 rounded"
+              class="p-2 bg-gray-300 border rounded hover:bg-gray"
               @click="addStatus"
             >Add Status</button>
           </div>
@@ -131,16 +131,16 @@
             <ol>
               <draggable :list="project.available_status" group="default">
                 <li
-                  class="mb-1 flex items-center"
+                  class="flex items-center mb-1"
                   v-for="(status, index) in project.available_status"
                   :key="status[0]"
                 >
-                  <span class="mr-2 w-4">{{index + 1}}.</span>
+                  <span class="w-4 mr-2">{{index + 1}}.</span>
                   <span
-                    class="rounded py-1 px-2 bg-gray text-white mr-2 mb-2 w-32 flex items-center justify-between"
+                    class="flex items-center justify-between w-32 px-2 py-1 mb-2 mr-2 text-white rounded bg-gray"
                   >
-                    <span class="rounded mr-2">{{status[0]}}</span>
-                    <button class="h-3 w-3 fill-current" @click="removeStatus(index)">
+                    <span class="mr-2 rounded">{{status[0]}}</span>
+                    <button class="w-3 h-3 fill-current" @click="removeStatus(index)">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path
                           d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z"
@@ -155,11 +155,11 @@
         </div>
       </tab-panel>
       <tab-panel name="Work Types & Rates">
-        <div class="mb-4 flex items-center justify-between">
-          <div class="mr-4 flex items-center flex-1">
-            <label for="new_work_type" class="font-bold mr-2">Work Type:</label>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center flex-1 mr-4">
+            <label for="new_work_type" class="mr-2 font-bold">Work Type:</label>
             <input
-              class="p-2 rounded border w-full mr-4 flex-1"
+              class="flex-1 w-full p-2 mr-4 border rounded"
               id="new_work_type"
               ref="new_work_type"
               type="text"
@@ -168,9 +168,9 @@
             />
           </div>
           <div class="flex items-center">
-            <label for="new_status" class="font-bold mr-2">Work Rate:</label>
+            <label for="new_status" class="mr-2 font-bold">Work Rate:</label>
             <input
-              class="p-2 rounded border w-full mr-4 flex-1"
+              class="flex-1 w-full p-2 mr-4 border rounded"
               id="new_work_rate"
               ref="new_work_rate"
               type="text"
@@ -179,7 +179,7 @@
             />
           </div>
           <button
-            class="border bg-gray-300 hover:bg-gray p-2 rounded"
+            class="p-2 bg-gray-300 border rounded hover:bg-gray"
             @click="addWorkType"
           >Add Work Type</button>
         </div>
@@ -187,16 +187,16 @@
           <ol>
             <draggable :list="project.work_type" group="default">
               <li
-                class="mb-1 flex items-center"
+                class="flex items-center mb-1"
                 v-for="(type, index) in project.work_type"
                 :key="type[0]"
               >
-                <span class="mr-2 w-4">{{index + 1}}.</span>
+                <span class="w-4 mr-2">{{index + 1}}.</span>
                 <span
-                  class="rounded py-1 px-2 bg-gray text-white mr-2 mb-2 w-56 flex items-center justify-between"
+                  class="flex items-center justify-between w-56 px-2 py-1 mb-2 mr-2 text-white rounded bg-gray"
                 >
-                  <span class="rounded mr-2">{{type[0]}} @ ${{type[2]}}/hour</span>
-                  <button class="h-3 w-3 fill-current" @click="removeWorkType(index)">
+                  <span class="mr-2 rounded">{{type[0]}} @ ${{type[2]}}/hour</span>
+                  <button class="w-3 h-3 fill-current" @click="removeWorkType(index)">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                       <path
                         d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z"
@@ -213,11 +213,11 @@
     <div class="flex items-center justify-between w-full mt-auto">
       <button class="text-gray-600 underline" @click="reset">Cancel</button>
       <button
-        class="text-white bg-blue px-4 py-2 rounded"
+        class="px-4 py-2 text-white rounded bg-blue"
         @click="saveProject"
         v-if="editProject === undefined || Object.keys(editProject).length===0"
       >Save</button>
-      <button class="text-white bg-blue px-4 py-2 rounded" @click="updateProject" v-else>Save</button>
+      <button class="px-4 py-2 text-white rounded bg-blue" @click="updateProject" v-else>Save</button>
     </div>
   </div>
 </template>

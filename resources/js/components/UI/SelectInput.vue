@@ -1,22 +1,22 @@
 <template>
-  <div class="relative border rounded w-full">
+  <div class="relative w-full border rounded">
     <button
       type="text"
       @click.prevent="open"
-      class="p-2 rounded-t w-full text-left bg-white"
+      class="w-full p-2 text-left bg-white rounded-t"
       :class="[!isOpen? 'rounded-b' : '']"
     >
       <span v-if="value !== ''">{{ value }}</span>
       <span v-else class="text-gray-500">{{placeholder}}</span>
     </button>
     <div
-      class="flex flex-col rounded-b border bg-gray-500 absolute w-full z-10 shadow-lg"
+      class="absolute z-10 flex flex-col w-full bg-gray-500 border rounded-b shadow-lg"
       v-show="isOpen"
     >
       <input
         ref="search"
         type="text"
-        class="p-1 rounded m-2 border"
+        class="p-1 m-2 border rounded"
         v-model="search"
         @keydown.down.prevent="increaseHighlightedIndex"
         @keydown.up.prevent="decreaseHighlightedIndex"
@@ -25,7 +25,7 @@
       />
       <ul class="overflow-y-scroll" ref="options">
         <li
-          class="px-4 py-2 w-full"
+          class="w-full px-4 py-2"
           :class="[highlightedIndex === index ? 'bg-blue-500' :'']"
           v-for="(item, index) in filteredOptions"
           @click="setSelected(item)"

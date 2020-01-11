@@ -1,16 +1,16 @@
 <template>
   <inertia-link
     :href="viewPath()"
-    class="card bg-blue-300 flex flex-col items-stretch justify-between rounded p-2 mb-4 shadow-md"
+    class="flex flex-col items-stretch justify-between p-2 mb-4 bg-blue-300 rounded shadow-md card"
     :class="{'border-l-4 border-red-800': task.past_due}"
   >
     <div>
       <div class="flex justify-between">
-        <h2 class="font-bold block capitalize text-center w-full">{{task.title}}</h2>
+        <h2 class="block w-full font-bold text-center capitalize">{{task.title}}</h2>
       </div>
-      <span class="font-sm block flex-grow" v-html="task.description"></span>
+      <span class="flex-grow block font-sm" v-html="task.description"></span>
     </div>
-    <div class="text-sm border-t-2 border-gray-700 mt-2 pt-2">
+    <div class="pt-2 mt-2 text-sm border-t-2 border-gray-700">
       <div>
         <span class="font-bold">Due:</span>
         {{formatDate(task.due_date)}}

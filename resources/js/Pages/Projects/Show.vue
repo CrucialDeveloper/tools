@@ -9,10 +9,10 @@
       <span class="mx-2">></span>
       <span>{{project.title}}</span>
     </div>
-    <div class="p-4 rounded bg-white shadow">
+    <div class="p-4 bg-white rounded shadow">
       <div class="flex items-center justify-between">
-        <h2 class="text-2xl mr-4">{{project.title}}</h2>
-        <button class="h-5 w-5 text-gray-500" @click="editProject">
+        <h2 class="mr-4 text-2xl">{{project.title}}</h2>
+        <button class="w-5 h-5 text-gray-500" @click="editProject">
           <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
             <path
               d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"
@@ -23,7 +23,7 @@
       <p v-html="project.description"></p>
     </div>
     <div class="flex items-start h-full mb-4">
-      <div class="bg-white p-4 rounded shadow mt-4 mr-4 w-3/4 h-full">
+      <div class="w-3/4 h-full p-4 mt-4 mr-4 bg-white rounded shadow">
         <tabs-nav>
           <tab-panel name="Dashboard">
             <div class="px-4 pb-4 mt-4">Dashboard</div>
@@ -43,7 +43,7 @@
           </tab-panel>
         </tabs-nav>
       </div>
-      <div class="bg-white p-4 rounded shadow mt-4 w-1/4 h-full">Comments</div>
+      <div class="w-1/4 h-full p-4 mt-4 bg-white rounded shadow">Comments</div>
     </div>
   </div>
 </template>

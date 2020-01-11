@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow rounded-lg overflow-hidden border-none w-full">
+  <div class="w-full overflow-hidden border-none rounded-lg shadow">
     <iframe ref="map" width="100%" height="400" style="position:relative; z-index=0" :src="address"></iframe>
   </div>
 </template>

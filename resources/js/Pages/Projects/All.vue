@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-full">
-    <div class="flex max-h-full bg-white p-4 rounded shadow overflow-y-scroll w-full">
-      <div class="h-full flex-1">
+    <div class="flex w-full max-h-full p-4 overflow-y-scroll bg-white rounded shadow">
+      <div class="flex-1 h-full">
         <h2 class="text-2xl">All Projects</h2>
         <div class="pb-4">
           <project-table
