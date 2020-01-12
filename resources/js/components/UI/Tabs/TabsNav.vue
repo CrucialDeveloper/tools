@@ -7,7 +7,11 @@
         v-for="(tab, index) in tabs"
         :key="index"
       >
-        <button class="px-4 py-2" @click="showTab(index)">{{tab.name}}</button>
+        <button
+          class="px-4 py-2"
+          :class="activeTab === index ? 'focus:outline-none':''"
+          @click="showTab(index)"
+        >{{tab.name}}</button>
       </li>
     </ul>
     <slot></slot>

@@ -8,7 +8,6 @@
 export default {
   props: ["maxHeight"],
   data() {
-    console.log(this.$el);
     return {
       height: ""
     };

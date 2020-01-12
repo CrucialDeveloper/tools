@@ -22,7 +22,7 @@
       </div>
       <p v-html="project.description"></p>
     </div>
-    <div class="flex">
+    <div class="flex mb-3">
       <content-scroll class="w-3/4 p-4 mt-4 mr-4 bg-white rounded shadow">
         <div>
           <tabs-nav>
