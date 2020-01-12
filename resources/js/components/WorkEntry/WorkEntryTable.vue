@@ -2,7 +2,7 @@
   <div>
     <div class="flex items-center w-full min-w-full my-4">
       <div class="flex items-center flex-1">
-        <div class="relative inline-block w-24 mr-4 min-w-24" v-if="paginate">
+        <div class="relative inline-block w-24 mr-4 min-w-24">
           <select
             class="block w-full px-4 py-2 pr-8 leading-tight bg-white rounded shadow appearance-none focus:outline-none"
             v-model="paginator.perPage"
@@ -264,13 +264,13 @@
             :key="item.id"
             style="vertical-align:baseline;"
           >
-            <td class="p-2">{{item.start_time}}</td>
-            <td class="p-2">{{item.end_time}}</td>
-            <td class="p-2">{{item.work_time}}</td>
-            <td class="p-2">{{item.work_type}}</td>
+            <td class="p-2" v-html="item.start_time"></td>
+            <td class="p-2" v-html="item.end_time"></td>
+            <td class="p-2" v-html="item.work_time"></td>
+            <td class="p-2" v-html="item.work_type"></td>
             <td class="p-2" v-html="item.description"></td>
-            <td class="p-2">{{item.billable}}</td>
-            <td class="p-2">{{item.billed}}</td>
+            <td class="p-2" v-html="item.billable"></td>
+            <td class="p-2" v-html="item.billed"></td>
           </tr>
         </tbody>
       </table>
@@ -317,32 +317,17 @@ import moment from "moment";
 
 export default {
   props: {
-    items: Array,
-    columns: Array,
-    dateColumns: {
-      default: function() {
-        return [];
-      }
-    },
-    dateFormat: { String, default: "Y-MM-DD" },
-    searchable: Array,
-    paginate: { Boolean, default: true },
-    sortable: Array,
-    filterable: {
-      default: true
-    }
+    items: Array
   },
   data() {
     return {
       search: "",
-      searchCount: "",
       paginator: {
         perPage: 10,
         currentPage: 1,
         totalPages: null
       },
-      sortBy: {},
-      bodyHeight: "0px"
+      sortBy: {}
     };
   },
   watch: {
@@ -359,36 +344,6 @@ export default {
     },
     goToPage(page) {
       this.paginator.currentPage = page;
-    },
-    toTitleCase(str) {
-      if (str.includes(":")) {
-        str = str.split(":")[0];
-      }
-      return str
-        .split("_")
-        .map(w => w[0].toUpperCase() + w.substr(1).toLowerCase())
-        .join(" ");
-    },
-    formatDate(date) {
-      return `${moment(date).format(this.dateFormat)}`;
-    },
-    getColumnValue(item, column) {
-      if (column.includes(":")) {
-        let parent = column.split(":")[1].split(".")[0];
-        let child = column.split(":")[1].split(".")[1];
-        return item[parent][child];
-      }
-
-      return item[column];
-    },
-    getLinkField(item, column) {
-      let index = this.linkColumn.indexOf(column);
-      if (this.linkField[index].includes(".")) {
-        return item[this.linkField[index].split(".")[0]][
-          this.linkField[index].split(".")[1]
-        ];
-      }
-      return item[this.linkField[index]];
     },
     sort: function(key, order) {
       if (key.includes(":")) {
@@ -456,26 +411,14 @@ export default {
       });
     },
     filteredItems: function() {
-      if (!this.items) {
-        return;
-      }
-      let vm = this;
       let results = [];
-      if (vm.search) {
-        results = vm.items.filter(function(item) {
-          return vm.searchColumns.some(function(column) {
-            if (column.includes(":")) {
-              column = column.split(":")[1];
-            }
-            if (column.includes(".")) {
-              return eval(
-                `item.${column}.toLowerCase().includes(vm.search.toLowerCase())`
-              );
-            } else {
-              return item[column]
-                .toLowerCase()
-                .includes(vm.search.toLowerCase());
-            }
+      if (this.search) {
+        results = this.items.filter(item => {
+          return Object.keys(item).some(key => {
+            return item[key]
+              .toString()
+              .toLowerCase()
+              .includes(this.search.toString().toLowerCase());
           });
         });
       } else {
@@ -489,7 +432,7 @@ export default {
 
       let sorted = null;
       if (Object.keys(this.sortBy).length > 0) {
-        sorted = _.orderBy(results, _.keys(vm.sortBy), _.values(vm.sortBy));
+        sorted = _.orderBy(results, _.keys(this.sortBy), _.values(this.sortBy));
       } else {
         sorted = results;
       }
@@ -499,12 +442,6 @@ export default {
       ];
 
       return sorted;
-    },
-    searchColumns() {
-      return this.searchable || this.columns;
-    },
-    sortColumns() {
-      return this.sortable || this.columns;
     }
   }
 };

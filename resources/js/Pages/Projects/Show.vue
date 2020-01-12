@@ -39,9 +39,6 @@
             <tab-panel name="Work Entries">
               <work-entry :project="project"></work-entry>
             </tab-panel>
-            <tab-panel name="Billing">
-              <div class="px-4 pb-4 mt-4">Billing</div>
-            </tab-panel>
           </tabs-nav>
         </div>
       </content-scroll>
