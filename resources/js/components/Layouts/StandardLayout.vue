@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen overflow-hidden bg-gray-200">
+  <div class="h-screen">
     <div class="flex items-center justify-between w-full h-16 px-4 text-white bg-slate">
       <div>CrucialDev</div>
       <div>
@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="flex content-body">
-      <div class="w-24 h-full px-2 py-8 bg-gray-400 min-w-24">
+      <div class="w-24 px-2 py-8 bg-gray-400 min-w-24">
         <a
           class="inline-block w-full px-2 pb-2 rounded hover:underline hover:bg-blue hover:text-white"
           href="/clients"
@@ -19,8 +19,10 @@
           href="/projects"
         >Projects</a>
       </div>
-      <div class="w-full h-full p-8">
-        <slot></slot>
+      <div class="flex-grow-0 w-full p-8">
+        <div class="overflow-hidden">
+          <slot></slot>
+        </div>
       </div>
     </div>
   </div>

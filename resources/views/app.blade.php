@@ -9,7 +9,7 @@
   <title>CrucialDeveloper</title>
 </head>
 
-<body class="text-gray-900">
+<body class="w-screen h-screen max-h-screen min-h-screen text-gray-900 bg-gray-200 max-w-screen min-w-screen">
   @inertia
 </body>
 

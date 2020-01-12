@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-full">
+  <div>
     <div class="flex items-start mb-4 text-sm text-gray-600">
       <inertia-link class="hover:underline" href="/clients">Clients</inertia-link>
       <span class="mx-2">></span>
@@ -22,28 +22,30 @@
       </div>
       <p v-html="project.description"></p>
     </div>
-    <div class="flex items-start h-full mb-4">
-      <div class="w-3/4 h-full p-4 mt-4 mr-4 bg-white rounded shadow">
-        <tabs-nav>
-          <tab-panel name="Dashboard">
-            <div class="px-4 pb-4 mt-4">Dashboard</div>
-          </tab-panel>
-          <tab-panel name="Tasks">
-            <task-views :client="client" :project="project" :tasks="project.tasks"></task-views>
-          </tab-panel>
+    <div class="flex">
+      <content-scroll class="w-3/4 p-4 mt-4 mr-4 bg-white rounded shadow">
+        <div>
+          <tabs-nav>
+            <tab-panel name="Dashboard">
+              <div class="px-4 pb-4 mt-4">Dashboard</div>
+            </tab-panel>
+            <tab-panel name="Tasks">
+              <task-views :client="client" :project="project" :tasks="project.tasks"></task-views>
+            </tab-panel>
 
-          <tab-panel name="Files">
-            <div class="px-4 pb-4 mt-4">Files</div>
-          </tab-panel>
-          <tab-panel name="Work Entries">
-            <work-entry :project="project"></work-entry>
-          </tab-panel>
-          <tab-panel name="Billing">
-            <div class="px-4 pb-4 mt-4">Billing</div>
-          </tab-panel>
-        </tabs-nav>
-      </div>
-      <div class="w-1/4 h-full p-4 mt-4 bg-white rounded shadow">Comments</div>
+            <tab-panel name="Files">
+              <div class="px-4 pb-4 mt-4">Files</div>
+            </tab-panel>
+            <tab-panel name="Work Entries">
+              <work-entry :project="project"></work-entry>
+            </tab-panel>
+            <tab-panel name="Billing">
+              <div class="px-4 pb-4 mt-4">Billing</div>
+            </tab-panel>
+          </tabs-nav>
+        </div>
+      </content-scroll>
+      <content-scroll class="w-1/4 h-full p-4 mt-4 bg-white rounded shadow">Comments</content-scroll>
     </div>
   </div>
 </template>
@@ -55,6 +57,7 @@ import TabsNav from "../../components/UI/Tabs/TabsNav";
 import TabPanel from "../../components/UI/Tabs/TabPanel";
 import TaskViews from "../../components/Tasks/TaskViews";
 import WorkEntry from "../../components/WorkEntry/WorkEntry";
+import ContentScroll from "../../components/Layouts/ContentScroll";
 
 export default {
   layout: StandardLayout,
@@ -63,7 +66,8 @@ export default {
     TabsNav,
     TabPanel,
     TaskViews,
-    WorkEntry
+    WorkEntry,
+    ContentScroll
   },
   props: ["client", "project"],
   methods: {

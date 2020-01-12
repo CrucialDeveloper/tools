@@ -9,6 +9,10 @@
 
 @import "tailwindcss/utilities";
 
+.content-body {
+  height: calc(100vh - 56px);
+  max-height: calc(100vh - 56px);
+}
 
 .sun-editor .se-btn-module-border {
   border: none;
@@ -41,10 +45,6 @@
 
 
 
-.content-body {
-  height: calc(100vh - 56px);
-  max-height: calc(100vh - 56px);
-}
 
 .rotate-0 {
   transform: rotate(0deg);

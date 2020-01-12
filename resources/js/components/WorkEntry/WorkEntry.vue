@@ -1,6 +1,6 @@
 <template>
-  <div class="flex" style="height:654px">
-    <div class="w-2/3 mr-8 overflow-y-scroll">
+  <div class="flex">
+    <div class="w-2/3 mr-8">
       <work-entry-table
         :items="project.work_entries"
         :columns="['start_time', 'end_time','duration', 'work_type', 'description', 'billable','billed']"

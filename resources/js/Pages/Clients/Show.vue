@@ -3,6 +3,7 @@
     <div class="flex w-1/4 p-4 mr-4 overflow-y-scroll bg-white rounded shadow min-w-122">
       <div class="flex-1 h-full">
         <div class="pb-4">
+          ``
           <client-table
             class="w-full"
             :items="clients"
@@ -14,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div class="flex w-3/4 max-h-full pl-4 pr-1 mb-16 overflow-y-scroll rounded">
+    <div class="flex w-3/4 pl-4 pr-1 mb-16 rounded">
       <div class="flex-1 h-full">
         <client-details :client="client"></client-details>
         <div class="w-full p-4 mt-4 bg-white rounded shadow">

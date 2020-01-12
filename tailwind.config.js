@@ -18,6 +18,7 @@ module.exports = {
                 '48': '12rem',
                 '56': '14rem',
                 '3/4': '75%',
+                'screen': '100vh'
             },
             minWidth: {
                 '24': '6rem',
@@ -31,6 +32,13 @@ module.exports = {
                 '88': '22rem',
                 '122': '30.5rem',
                 '3/4': '75%',
+                'screen': '100vw'
+            },
+            maxWidth: {
+                'screen': '100vw'
+            },
+            maxHeight: {
+                'screen': '100vh'
             },
             colors: {
                 transparent: 'transparent',
