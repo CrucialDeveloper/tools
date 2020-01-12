@@ -217,18 +217,33 @@
         </thead>
         <tbody>
           <tr
-            class="w-full hover:bg-gray-200"
+            class="relative w-full hover:bg-gray-200"
             v-for="item in slotProps.filteredItems"
             :key="item.id"
             style="vertical-align:baseline;"
+            @dblclick="editItem(item)"
           >
-            <td class="p-2" v-html="item.start_time"></td>
-            <td class="p-2" v-html="item.end_time"></td>
-            <td class="p-2" v-html="item.work_time"></td>
-            <td class="p-2" v-html="item.work_type"></td>
-            <td class="p-2" v-html="item.description"></td>
-            <td class="p-2" v-html="item.billable"></td>
-            <td class="p-2" v-html="item.billed"></td>
+            <template v-if="editedItem != item">
+              <td class="p-2" v-html="item.start_time"></td>
+              <td class="p-2" v-html="item.end_time"></td>
+              <td class="p-2" v-html="item.work_time"></td>
+              <td class="p-2" v-html="item.work_type"></td>
+              <td class="p-2" v-html="item.description"></td>
+              <td class="p-2" v-html="item.billable"></td>
+              <td class="p-2" v-html="item.billed"></td>
+            </template>
+            <template v-else>
+              <td class="p-2">
+                <date-picker v-model="editedItem.start_time"></date-picker>
+              </td>
+              <td class="p-2">Edit</td>
+              <td class="p-2">Edit</td>
+              <td class="p-2">Edit</td>
+              <td class="p-2">Edit</td>
+              <td class="p-2">Edit</td>
+              <td class="p-2">Edit</td>
+              <div class="fixed z-10 w-32 h-16 p-1 border-2 rounded">Edit Dialog</div>
+            </template>
           </tr>
         </tbody>
       </table>
@@ -238,9 +253,20 @@
 
 <script>
 import ContentPaginator from "../Layouts/ContentPaginator";
+import DatePicker from "../UI/DatePicker";
 
 export default {
-  components: { ContentPaginator },
-  props: ["items"]
+  components: { ContentPaginator, DatePicker },
+  props: ["items"],
+  data() {
+    return {
+      editedItem: null
+    };
+  },
+  methods: {
+    editItem(item) {
+      this.editedItem = item;
+    }
+  }
 };
 </script>
