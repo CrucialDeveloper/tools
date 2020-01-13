@@ -32,18 +32,18 @@ class WorkEntry extends Model
         return "/clients/{$this->client_url_id}/projects/{$this->project_url_id}/timekeep/{$this->id}";
     }
 
-    public function getStartTimeAttribute($value)
-    {
-        return Carbon::parse($value)->setTimezone('US/Central')->format('Y-m-d g:i A');
-    }
+    // public function getStartTimeAttribute($value)
+    // {
+    //     return Carbon::parse($value)->setTimezone('US/Central')->format('Y-m-d g:i A');
+    // }
 
-    public function getEndTimeAttribute($value)
-    {
-        return Carbon::parse($value)->setTimezone('US/Central')->format('Y-m-d g:i A');
-    }
+    // public function getEndTimeAttribute($value)
+    // {
+    //     return Carbon::parse($value)->setTimezone('US/Central')->format('Y-m-d g:i A');
+    // }
 
-    public function getWorkTimeAttribute($value)
-    {
-        return Carbon::createFromTimestampMs($value)->format('H:i:s');
-    }
+    // public function getWorkTimeAttribute($value)
+    // {
+    //     return Carbon::createFromTimestampMs($value)->format('H:i:s');
+    // }
 }

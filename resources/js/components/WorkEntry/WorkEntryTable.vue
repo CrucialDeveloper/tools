@@ -1,6 +1,6 @@
 <template>
-  <content-paginator :items="items" v-slot:default="slotProps">
-    <div ref="table">
+  <content-paginator :items="project.work_entries" v-slot:default="slotProps">
+    <div ref="table" class="overflow-x-scroll">
       <table class="relative w-full overflow-hidden text-sm">
         <thead>
           <tr class="w-full">
@@ -218,31 +218,96 @@
         <tbody>
           <tr
             class="relative w-full hover:bg-gray-200"
+            :class="[editedItem === item ? 'bg-blue-100 hover:bg-blue-100':'']"
             v-for="item in slotProps.filteredItems"
             :key="item.id"
-            style="vertical-align:baseline;"
-            @dblclick="editItem(item)"
+            style="vertical-align:top;"
+            @click="editItem(item)"
           >
             <template v-if="editedItem != item">
               <td class="p-2" v-html="item.start_time"></td>
               <td class="p-2" v-html="item.end_time"></td>
-              <td class="p-2" v-html="item.work_time"></td>
+              <td class="p-2" v-html="convertFromMilliseconds(item.work_time)"></td>
               <td class="p-2" v-html="item.work_type"></td>
               <td class="p-2" v-html="item.description"></td>
               <td class="p-2" v-html="item.billable"></td>
               <td class="p-2" v-html="item.billed"></td>
             </template>
-            <template v-else>
+            <template v-else class="flex items-start">
               <td class="p-2">
-                <date-picker v-model="editedItem.start_time"></date-picker>
+                <date-picker
+                  class="p-2 border rounded"
+                  :enableTime="true"
+                  v-model="editedItem.start_time"
+                ></date-picker>
               </td>
-              <td class="p-2">Edit</td>
-              <td class="p-2">Edit</td>
-              <td class="p-2">Edit</td>
-              <td class="p-2">Edit</td>
-              <td class="p-2">Edit</td>
-              <td class="p-2">Edit</td>
-              <div class="fixed z-10 w-32 h-16 p-1 border-2 rounded">Edit Dialog</div>
+              <td class="p-2">
+                <date-picker
+                  class="p-2 border rounded"
+                  :enableTime="true"
+                  v-model="editedItem.end_time"
+                ></date-picker>
+              </td>
+              <td class="p-2">
+                <input
+                  type="text"
+                  class="p-2 border rounded"
+                  v-model="editWorkTime"
+                  @input="convertToMilliseconds"
+                />
+              </td>
+              <td class="p-2">
+                <select-input v-model="editedItem.work_type" :options="project.work_type"></select-input>
+              </td>
+              <td class="p-2 min-w-70">
+                <content-editor
+                  v-model="editedItem.descripton"
+                  :default="editedItem.description"
+                  toolbar="simple"
+                ></content-editor>
+              </td>
+              <td class="p-2">
+                <select-input v-model="editedItem.billable" :options="[['Yes','Yes'],['No','No']]"></select-input>
+              </td>
+              <td class="relative p-2">
+                <select-input v-model="editedItem.billed" :options="[['Yes','Yes'],['No','No']]"></select-input>
+              </td>
+              <td>
+                <div class="z-10 w-32 py-2 mt-2 bg-white border rounded">
+                  <button
+                    class="flex items-center w-full h-8 text-gray-500 fill-current hover:text-blue"
+                  >
+                    <div class="w-8 h-8">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        baseProfile="full"
+                        viewBox="0 0 76.00 76.00"
+                      >
+                        <path
+                          d="M20.583 20.583h34.834v34.834h-9.5V44.333H30.083v11.084h-9.5V20.583zM33.25 55.417v-4.75h6.333v4.75H33.25zM26.917 23.75v9.5h22.166v-9.5H26.917z"
+                        />
+                      </svg>
+                    </div>
+                    <span class="ml-2">Save</span>
+                  </button>
+                  <button
+                    class="flex items-center w-full h-8 text-gray-500 fill-current hover:text-blue"
+                  >
+                    <div class="w-8 h-8">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        baseProfile="full"
+                        viewBox="0 0 76.00 76.00"
+                      >
+                        <path
+                          d="M38 19c10.493 0 19 8.507 19 19s-8.507 19-19 19-19-8.507-19-19 8.507-19 19-19zm0 4.75c-2.788 0-5.39.8-7.587 2.185l19.652 19.652A14.183 14.183 0 0 0 52.25 38c0-7.87-6.38-14.25-14.25-14.25zM23.75 38c0 7.87 6.38 14.25 14.25 14.25 2.788 0 5.39-.8 7.587-2.185L25.934 30.414A14.184 14.184 0 0 0 23.75 38z"
+                        />
+                      </svg>
+                    </div>
+                    <span class="ml-2">Cancel</span>
+                  </button>
+                </div>
+              </td>
             </template>
           </tr>
         </tbody>
@@ -252,20 +317,38 @@
 </template>
 
 <script>
+import moment from "moment";
 import ContentPaginator from "../Layouts/ContentPaginator";
 import DatePicker from "../UI/DatePicker";
+import SelectInput from "../UI/SelectInput";
+import ContentEditor from "../UI/ContentEditor";
 
 export default {
-  components: { ContentPaginator, DatePicker },
-  props: ["items"],
+  components: { ContentPaginator, DatePicker, SelectInput, ContentEditor },
+  props: ["project"],
   data() {
     return {
-      editedItem: null
+      editedItem: null,
+      editWorkTime: null
     };
   },
   methods: {
     editItem(item) {
       this.editedItem = item;
+    },
+    convertToMilliseconds(e) {
+      let time = e.target.value;
+      console.log(time.includes(":"));
+      if (time.includes(":")) {
+        this.editedItem.work_time = moment.duration(time).asMilliseconds();
+      } else {
+        this.editedItem.work_time = parseInt(time);
+      }
+    },
+    convertFromMilliseconds(time) {
+      return moment
+        .utc(moment.duration(time, "milliseconds").asMilliseconds())
+        .format("HH:mm:ss");
     }
   }
 };

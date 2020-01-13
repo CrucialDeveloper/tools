@@ -4,16 +4,22 @@
 
 <script>
 import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.css";
 
 export default {
   name: "DatePicker",
-  props: ["placeholder", "value"],
+  props: {
+    placeholder: { type: String },
+    value: { type: String },
+    enableTime: { type: Boolean },
+    format: { type: String, default: "Y-m-d H:i:S" },
+    noCalendar: { type: Boolean, default: false }
+  },
   data() {
     return {
       config: {
-        altInput: true,
-        dateFormat: "Y-m-d H:i:ss",
-        enableTime: false,
+        dateFormat: this.format,
+        enableTime: this.enableTime,
         disableMobile: "true",
         allowInput: true,
         closeOnSelect: true

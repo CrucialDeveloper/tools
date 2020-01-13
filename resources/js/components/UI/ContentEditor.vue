@@ -14,6 +14,9 @@ import suneditor from "suneditor";
 
 export default {
   props: {
+    toolbar: {
+      type: String
+    },
     default: {
       type: String
     },
@@ -30,7 +33,32 @@ export default {
           .substring(2, 15) +
         Math.random()
           .toString(36)
-          .substring(2, 15)
+          .substring(2, 15),
+      fullToolbar: [
+        ["undo", "redo"],
+        ["bold", "underline", "italic", "strike", "subscript", "superscript"],
+        ["removeFormat"],
+        "/",
+        ["fontColor", "hiliteColor"],
+        ["indent", "outdent"],
+        ["align", "horizontalRule", "list", "table"],
+        ["link"],
+        ["fullScreen", "showBlocks", "codeView"]
+      ],
+      simpleToolbar: [
+        [
+          "undo",
+          "redo",
+          "bold",
+          "underline",
+          "italic",
+          "removeFormat",
+          "list",
+          "link",
+          "fullScreen",
+          "codeView"
+        ]
+      ]
     };
   },
   methods: {
@@ -57,19 +85,8 @@ export default {
   mounted() {
     window.suneditor = suneditor.create(document.getElementById(this.id), {
       plugins: plugins,
-      buttonList: [
-        ["undo", "redo"],
-        ["font", "fontSize", "formatBlock"],
-        ["bold", "underline", "italic", "strike", "subscript", "superscript"],
-        ["removeFormat"],
-        "/",
-        ["fontColor", "hiliteColor"],
-        ["indent", "outdent"],
-        ["align", "horizontalRule", "list", "table"],
-        // ["link", "image", "video"],
-        ["link"],
-        ["fullScreen", "showBlocks", "codeView"]
-      ],
+      buttonList:
+        this.toolbar === "simple" ? this.simpleToolbar : this.fullToolbar,
       width: "100%",
       height: "200px"
     });

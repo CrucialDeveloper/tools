@@ -10,7 +10,7 @@
       <span v-else class="text-gray-500">{{placeholder}}</span>
     </button>
     <div
-      class="absolute z-10 flex flex-col w-full bg-gray-500 border rounded-b shadow-lg"
+      class="absolute z-10 flex flex-col w-full bg-white border rounded-b shadow"
       v-show="isOpen"
     >
       <input
