@@ -352,9 +352,7 @@ export default {
         .utc(moment.duration(time, "milliseconds").asMilliseconds())
         .format("HH:mm:ss");
     },
-    saveItem() {
-      console.log(test);
-    },
+    saveItem() {},
     cancelEdit() {
       this.editedItem = null;
     }
