@@ -224,7 +224,7 @@
             style="vertical-align:top;"
             @click="editItem(item)"
           >
-            <template v-if="editedItem != item">
+            <template v-if="editedItem===null">
               <td class="p-2" v-html="item.start_time"></td>
               <td class="p-2" v-html="item.end_time"></td>
               <td class="p-2" v-html="convertFromMilliseconds(item.work_time)"></td>
@@ -276,6 +276,7 @@
                 <div class="z-10 w-32 py-2 mt-2 bg-white border rounded">
                   <button
                     class="flex items-center w-full h-8 text-gray-500 fill-current hover:text-blue"
+                    @click.stop="saveItem"
                   >
                     <div class="w-8 h-8">
                       <svg
@@ -292,6 +293,7 @@
                   </button>
                   <button
                     class="flex items-center w-full h-8 text-gray-500 fill-current hover:text-blue"
+                    @click.stop="cancelEdit"
                   >
                     <div class="w-8 h-8">
                       <svg
@@ -334,11 +336,11 @@ export default {
   },
   methods: {
     editItem(item) {
-      this.editedItem = item;
+      this.editedItem = { ...item };
+      this.editWorkTime = item.work_time;
     },
     convertToMilliseconds(e) {
       let time = e.target.value;
-      console.log(time.includes(":"));
       if (time.includes(":")) {
         this.editedItem.work_time = moment.duration(time).asMilliseconds();
       } else {
@@ -349,6 +351,12 @@ export default {
       return moment
         .utc(moment.duration(time, "milliseconds").asMilliseconds())
         .format("HH:mm:ss");
+    },
+    saveItem() {
+      
+    },
+    cancelEdit() {
+      this.editedItem = null;
     }
   }
 };
