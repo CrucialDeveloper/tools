@@ -353,7 +353,7 @@ export default {
         .format("HH:mm:ss");
     },
     saveItem() {
-      
+      console.log(test);
     },
     cancelEdit() {
       this.editedItem = null;
