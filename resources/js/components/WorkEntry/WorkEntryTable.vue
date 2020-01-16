@@ -336,6 +336,7 @@ export default {
   },
   methods: {
     editItem(item) {
+      console.log(item);
       this.editedItem = { ...item };
       this.editWorkTime = item.work_time;
     },

@@ -35,9 +35,10 @@
         >x</button>
       </div>
     </div>
+
     <slot :filteredItems="filteredItems" :sort="sort" :sortIndicator="sortIndicator"></slot>
 
-    <div ref="paginator" class="flex items-center mt-4" v-if="paginator.totalPages>1">
+    <div ref="paginator" class="flex items-center my-4" v-if="paginator.totalPages>1">
       <button
         class="p-1 mr-4 bg-gray-500 rounded"
         :disabled="paginator.currentPage===1"
