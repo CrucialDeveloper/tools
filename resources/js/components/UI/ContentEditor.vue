@@ -1,7 +1,7 @@
 <template>
   <div>
     <div ref="wrapper">
-      <textarea :id="id" ref="editor" class="sun-editor-editable"></textarea>
+      <textarea :id="id" ref="editor" class="border rounded sun-editor-editable"></textarea>
     </div>
   </div>
 </template>

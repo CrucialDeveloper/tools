@@ -1,5 +1,5 @@
  <template>
-  <div class="p-4 mb-4 overflow-y-scroll">
+  <div class="flex flex-col p-4 mb-4">
     <div class="flex items-center justify-between mb-4">
       <h3 class="mr-4 text-2xl">Edit Work Entry</h3>
       <button
@@ -7,50 +7,48 @@
         @click.stop="cancelEdit"
       >Cancel</button>
     </div>
-    <div class="flex items-center p-2">
-      <label class="w-40 mr-4 font-bold text-right min-w-40" for="start_time">Start Time</label>
-      <date-picker class="p-2 border rounded" :enableTime="true" v-model="editedEntry.start_time"></date-picker>
-    </div>
-    <div class="flex items-center p-2">
-      <label class="w-40 mr-4 font-bold text-right min-w-40" for="end_time">End Time</label>
-      <date-picker class="p-2 border rounded" :enableTime="true" v-model="editedEntry.end_time"></date-picker>
-    </div>
-    <div class="flex items-center p-2">
-      <label class="w-40 mr-4 font-bold text-right min-w-40" for="work_time">Actual Work Time</label>
-      <input
-        type="text"
-        class="p-2 border rounded"
-        v-model="formattedWorkTime"
-        @blur="setWorkTime($event)"
-      />
-    </div>
-    <div class="flex items-center p-2">
-      <label class="w-40 mr-4 font-bold text-right min-w-40" for="work_type">Work Type</label>
-      <select-input v-model="editedEntry.work_type" :options="project.work_type"></select-input>
-    </div>
-    <div class="flex items-start w-full p-2">
-      <label class="w-40 mr-4 font-bold text-right min-w-40" for="description">Description</label>
-      <content-editor
-        v-model="editedEntry.description"
-        :default="editedEntry.description"
-        toolbar="simple"
-      ></content-editor>
-    </div>
-    <div class="flex items-center p-2">
-      <label class="w-40 mr-4 font-bold text-right min-w-40" for="billable">Billable</label>
-      <select-input v-model="editedEntry.billable" :options="[['Yes','Yes'],['No','No']]"></select-input>
-    </div>
-    <div class="flex items-center p-2">
-      <label class="w-40 mr-4 font-bold text-right min-w-40" for="billed">Billed</label>
-      <select-input v-model="editedEntry.billed" :options="[['Yes','Yes'],['No','No']]"></select-input>
-    </div>
-    <div>
-      <div class="flex items-center justify-between w-full">
-        <button
-          class="w-full p-2 mx-2 text-white rounded bg-blue hover:bg-blue-700"
-          @click="saveEntry"
-        >Save</button>
+    <div class="my-auto mb-4 overflow-y-scroll">
+      <div class="flex items-center p-2">
+        <label class="w-40 mr-4 font-bold text-right min-w-40" for="start_time">Start Time</label>
+        <date-picker class="p-2 border rounded" :enableTime="true" v-model="editedEntry.start_time"></date-picker>
       </div>
+      <div class="flex items-center p-2">
+        <label class="w-40 mr-4 font-bold text-right min-w-40" for="end_time">End Time</label>
+        <date-picker class="p-2 border rounded" :enableTime="true" v-model="editedEntry.end_time"></date-picker>
+      </div>
+      <div class="flex items-center p-2">
+        <label class="w-40 mr-4 font-bold text-right min-w-40" for="work_time">Actual Work Time</label>
+        <input
+          type="text"
+          class="p-2 border rounded"
+          v-model="formattedWorkTime"
+          @blur="setWorkTime($event)"
+        />
+      </div>
+      <div class="flex items-center p-2">
+        <label class="w-40 mr-4 font-bold text-right min-w-40" for="work_type">Work Type</label>
+        <select-input v-model="editedEntry.work_type" :options="project.work_type"></select-input>
+      </div>
+      <div class="flex items-start w-full p-2">
+        <label class="w-40 mr-4 font-bold text-right min-w-40" for="description">Description</label>
+        <content-editor
+          v-model="editedEntry.description"
+          :default="editedEntry.description"
+          toolbar="simple"
+        ></content-editor>
+      </div>
+      <div class="flex items-center p-2">
+        <label class="w-40 mr-4 font-bold text-right min-w-40" for="billable">Billable</label>
+        <select-input v-model="editedEntry.billable" :options="[['Yes','Yes'],['No','No']]"></select-input>
+      </div>
+      <div class="flex items-center p-2">
+        <label class="w-40 mr-4 font-bold text-right min-w-40" for="billed">Billed</label>
+        <select-input v-model="editedEntry.billed" :options="[['Yes','Yes'],['No','No']]"></select-input>
+      </div>
+    </div>
+    <div class="flex items-center justify-between w-full">
+      <button class="text-red-500 underline hover:text-red-800" @click="deleteEntry">Delete</button>
+      <button class="p-2 mx-2 text-white rounded bg-blue hover:bg-blue-700" @click="saveEntry">Save</button>
     </div>
   </div>
 </template>
@@ -129,6 +127,19 @@ export default {
       this.editedItem = null;
       this.editedWorkTime = null;
       this.$modal.hide("work-entry-modal");
+    },
+    deleteEntry() {
+      this.editedEntry
+        .delete(this.editedEntry.path)
+        .then(response => {
+          this.$modal.hide("work-entry-modal");
+          this.$inertia.reload({
+            method: "get"
+          });
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
     }
   },
   mounted() {
