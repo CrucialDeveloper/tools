@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/clients/{client}/projects', 'ClientProjectController@index');
     Route::get('/clients/{client}/projects/{project}', 'ClientProjectController@show');
-    Route::post('/clients/{client}/projects', 'ClientProjectController@store');
+    Route::post('/clients/{client}/projects', 'ClientProjebillablectController@store');
     Route::patch('/clients/{client}/projects/{project}', 'ClientProjectController@update');
     Route::delete('/clients/{client}/projects/{project}', 'ClientProjectController@destroy');
 
@@ -42,9 +42,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('clients/{client}/projects/{project}/comments', 'CommentController@store');
     Route::patch('/comments/{comment}', 'CommentController@update');
 
-    Route::post('/clients/{client}/projects/{project}/timekeep', 'WorkEntryController@store');
-    Route::patch('/clients/{client}/projects/{project}/timekeep/{entry}', 'WorkEntryController@update');
-    Route::delete('/clients/{client}/projects/{project}/timekeep/{entry}', 'WorkEntryController@destroy');
+    Route::post('/clients/{client}/projects/{project}/workentry', 'WorkEntryController@store');
+    Route::patch('/clients/{client}/projects/{project}/workentry/{entry}', 'WorkEntryController@update');
+    Route::delete('/clients/{client}/projects/{project}/workentry/{entry}', 'WorkEntryController@destroy');
 
 
     Route::get('/projects', 'ProjectController@index');

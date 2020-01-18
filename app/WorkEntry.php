@@ -29,21 +29,6 @@ class WorkEntry extends Model
 
     public function getPathAttribute()
     {
-        return "/clients/{$this->client_url_id}/projects/{$this->project_url_id}/timekeep/{$this->id}";
+        return "/clients/{$this->client_url_id}/projects/{$this->project_url_id}/workentry/{$this->id}";
     }
-
-    // public function getStartTimeAttribute($value)
-    // {
-    //     return Carbon::parse($value)->setTimezone('US/Central')->format('Y-m-d g:i A');
-    // }
-
-    // public function getEndTimeAttribute($value)
-    // {
-    //     return Carbon::parse($value)->setTimezone('US/Central')->format('Y-m-d g:i A');
-    // }
-
-    // public function getWorkTimeAttribute($value)
-    // {
-    //     return Carbon::createFromTimestampMs($value)->format('H:i:s');
-    // }
 }

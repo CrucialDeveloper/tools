@@ -50,9 +50,8 @@ class WorkEntryController extends Controller
         $entry->start_time = $request->start_time;
         $entry->end_time = $request->end_time;
         $entry->description = $request->description;
-        $entry->work_time = $entry->end_time->diffInRealMilliseconds($entry->start_time);
+        $entry->work_time = $request->work_time;
         $entry->save();
-
         return $entry;
     }
 
