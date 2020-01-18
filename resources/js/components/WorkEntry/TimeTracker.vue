@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div class="mb-4">
+      <button
+        class="w-full p-2 text-white rounded bg-blue"
+        @click="openWorkEntryModal"
+      >Create Manual Entry</button>
+      <div class="w-full my-4 font-bold text-center">OR</div>
+    </div>
     <div class="w-56 mx-auto">
       <div class="font-mono text-2xl text-center text-gray-700">{{timer}}</div>
       <div class="flex items-center justify-between mt-2">
@@ -85,6 +92,7 @@
 <script>
 import ContentEditor from "../UI/ContentEditor";
 import SelectInput from "../UI/SelectInput";
+import WorkEntryModal from "../WorkEntry/WorkEntryModal";
 import Form from "@johnlowery74/crucial-form";
 
 export default {
@@ -153,6 +161,17 @@ export default {
       this.entry.description = "";
       this.entry.billable = "Yes";
       clearInterval(this.stopWatch);
+    },
+    openWorkEntryModal() {
+      this.$modal.show(
+        WorkEntryModal,
+        { project: this.project },
+        {
+          name: "work-entry-modal",
+          adaptive: true,
+          height: "auto"
+        }
+      );
     },
     save() {
       this.entry

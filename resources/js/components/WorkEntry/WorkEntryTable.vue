@@ -237,7 +237,7 @@
             <td class="p-2" v-html="item.end_time"></td>
             <td class="p-2" v-html="convertFromMilliseconds(item.work_time)"></td>
             <td class="p-2" v-html="item.work_type"></td>
-            <td class="p-2" v-html="item.description"></td>
+            <td class="p-2 list-inside" v-html="item.description"></td>
             <td class="p-2" v-html="item.billable"></td>
             <td class="p-2" v-html="item.billed"></td>
           </tr>

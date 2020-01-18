@@ -1,5 +1,5 @@
 <template>
-  <input type="text" @input="setValue" v-model="update_value" />
+  <input type="text" @input="setValue" v-model="update_value" :placeholder="placeholder" />
 </template>
 
 <script>

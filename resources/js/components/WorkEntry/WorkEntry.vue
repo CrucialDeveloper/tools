@@ -6,7 +6,7 @@
         :columns="['start_time', 'end_time','duration', 'work_type', 'description', 'billable','billed']"
       ></work-entry-table>
     </div>
-    <div class="flex flex-col w-1/3">
+    <div class="flex flex-col w-1/3 overflow-hidden">
       <time-tracker :project="project"></time-tracker>
     </div>
   </div>

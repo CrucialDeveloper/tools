@@ -18,6 +18,8 @@ class WorkEntryController extends Controller
      */
     public function store(Request $request, Client $client, Project $project)
     {
+        $this->validateEntry($request);
+
         $entry = WorkEntry::make([
             "start_time" => Carbon::createFromTimestampMs($request->start_time),
             "end_time" => Carbon::createFromTimestampMs($request->end_time),
@@ -64,5 +66,18 @@ class WorkEntryController extends Controller
     public function destroy(Client $client, Project $project, WorkEntry $entry)
     {
         $entry->delete();
+    }
+
+    public function validateEntry($request)
+    {
+        $request->validate([
+            "start_time" => "required",
+            "end_time" => "required",
+            "work_type" => "required",
+            "description" => "required",
+            "billable" => "required",
+            "billed" => "required",
+            "work_time" => "required",
+        ]);
     }
 }

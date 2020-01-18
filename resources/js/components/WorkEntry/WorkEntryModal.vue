@@ -1,5 +1,5 @@
  <template>
-  <div class="flex flex-col p-4 mb-4">
+  <div class="flex flex-col p-4">
     <div class="flex items-center justify-between mb-4">
       <h3 class="mr-4 text-2xl">Edit Work Entry</h3>
       <button
@@ -7,43 +7,74 @@
         @click.stop="cancelEdit"
       >Cancel</button>
     </div>
-    <div class="my-auto mb-4 overflow-y-scroll">
-      <div class="flex items-center p-2">
+    <div class="my-auto mb-4 overflow-x-hidden overflow-y-scroll">
+      <div class="flex items-center mb-4">
         <label class="w-40 mr-4 font-bold text-right min-w-40" for="start_time">Start Time</label>
-        <date-picker class="p-2 border rounded" :enableTime="true" v-model="editedEntry.start_time"></date-picker>
+        <date-picker
+          placeholder="Enter Start Time ..."
+          class="w-full p-2 border rounded"
+          :class="editedEntry.errors.has('start_time') ? 'border border-red': 'border'"
+          :enableTime="true"
+          v-model="editedEntry.start_time"
+        ></date-picker>
       </div>
-      <div class="flex items-center p-2">
+      <div class="flex items-center mb-4">
         <label class="w-40 mr-4 font-bold text-right min-w-40" for="end_time">End Time</label>
-        <date-picker class="p-2 border rounded" :enableTime="true" v-model="editedEntry.end_time"></date-picker>
+        <date-picker
+          placeholder="Enter End Time ..."
+          class="w-full p-2 border rounded"
+          :class="editedEntry.errors.has('end_time') ? 'border border-red': 'border'"
+          :enableTime="true"
+          v-model="editedEntry.end_time"
+        ></date-picker>
       </div>
-      <div class="flex items-center p-2">
+      <div class="flex items-center mb-4">
         <label class="w-40 mr-4 font-bold text-right min-w-40" for="work_time">Actual Work Time</label>
         <input
           type="text"
-          class="p-2 border rounded"
+          placeholder="Enter time worked in milliseconds or hh:mm:ss format ..."
+          class="w-full p-2 border rounded"
+          :class="editedEntry.errors.has('work_time') ? 'border border-red': 'border'"
           v-model="formattedWorkTime"
           @blur="setWorkTime($event)"
         />
       </div>
-      <div class="flex items-center p-2">
+      <div class="flex items-center mb-4">
         <label class="w-40 mr-4 font-bold text-right min-w-40" for="work_type">Work Type</label>
-        <select-input v-model="editedEntry.work_type" :options="project.work_type"></select-input>
+        <select-input
+          placeholder="Select Work Type ..."
+          v-model="editedEntry.work_type"
+          :options="project.work_type"
+          :class="editedEntry.errors.has('work_type') ? 'border border-red': 'border'"
+        ></select-input>
       </div>
-      <div class="flex items-start w-full p-2">
+      <div class="flex items-start w-full mb-4">
         <label class="w-40 mr-4 font-bold text-right min-w-40" for="description">Description</label>
         <content-editor
+          class="w-full"
+          :class="editedEntry.errors.has('description') ? 'border border-red': 'border'"
           v-model="editedEntry.description"
           :default="editedEntry.description"
           toolbar="simple"
         ></content-editor>
       </div>
-      <div class="flex items-center p-2">
+      <div class="flex items-center mb-4">
         <label class="w-40 mr-4 font-bold text-right min-w-40" for="billable">Billable</label>
-        <select-input v-model="editedEntry.billable" :options="[['Yes','Yes'],['No','No']]"></select-input>
+        <select-input
+          placeholder="Is this Billable?"
+          v-model="editedEntry.billable"
+          :options="[['Yes','Yes'],['No','No']]"
+          :class="editedEntry.errors.has('billable') ? 'border border-red': 'border'"
+        ></select-input>
       </div>
-      <div class="flex items-center p-2">
+      <div class="flex items-center mb-4">
         <label class="w-40 mr-4 font-bold text-right min-w-40" for="billed">Billed</label>
-        <select-input v-model="editedEntry.billed" :options="[['Yes','Yes'],['No','No']]"></select-input>
+        <select-input
+          placeholder="Is this Billed?"
+          v-model="editedEntry.billed"
+          :options="[['Yes','Yes'],['No','No']]"
+          :class="editedEntry.errors.has('billed') ? 'border border-red': 'border'"
+        ></select-input>
       </div>
     </div>
     <div class="flex items-center justify-between w-full">
@@ -67,7 +98,15 @@ export default {
   props: ["entry", "project"],
   data() {
     return {
-      editedEntry: new Form({ ...this.entry }),
+      editedEntry: new Form({
+        start_time: "",
+        end_time: "",
+        work_time: "",
+        work_type: "",
+        description: "",
+        billable: "",
+        billed: ""
+      }),
       editWorkTime: false,
       formattedWorkTime: ""
     };
@@ -111,17 +150,31 @@ export default {
       );
     },
     saveEntry() {
-      this.editedEntry
-        .patch(this.editedEntry.path, this.editedEntry)
-        .then(response => {
-          this.cancelEdit();
-          this.$inertia.reload({
-            method: "get"
+      if (this.entry) {
+        this.editedEntry
+          .patch(this.editedEntry.path, this.editedEntry)
+          .then(response => {
+            this.cancelEdit();
+            this.$inertia.reload({
+              method: "get"
+            });
+          })
+          .catch(errors => {
+            console.log(errors);
           });
-        })
-        .catch(errors => {
-          console.log(errors);
-        });
+      } else {
+        this.editedEntry
+          .post(this.project.path + "/workentry", this.editedEntry)
+          .then(response => {
+            this.cancelEdit();
+            this.$inertia.reload({
+              method: "get"
+            });
+          })
+          .catch(errors => {
+            console.log(errors);
+          });
+      }
     },
     cancelEdit() {
       this.editedItem = null;
@@ -143,9 +196,16 @@ export default {
     }
   },
   mounted() {
-    this.formattedWorkTime = this.convertFromMilliseconds(
-      this.editedEntry.work_time
-    );
+    if (this.entry) {
+      this.formattedWorkTime = this.convertFromMilliseconds(
+        this.editedEntry.work_time
+      );
+    }
+  },
+  create() {
+    if (this.entry) {
+      this.editedEntry = new Form({ ...this.editClient });
+    }
   }
 };
 </script>

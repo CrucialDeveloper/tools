@@ -208,5 +208,8 @@ module.exports = {
 
     },
     variants: {},
-    plugins: []
+    plugins: [],
+    corePlugins: {
+        listStyleType: false,
+    }
 };
