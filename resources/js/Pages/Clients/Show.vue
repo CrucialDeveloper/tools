@@ -3,7 +3,6 @@
     <div class="flex w-1/4 p-4 mr-4 overflow-y-scroll bg-white rounded shadow min-w-122">
       <div class="flex-1 h-full">
         <div class="pb-4">
-          ``
           <client-table
             class="w-full"
             :items="clients"
