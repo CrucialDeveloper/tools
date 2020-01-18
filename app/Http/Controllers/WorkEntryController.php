@@ -19,10 +19,12 @@ class WorkEntryController extends Controller
     public function store(Request $request, Client $client, Project $project)
     {
         $this->validateEntry($request);
+        $start = is_numeric($request->start_time) ? Carbon::createFromTimestampMs($request->start_time) : Carbon::parse($request->start_time);
+        $end = is_numeric($request->end_time) ?  Carbon::createFromTimestampMs($request->end_time) : Carbon::parse($request->end_time);
 
         $entry = WorkEntry::make([
-            "start_time" => Carbon::createFromTimestampMs($request->start_time),
-            "end_time" => Carbon::createFromTimestampMs($request->end_time),
+            "start_time" => $start,
+            "end_time" => $end,
             "work_type" => $request->work_type,
             "description" => $request->description,
             "billable" => $request->billable,
@@ -76,7 +78,6 @@ class WorkEntryController extends Controller
             "work_type" => "required",
             "description" => "required",
             "billable" => "required",
-            "billed" => "required",
             "work_time" => "required",
         ]);
     }

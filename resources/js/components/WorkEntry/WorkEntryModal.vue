@@ -202,9 +202,9 @@ export default {
       );
     }
   },
-  create() {
+  created() {
     if (this.entry) {
-      this.editedEntry = new Form({ ...this.editClient });
+      this.editedEntry = new Form({ ...this.entry });
     }
   }
 };
