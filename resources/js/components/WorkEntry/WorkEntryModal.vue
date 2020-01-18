@@ -117,9 +117,9 @@ export default {
         .patch(this.editedEntry.path, this.editedEntry)
         .then(response => {
           this.cancelEdit();
-          //   this.$inertia.reload({
-          //     method: "get"
-          //   });
+          this.$inertia.reload({
+            method: "get"
+          });
         })
         .catch(errors => {
           console.log(errors);

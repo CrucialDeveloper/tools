@@ -156,7 +156,7 @@ export default {
     },
     save() {
       this.entry
-        .post(this.project.path + "/timekeep", this.entry)
+        .post(this.project.path + "/workentry", this.entry)
         .then(response => {
           this.refresh();
           this.$inertia.reload();
