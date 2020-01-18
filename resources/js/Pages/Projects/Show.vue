@@ -23,7 +23,7 @@
       <p v-html="project.description"></p>
     </div>
     <div class="flex mb-3">
-      <content-scroll class="w-3/4 p-4 mt-4 mr-4 bg-white rounded shadow">
+      <content-scroll class="w-3/4 min-h-full p-4 mt-4 mr-4 bg-white rounded shadow">
         <div>
           <tabs-nav>
             <tab-panel name="Dashboard">
@@ -42,7 +42,7 @@
           </tabs-nav>
         </div>
       </content-scroll>
-      <content-scroll class="w-1/4 h-full p-4 mt-4 bg-white rounded shadow">Comments</content-scroll>
+      <content-scroll class="w-1/4 min-h-full p-4 mt-4 bg-white rounded shadow">Comments</content-scroll>
     </div>
   </div>
 </template>

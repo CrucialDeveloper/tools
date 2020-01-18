@@ -1,7 +1,8 @@
  <template>
   <div class="flex flex-col p-4">
     <div class="flex items-center justify-between mb-4">
-      <h3 class="mr-4 text-2xl">Edit Work Entry</h3>
+      <h3 class="mr-4 text-2xl" v-if="entry">Edit Work Entry</h3>
+      <h3 class="mr-4 text-2xl" v-else>Create Work Entry</h3>
       <button
         class="ml-4 text-gray-500 underline hover:text-gray-700"
         @click.stop="cancelEdit"
@@ -78,8 +79,15 @@
       </div>
     </div>
     <div class="flex items-center justify-between w-full">
-      <button class="text-red-500 underline hover:text-red-800" @click="deleteEntry">Delete</button>
-      <button class="p-2 mx-2 text-white rounded bg-blue hover:bg-blue-700" @click="saveEntry">Save</button>
+      <button
+        class="text-red-500 underline hover:text-red-800"
+        @click="deleteEntry"
+        v-if="entry"
+      >Delete</button>
+      <button
+        class="self-end p-2 mx-2 ml-auto text-white rounded bg-blue hover:bg-blue-700"
+        @click="saveEntry"
+      >Save</button>
     </div>
   </div>
 </template>
