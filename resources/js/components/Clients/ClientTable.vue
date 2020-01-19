@@ -16,13 +16,13 @@
           <div
             class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none"
           >
-            <svg
-              class="w-4 h-4 fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-            </svg>
+            <div class="w-4 h-4 fill-current">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                />
+              </svg>
+            </div>
           </div>
         </div>
         <div class="flex items-center w-full mr-4">
@@ -41,11 +41,13 @@
         </div>
       </div>
       <button
-        class="flex items-center justify-center w-8 h-8 p-2 leading-none text-white rounded-full shadow fill-current bg-blue"
+        class="flex items-center justify-center w-10 h-10 leading-none text-white rounded-full shadow fill-current bg-blue"
         @click="openCreateClientModal"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 16">
-          <path d="M4 7V4H3v3H0v1h3v3h1V8h3V7H4z" />
+        <svg class="w-10 h-10 font-bold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path
+            d="M11.5 16v-3.5H8a.5.5 0 0 1 0-1h3.5V8a.5.5 0 0 1 1 0v3.5H16a.5.5 0 0 1 0 1h-3.5V16a.5.5 0 0 1-1 0z"
+          />
         </svg>
       </button>
     </div>

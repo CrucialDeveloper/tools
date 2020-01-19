@@ -41,11 +41,17 @@
         </div>
       </div>
       <button
-        class="flex items-center justify-center w-8 h-8 p-2 leading-none text-white rounded-full shadow fill-current bg-blue"
+        class="flex items-center justify-center w-10 h-10 leading-none text-white rounded-full shadow fill-current bg-blue"
         @click="openCreateProjectModal"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 16">
-          <path d="M4 7V4H3v3H0v1h3v3h1V8h3V7H4z" />
+        <svg
+          class="w-10 h-10 font-bold text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M11.5 16v-3.5H8a.5.5 0 0 1 0-1h3.5V8a.5.5 0 0 1 1 0v3.5H16a.5.5 0 0 1 0 1h-3.5V16a.5.5 0 0 1-1 0z"
+          />
         </svg>
       </button>
     </div>
