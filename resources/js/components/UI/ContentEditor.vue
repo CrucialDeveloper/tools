@@ -35,15 +35,29 @@ export default {
           .toString(36)
           .substring(2, 15),
       fullToolbar: [
-        ["undo", "redo"],
-        ["bold", "underline", "italic", "strike", "subscript", "superscript"],
-        ["removeFormat"],
-        "/",
-        ["fontColor", "hiliteColor"],
-        ["indent", "outdent"],
-        ["align", "horizontalRule", "list", "table"],
-        ["link"],
-        ["fullScreen", "showBlocks", "codeView"]
+        [
+          "undo",
+          "redo",
+          "bold",
+          "underline",
+          "italic",
+          "strike",
+          "subscript",
+          "superscript",
+          "removeFormat",
+          "fontColor",
+          "hiliteColor",
+          "indent",
+          "outdent",
+          "align",
+          "horizontalRule",
+          "list",
+          "table",
+          "link",
+          "fullScreen",
+          "showBlocks",
+          "codeView"
+        ]
       ],
       simpleToolbar: [
         [
@@ -98,3 +112,32 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+@import "~suneditor/dist/css/suneditor.min.css";
+
+.sun-editor .se-btn-module-border {
+  border: none;
+}
+
+.sun-editor .se-btn-module-enter {
+  display: none;
+}
+
+.sun-editor .se-btn {
+  margin: 0px !important;
+  height: unset !important;
+  line-height: 21px !important;
+}
+
+.sun-editor .se-toolbar [class*="se-icon-"]::before {
+  line-height: 1.5 !important;
+}
+
+.sun-editor [class*="se-icon-"]::before {
+  font-size: 12px !important;
+}
+// .sun-editor > * {
+//   border-color: #0d0e0f;
+// }
+</style>

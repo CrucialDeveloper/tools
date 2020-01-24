@@ -4,7 +4,6 @@
 
 <script>
 import flatpickr from "flatpickr";
-import "../../../../node_modules/flatpickr/dist/flatpickr.css";
 
 export default {
   name: "DatePicker",
@@ -38,3 +37,7 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+@import "~flatpickr/dist/flatpickr.css";
+</style>
