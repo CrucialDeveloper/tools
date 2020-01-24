@@ -89,10 +89,7 @@
             style="vertical-align:baseline;"
           >
             <td class="p-2" v-for="column in columns" :key="column">
-              <span
-                v-if="dateColumns.includes(column)"
-                v-html="formatDate(getColumnValue(item,column))"
-              ></span>
+              <span v-if="dateColumns.includes(column)" v-html="getColumnValue(item,column)"></span>
               <span v-else-if="linkColumn.includes(column)">
                 <inertia-link
                   class="hover:underline"
