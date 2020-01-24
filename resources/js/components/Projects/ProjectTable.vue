@@ -154,7 +154,6 @@
 
 <script>
 import Vue from "vue";
-import moment from "moment";
 
 export default {
   props: {
@@ -165,7 +164,6 @@ export default {
         return [];
       }
     },
-    dateFormat: { String, default: "Y-MM-DD" },
     searchable: Array,
     paginate: { Boolean, default: true },
     sortable: Array,
@@ -212,9 +210,6 @@ export default {
         .split("_")
         .map(w => w[0].toUpperCase() + w.substr(1).toLowerCase())
         .join(" ");
-    },
-    formatDate(date) {
-      return `${moment(date).format(this.dateFormat)}`;
     },
     getColumnValue(item, column) {
       if (column.includes(":")) {

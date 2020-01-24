@@ -103,7 +103,7 @@
             style="vertical-align:baseline;"
           >
             <td class="p-2" v-for="column in columns" :key="column">
-              <span v-if="dateColumns.includes(column)" v-html="formatDate(item[column])"></span>
+              <span v-if="dateColumns.includes(column)" v-html="item[column]"></span>
               <span v-else-if="linkColumn===column">
                 <inertia-link
                   class="hover:underline"
@@ -164,7 +164,6 @@
 </template>
 
 <script>
-import moment from "moment";
 import ProjectModal from "./ProjectModal";
 
 export default {
@@ -178,7 +177,6 @@ export default {
         return [];
       }
     },
-    dateFormat: { String, default: "Y-MM-DD" },
     searchable: Array,
     paginate: { Boolean, default: true },
     sortable: Array,
@@ -222,9 +220,6 @@ export default {
         .split("_")
         .map(w => w[0].toUpperCase() + w.substr(1).toLowerCase())
         .join(" ");
-    },
-    formatDate(date) {
-      return `${moment(date).format(this.dateFormat)}`;
     },
     sort: function(key, order) {
       if (key in this.sortBy && this.sortBy[key] === order) {
