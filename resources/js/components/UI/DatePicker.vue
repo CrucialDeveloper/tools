@@ -37,7 +37,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-@import "~flatpickr/dist/flatpickr.css";
-</style>
