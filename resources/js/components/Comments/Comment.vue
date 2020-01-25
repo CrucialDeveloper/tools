@@ -52,7 +52,8 @@
 <script>
 import ContentEditor from "../UI/ContentEditor";
 import Form from "@johnlowery74/crucial-form";
-window.form = Form;
+import { format, subMinutes, addMinutes } from "date-fns";
+
 export default {
   components: { ContentEditor },
   props: ["comment"],
@@ -66,7 +67,12 @@ export default {
   },
   methods: {
     commentDate(date) {
-      return new Date(date);
+      // return format(new Date(date), "E LLL do yyyy h:mm b");
+      let newDate = new Date(date);
+      let offset = newDate.getTimezoneOffset();
+      let realDate =
+        offset > 0 ? subMinutes(newDate, offset) : addMinutes(newDate, offset);
+      return format(realDate, "PPPPpp");
     },
     saveComment() {
       let vm = this;
