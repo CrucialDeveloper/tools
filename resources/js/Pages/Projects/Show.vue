@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-start mb-4 text-sm text-gray-600">
+    <div class="flex items-start text-sm text-gray-600">
       <inertia-link class="hover:underline" href="/clients">Clients</inertia-link>
       <span class="mx-2">></span>
       <inertia-link class="hover:underline" :href="client.path">{{client.company_name}}</inertia-link>

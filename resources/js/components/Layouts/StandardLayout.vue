@@ -19,8 +19,8 @@
           href="/projects"
         >Projects</a>
       </div>
-      <div class="flex-grow-0 w-full pt-8 pb-4 pl-8 pr-4">
-        <div class="h-full min-h-full pb-4 pr-4 overflow-hidden">
+      <div class="flex-grow-0 w-full">
+        <div class="h-full min-h-full p-4 overflow-hidden">
           <slot></slot>
         </div>
       </div>

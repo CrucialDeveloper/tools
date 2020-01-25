@@ -13,7 +13,7 @@ export default {
     };
   },
   mounted() {
-    this.height = window.innerHeight - this.$el.offsetTop - 28 + "px";
+    this.height = window.innerHeight - this.$el.offsetTop - 14 + "px";
   }
 };
 </script>
