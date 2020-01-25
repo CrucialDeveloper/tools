@@ -4,7 +4,7 @@
       <div class="flex items-center flex-1">
         <div class="relative inline-block w-24 mr-4 min-w-24" v-if="paginate">
           <select
-            class="block w-full px-4 py-2 pr-8 leading-tight bg-white rounded shadow appearance-none focus:outline-none"
+            class="block w-full px-4 py-2 pr-8 leading-tight bg-white border rounded appearance-none focus:outline-none"
             v-model="paginator.perPage"
           >
             <option value="5">5</option>
@@ -27,14 +27,14 @@
         </div>
         <div class="flex items-center w-full mr-4">
           <input
-            class="w-full h-full p-2 leading-tight rounded-l shadow appearance-none focus:outline-none"
+            class="w-full h-full p-2 leading-tight border-t border-b border-l rounded-l appearance-none focus:outline-none"
             type="text"
             placeholder="Search Projects ..."
             aria-label="search"
             v-model="search"
           />
           <button
-            class="block p-2 leading-tight bg-gray-400 shadow fill-current round-r"
+            class="block p-2 leading-tight bg-gray-500 border-t border-b border-r rounded-r fill-current"
             type="button"
             @click="clearSearch"
           >x</button>
@@ -61,7 +61,7 @@
         <thead>
           <tr class="w-full">
             <th
-              class="p-2 font-bold whitespace-no-wrap bg-gray-400"
+              class="p-2 font-bold whitespace-no-wrap bg-gray-500"
               v-for="column in columns"
               :key="column"
             >

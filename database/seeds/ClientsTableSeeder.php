@@ -2,6 +2,7 @@
 
 use App\Task;
 use App\Client;
+use App\Comment;
 use App\Project;
 use App\WorkEntry;
 use Illuminate\Database\Seeder;
@@ -33,6 +34,7 @@ class ClientsTableSeeder extends Seeder
                     'project_id' => $project->id,
                     'project_url_id' => $project->url_id,
                 ]);
+                factory(Comment::class, 5)->create();
             });
         }
     }

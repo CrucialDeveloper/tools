@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="flex content-body">
-      <div class="w-24 px-2 py-8 bg-gray-400 min-w-24">
+      <div class="w-24 px-2 py-8 text-white bg-slate min-w-24">
         <a
           class="inline-block w-full p-2 rounded hover:underline hover:bg-blue hover:text-white"
           href="/clients"
