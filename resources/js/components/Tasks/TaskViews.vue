@@ -63,7 +63,7 @@
         </button>
       </div>
     </div>
-    <div class="overflow-y-scroll" style="height:628px">
+    <div class="overflow-y-scroll" style="height:642px">
       <content-filter
         v-if="view==='tile'"
         class="w-full"

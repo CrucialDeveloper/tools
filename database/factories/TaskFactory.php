@@ -15,6 +15,9 @@ $factory->define(Task::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'description' => $faker->paragraph,
         'status' => $faker->randomElement(['In Progress', 'Not Started', "Completed"]),
+        'start_date' => $faker->dateTimeBetween($startDate = '-3 months', $endDate = 'now', $timezone = null),
+        'due_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '1 year', $timezone = null),
+        'priority' => $faker->randomElement(['P1', 'P2', 'P3']),
         'parent_url_id' => Project::first()->url_id
 
     ];

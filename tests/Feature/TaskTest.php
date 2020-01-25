@@ -28,6 +28,8 @@ class TaskTest extends TestCase
             'title' => $task->title,
             'description' => $task->description,
             'status' => $task->status,
+            'due_date' => $task->due_date,
+            'priority' => $task->priority
         ]);
     }
 

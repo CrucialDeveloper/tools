@@ -21,7 +21,9 @@ class CreateTasksTable extends Migration
             $table->string('parent_url_id');
             $table->string('title');
             $table->longText('description')->nullable();
-            $table->string('status')->default('Not Started');
+            $table->string('status')->default('New');
+            $table->string('priority');
+            $table->dateTime('start_date')->nullable();
             $table->dateTime('due_date')->nullable();
             $table->string('url_id')->nullable();
             $table->timestamps();

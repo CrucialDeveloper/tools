@@ -250,7 +250,6 @@
 <script>
 import ContentPaginator from "../Layouts/ContentPaginator";
 import WorkEntryModal from "./WorkEntryModal";
-import moment from "moment";
 
 export default {
   components: { ContentPaginator, WorkEntryModal },
@@ -274,9 +273,9 @@ export default {
       );
     },
     convertFromMilliseconds(time) {
-      return moment
-        .utc(moment.duration(time, "milliseconds").asMilliseconds())
-        .format("HH:mm:ss");
+      //   return moment
+      //     .utc(moment.duration(time, "milliseconds").asMilliseconds())
+      //     .format("HH:mm:ss");
     }
   }
 };

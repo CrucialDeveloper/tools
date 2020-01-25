@@ -161,7 +161,6 @@
 
 <script>
 import Vue from "vue";
-import moment from "moment";
 import ClientModal from "../Clients/ClientModal";
 
 export default {
