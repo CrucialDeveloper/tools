@@ -26,7 +26,8 @@ class ClientsTableSeeder extends Seeder
                 factory(Task::class, 5)->create([
                     'client_id' => $client->id,
                     'project_id' => $project->id,
-                    'parent_url_id' => $project->url_id
+                    'client_url_id' => $client->url_id,
+                    'project_url_id' => $project->url_id
                 ]);
                 factory(WorkEntry::class, 5)->create([
                     'client_id' => $client->id,

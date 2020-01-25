@@ -1,12 +1,11 @@
 <template>
-  <inertia-link
-    :href="viewPath()"
-    class="flex flex-col items-stretch justify-between p-2 mb-4 bg-white rounded shadow-md"
+  <button
+    class="flex items-stretch justify-between min-w-full p-2 mb-4 bg-white rounded shadow-md"
     :class="{'border-l-4 border-red-800': task.past_due}"
   >
-    <div class="flex justify-between">
+    <div class="flex justify-between w-full">
       <div>
-        <h2 class="block w-full capitalize">{{task.title}}</h2>
+        <h2 class="block w-full text-left capitalize">{{task.title}}</h2>
         <div class="flex items-center justify-between pt-2 mt-2 text-sm">
           <div class="flex items-center">
             <span class="w-6 h-6 mr-2 text-gray-500 fill-current">
@@ -26,7 +25,7 @@
       </div>
       <div class="ml-4" :class="priorityIndicator">{{task.priority}}</div>
     </div>
-  </inertia-link>
+  </button>
 </template>
 
 <script>
@@ -39,12 +38,6 @@ export default {
     return {};
   },
   methods: {
-    configPath(task) {
-      // return `/b/${this.board.slug}/p/${this.project.slug}/t/${task.slug}/edit`;
-    },
-    viewPath() {
-      return this.task.path;
-    },
     formatDate(date) {
       return `${format(new Date(date), "yyyy-MM-dd")}`;
     }

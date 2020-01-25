@@ -28,11 +28,17 @@ class TaskController extends Controller
             'user_id' => auth()->user()->id,
             'client_id' => $client->id,
             'project_id' => $project->id,
-            'parent_url_id' => $project->url_id,
+            'client_url_id' => $client->url_id,
+            'project_url_id' => $project->url_id,
             'title' => $request->title,
             'description' => $request->description,
             'status' => $request->status,
+            'start_date' => $request->start_date,
+            'due_date' => $request->due_date,
+            'status' => $request->status,
+            'priority' => $request->priority,
         ]);
+
         $project->tasks()->save($task);
 
         return "/b/$client->slug/p/$project->slug";

@@ -22,7 +22,9 @@
       </div>
     </div>
 
-    <slot :items="filteredItems"></slot>
+    <div class="p-4 bg-gray-200 rounded" v-if="filteredItems.length>0">
+      <slot :items="filteredItems"></slot>
+    </div>
   </div>
 </template>
 

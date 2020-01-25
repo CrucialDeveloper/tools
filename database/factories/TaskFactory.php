@@ -3,6 +3,7 @@
 /** @var Factory $factory */
 
 use App\Task;
+use App\Client;
 use App\Project;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
@@ -18,7 +19,8 @@ $factory->define(Task::class, function (Faker $faker) {
         'start_date' => $faker->dateTimeBetween($startDate = '-3 months', $endDate = 'now', $timezone = null),
         'due_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '1 year', $timezone = null),
         'priority' => $faker->randomElement(['P1', 'P2', 'P3']),
-        'parent_url_id' => Project::first()->url_id
+        'client_url_id' => Client::first()->url_id,
+        'project_url_id' => Project::first()->url_id
 
     ];
 });
