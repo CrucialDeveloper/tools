@@ -34,7 +34,7 @@ export default {
         Math.random()
           .toString(36)
           .substring(2, 15),
-      fullToolbar: [
+      full: [
         [
           "undo",
           "redo",
@@ -59,7 +59,7 @@ export default {
           "codeView"
         ]
       ],
-      simpleToolbar: [
+      simple: [
         [
           "undo",
           "redo",
@@ -72,10 +72,22 @@ export default {
           "fullScreen",
           "codeView"
         ]
-      ]
+      ],
+      comment: [["undo", "redo", "bold", "underline", "italic", "list", "link"]]
     };
   },
   methods: {
+    setToolbar() {
+      if (this.toolbar === "simple") {
+        return this.simple;
+      }
+      if (this.toolbar === "full") {
+        return this.full;
+      }
+      if (this.toolbar === "comment") {
+        return this.comment;
+      }
+    },
     setPastedImageListener: function() {
       this.$refs.wrapper.addEventListener("paste", function(e) {
         var orgEvent = e;
@@ -99,10 +111,9 @@ export default {
   mounted() {
     window.suneditor = suneditor.create(document.getElementById(this.id), {
       plugins: plugins,
-      buttonList:
-        this.toolbar === "simple" ? this.simpleToolbar : this.fullToolbar,
+      buttonList: this.setToolbar(),
       width: "100%",
-      height: "200px"
+      height: this.height
     });
 
     window.suneditor.onChange = contents => this.$emit("input", contents);

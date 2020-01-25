@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('clients/{client}/projects/{project}/comments', 'CommentController@store');
     Route::patch('/comments/{comment}', 'CommentController@update');
+    Route::delete('/comments/{comment}', 'CommentController@destroy');
 
     Route::post('/clients/{client}/projects/{project}/workentry', 'WorkEntryController@store');
     Route::patch('/clients/{client}/projects/{project}/workentry/{entry}', 'WorkEntryController@update');

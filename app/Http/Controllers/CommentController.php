@@ -26,4 +26,9 @@ class CommentController extends Controller
             'body' => $request->body
         ]);
     }
+
+    public function destroy(Request $request, Comment $comment)
+    {
+        $comment->delete();
+    }
 }

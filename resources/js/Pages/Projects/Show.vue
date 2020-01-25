@@ -42,7 +42,9 @@
           </tabs-nav>
         </div>
       </content-scroll>
-      <content-scroll class="w-1/4 min-h-full p-4 mt-4 bg-white rounded shadow">Comments</content-scroll>
+      <content-scroll class="w-1/4 min-h-full p-4 mt-4 bg-white rounded shadow">
+        <comments-view :comments="project.comments"></comments-view>
+      </content-scroll>
     </div>
   </div>
 </template>
@@ -55,6 +57,7 @@ import TabPanel from "../../components/UI/Tabs/TabPanel";
 import TaskViews from "../../components/Tasks/TaskViews";
 import WorkEntry from "../../components/WorkEntry/WorkEntry";
 import ContentScroll from "../../components/Layouts/ContentScroll";
+import CommentsView from "../../components/Comments/CommentsView";
 
 export default {
   layout: StandardLayout,
@@ -64,7 +67,8 @@ export default {
     TabPanel,
     TaskViews,
     WorkEntry,
-    ContentScroll
+    ContentScroll,
+    CommentsView
   },
   props: ["client", "project"],
   methods: {
