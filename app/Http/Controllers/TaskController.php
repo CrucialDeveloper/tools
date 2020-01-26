@@ -41,7 +41,7 @@ class TaskController extends Controller
 
         $project->tasks()->save($task);
 
-        return "/b/$client->slug/p/$project->slug";
+        return $project->path;
     }
 
     public function show(Client $client, Project $project, Task $task)
@@ -76,7 +76,7 @@ class TaskController extends Controller
 
         $task->save();
 
-        return "/b/$client->slug/p/$project->slug/t/$task->slug";
+        return $project->path;
     }
 
     public function destroy(Request $request, Client $client, Project $project, Task $task)

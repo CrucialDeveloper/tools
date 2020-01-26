@@ -50,6 +50,7 @@
       <div>
         <button
           class="flex items-center justify-center w-10 h-10 leading-none text-white rounded-full shadow fill-current bg-blue"
+          @click="newTask"
         >
           <svg
             class="w-10 h-10 font-bold text-white"
@@ -63,7 +64,7 @@
         </button>
       </div>
     </div>
-    <div class="overflow-y-scroll" style="height:642px">
+    <div class="overflow-y-scroll" style="height:628px">
       <content-filter
         v-if="view==='tile'"
         class="w-full"
@@ -71,9 +72,9 @@
         :filters="true"
         :searchable="['title','description']"
       >
-        <div class="flex flex-wrap items-stretch -mx-4" slot-scope="{items}">
+        <div class="flex flex-wrap items-stretch -mx-2" slot-scope="{items}">
           <div
-            class="flex items-stretch w-full p-2 mx-2 mb-2 md:min-w-70 md:w-1/5 md:p-0 md:mb-4 md:mx-4"
+            class="flex items-stretch w-full p-2 mx-2 mb-2 md:min-w-70 md:w-1/5 md:p-0 md:mb-2 md:mt-2 md:mx-2"
             v-for="item in items"
             :key="item.id"
           >
@@ -82,9 +83,14 @@
         </div>
       </content-filter>
 
-      <kanban-board class="w-full" :items="tasks" :parent="project" v-if="view==='kanban'">
+      <kanban-board
+        class="w-full overflow-y-scroll"
+        :items="tasks"
+        :parent="project"
+        v-if="view==='kanban'"
+      >
         <div slot-scope="{item}">
-          <task-card :task="item" :project="project"></task-card>
+          <task-card class="my-4" :task="item" :project="project"></task-card>
         </div>
       </kanban-board>
     </div>
@@ -94,10 +100,11 @@
 <script>
 import ContentFilter from "../UI/ContentFilter";
 import KanbanBoard from "../UI/KanbanBoard";
-import TaskCard from "../Tasks/TaskCard";
+import TaskCard from "./TaskCard";
+import TaskModal from "./TaskModal";
 
 export default {
-  components: { ContentFilter, KanbanBoard, TaskCard },
+  components: { ContentFilter, KanbanBoard, TaskCard, TaskModal },
   props: ["client", "project", "tasks"],
   data() {
     return {
@@ -108,6 +115,20 @@ export default {
     setView(view) {
       localStorage.setItem("tasksView", view);
       this.view = view;
+    },
+    newTask() {
+      this.$modal.show(
+        TaskModal,
+        { project: this.project },
+        {
+          adaptive: true,
+          width: "1000px",
+          minHeight: 800,
+          minWith: 400,
+          scrollable: true,
+          resizable: true
+        }
+      );
     }
   },
   created() {

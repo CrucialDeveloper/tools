@@ -1,7 +1,8 @@
 <template>
   <button
-    class="flex items-stretch justify-between min-w-full p-2 mb-4 bg-white rounded shadow-md"
+    class="flex items-stretch justify-between min-w-full p-2 bg-white rounded shadow-md"
     :class="{'border-l-4 border-red-800': task.past_due}"
+    @click="editTask"
   >
     <div class="flex justify-between w-full">
       <div>
@@ -30,9 +31,11 @@
 
 <script>
 import { format } from "date-fns";
+import TaskModal from "./TaskModal";
 
 export default {
   name: "TaskCard",
+  components: { TaskModal },
   props: ["project", "client", "task"],
   data() {
     return {};
@@ -40,6 +43,20 @@ export default {
   methods: {
     formatDate(date) {
       return `${format(new Date(date), "yyyy-MM-dd")}`;
+    },
+    editTask() {
+      this.$modal.show(
+        TaskModal,
+        { editTask: this.task, project: this.project },
+        {
+          adaptive: true,
+          width: "1000px",
+          minHeight: 800,
+          minWith: 400,
+          scrollable: true,
+          resizable: true
+        }
+      );
     }
   },
   computed: {

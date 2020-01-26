@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-start text-sm text-gray-600">
+    <div class="flex items-start mb-2 text-sm text-gray-600">
       <inertia-link class="hover:underline" href="/clients">Clients</inertia-link>
       <span class="mx-2">></span>
       <inertia-link class="hover:underline" :href="client.path">{{client.company_name}}</inertia-link>
@@ -23,7 +23,7 @@
       <p v-html="project.description"></p>
     </div>
     <div class="flex mt-4">
-      <content-scroll class="w-4/5 min-h-full p-4 mr-4 bg-white rounded shadow">
+      <content-scroll class="w-4/5 p-4 mr-4 overflow-hidden bg-white rounded shadow">
         <div>
           <tabs-nav>
             <tab-panel name="Dashboard">

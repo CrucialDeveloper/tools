@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full bg-gray-200">
+  <div class="bg-gray-200">
     <div class="flex flex-col w-full h-full md:min-w-64 lg:flex-row">
       <div
         class="w-full p-2 border-t border-l border-r border-gray-500 md:max-w-md"

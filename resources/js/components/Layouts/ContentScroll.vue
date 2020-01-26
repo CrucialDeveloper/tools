@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-y-scroll" :style="{height:height, maxHeight:maxHeight}">
+  <div :style="{height:height, maxHeight:maxHeight}">
     <slot></slot>
   </div>
 </template>
