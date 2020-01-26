@@ -164,7 +164,7 @@
 </template>
 
 <script>
-import ProjectModal from "./ProjectModal";
+import ProjectModal from "../Projects/ProjectModal";
 
 export default {
   components: { ProjectModal },

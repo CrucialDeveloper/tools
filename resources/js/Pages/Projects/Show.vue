@@ -51,7 +51,7 @@
 
 <script>
 import StandardLayout from "../../components/Layouts/StandardLayout";
-import ProjectModal from "../../components/Clients/ProjectModal";
+import ProjectModal from "../../components/Projects/ProjectModal";
 import TabsNav from "../../components/UI/Tabs/TabsNav";
 import TabPanel from "../../components/UI/Tabs/TabPanel";
 import TaskViews from "../../components/Tasks/TaskViews";
