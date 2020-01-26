@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Inertia\Inertia;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Inertia\Inertia;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/clients';
 
     /**
      * Create a new controller instance.
@@ -41,5 +42,12 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return Inertia::render('Home');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        return Inertia::render('Clients/Index', [
+            'clients' => auth()->user()->clients()->latest()->get()
+        ]);
     }
 }
