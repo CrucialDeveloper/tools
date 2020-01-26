@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 // if (app('env') != "testing") {
 //     auth()->loginUsingId(1);
-}
+// }
 
 Route::auth();
 
