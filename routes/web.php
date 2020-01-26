@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/clients/{client}/projects', 'ClientProjectController@index');
     Route::get('/clients/{client}/projects/{project}', 'ClientProjectController@show');
-    Route::post('/clients/{client}/projects', 'ClientProjebillablectController@store');
+    Route::post('/clients/{client}/projects', 'ClientProjectController@store');
     Route::patch('/clients/{client}/projects/{project}', 'ClientProjectController@update');
     Route::delete('/clients/{client}/projects/{project}', 'ClientProjectController@destroy');
 
