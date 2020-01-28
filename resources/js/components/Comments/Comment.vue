@@ -7,7 +7,7 @@
       <div class="flex items-start justify-between w-full text-sm">
         <div class="mr-4">
           <span
-            class="mr-4 font-bold"
+            class="mr-2 font-bold"
           >{{comment.commenter.first_name}} {{comment.commenter.last_name}}</span>
           <span class="text-gray-500">{{commentDate(comment.created_at)}}</span>
         </div>
