@@ -23,7 +23,8 @@ export default {
   data() {
     return {
       tabs: null,
-      activeTab: 0
+      activeTab: 0,
+      hash: ""
     };
   },
   methods: {
@@ -38,9 +39,21 @@ export default {
   },
   mounted() {
     this.tabs = this.$children;
-    // let index = Number(localStorage.getItem(window.location.pathname));
-    this.showTab(0);
-    // this.activeTab = index;
+    let index = 0;
+    if (this.hash) {
+      let names = this.tabs.map(tab => tab.name.toLowerCase());
+      console.log(names, names.includes(this.hash));
+      if (names.includes(this.hash)) {
+        index = names.indexOf(this.hash);
+      }
+    } else {
+      index = Number(localStorage.getItem(window.location.pathname));
+    }
+    this.showTab(index);
+    this.activeTab = index;
+  },
+  created() {
+    this.hash = location.hash.split("#")[1];
   }
 };
 </script>
