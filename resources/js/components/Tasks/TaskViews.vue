@@ -64,10 +64,10 @@
         </button>
       </div>
     </div>
-    <div class="overflow-y-scroll">
+    <div class="max-h-full mt-4">
       <content-filter
         v-if="view==='tile'"
-        class="w-full"
+        class="w-full h-full mt-4 overflow-y-scroll"
         :items="tasks"
         :filters="true"
         :searchable="['title','description']"
@@ -83,12 +83,7 @@
         </div>
       </content-filter>
 
-      <kanban-board
-        class="w-full overflow-y-scroll"
-        :items="tasks"
-        :parent="project"
-        v-if="view==='kanban'"
-      >
+      <kanban-board class="w-full" :items="tasks" :parent="project" v-if="view==='kanban'">
         <div slot-scope="{item}">
           <task-card class="my-4" :task="item" :project="project"></task-card>
         </div>

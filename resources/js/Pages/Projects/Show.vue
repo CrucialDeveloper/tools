@@ -28,8 +28,13 @@
           <tab-panel name="Dashboard">
             <div class="px-4 pb-4 mt-4">Dashboard</div>
           </tab-panel>
-          <tab-panel name="Tasks">
-            <task-views :client="client" :project="project" :tasks="project.tasks"></task-views>
+          <tab-panel class="max-h-full" name="Tasks">
+            <task-views
+              class="max-h-full"
+              :client="client"
+              :project="project"
+              :tasks="project.tasks"
+            ></task-views>
           </tab-panel>
 
           <tab-panel name="Files">
