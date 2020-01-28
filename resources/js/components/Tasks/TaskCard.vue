@@ -47,7 +47,7 @@ export default {
     editTask() {
       this.$modal.show(
         TaskModal,
-        { editTask: this.task, project: this.project },
+        { editTask: this.task, project: this.$page.project },
         {
           adaptive: true,
           width: "1000px",
