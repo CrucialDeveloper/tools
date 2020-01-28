@@ -1,7 +1,13 @@
 <?php
 
-use App\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\WorkEntryController;
+use App\Http\Controllers\TaskStatusController;
+use App\Http\Controllers\ClientProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,30 +29,29 @@ Route::auth();
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/clients', 'ClientController@index')->name('clients.index');
-    Route::get('/clients/{client}', 'ClientController@show')->name('clients.show');
-    Route::post('/clients', 'ClientController@store')->name('clients.store');
-    Route::patch('/clients/{client}', 'ClientController@update')->name('clients.update');
-    Route::delete('/clients/{client}', 'ClientController@destroy')->name('clients.destroy');
+    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+    Route::get('/clients/{client}', [ClientController::class, 'show'])->name('clients.show');
+    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+    Route::patch('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
+    Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
 
-    Route::get('/clients/{client}/projects', 'ClientProjectController@index');
-    Route::get('/clients/{client}/projects/{project}', 'ClientProjectController@show');
-    Route::post('/clients/{client}/projects', 'ClientProjectController@store');
-    Route::patch('/clients/{client}/projects/{project}', 'ClientProjectController@update');
-    Route::delete('/clients/{client}/projects/{project}', 'ClientProjectController@destroy');
+    Route::get('/clients/{client}/projects', [ClientProjectController::class, 'index']);
+    Route::get('/clients/{client}/projects/{project}', [ClientProjectController::class, 'show']);
+    Route::post('/clients/{client}/projects', [ClientProjectController::class, 'store']);
+    Route::patch('/clients/{client}/projects/{project}', [ClientProjectController::class, 'update']);
+    Route::delete('/clients/{client}/projects/{project}', [ClientProjectController::class, 'destroy']);
 
-    Route::post('/clients/{client}/projects/{project}/tasks', 'TaskController@store');
-    Route::patch('/clients/{client}/projects/{project}/tasks/{task}', 'TaskController@update');
-    Route::post('/task/{task}', 'TaskStatusController@update');
+    Route::post('/clients/{client}/projects/{project}/tasks', [TaskController::class, 'store']);
+    Route::patch('/clients/{client}/projects/{project}/tasks/{task}', [TaskController::class, 'update']);
+    Route::post('/task/{task}', [TaskStatusController::class, 'update']);
 
-    Route::post('clients/{client}/projects/{project}/comments', 'CommentController@store');
-    Route::patch('/comments/{comment}', 'CommentController@update');
-    Route::delete('/comments/{comment}', 'CommentController@destroy');
+    Route::post('clients/{client}/projects/{project}/comments', [CommentController::class, 'store']);
+    Route::patch('/comments/{comment}', [CommentController::class, 'update']);
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
 
-    Route::post('/clients/{client}/projects/{project}/workentry', 'WorkEntryController@store');
-    Route::patch('/clients/{client}/projects/{project}/workentry/{entry}', 'WorkEntryController@update');
-    Route::delete('/clients/{client}/projects/{project}/workentry/{entry}', 'WorkEntryController@destroy');
+    Route::post('/clients/{client}/projects/{project}/workentry', [WorkEntryController::class, 'store']);
+    Route::patch('/clients/{client}/projects/{project}/workentry/{entry}', [WorkEntryController::class, 'update']);
+    Route::delete('/clients/{client}/projects/{project}/workentry/{entry}', [WorkEntryController::class, 'destroy']);
 
-
-    Route::get('/projects', 'ProjectController@index');
+    Route::get('/projects', [ProjectController::class, 'index']);
 });
