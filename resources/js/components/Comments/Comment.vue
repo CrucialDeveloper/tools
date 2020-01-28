@@ -5,7 +5,7 @@
     >{{comment.commenter.first_name[0]}}{{comment.commenter.last_name[0]}}</div>
     <div class="w-full">
       <div class="flex items-start justify-between w-full text-sm">
-        <div>
+        <div class="mr-4">
           <span
             class="mr-4 font-bold"
           >{{comment.commenter.first_name}} {{comment.commenter.last_name}}</span>
