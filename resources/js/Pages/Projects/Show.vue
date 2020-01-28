@@ -22,27 +22,25 @@
       </div>
       <p v-html="project.description"></p>
     </div>
-    <div class="flex mt-4">
+    <div class="flex w-full mt-4">
       <content-scroll class="w-4/5 p-4 mr-4 overflow-hidden bg-white rounded shadow">
-        <div>
-          <tabs-nav>
-            <tab-panel name="Dashboard">
-              <div class="px-4 pb-4 mt-4">Dashboard</div>
-            </tab-panel>
-            <tab-panel name="Tasks">
-              <task-views :client="client" :project="project" :tasks="project.tasks"></task-views>
-            </tab-panel>
+        <tabs-nav class="h-full overflow-y-scroll">
+          <tab-panel name="Dashboard">
+            <div class="px-4 pb-4 mt-4">Dashboard</div>
+          </tab-panel>
+          <tab-panel name="Tasks">
+            <task-views :client="client" :project="project" :tasks="project.tasks"></task-views>
+          </tab-panel>
 
-            <tab-panel name="Files">
-              <div class="px-4 pb-4 mt-4">Files</div>
-            </tab-panel>
-            <tab-panel name="Work Entries">
-              <work-entry :project="project"></work-entry>
-            </tab-panel>
-          </tabs-nav>
-        </div>
+          <tab-panel name="Files">
+            <div class="px-4 pb-4 mt-4">Files</div>
+          </tab-panel>
+          <tab-panel name="Work Entries">
+            <work-entry :project="project"></work-entry>
+          </tab-panel>
+        </tabs-nav>
       </content-scroll>
-      <content-scroll class="w-1/5 min-h-full p-4 bg-white rounded shadow">
+      <content-scroll class="w-1/5 min-h-full p-4 mb-4 overflow-y-scroll bg-white rounded shadow">
         <comments-view :comments="project.comments"></comments-view>
       </content-scroll>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center justify-between">
       <div class="flex items-center mr-4">
         <button
           class="w-5 h-5 mr-4 text-gray-500 fill-current"
@@ -64,7 +64,7 @@
         </button>
       </div>
     </div>
-    <div class="overflow-y-scroll" style="height:628px">
+    <div class="overflow-y-scroll">
       <content-filter
         v-if="view==='tile'"
         class="w-full"

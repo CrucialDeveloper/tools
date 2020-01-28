@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col pb-4">
     <h3 class="mr-4 text-lg">
       Comments
       <!-- <span class="text-sm">({{comments.length}})</span> -->
