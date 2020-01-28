@@ -42,7 +42,6 @@ export default {
     let index = 0;
     if (this.hash) {
       let names = this.tabs.map(tab => tab.name.toLowerCase());
-      console.log(names, names.includes(this.hash));
       if (names.includes(this.hash)) {
         index = names.indexOf(this.hash);
       }
