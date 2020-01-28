@@ -72,7 +72,7 @@ export default {
       let offset = newDate.getTimezoneOffset();
       let realDate =
         offset > 0 ? subMinutes(newDate, offset) : addMinutes(newDate, offset);
-      return format(realDate, "PPPPpp");
+      return format(realDate, "EEE, MMM do, yyyy h:mm aaa");
     },
     saveComment() {
       let vm = this;
