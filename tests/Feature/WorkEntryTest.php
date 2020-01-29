@@ -71,7 +71,7 @@ class WorkEntryTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $entry = $this->raw(WorkEntry::class);
-        $response = $this->post("/clients/{$this->client->url_id}/projects/{$this->project->url_id}/timekeep", $entry);
+        $response = $this->post("/clients/{$this->client->url_id}/projects/{$this->project->url_id}/workentry", $entry);
 
         $this->assertCount(1, WorkEntry::all());
     }
@@ -89,13 +89,12 @@ class WorkEntryTest extends TestCase
         $entry->end_time = Carbon::now()->addMinutes(15);
         $entry->description = "Updated description";
 
-        $response = $this->patch("/clients/{$this->client->url_id}/projects/{$this->project->url_id}/timekeep/{$entry->id}", $entry->toArray());
+        $response = $this->patch("/clients/{$this->client->url_id}/projects/{$this->project->url_id}/workentry/{$entry->id}", $entry->toArray());
 
         $this->assertDatabaseHas('work_entries', [
             'start_time' => $entry->start_time,
             'end_time' => $entry->end_time,
             'description' => 'Updated description',
-            'work_time' => 8100000
         ]);
     }
 
