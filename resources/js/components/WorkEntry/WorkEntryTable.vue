@@ -233,8 +233,8 @@
                 </svg>
               </button>
             </td>
-            <td class="p-2" v-html="item.start_time"></td>
-            <td class="p-2" v-html="item.end_time"></td>
+            <td class="p-2" v-html="formatDate(item.start_time)"></td>
+            <td class="p-2" v-html="formatDate(item.end_time)"></td>
             <td class="p-2" v-html="convertFromMilliseconds(item.work_time)"></td>
             <td class="p-2" v-html="item.work_type"></td>
             <td class="p-2 list-inside" v-html="item.description"></td>
@@ -250,6 +250,7 @@
 <script>
 import ContentPaginator from "../Layouts/ContentPaginator";
 import WorkEntryModal from "./WorkEntryModal";
+import { format, subMinutes, addMinutes } from "date-fns";
 
 export default {
   components: { ContentPaginator, WorkEntryModal },
@@ -271,6 +272,13 @@ export default {
           height: "auto"
         }
       );
+    },
+    formatDate(date) {
+      let uDate = new Date(date);
+      let offset = uDate.getTimezoneOffset();
+      let localDate =
+        offset > 0 ? subMinutes(uDate, offset) : addMinutes(uDate, offset);
+      return format(localDate, "yyyy-MM-dd h:mm a");
     },
     convertFromMilliseconds(time) {
       let milliseconds = parseInt((time % 1000) / 100);
