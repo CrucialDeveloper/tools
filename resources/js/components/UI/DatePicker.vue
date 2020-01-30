@@ -46,7 +46,9 @@ export default {
     }
   },
   mounted() {
-    this.setValue();
+    if (this.value) {
+      this.setValue();
+    }
 
     flatpickr(this.$el, this.config);
   }
