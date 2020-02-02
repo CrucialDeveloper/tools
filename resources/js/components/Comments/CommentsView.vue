@@ -4,8 +4,10 @@
       Comments
       <!-- <span class="text-sm">({{comments.length}})</span> -->
     </h3>
-    <div class="flex pb-4 border-b" v-for="comment in comments" :key="comment.id">
-      <comment :comment="comment"></comment>
+    <div>
+      <div class="flex pb-4 border-b" v-for="comment in comments" :key="comment.id">
+        <comment :comment="comment"></comment>
+      </div>
     </div>
     <div class="my-auto overflow-y-scroll">
       <content-editor

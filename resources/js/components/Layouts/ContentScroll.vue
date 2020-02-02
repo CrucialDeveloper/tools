@@ -17,9 +17,12 @@ export default {
       this.height = window.innerHeight - this.$el.offsetTop - 14 + "px";
       this.$el.firstChild.style.height = this.height;
       this.$el.firstChild.style.overflowY = "scroll";
+      this.$el.style.height = this.height;
+      console.log(this.$el);
     }
   },
   mounted() {
+    console.log(this.$el);
     this.setScrollArea();
     window.addEventListener("resize", e => {
       this.setScrollArea();
