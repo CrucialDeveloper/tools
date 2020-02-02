@@ -1,5 +1,5 @@
 <template>
-  <div :style="{height:height, maxHeight:maxHeight}">
+  <div>
     <slot></slot>
   </div>
 </template>
@@ -12,8 +12,18 @@ export default {
       height: ""
     };
   },
+  methods: {
+    setScrollArea() {
+      this.height = window.innerHeight - this.$el.offsetTop - 14 + "px";
+      this.$el.firstChild.style.height = this.height;
+      this.$el.firstChild.style.overflowY = "scroll";
+    }
+  },
   mounted() {
-    this.height = window.innerHeight - this.$el.offsetTop - 14 + "px";
+    this.setScrollArea();
+    window.addEventListener("resize", e => {
+      this.setScrollArea();
+    });
   }
 };
 </script>
