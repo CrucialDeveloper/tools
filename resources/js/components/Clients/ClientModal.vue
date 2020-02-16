@@ -38,7 +38,12 @@
     </div>
     <div class="flex items-center mb-4">
       <label class="w-48 mr-2 text-right" for="state">State</label>
-      <select-input placeholder="Select State ..." :options="states" v-model="client.state"></select-input>
+      <select-input
+        placeholder="Select State ..."
+        :options="states"
+        v-model="client.state"
+        :value="client.state"
+      ></select-input>
     </div>
     <div class="flex items-center mb-4">
       <label class="w-48 mr-2 text-right" for="zip">Zip</label>
