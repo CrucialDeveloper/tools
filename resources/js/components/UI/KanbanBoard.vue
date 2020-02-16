@@ -1,17 +1,19 @@
 <template>
-  <div class="bg-gray-200">
-    <div class="flex flex-col w-full h-full md:min-w-64 lg:flex-row">
+  <div class="min-h-full bg-gray-200">
+    <div class="flex flex-col w-full min-h-full md:min-w-64 lg:flex-row">
       <div
-        class="w-full p-2 border-t border-l border-r border-gray-500 md:max-w-md"
+        class="w-full min-h-full p-2 border-t border-l border-r border-gray-500 md:max-w-md"
         v-for="status in shown_status"
         :key="status"
       >
         <div class="font-bold text-center border-b">{{status}}</div>
-        <div class="pt-2">
+        <div class="min-h-full pt-2">
           <draggable
             :list="byStatus(status)"
             group="default"
             @change="updateStatus($event, status)"
+            animation="300"
+            :sort="false"
           >
             <slot :item="card" v-for="card in byStatus(status)"></slot>
           </draggable>
