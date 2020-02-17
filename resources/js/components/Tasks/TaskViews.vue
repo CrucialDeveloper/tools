@@ -37,7 +37,7 @@
           </svg>
         </button>
         <button
-          class="w-6 h-6 mr-4 fill-current rotate-90"
+          class="w-6 h-6 mr-4 rotate-90 fill-current"
           @click="setView('gantt')"
           :class="[view==='gantt' ? 'text-gray-800' :'text-gray-500']"
           title="View as Gantt"
@@ -69,7 +69,7 @@
         v-if="view==='tile'"
         class="w-full h-full mt-4 overflow-y-scroll"
         :items="tasks"
-        :filters="true"
+        :filters="project.task_status_options"
         :searchable="['title','description']"
       >
         <div class="flex flex-wrap items-stretch -mx-2" slot-scope="{items}">
@@ -83,9 +83,15 @@
         </div>
       </content-filter>
 
-      <kanban-board class="w-full" :items="tasks" :parent="project" v-if="view==='kanban'">
+      <kanban-board
+        class="w-full"
+        :items="tasks"
+        :parent="project"
+        :available_status="project.task_status_options"
+        v-if="view==='kanban'"
+      >
         <div slot-scope="{item}">
-          <task-card class="my-4" :task="item" :project="project"></task-card>
+          <task-card class="mt-4" :task="item" :project="project"></task-card>
         </div>
       </kanban-board>
     </div>

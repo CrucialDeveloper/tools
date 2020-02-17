@@ -30,9 +30,9 @@
           v-for="(item, index) in filteredOptions"
           @click="setSelected(item)"
           @mouseover="highlightedIndex = index"
-          :key="item[0]"
-          :value="item[0]"
-        >{{item[1]}}</li>
+          :key="index"
+          :value="item"
+        >{{item}}</li>
       </ul>
     </div>
   </div>
@@ -55,10 +55,7 @@ export default {
       let vm = this;
       if (vm.search) {
         return this.options.filter(function(option) {
-          return (
-            option[0].toLowerCase().includes(vm.search.toLowerCase()) ||
-            option[1].toLowerCase().includes(vm.search.toLowerCase())
-          );
+          return option.toLowerCase().includes(vm.search.toLowerCase());
         });
       }
       return this.options;
@@ -66,7 +63,7 @@ export default {
   },
   methods: {
     setSelected(option) {
-      this.$emit("input", option[0]);
+      this.$emit("input", option);
       this.search = "";
       this.close();
     },
