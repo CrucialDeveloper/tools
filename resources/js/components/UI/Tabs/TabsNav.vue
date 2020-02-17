@@ -20,6 +20,9 @@
 
 <script>
 export default {
+  props: {
+    saveLast: { default: true }
+  },
   data() {
     return {
       tabs: null,
@@ -34,7 +37,9 @@ export default {
       });
       this.$children[index].show = true;
       this.activeTab = index;
-      localStorage.setItem(window.location.pathname, index);
+      if (this.saveLast) {
+        localStorage.setItem(window.location.pathname, index);
+      }
     }
   },
   mounted() {
@@ -46,7 +51,9 @@ export default {
         index = names.indexOf(this.hash);
       }
     } else {
-      index = Number(localStorage.getItem(window.location.pathname));
+      if (this.saveLast) {
+        index = Number(localStorage.getItem(window.location.pathname));
+      }
     }
     this.showTab(index);
     this.activeTab = index;

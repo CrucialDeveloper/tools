@@ -32,7 +32,7 @@ export default {
   props: ["items", "parent"],
   data() {
     return {
-      available_status: [],
+      task_status_options: [],
       exclude_status: [],
       shown_status: [
         "New",
@@ -66,7 +66,7 @@ export default {
     }
   },
   created() {
-    this.available_status = _.uniq(
+    this.task_status_options = _.uniq(
       this.items
         .map(item => {
           return item.status;
@@ -74,7 +74,7 @@ export default {
         .sort()
     );
 
-    this.available_status.forEach(status => {
+    this.task_status_options.forEach(status => {
       if (!this.shown_status.includes(status)) {
         this.shown_status.unshift(status);
       }

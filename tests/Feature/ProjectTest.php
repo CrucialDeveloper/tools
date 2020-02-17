@@ -30,7 +30,7 @@ class ProjectTest extends TestCase
             'start_date' => Carbon::now(),
             'due_date' => Carbon::now(),
             'priority' => "P1",
-            'available_status' => [
+            'task_status_options' => [
                 'Not Started', 'In Progress',
             ],
             'work_type' => json_encode([

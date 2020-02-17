@@ -4,7 +4,7 @@
       class="mb-4 text-2xl"
     >{{(editClient === undefined || Object.keys(editClient).length ===0)? 'New Client' : 'Edit Client'}}</h3>
 
-    <tabs-nav>
+    <tabs-nav :saveLast="false">
       <tab-panel name="General">
         <div class="flex items-center mb-4">
           <label class="w-48 mr-2 text-right" for="company_name">Company Name</label>
@@ -96,9 +96,7 @@
       </tab-panel>
 
       <tab-panel name="Project Status Options">
-        <ol>
-          <sort-list v-model="client.project_status_options"></sort-list>
-        </ol>
+        <sort-list v-model="client.project_status_options"></sort-list>
       </tab-panel>
     </tabs-nav>
 

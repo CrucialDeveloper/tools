@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $fillable = ['user_id', 'parent_url_id', 'title', 'description', 'status', 'start_date', 'due_date', 'priority', 'available_status', 'work_type', 'url_id'];
+    protected $fillable = ['user_id', 'parent_url_id', 'title', 'description', 'status', 'start_date', 'due_date', 'priority', 'task_status_options', 'work_type', 'url_id'];
 
     protected $appends = ['past_due', 'path'];
 
@@ -19,7 +19,7 @@ class Project extends Model
     }
 
     protected $casts = [
-        'available_status' => 'array',
+        'task_status_options' => 'array',
         'work_type' => 'array',
     ];
 

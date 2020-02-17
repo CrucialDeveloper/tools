@@ -24,7 +24,7 @@ class CreateProjectsTable extends Migration
             $table->dateTime('start_date');
             $table->dateTime('due_date');
             $table->string('priority');
-            $table->json('available_status');
+            $table->json('task_status_options');
             $table->json('work_type');
             $table->string('url_id')->nullable();
             $table->timestamps();

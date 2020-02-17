@@ -42,7 +42,7 @@
                 >{{project.errors.errors.status[0]}}</span>
               </label>
               <select-input
-                :options="project.available_status"
+                :options="project.task_status_options"
                 placeholder="Select Status ..."
                 v-model="project.status"
                 :class="project.errors.errors.status ? 'border-red border rounded':''"
@@ -108,8 +108,8 @@
             Availble Task Status:
             <span
               class="ml-2 text-sm font-normal text-red"
-              v-if="project.errors.errors.available_status"
-            >{{project.errors.errors.available_status[0]}}</span>
+              v-if="project.errors.errors.task_status_options"
+            >{{project.errors.errors.task_status_options[0]}}</span>
           </label>
           <div class="flex items-center mb-2">
             <input
@@ -117,7 +117,7 @@
               id="new_status"
               ref="new_status"
               type="text"
-              :class="project.errors.errors.available_status ? 'border-red':''"
+              :class="project.errors.errors.task_status_options ? 'border-red':''"
               v-model="new_status"
               @keyup.enter="addStatus"
             />
@@ -126,30 +126,10 @@
               @click="addStatus"
             >Add Status</button>
           </div>
-          <div v-if="project.available_status.length >0">
+          <div v-if="project.task_status_options.length >0">
             <p class="text-sm">Drag and drop to control the order for the dropdowns and Kanban board</p>
             <ol>
-              <draggable :list="project.available_status" group="default">
-                <li
-                  class="flex items-center mb-1"
-                  v-for="(status, index) in project.available_status"
-                  :key="status[0]"
-                >
-                  <span class="w-4 mr-2">{{index + 1}}.</span>
-                  <span
-                    class="flex items-center justify-between w-32 px-2 py-1 mb-2 mr-2 text-white rounded bg-gray"
-                  >
-                    <span class="mr-2 rounded">{{status[0]}}</span>
-                    <button class="w-3 h-3 fill-current" @click="removeStatus(index)">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path
-                          d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z"
-                        />
-                      </svg>
-                    </button>
-                  </span>
-                </li>
-              </draggable>
+              <sort-list v-model="client.project_status_options"></sort-list>
             </ol>
           </div>
         </div>
@@ -250,7 +230,7 @@ export default {
         start_date: "",
         due_date: "",
         priority: "",
-        available_status: [
+        task_status_options: [
           ["Not Started", "Not Started"],
           ["In Progress", "In Progress"],
           ["Complete", "Complete"]
@@ -299,15 +279,18 @@ export default {
     addStatus() {
       if (
         this.new_status &&
-        !this.project.available_status.includes(this.new_status)
+        !this.project.task_status_options.includes(this.new_status)
       ) {
-        this.project.available_status.push([this.new_status, this.new_status]);
+        this.project.task_status_options.push([
+          this.new_status,
+          this.new_status
+        ]);
       }
       this.new_status = "";
       this.$refs.new_status.focus();
     },
     removeStatus(index) {
-      this.project.available_status.splice(index, 1);
+      this.project.task_status_options.splice(index, 1);
     },
     addWorkType() {
       if (
