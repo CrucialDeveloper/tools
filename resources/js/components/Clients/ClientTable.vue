@@ -235,8 +235,12 @@ export default {
         ClientModal,
         {},
         {
-          adaptive: true,
-          height: "auto"
+          height: "85%",
+          width: "1000px",
+          minHeight: 800,
+          minWidth: 400,
+          scrollable: true,
+          resizable: true
         }
       );
     },

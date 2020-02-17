@@ -103,38 +103,9 @@
         </div>
       </tab-panel>
       <tab-panel name="Configure" class="h-full">
-        <div class="mb-4">
-          <label for="new_status" class="block font-bold">
-            Availble Task Status:
-            <span
-              class="ml-2 text-sm font-normal text-red"
-              v-if="project.errors.errors.task_status_options"
-            >{{project.errors.errors.task_status_options[0]}}</span>
-          </label>
-          <div class="flex items-center mb-2">
-            <input
-              class="flex-1 w-full p-2 mr-4 border rounded"
-              id="new_status"
-              ref="new_status"
-              type="text"
-              :class="project.errors.errors.task_status_options ? 'border-red':''"
-              v-model="new_status"
-              @keyup.enter="addStatus"
-            />
-            <button
-              class="p-2 bg-gray-300 border rounded hover:bg-gray"
-              @click="addStatus"
-            >Add Status</button>
-          </div>
-          <div v-if="project.task_status_options.length >0">
-            <p class="text-sm">Drag and drop to control the order for the dropdowns and Kanban board</p>
-            <ol>
-              <sort-list v-model="client.project_status_options"></sort-list>
-            </ol>
-          </div>
-        </div>
+        <sort-list v-model="project.task_status_options"></sort-list>
       </tab-panel>
-      <tab-panel name="Work Types & Rates">
+      <tab-panel name="Work Types &amp; Rates">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center flex-1 mr-4">
             <label for="new_work_type" class="mr-2 font-bold">Work Type:</label>
@@ -209,7 +180,7 @@ import SelectInput from "../UI/SelectInput";
 import DatePicker from "../UI/DatePicker";
 import ContentEditor from "../UI/ContentEditor";
 import Form from "@johnlowery74/crucial-form";
-import Draggable from "vuedraggable";
+import SortList from "../UI/SortList";
 
 export default {
   components: {
@@ -217,7 +188,7 @@ export default {
     TabPanel,
     SelectInput,
     DatePicker,
-    Draggable,
+    SortList,
     ContentEditor
   },
   props: ["client", "editProject"],
@@ -230,11 +201,7 @@ export default {
         start_date: "",
         due_date: "",
         priority: "",
-        task_status_options: [
-          ["Not Started", "Not Started"],
-          ["In Progress", "In Progress"],
-          ["Complete", "Complete"]
-        ],
+        task_status_options: [["Not Started", "In Progress", "Completed"]],
         work_type: [
           ["Standard", "Standard", 50],
           ["Coding", "Coding", 50],

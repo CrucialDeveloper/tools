@@ -1,12 +1,12 @@
 <template>
-  <div class="p-4">
+  <div class="flex flex-col h-full p-4">
     <h3
       class="mb-4 text-2xl"
     >{{(editClient === undefined || Object.keys(editClient).length ===0)? 'New Client' : 'Edit Client'}}</h3>
 
     <tabs-nav :saveLast="false">
       <tab-panel name="General">
-        <div class="flex items-center mb-4">
+        <div class="flex items-center mb-4 overflow-y-scroll">
           <label class="w-48 mr-2 text-right" for="company_name">Company Name</label>
           <input
             type="text"
@@ -100,7 +100,7 @@
       </tab-panel>
     </tabs-nav>
 
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between mt-auto">
       <div class="flex items-center mr-4">
         <button class="mr-4 text-red-500 underline" @click="deleteClient">Delete</button>
       </div>

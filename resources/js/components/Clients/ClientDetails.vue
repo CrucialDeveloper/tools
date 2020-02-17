@@ -2,10 +2,10 @@
   <div class="flex w-full p-4 bg-white rounded shadow">
     <div class="w-1/2 mr-4">
       <div class="rounded" :class="client.address ? 'shadow' : ''">
-          <google-map
-              :client="client"
-              v-if="client.address || client.city || client.state || client.country"
-          />
+        <google-map
+          :client="client"
+          v-if="client.address || client.city || client.state || client.country"
+        />
         <img
           v-else
           class="rounded"
@@ -97,8 +97,12 @@ export default {
         ClientModal,
         { editClient: client },
         {
-          adaptive: true,
-          height: "auto"
+          height: "85%",
+          width: "1000px",
+          minHeight: 500,
+          minWidth: 400,
+          scrollable: true,
+          resizable: true
         }
       );
     }
