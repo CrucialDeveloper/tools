@@ -29,18 +29,11 @@ import Draggable from "vuedraggable";
 export default {
   name: "KanbanBoard",
   components: { Draggable },
-  props: ["items", "parent"],
+  props: ["items", "parent", "available_status"],
   data() {
     return {
-      task_status_options: [],
       exclude_status: [],
-      shown_status: [
-        "New",
-        "Not Started",
-        "In Progress",
-        "On Hold",
-        "Completed"
-      ]
+      shown_status: []
     };
   },
   methods: {
@@ -66,19 +59,7 @@ export default {
     }
   },
   created() {
-    this.task_status_options = _.uniq(
-      this.items
-        .map(item => {
-          return item.status;
-        })
-        .sort()
-    );
-
-    this.task_status_options.forEach(status => {
-      if (!this.shown_status.includes(status)) {
-        this.shown_status.unshift(status);
-      }
-    });
+    this.shown_status = this.available_status;
   }
 };
 </script>

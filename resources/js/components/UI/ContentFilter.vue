@@ -5,9 +5,9 @@
         <div class="flex flex-wrap items-center w-full mx-2 mb-4 md:w-auto">
           <span class="mr-2">Filters:</span>
           <button
-            class="p-1 mr-4 text-sm border rounded shadow-none btn hover:bg-gray-500 md:text-base"
-            :class="[activeFilters.includes(filter)?'bg-gray': '']"
-            v-for="filter in available_filters"
+            class="px-2 py-1 mr-4 text-sm border rounded shadow-none btn hover:bg-gray-500 md:text-base"
+            :class="[activeFilters.includes(filter)?'bg-gray-500': '']"
+            v-for="filter in filters"
             :key="filter"
             @click="setFilter(filter)"
           >{{filter}}</button>
@@ -34,7 +34,7 @@ export default {
   props: {
     items: Array,
     searchable: Array,
-    filters: Boolean,
+    filters: Array,
     filterable: { default: true }
   },
   data() {
@@ -89,15 +89,6 @@ export default {
       this.searchCount = results.length;
       return _.sortBy(results, ["title"]);
     }
-  },
-  mounted() {
-    this.available_filters = _.uniq(
-      this.items
-        .map(item => {
-          return item.status;
-        })
-        .sort()
-    );
   }
 };
 </script>
