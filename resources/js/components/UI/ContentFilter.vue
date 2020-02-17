@@ -16,13 +16,13 @@
           <label for>Search:</label>
           <div class="flex items-center w-full ml-2 border rounded md:w-3/5">
             <input type="text" class="w-full p-1" v-model="search" />
-            <button class="w-10 h-full p-1 bg-gray-500 shadow" @click="clearSearch">x</button>
+            <button class="w-10 h-full p-1 bg-gray-500 shadow" @click="clearSearch">X</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="p-4 bg-gray-200 rounded" v-if="filteredItems.length>0">
+    <div class="p-4 bg-gray-300 rounded" v-if="filteredItems.length>0">
       <slot :items="filteredItems"></slot>
     </div>
   </div>

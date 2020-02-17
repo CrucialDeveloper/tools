@@ -8,7 +8,7 @@
       <div class="flex justify-between">
         <h2 class="block w-full font-bold text-center capitalize">{{project.title}}</h2>
       </div>
-      <span class="flex-grow block font-sm" v-html="project.description"></span>
+      <span class="flex-grow block break-all font-sm" v-html="project.description"></span>
     </div>
     <div class="pt-2 mt-2 text-sm border-t-2 border-gray-700">
       <div class="flex items-center justify-between">
