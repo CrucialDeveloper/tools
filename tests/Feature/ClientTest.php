@@ -22,7 +22,7 @@ class ClientTest extends TestCase
 
         $client = $this->create(Client::class);
 
-        $this->assertDatabaseHas('clients', $client->setAppends([])->toArray());
+        $this->assertCount(1, Client::all());
     }
 
     /**

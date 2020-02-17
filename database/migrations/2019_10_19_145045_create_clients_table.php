@@ -24,6 +24,7 @@ class CreateClientsTable extends Migration
             $table->string('country')->default('USA')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('website')->nullable();
+            $table->json('project_status_options');
             $table->string('url_id')->nullable();
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();

@@ -3,92 +3,102 @@
     <h3
       class="mb-4 text-2xl"
     >{{(editClient === undefined || Object.keys(editClient).length ===0)? 'New Client' : 'Edit Client'}}</h3>
-    <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="company_name">Company Name</label>
-      <input
-        type="text"
-        name="company_name"
-        class="w-full p-2 rounded"
-        :class="client.errors.has('company_name') ? 'border border-red': 'border'"
-        placeholder="Best Hardware and Sons"
-        v-model="client.company_name"
-      />
-    </div>
-    <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="address">Address</label>
-      <input
-        type="text"
-        name="address"
-        class="w-full p-2 rounded"
-        :class="client.errors.has('address') ? 'border border-red': 'border'"
-        placeholder="123 Example St."
-        v-model="client.address"
-      />
-    </div>
-    <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="city">City</label>
-      <input
-        type="text"
-        name="city"
-        class="w-full p-2 rounded"
-        :class="client.errors.has('city') ? 'border border-red': 'border'"
-        placeholder="Example Town"
-        v-model="client.city"
-      />
-    </div>
-    <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="state">State</label>
-      <select-input
-        placeholder="Select State ..."
-        :options="states"
-        v-model="client.state"
-        :value="client.state"
-      ></select-input>
-    </div>
-    <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="zip">Zip</label>
-      <input
-        type="text"
-        name="zip"
-        class="w-full p-2 rounded"
-        :class="client.errors.has('zip') ? 'border border-red': 'border'"
-        placeholder="62285"
-        v-model="client.zip"
-      />
-    </div>
-    <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="country">Country</label>
-      <input
-        type="text"
-        name="zip"
-        class="w-full p-2 rounded"
-        :class="client.errors.has('country') ? 'border border-red': 'border'"
-        placeholder="USA"
-        v-model="client.country"
-      />
-    </div>
-    <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="phone_number">Phone Number</label>
-      <input
-        type="text"
-        name="phone_number"
-        class="w-full p-2 rounded"
-        :class="client.errors.has('phone_number') ? 'border border-red': 'border'"
-        placeholder="555-555-5555"
-        v-model="client.phone_number"
-      />
-    </div>
-    <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="website">Website</label>
-      <input
-        type="text"
-        name="website"
-        class="w-full p-2 rounded"
-        :class="client.errors.has('website') ? 'border border-red': 'border'"
-        placeholder="https://examplesite.com"
-        v-model="client.website"
-      />
-    </div>
+
+    <tabs-nav>
+      <tab-panel name="General">
+        <div class="flex items-center mb-4">
+          <label class="w-48 mr-2 text-right" for="company_name">Company Name</label>
+          <input
+            type="text"
+            name="company_name"
+            class="w-full p-2 rounded"
+            :class="client.errors.has('company_name') ? 'border border-red': 'border'"
+            placeholder="Best Hardware and Sons"
+            v-model="client.company_name"
+          />
+        </div>
+        <div class="flex items-center mb-4">
+          <label class="w-48 mr-2 text-right" for="address">Address</label>
+          <input
+            type="text"
+            name="address"
+            class="w-full p-2 rounded"
+            :class="client.errors.has('address') ? 'border border-red': 'border'"
+            placeholder="123 Example St."
+            v-model="client.address"
+          />
+        </div>
+        <div class="flex items-center mb-4">
+          <label class="w-48 mr-2 text-right" for="city">City</label>
+          <input
+            type="text"
+            name="city"
+            class="w-full p-2 rounded"
+            :class="client.errors.has('city') ? 'border border-red': 'border'"
+            placeholder="Example Town"
+            v-model="client.city"
+          />
+        </div>
+        <div class="flex items-center mb-4">
+          <label class="w-48 mr-2 text-right" for="state">State</label>
+          <select-input
+            placeholder="Select State ..."
+            :options="states"
+            v-model="client.state"
+            :value="client.state"
+            :class="client.errors.has('state') ? 'border border-red': 'border'"
+          ></select-input>
+        </div>
+        <div class="flex items-center mb-4">
+          <label class="w-48 mr-2 text-right" for="zip">Zip</label>
+          <input
+            type="text"
+            name="zip"
+            class="w-full p-2 rounded"
+            :class="client.errors.has('zip') ? 'border border-red': 'border'"
+            placeholder="62285"
+            v-model="client.zip"
+          />
+        </div>
+        <div class="flex items-center mb-4">
+          <label class="w-48 mr-2 text-right" for="country">Country</label>
+          <input
+            type="text"
+            name="zip"
+            class="w-full p-2 rounded"
+            :class="client.errors.has('country') ? 'border border-red': 'border'"
+            placeholder="USA"
+            v-model="client.country"
+          />
+        </div>
+        <div class="flex items-center mb-4">
+          <label class="w-48 mr-2 text-right" for="phone_number">Phone Number</label>
+          <input
+            type="text"
+            name="phone_number"
+            class="w-full p-2 rounded"
+            :class="client.errors.has('phone_number') ? 'border border-red': 'border'"
+            placeholder="555-555-5555"
+            v-model="client.phone_number"
+          />
+        </div>
+        <div class="flex items-center mb-4">
+          <label class="w-48 mr-2 text-right" for="website">Website</label>
+          <input
+            type="text"
+            name="website"
+            class="w-full p-2 rounded"
+            :class="client.errors.has('website') ? 'border border-red': 'border'"
+            placeholder="https://examplesite.com"
+            v-model="client.website"
+          />
+        </div>
+      </tab-panel>
+
+      <tab-panel name="Project Status Options">
+        <draggable></draggable>
+      </tab-panel>
+    </tabs-nav>
 
     <div class="flex items-center justify-between">
       <div class="flex items-center mr-4">
@@ -111,9 +121,12 @@
 import Form from "@johnlowery74/crucial-form";
 import SelectInput from "../UI/SelectInput";
 import states from "../../JSON/states.json";
+import TabsNav from "../UI/Tabs/TabsNav";
+import TabPanel from "../UI/Tabs/TabPanel";
+import Draggable from "vuedraggable";
 
 export default {
-  components: { SelectInput },
+  components: { SelectInput, Form, TabsNav, TabPanel, Draggable },
   props: ["editClient"],
   data() {
     return {
