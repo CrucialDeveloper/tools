@@ -7,7 +7,7 @@
             class="w-full"
             :items="clients"
             :columns="['company_name','address','city','state']"
-            :sortable="['company_name','city','state']"
+            :sortable="['company_name','address','city','state']"
             linkColumn="company_name"
             linkField="path"
           ></client-table>

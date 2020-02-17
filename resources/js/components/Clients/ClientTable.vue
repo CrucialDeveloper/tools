@@ -55,12 +55,8 @@
     <div ref="table">
       <table class="relative w-full overflow-hidden text-sm">
         <thead class="w-full">
-          <tr class="w-full">
-            <th
-              class="p-2 font-bold whitespace-no-wrap bg-gray-400"
-              v-for="column in columns"
-              :key="column"
-            >
+          <tr class="w-full border-b">
+            <th class="p-2 font-bold whitespace-no-wrap" v-for="column in columns" :key="column">
               <span class="flex items-center">
                 <span class="mr-4">{{toTitleCase(column)}}</span>
                 <span class="flex flex-col" v-if="sortColumns.includes(column)">

@@ -61,7 +61,7 @@
         <thead>
           <tr class="w-full">
             <th
-              class="p-2 font-bold whitespace-no-wrap bg-gray-500"
+              class="p-2 font-bold whitespace-no-wrap border-b"
               v-for="column in columns"
               :key="column"
             >
