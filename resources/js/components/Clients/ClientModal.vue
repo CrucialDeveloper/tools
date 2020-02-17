@@ -96,7 +96,9 @@
       </tab-panel>
 
       <tab-panel name="Project Status Options">
-        <draggable></draggable>
+        <ol>
+          <sort-list v-model="client.project_status_options"></sort-list>
+        </ol>
       </tab-panel>
     </tabs-nav>
 
@@ -123,10 +125,10 @@ import SelectInput from "../UI/SelectInput";
 import states from "../../JSON/states.json";
 import TabsNav from "../UI/Tabs/TabsNav";
 import TabPanel from "../UI/Tabs/TabPanel";
-import Draggable from "vuedraggable";
+import SortList from "../UI/SortList";
 
 export default {
-  components: { SelectInput, Form, TabsNav, TabPanel, Draggable },
+  components: { SelectInput, Form, TabsNav, TabPanel, SortList },
   props: ["editClient"],
   data() {
     return {
@@ -138,7 +140,15 @@ export default {
         zip: "",
         country: "",
         phone_number: "",
-        website: ""
+        website: "",
+        project_status_options: [
+          "New",
+          "Spike",
+          "Not Started",
+          "In Progress",
+          "On Hold",
+          "Completed"
+        ]
       }),
       states: states
     };
