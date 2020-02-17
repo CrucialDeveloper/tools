@@ -63,13 +63,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.draggable-source--is-dragging {
-  opacity: 0.5;
-}
-
-.draggable-mirror {
-  display: none;
-}
-</style>
