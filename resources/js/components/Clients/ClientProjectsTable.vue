@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center w-full my-4">
+    <div class="flex items-center w-full">
       <div class="flex items-center flex-1">
         <div class="relative inline-block w-24 mr-4 min-w-24" v-if="paginate">
           <select
@@ -34,7 +34,7 @@
             v-model="search"
           />
           <button
-            class="block p-2 leading-tight bg-gray-500 border-t border-b border-r rounded-r fill-current"
+            class="block p-2 leading-tight bg-gray-200 border-t border-b border-r rounded-r fill-current hover:bg-gray-300"
             type="button"
             @click="clearSearch"
           >x</button>

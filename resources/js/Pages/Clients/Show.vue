@@ -24,16 +24,16 @@
               <div class="flex items-center">
                 <inertia-link
                   :href="`/clients/${client.url_id}/projects`"
-                  class="mr-4 text-gray-600 underline"
+                  class="mr-4 text-gray-500 underline"
                 >View All Projects</inertia-link>
                 <button
-                  class="flex items-center justify-center w-10 h-10 leading-none text-white rounded-full shadow fill-current bg-blue"
+                  class="flex items-center justify-center w-8 h-8 leading-none text-gray-400 border rounded hover:bg-gray-500"
                   @click="openCreateProjectModal"
                 >
                   <svg
-                    class="w-10 h-10 font-bold text-white"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
+                    class="w-8 h-8 text-gray-400 fill-current hover:text-gray-200"
                   >
                     <path
                       d="M11.5 16v-3.5H8a.5.5 0 0 1 0-1h3.5V8a.5.5 0 0 1 1 0v3.5H16a.5.5 0 0 1 0 1h-3.5V16a.5.5 0 0 1-1 0z"
@@ -42,14 +42,16 @@
                 </button>
               </div>
             </div>
-            <client-projects-table
-              :items="client.projects"
-              :columns="['title','description','status', 'start_date','due_date', 'priority']"
-              :dateColumns="['start_date','due_date']"
-              linkColumn="title"
-              linkField="path"
-              :paginate="false"
-            ></client-projects-table>
+            <div class="mt-4">
+              <client-projects-table
+                :items="client.projects"
+                :columns="['title','description','status', 'start_date','due_date', 'priority']"
+                :dateColumns="['start_date','due_date']"
+                linkColumn="title"
+                linkField="path"
+                :paginate="false"
+              ></client-projects-table>
+            </div>
           </div>
         </content-scroll>
       </div>

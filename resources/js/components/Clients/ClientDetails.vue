@@ -17,9 +17,12 @@
     </div>
     <div class="w-1/2">
       <div class="flex items-start justify-between w-full mb-4">
-        <div class="flex items-center justify-between w-full mr-4">
+        <div class="flex items-center justify-between w-full">
           <h2 class="mr-4 text-2xl">{{client.company_name}}</h2>
-          <button class="w-5 h-5 text-gray-500" @click="editClient(client)">
+          <button
+            class="w-8 h-8 p-1 text-gray-200 border rounded hover:bg-gray-300"
+            @click="editClient(client)"
+          >
             <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
               <path
                 d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"
@@ -31,7 +34,7 @@
       <div class="flex items-start mb-4">
         <span class="w-6 h-6 mr-4">
           <svg
-            class="text-gray-500 fill-current"
+            class="text-gray-200 fill-current"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
           >
@@ -42,7 +45,7 @@
         </span>
 
         <a
-          class="block text-gray-600 hover:underline"
+          class="block text-gray-500 hover:underline"
           :href="client.website"
           target="_blank"
         >Visit Website</a>
@@ -51,7 +54,7 @@
         <div class="flex items-start mr-8">
           <span class="w-6 h-6 mr-4">
             <svg
-              class="text-gray-500 fill-current"
+              class="text-gray-200 fill-current"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 48 48"
             >
@@ -61,14 +64,14 @@
             </svg>
           </span>
           <div>
-            <span class="block text-gray-600">{{client.address}}</span>
-            <span class="block text-gray-600">{{client.city}}, {{client.state}} {{client.zip}}</span>
+            <span class="block text-gray-500">{{client.address}}</span>
+            <span class="block text-gray-500">{{client.city}}, {{client.state}} {{client.zip}}</span>
           </div>
         </div>
         <div class="flex items-center">
           <span class="w-6 h-6 mr-4">
             <svg
-              class="text-gray-500 fill-current"
+              class="text-gray-200 fill-current"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 48 48"
             >
@@ -77,7 +80,7 @@
               />
             </svg>
           </span>
-          <span class="block text-gray-600">{{client.phone_number}}</span>
+          <span class="block text-gray-500">{{client.phone_number}}</span>
         </div>
       </div>
     </div>

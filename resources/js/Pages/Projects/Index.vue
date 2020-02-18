@@ -10,13 +10,13 @@
           <span>Projects</span>
         </div>
         <h2 class="text-2xl">Client Projects</h2>
-        <div class="mt-2 mb-4">
-          <div class="flex items-center justify-between mb-4">
+        <div class="mt-2">
+          <div class="flex items-center justify-between">
             <div class="flex items-center mr-4">
               <button
-                class="w-5 h-5 mr-4 text-gray-500 fill-current"
+                class="w-5 h-5 mr-4 fill-current"
                 @click="setView('tile')"
-                :class="[view==='tile' ? 'text-gray-800' :'text-gray-500']"
+                :class="[view==='tile' ? 'text-gray-500' :'text-gray-200']"
                 title="View as Tiles"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -28,7 +28,7 @@
               <button
                 class="w-6 h-6 mr-4 fill-current"
                 @click="setView('kanban')"
-                :class="[view==='kanban' ? 'text-gray-800' :'text-gray-500']"
+                :class="[view==='kanban' ? 'text-gray-500' :'text-gray-200']"
                 title="View as Kanban"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -38,7 +38,7 @@
               <button
                 class="w-6 h-6 mr-4 fill-current"
                 @click="setView('table')"
-                :class="[view==='table' ? 'text-gray-800' :'text-gray-500']"
+                :class="[view==='table' ? 'text-gray-500' :'text-gray-200']"
                 title="View as Table"
               >
                 <svg viewBox="0 0 1664 1408">
@@ -50,7 +50,7 @@
               <button
                 class="w-6 h-6 mr-4 rotate-90 fill-current"
                 @click="setView('gantt')"
-                :class="[view==='gantt' ? 'text-gray-800' :'text-gray-500']"
+                :class="[view==='gantt' ? 'text-gray-500' :'text-gray-200']"
                 title="View as Gantt"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -60,7 +60,7 @@
             </div>
 
             <button
-              class="flex items-center justify-center w-10 h-10 leading-none text-white rounded-full shadow fill-current bg-blue"
+              class="flex items-center justify-center w-10 h-10 leading-none text-white bg-blue-500 rounded-full fill-current"
               @click="openCreateProjectModal"
             >
               <svg
@@ -74,44 +74,46 @@
               </svg>
             </button>
           </div>
-          <client-projects-table
-            v-if="view==='table'"
-            :items="projects"
-            :columns="['title','description','status', 'start_date','due_date', 'priority']"
-            :dateColumns="['start_date','due_date']"
-            linkColumn="title"
-            linkField="path"
-          ></client-projects-table>
+          <div class="mt-4">
+            <client-projects-table
+              v-if="view==='table'"
+              :items="projects"
+              :columns="['title','description','status', 'start_date','due_date', 'priority']"
+              :dateColumns="['start_date','due_date']"
+              linkColumn="title"
+              linkField="path"
+            ></client-projects-table>
 
-          <content-filter
-            v-if="view==='tile'"
-            class="w-full"
-            :items="projects"
-            :filters="client.project_status_options"
-            :searchable="['title','description']"
-          >
-            <div class="flex flex-wrap items-stretch -mx-4" slot-scope="{items}">
-              <div
-                class="flex items-stretch w-full p-2 mx-2 mb-2 md:min-w-70 md:w-1/5 md:p-0 md:mb-4 md:mx-4"
-                v-for="item in items"
-                :key="item.id"
-              >
-                <project-card class="flex-1" :project="item"></project-card>
+            <content-filter
+              v-if="view==='tile'"
+              class="w-full"
+              :items="projects"
+              :filters="client.project_status_options"
+              :searchable="['title','description']"
+            >
+              <div class="flex flex-wrap items-stretch -mx-4" slot-scope="{items}">
+                <div
+                  class="flex items-stretch w-full p-2 mx-2 mb-2 md:min-w-70 md:w-1/5 md:p-0 md:mb-4 md:mx-4"
+                  v-for="item in items"
+                  :key="item.id"
+                >
+                  <project-card class="flex-1" :project="item"></project-card>
+                </div>
               </div>
-            </div>
-          </content-filter>
+            </content-filter>
 
-          <kanban-board
-            class="w-full"
-            :items="projects"
-            :parent="client"
-            :available_status="client.project_status_options"
-            v-if="view==='kanban'"
-          >
-            <div slot-scope="{item}">
-              <project-card :project="item" :client="client"></project-card>
-            </div>
-          </kanban-board>
+            <kanban-board
+              class="w-full"
+              :items="projects"
+              :parent="client"
+              :available_status="client.project_status_options"
+              v-if="view==='kanban'"
+            >
+              <div slot-scope="{item}">
+                <project-card :project="item" :client="client"></project-card>
+              </div>
+            </kanban-board>
+          </div>
         </div>
       </div>
     </div>

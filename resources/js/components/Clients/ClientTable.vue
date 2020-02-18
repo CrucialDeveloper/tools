@@ -4,7 +4,7 @@
       <div class="flex items-center flex-1">
         <div class="relative inline-block w-24 mr-4 min-w-24" v-if="paginate">
           <select
-            class="block w-full px-4 py-2 pr-8 leading-tight bg-white rounded shadow appearance-none focus:outline-none"
+            class="block w-full px-4 py-2 pr-8 leading-tight bg-white border rounded appearance-none focus:outline-none"
             v-model="paginator.perPage"
           >
             <option value="5">5</option>
@@ -27,21 +27,21 @@
         </div>
         <div class="flex items-center w-full mr-4">
           <input
-            class="w-full h-full p-2 leading-tight rounded-l shadow appearance-none focus:outline-none"
+            class="w-full h-full p-2 leading-tight border-t border-b border-l rounded-l appearance-none focus:outline-none"
             type="text"
-            placeholder="Search clients ..."
+            placeholder="Search Clients ..."
             aria-label="search"
             v-model="search"
           />
           <button
-            class="block p-2 leading-tight bg-gray-400 shadow fill-current round-r"
+            class="w-8 p-2 leading-tight bg-gray-200 border-t border-b border-r rounded-r fill-current hover:bg-gray-300"
             type="button"
             @click="clearSearch"
           >x</button>
         </div>
       </div>
       <button
-        class="flex items-center justify-center w-10 h-10 leading-none text-white rounded-full shadow fill-current bg-blue"
+        class="flex items-center justify-center w-10 h-10 leading-none text-white bg-blue-500 rounded shadow fill-current hover:bg-blue-600"
         @click="openCreateClientModal"
       >
         <svg class="w-10 h-10 font-bold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -89,7 +89,7 @@
         </thead>
         <tbody>
           <tr
-            class="w-full hover:bg-gray-200"
+            class="w-full hover:bg-gray-050"
             v-for="item in filteredItems"
             :key="item.id"
             style="vertical-align:baseline;"

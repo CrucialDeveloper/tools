@@ -34,7 +34,7 @@
             v-model="search"
           />
           <button
-            class="block p-2 leading-tight bg-gray-400 shadow fill-current round-r"
+            class="block p-2 leading-tight bg-gray-200 shadow fill-current hover:bg-gray-300 round-r"
             type="button"
             @click="clearSearch"
           >x</button>

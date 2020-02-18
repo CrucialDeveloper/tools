@@ -1,28 +1,29 @@
 <template>
-  <div class="overflow-hidden h-ful">
-    <div class="flex items-center w-full">
-      <div class="flex flex-col w-full" v-if="filters">
-        <div class="flex flex-wrap items-center w-full mx-2 mb-4 md:w-auto">
-          <span class="mr-2">Filters:</span>
+  <div class="h-full pt-2 overflow-hidden">
+    <div class="flex flex-wrap items-center w-full" v-if="filters">
+      <span class="w-16 mr-2">Filters:</span>
+      <button
+        class="p-2 py-1 mr-4 border rounded hover:bg-blue-300 hover:text-white"
+        :class="[activeFilters.includes(filter)?'bg-blue-500 text-white': '']"
+        v-for="filter in filters"
+        :key="filter"
+        @click="setFilter(filter)"
+      >{{filter}}</button>
+    </div>
+    <div>
+      <div class="flex items-center w-full mt-4">
+        <label class="w-16 mr-2" for>Search:</label>
+        <div class="flex items-center w-full">
+          <input type="text" class="p-1 border-t border-b border-l rounded-l w-72" v-model="search" />
           <button
-            class="px-2 py-1 mr-4 text-sm border rounded shadow-none btn hover:bg-gray-500 md:text-base"
-            :class="[activeFilters.includes(filter)?'bg-gray-500': '']"
-            v-for="filter in filters"
-            :key="filter"
-            @click="setFilter(filter)"
-          >{{filter}}</button>
-        </div>
-        <div class="flex items-center self-start w-full mb-4">
-          <label for>Search:</label>
-          <div class="flex items-center w-full ml-2 border rounded md:w-3/5">
-            <input type="text" class="w-full p-1" v-model="search" />
-            <button class="w-10 h-full p-1 bg-gray-500 shadow" @click="clearSearch">X</button>
-          </div>
+            class="w-8 p-1 bg-gray-200 border-t border-b border-r rounded-r hover:bg-gray-300"
+            @click="clearSearch"
+          >X</button>
         </div>
       </div>
     </div>
 
-    <div class="p-4 bg-gray-300 rounded" v-if="filteredItems.length>0">
+    <div class="p-4 mt-4 bg-gray-100 rounded" v-if="filteredItems.length>0">
       <slot :items="filteredItems"></slot>
     </div>
   </div>
