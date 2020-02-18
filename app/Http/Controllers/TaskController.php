@@ -87,7 +87,7 @@ class TaskController extends Controller
     {
         $task->delete();
 
-        return "/b/$client->slug/p/$project->slug";
+        return $project->path;
     }
 
     public function validateRequest($request, $task = null)

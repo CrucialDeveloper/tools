@@ -6,11 +6,13 @@ use Carbon\Carbon;
 use App\WorkEntry;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
-    protected $fillable = ['user_id', 'parent_url_id', 'title', 'description', 'status', 'start_date', 'due_date', 'priority', 'task_status_options', 'work_type', 'url_id'];
+    use SoftDeletes;
 
+    protected $fillable = ['user_id', 'parent_url_id', 'title', 'description', 'status', 'start_date', 'due_date', 'priority', 'task_status_options', 'work_type', 'url_id'];
     protected $appends = ['past_due', 'path'];
 
     public function getRouteKeyName()

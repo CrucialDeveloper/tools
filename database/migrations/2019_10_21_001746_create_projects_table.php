@@ -27,6 +27,7 @@ class CreateProjectsTable extends Migration
             $table->json('task_status_options');
             $table->json('work_type');
             $table->string('url_id')->nullable();
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

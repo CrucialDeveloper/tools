@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/clients/{client}/projects/{project}/tasks', [TaskController::class, 'store']);
     Route::patch('/clients/{client}/projects/{project}/tasks/{task}', [TaskController::class, 'update']);
+    Route::delete('/clients/{client}/projects/{project}/tasks/{task}', [TaskController::class, 'destroy']);
     Route::post('/task/{task}', [TaskStatusController::class, 'update']);
 
     Route::post('clients/{client}/projects/{project}/comments', [CommentController::class, 'store']);

@@ -99,14 +99,17 @@
         </div>
       </div>
     </div>
-    <div class="flex items-center justify-between w-full mt-auto">
-      <button class="text-gray-600 underline" @click="reset">Cancel</button>
-      <button
-        class="px-4 py-2 text-white rounded bg-blue"
-        @click="saveTask"
-        v-if="editTask === undefined || Object.keys(editTask).length===0"
-      >Save</button>
-      <button class="px-4 py-2 text-white rounded bg-blue" @click="updateTask" v-else>Save</button>
+    <div class="flex items-center justify-between mt-auto">
+      <button class="mr-4 text-red-500 underline" @click="deleteTask">Delete</button>
+      <div class="flex items-center justify-end w-full">
+        <button class="mr-4 text-gray-600 underline" @click="reset">Cancel</button>
+        <button
+          class="px-4 py-2 text-white rounded bg-blue"
+          @click="saveTask"
+          v-if="editTask === undefined || Object.keys(editTask).length===0"
+        >Save</button>
+        <button class="px-4 py-2 text-white rounded bg-blue" @click="updateTask" v-else>Save</button>
+      </div>
     </div>
   </div>
 </template>
@@ -155,6 +158,17 @@ export default {
     updateTask() {
       this.task
         .patch(this.task.path, this.task)
+        .then(response => {
+          this.$inertia.visit(response);
+          this.reset();
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
+    },
+    deleteTask() {
+      this.task
+        .delete(this.task.path)
         .then(response => {
           this.$inertia.visit(response);
           this.reset();

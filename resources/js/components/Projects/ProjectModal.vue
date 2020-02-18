@@ -161,14 +161,17 @@
         </div>
       </tab-panel>
     </tabs-nav>
-    <div class="flex items-center justify-between w-full mt-auto">
-      <button class="text-gray-600 underline" @click="reset">Cancel</button>
-      <button
-        class="px-4 py-2 text-white rounded bg-blue"
-        @click="saveProject"
-        v-if="editProject === undefined || Object.keys(editProject).length===0"
-      >Save</button>
-      <button class="px-4 py-2 text-white rounded bg-blue" @click="updateProject" v-else>Save</button>
+    <div class="flex items-center justify-between w-full">
+      <button class="flex-1 mr-4 text-red-500 underline" @click="deleteProject">Delete</button>
+      <div class="flex items-center justify-end w-full mt-auto">
+        <button class="mr-4 text-gray-600 underline" @click="reset">Cancel</button>
+        <button
+          class="px-4 py-2 text-white rounded bg-blue"
+          @click="saveProject"
+          v-if="editProject === undefined || Object.keys(editProject).length===0"
+        >Save</button>
+        <button class="px-4 py-2 text-white rounded bg-blue" @click="updateProject" v-else>Save</button>
+      </div>
     </div>
   </div>
 </template>
@@ -235,6 +238,17 @@ export default {
     updateProject() {
       this.project
         .patch(this.project.path, this.project)
+        .then(response => {
+          this.$inertia.visit(response);
+          this.reset();
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
+    },
+    deleteProject() {
+      this.project
+        .delete(this.project.path)
         .then(response => {
           this.$inertia.visit(response);
           this.reset();

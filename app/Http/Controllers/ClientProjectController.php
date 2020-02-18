@@ -89,7 +89,7 @@ class ClientProjectController extends Controller
     {
         $project->delete();
 
-        return "/clients/$client->slug/";
+        return $client->path;
     }
 
     public function validateRequest($request, $client, $project = null)
