@@ -51,7 +51,9 @@
   max-height: calc(100vh - 56px);
 }
 
-
+.v--modal-overlay {
+  background: rgb(0,0,0,.5) !important;
+}
 
 
 
