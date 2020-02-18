@@ -87,6 +87,7 @@ export default {
       if (this.toolbar === "comment") {
         return this.comment;
       }
+      return this.full;
     },
     setPastedImageListener: function() {
       this.$refs.wrapper.addEventListener("paste", function(e) {
