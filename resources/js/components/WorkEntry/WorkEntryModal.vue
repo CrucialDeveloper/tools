@@ -14,7 +14,7 @@
         <date-picker
           placeholder="Enter Start Time ..."
           class="w-full p-2 border rounded"
-          :class="editedEntry.errors.has('start_time') ? 'border border-red': 'border'"
+          :class="editedEntry.errors.has('start_time') ? 'border border-red-500': 'border'"
           :enableTime="true"
           v-model="editedEntry.start_time"
         ></date-picker>
@@ -24,7 +24,7 @@
         <date-picker
           placeholder="Enter End Time ..."
           class="w-full p-2 border rounded"
-          :class="editedEntry.errors.has('end_time') ? 'border border-red': 'border'"
+          :class="editedEntry.errors.has('end_time') ? 'border border-red-500': 'border'"
           :enableTime="true"
           v-model="editedEntry.end_time"
         ></date-picker>
@@ -35,7 +35,7 @@
           type="text"
           placeholder="Enter time worked in milliseconds or hh:mm:ss format ..."
           class="w-full p-2 border rounded"
-          :class="editedEntry.errors.has('work_time') ? 'border border-red': 'border'"
+          :class="editedEntry.errors.has('work_time') ? 'border border-red-500': 'border'"
           v-model="formattedWorkTime"
           @blur="setWorkTime($event)"
         />
@@ -46,14 +46,14 @@
           placeholder="Select Work Type ..."
           v-model="editedEntry.work_type"
           :options="project.work_type"
-          :class="editedEntry.errors.has('work_type') ? 'border border-red': 'border'"
+          :class="editedEntry.errors.has('work_type') ? 'border border-red-500': 'border'"
         ></select-input>
       </div>
       <div class="flex items-start w-full mb-4">
         <label class="w-40 mr-4 font-bold text-right min-w-40" for="description">Description</label>
         <content-editor
           class="w-full"
-          :class="editedEntry.errors.has('description') ? 'border border-red': 'border'"
+          :class="editedEntry.errors.has('description') ? 'border border-red-500': 'border'"
           v-model="editedEntry.description"
           :default="editedEntry.description"
           toolbar="simple"
@@ -65,7 +65,7 @@
           placeholder="Is this Billable?"
           v-model="editedEntry.billable"
           :options="[['Yes','Yes'],['No','No']]"
-          :class="editedEntry.errors.has('billable') ? 'border border-red': 'border'"
+          :class="editedEntry.errors.has('billable') ? 'border border-red-500': 'border'"
         ></select-input>
       </div>
       <div class="flex items-center mb-4">
@@ -74,18 +74,18 @@
           placeholder="Is this Billed?"
           v-model="editedEntry.billed"
           :options="[['Yes','Yes'],['No','No']]"
-          :class="editedEntry.errors.has('billed') ? 'border border-red': 'border'"
+          :class="editedEntry.errors.has('billed') ? 'border border-red-500-500': 'border'"
         ></select-input>
       </div>
     </div>
     <div class="flex items-center justify-between w-full">
       <button
-        class="text-red-500 underline hover:text-red-800"
+        class="text-red-500 underline hover:text-red-600"
         @click="deleteEntry"
         v-if="entry"
       >Delete</button>
       <button
-        class="self-end p-2 mx-2 ml-auto text-white rounded bg-blue hover:bg-blue-700"
+        class="self-end p-2 mx-2 ml-auto text-white bg-blue-500 rounded hover:bg-blue-600"
         @click="saveEntry"
       >Save</button>
     </div>

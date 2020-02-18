@@ -82,7 +82,7 @@ export default {
     openCreateProjectModal() {
       this.$modal.show(
         ProjectModal,
-        {},
+        { client: this.client },
         {
           adaptive: true,
           height: "85%",

@@ -3,14 +3,17 @@
     <div class="flex items-center w-full">
       <div class="flex items-center justify-between flex-1 border-t border-b border-l rounded-l">
         <input type="text" class="w-full p-2" v-model="newItem" @keydown.enter="addItem()" />
-        <button class="px-2 py-1 text-gray-500" @click="newItem = ''">X</button>
+        <button class="px-2 py-1 text-gray-200" @click="newItem = ''">X</button>
       </div>
-      <button class="p-2 bg-gray-500 rounded-r hover:bg-gray-600" @click="addItem()">Add Status</button>
+      <button
+        class="p-2 bg-gray-200 border-t border-b border-r rounded-r hover:bg-gray-300"
+        @click="addItem()"
+      >Add Status</button>
     </div>
-
+    <p class="mt-4">Drag and Drop to reorder the items in the list.</p>
     <ul ref="sortContainer" class="focus:outline-none" tabindex="-1">
       <li
-        class="flex items-center justify-between w-56 px-2 py-1 mt-2 bg-gray-500 rounded select-none hover:bg-gray-600"
+        class="flex items-center justify-between w-56 px-2 py-1 mt-2 bg-gray-200 rounded select-none hover:bg-gray-300"
         v-for="item in value"
         :key="item"
       >

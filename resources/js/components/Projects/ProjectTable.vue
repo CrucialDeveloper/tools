@@ -83,7 +83,7 @@
         </thead>
         <tbody>
           <tr
-            class="w-full hover:bg-gray-200"
+            class="w-full hover:bg-gray-050"
             v-for="item in filteredItems"
             :key="item.id"
             style="vertical-align:baseline;"
