@@ -2,7 +2,7 @@
   <div>
     <div class="mb-4">
       <button
-        class="w-full p-2 text-white rounded bg-blue"
+        class="w-full p-2 text-white bg-blue-500 rounded"
         @click="openWorkEntryModal"
       >Create Manual Entry</button>
       <div class="w-full my-4 font-bold text-center">OR</div>
@@ -12,7 +12,7 @@
       <div class="flex items-center justify-between mt-2">
         <!-- play -->
         <button
-          class="w-6 h-6 text-gray-500 fill-current"
+          class="w-6 h-6 text-gray-200 fill-current"
           :class="[mode==='running' || entry.work_time>0 ? 'cursor-not-allowed': '']"
           :disabled="mode==='running' || entry.work_time>0"
           @click="start"
@@ -25,7 +25,7 @@
 
         <!-- pause -->
         <button
-          class="w-6 h-6 text-gray-500 fill-current"
+          class="w-6 h-6 text-gray-200 fill-current"
           :class="[mode==='stopped' ? 'cursor-not-allowed': '']"
           :disabled="mode==='stopped'"
           @click="pause"
@@ -37,7 +37,7 @@
 
         <!-- stop -->
         <button
-          class="w-6 h-6 text-gray-500 fill-current"
+          class="w-6 h-6 text-gray-200 fill-current"
           :class="[(mode==='paused' || mode==='stopped') ? 'cursor-not-allowed': '']"
           :disabled="mode==='paused'"
           @click="stop"
@@ -48,7 +48,7 @@
         </button>
 
         <!-- refresh -->
-        <button class="w-6 h-6 text-gray-500 fill-current" @click="refresh">
+        <button class="w-6 h-6 text-gray-200 fill-current" @click="refresh">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
             <path
               d="M35.3 12.7C32.41 9.8 28.42 8 24 8 15.16 8 8.02 15.16 8.02 24S15.16 40 24 40c7.45 0 13.69-5.1 15.46-12H35.3c-1.65 4.66-6.07 8-11.3 8-6.63 0-12-5.37-12-12s5.37-12 12-12c3.31 0 6.28 1.38 8.45 3.55L26 22h14V8l-4.7 4.7z"
@@ -80,7 +80,7 @@
       </div>
       <content-editor v-model="entry.description"></content-editor>
       <button
-        class="w-full p-2 mt-4 bg-gray-500 rounded fill-current hover:bg-gray-600"
+        class="w-full p-2 mt-4 bg-gray-200 rounded fill-current hover:bg-gray-600"
         :class="[mode != 'stopped' || entry.work_time === 0 ? 'cursor-not-allowed': '']"
         :disabled="mode !='stopped' ||entry.work_time ===0"
         @click="save"

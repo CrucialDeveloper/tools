@@ -37,7 +37,7 @@
             class="w-8 p-2 leading-tight bg-gray-200 border-t border-b border-r rounded-r fill-current hover:bg-gray-300"
             type="button"
             @click="clearSearch"
-          >x</button>
+          >X</button>
         </div>
       </div>
       <button

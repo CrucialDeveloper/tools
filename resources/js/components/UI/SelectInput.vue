@@ -26,7 +26,7 @@
       <ul class="overflow-y-scroll" ref="options">
         <li
           class="w-full px-4 py-2"
-          :class="[highlightedIndex === index ? 'bg-blue-500' :'']"
+          :class="[highlightedIndex === index ? 'bg-gray-050' :'']"
           v-for="(item, index) in filteredOptions"
           @click="setSelected(item)"
           @mouseover="highlightedIndex = index"
