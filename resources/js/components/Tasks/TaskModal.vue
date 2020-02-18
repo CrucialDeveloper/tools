@@ -104,11 +104,15 @@
       <div class="flex items-center justify-end w-full">
         <button class="mr-4 text-gray-600 underline" @click="reset">Cancel</button>
         <button
-          class="px-4 py-2 text-white rounded bg-blue"
+          class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
           @click="saveTask"
           v-if="editTask === undefined || Object.keys(editTask).length===0"
         >Save</button>
-        <button class="px-4 py-2 text-white rounded bg-blue" @click="updateTask" v-else>Save</button>
+        <button
+          class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
+          @click="updateTask"
+          v-else
+        >Save</button>
       </div>
     </div>
   </div>
