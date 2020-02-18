@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-hidden h-ful">
-    <div class="flex items-center w-full mt-4">
+    <div class="flex items-center w-full">
       <div class="flex flex-col w-full" v-if="filters">
         <div class="flex flex-wrap items-center w-full mx-2 mb-4 md:w-auto">
           <span class="mr-2">Filters:</span>

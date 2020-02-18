@@ -42,7 +42,7 @@
                 >{{project.errors.errors.status[0]}}</span>
               </label>
               <select-input
-                :options="project.task_status_options"
+                :options="client.project_status_options"
                 placeholder="Select Status ..."
                 v-model="project.status"
                 :class="project.errors.errors.status ? 'border-red border rounded':''"
