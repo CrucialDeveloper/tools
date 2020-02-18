@@ -6,7 +6,7 @@
         v-for="status in shown_status"
         :key="status"
       >
-        <div class="font-bold text-center border-b">{{status}}</div>
+        <div class="font-bold text-center border-b border-gray-200">{{status}}</div>
         <div class="min-h-full pt-2">
           <draggable
             :list="byStatus(status)"
