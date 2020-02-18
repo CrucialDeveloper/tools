@@ -201,7 +201,7 @@ export default {
         start_date: "",
         due_date: "",
         priority: "",
-        task_status_options: [["Not Started", "In Progress", "Completed"]],
+        task_status_options: ["Not Started", "In Progress", "Completed"],
         work_type: [
           ["Standard", "Standard", 50],
           ["Coding", "Coding", 50],
