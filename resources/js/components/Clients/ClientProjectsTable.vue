@@ -25,7 +25,7 @@
             </svg>
           </div>
         </div>
-        <div class="flex items-center w-full mr-4">
+        <div class="flex items-center w-full">
           <input
             class="w-full h-full p-2 leading-tight border-t border-b border-l rounded-l appearance-none focus:outline-none"
             type="text"
@@ -40,20 +40,6 @@
           >x</button>
         </div>
       </div>
-      <button
-        class="flex items-center justify-center w-10 h-10 leading-none text-white rounded-full shadow fill-current bg-blue"
-        @click="openCreateProjectModal"
-      >
-        <svg
-          class="w-10 h-10 font-bold text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M11.5 16v-3.5H8a.5.5 0 0 1 0-1h3.5V8a.5.5 0 0 1 1 0v3.5H16a.5.5 0 0 1 0 1h-3.5V16a.5.5 0 0 1-1 0z"
-          />
-        </svg>
-      </button>
     </div>
 
     <div ref="table">
@@ -164,10 +150,7 @@
 </template>
 
 <script>
-import ProjectModal from "../Projects/ProjectModal";
-
 export default {
-  components: { ProjectModal },
   props: {
     header: String,
     items: Array,
@@ -230,21 +213,6 @@ export default {
     },
     clicked(item) {
       this.$emit("clickedItem", item);
-    },
-    openCreateProjectModal() {
-      this.$modal.show(
-        ProjectModal,
-        { client: this.$page.client },
-        {
-          adaptive: true,
-          height: "85%",
-          width: "1000px",
-          minHeight: 800,
-          minWith: 400,
-          scrollable: true,
-          resizable: true
-        }
-      );
     }
   },
   computed: {
