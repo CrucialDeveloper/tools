@@ -18,11 +18,11 @@
       ></content-editor>
       <div class="w-full text-right">
         <span
-          class="ml-2 font-normal text-red"
+          class="ml-2 font-normal text-red-500"
           v-if="form.errors.errors.body"
         >{{form.errors.errors.body[0]}}</span>
         <button
-          class="w-full p-2 mt-2 text-white rounded bg-gray hover:bg-gray-600"
+          class="w-full p-2 mt-2 bg-gray-200 rounded hover:bg-gray-300"
           @click="saveNewComment"
         >Add Comment</button>
       </div>

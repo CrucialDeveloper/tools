@@ -49,7 +49,7 @@
       </div>
       <div>
         <button
-          class="flex items-center justify-center w-10 h-10 leading-none text-white rounded-full shadow fill-current bg-blue"
+          class="flex items-center justify-center w-10 h-10 leading-none text-white bg-blue-500 rounded shadow fill-current hover:bg-blue-600"
           @click="newTask"
         >
           <svg
