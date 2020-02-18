@@ -57,7 +57,7 @@
             >{{task.errors.errors.priority[0]}}</span>
           </label>
           <select-input
-            :options="[['P1','P1'],['P2','P2'],['P3','P3']]"
+            :options="['P1','P2','P3']"
             placeholder="Select Priority ..."
             v-model="task.priority"
             :class="task.errors.errors.priority ? 'border-red border rounded':''"
