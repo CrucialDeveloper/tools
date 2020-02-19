@@ -19,8 +19,8 @@ $factory->define(Client::class, function (Faker $faker) {
         'website' => $faker->url,
         'project_status_options' => ['New', 'Spike', 'Not Started', 'In Progress', 'Completed'],
         'work_type' => [
-            ['coding' => 50],
-            ['meeting' => 30]
+            ['coding', 50],
+            ['meeting', 30]
         ]
     ];
 });

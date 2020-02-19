@@ -1,56 +1,46 @@
 <template>
   <div>
     <div class="flex items-center justify-between mb-4">
-      <div class="flex items-center flex-1 mr-4">
-        <label for="new_work_type" class="mr-2 font-bold">Work Type:</label>
-        <input
-          class="flex-1 w-full p-2 mr-4 border rounded"
-          id="new_work_type"
-          ref="new_work_type"
-          type="text"
-          :class="project.errors.errors.work_type ? 'border-red':''"
-          v-model="new_work_type"
-        />
-      </div>
-      <div class="flex items-center">
-        <label for="new_status" class="mr-2 font-bold">Work Rate:</label>
-        <input
-          class="flex-1 w-full p-2 mr-4 border rounded"
-          id="new_work_rate"
-          ref="new_work_rate"
-          type="text"
-          :class="project.errors.errors.work_type ? 'border-red':''"
-          v-model="new_work_rate"
-        />
-      </div>
+      <label for="new_work_type" class="w-64 mr-2 text-right">Work Type Name:</label>
+      <input
+        class="flex-1 w-full p-2 border rounded"
+        id="new_work_type"
+        ref="new_work_type"
+        type="text"
+        v-model="new_work_type"
+      />
+    </div>
+    <div class="flex items-center mt-4">
+      <label for="new_status" class="w-64 mr-2 text-right">Work Type Rate (in dollars/hour):</label>
+      <input
+        class="flex-1 w-full p-2 border rounded"
+        id="new_work_rate"
+        ref="new_work_rate"
+        type="text"
+        v-model="new_work_rate"
+      />
+    </div>
+    <div class="flex items-center justify-end w-full mt-4 text-right">
+      <p
+        class="mr-4 text-red-500"
+        v-if="alreadyExists"
+      >This combination of type and rate already exists.</p>
       <button
-        class="p-2 bg-gray-300 border rounded hover:bg-gray"
-        @click="addWorkType"
+        class="p-2 bg-gray-200 border rounded hover:bg-gray-300 hover:bg-gray"
+        @click="addWorkType()"
       >Add Work Type</button>
     </div>
-    <div v-if="project.work_type.length >0">
-      <ol>
-        <draggable :list="project.work_type" group="default">
-          <li
-            class="flex items-center mb-1"
-            v-for="(type, index) in project.work_type"
-            :key="type[0]"
+    <p class="mt-4">Drag and Drop to reorder the items in the list.</p>
+    <div class="w-80">
+      <ol ref="sortContainer" class="focus:outline-none" tabindex="-1">
+        <li v-for="item in value" :key="item[0]+item[1]">
+          <div
+            class="flex items-center justify-between px-2 py-1 mt-2 bg-gray-200 rounded hover:bg-gray-300"
           >
-            <span class="w-4 mr-2">{{index + 1}}.</span>
-            <span
-              class="flex items-center justify-between w-56 px-2 py-1 mb-2 mr-2 text-white rounded bg-gray"
-            >
-              <span class="mr-2 rounded">{{type[0]}} @ ${{type[2]}}/hour</span>
-              <button class="w-3 h-3 fill-current" @click="removeWorkType(index)">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                  <path
-                    d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm1.41-1.41A8 8 0 1 0 15.66 4.34 8 8 0 0 0 4.34 15.66zm9.9-8.49L11.41 10l2.83 2.83-1.41 1.41L10 11.41l-2.83 2.83-1.41-1.41L8.59 10 5.76 7.17l1.41-1.41L10 8.59l2.83-2.83 1.41 1.41z"
-                  />
-                </svg>
-              </button>
-            </span>
-          </li>
-        </draggable>
+            <span class="mr-4">{{titleCase(item[0])}} @ ${{item[1]}}/Per Hour</span>
+            <button @click="removeWorkType(item)">X</button>
+          </div>
+        </li>
       </ol>
     </div>
   </div>
@@ -62,20 +52,40 @@ export default {
   props: ["value"],
   data() {
     return {
-      newItem: ""
+      new_work_type: "",
+      new_work_rate: "",
+      alreadyExists: false
     };
   },
   methods: {
-    addItem() {
-      if (this.newItem && !this.value.includes(this.newItem)) {
-        this.value.push(this.newItem);
-        this.newItem = "";
+    addWorkType() {
+      if (this.workTypeNew()) {
+        this.value.push([
+          this.snake_case(this.new_work_type),
+          this.new_work_rate
+        ]);
+        this.new_work_rate = "";
+        this.new_work_type = "";
+        this.alreadyExists = false;
+      } else {
+        this.alreadyExists = true;
       }
     },
-    removeItem(item) {
+    removeWorkType(item) {
       this.value.splice(this.value.indexOf(item), 1);
     },
-    emitNewOrder(e) {
+    titleCase(str) {
+      str = str.split("_");
+      str = str.map(item => {
+        return item.charAt(0).toUpperCase() + item.slice(1);
+      });
+      str = str.join(" ");
+      return str;
+    },
+    snake_case(str) {
+      return str.toLowerCase().replace(" ", "_");
+    },
+    setNewOrder(e) {
       this.value = this.move(this.value, e.data.oldIndex, e.data.newIndex);
     },
     move(arr, from, to) {
@@ -83,6 +93,18 @@ export default {
       arr.splice(from, 1);
       arr.splice(to, 0, element);
       return arr;
+    },
+    workTypeNew() {
+      return (
+        this.new_work_type &&
+        this.new_work_rate &&
+        !this.value.some(item => {
+          return (
+            this.snake_case(item[0]) == this.snake_case(this.new_work_type) &&
+            item[1] == this.new_work_rate
+          );
+        })
+      );
     }
   },
   mounted() {
@@ -94,7 +116,10 @@ export default {
       },
       plugins: [Plugins.SwapAnimation]
     });
-    sortable.on("sortable:stop", e => this.emitNewOrder(e));
+    sortable.on("sortable:stop", e => this.setNewOrder(e));
+  },
+  created() {
+    this.work_types = this.value;
   }
 };
 </script>

@@ -31,8 +31,8 @@
           @click="setSelected(item)"
           @mouseover="highlightedIndex = index"
           :key="index"
-          :value="item"
-        >{{item}}</li>
+          :value="valueIndex===0 ? item[valueIndex] : item"
+        >{{displayIndex===1 ? item[displayIndex] : item}}</li>
       </ul>
     </div>
   </div>
@@ -47,7 +47,9 @@ export default {
     return {
       highlightedIndex: 0,
       isOpen: false,
-      search: ""
+      search: "",
+      displayIndex: null,
+      valueIndex: null
     };
   },
   computed: {
@@ -63,7 +65,11 @@ export default {
   },
   methods: {
     setSelected(option) {
-      this.$emit("input", option);
+      if (this.valueIndex === 0) {
+        this.$emit("input", option[0]);
+      } else {
+        this.$emit("input", option);
+      }
       this.search = "";
       this.close();
     },
@@ -122,6 +128,12 @@ export default {
       }
       vm.close();
     });
+  },
+  created() {
+    if (Array.isArray(this.options[0])) {
+      this.valueIndex = 0;
+      this.displayIndex = 1;
+    }
   }
 };
 </script>

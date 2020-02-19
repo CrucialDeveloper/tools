@@ -12,7 +12,7 @@
             type="text"
             name="company_name"
             class="w-full p-2 rounded"
-            :class="client.errors.has('company_name') ? 'border border-red': 'border'"
+            :class="client.errors.has('company_name') ? 'border border-red-500': 'border'"
             placeholder="Best Hardware and Sons"
             v-model="client.company_name"
           />
@@ -23,7 +23,7 @@
             type="text"
             name="address"
             class="w-full p-2 rounded"
-            :class="client.errors.has('address') ? 'border border-red': 'border'"
+            :class="client.errors.has('address') ? 'border border-red-500': 'border'"
             placeholder="123 Example St."
             v-model="client.address"
           />
@@ -34,7 +34,7 @@
             type="text"
             name="city"
             class="w-full p-2 rounded"
-            :class="client.errors.has('city') ? 'border border-red': 'border'"
+            :class="client.errors.has('city') ? 'border border-red-500': 'border'"
             placeholder="Example Town"
             v-model="client.city"
           />
@@ -46,7 +46,7 @@
             :options="states"
             v-model="client.state"
             :value="client.state"
-            :class="client.errors.has('state') ? 'border border-red': 'border'"
+            :class="client.errors.has('state') ? 'border border-red-500': 'border'"
           ></select-input>
         </div>
         <div class="flex items-center mb-4">
@@ -55,7 +55,7 @@
             type="text"
             name="zip"
             class="w-full p-2 rounded"
-            :class="client.errors.has('zip') ? 'border border-red': 'border'"
+            :class="client.errors.has('zip') ? 'border border-red-500': 'border'"
             placeholder="62285"
             v-model="client.zip"
           />
@@ -66,7 +66,7 @@
             type="text"
             name="zip"
             class="w-full p-2 rounded"
-            :class="client.errors.has('country') ? 'border border-red': 'border'"
+            :class="client.errors.has('country') ? 'border border-red-500': 'border'"
             placeholder="USA"
             v-model="client.country"
           />
@@ -77,7 +77,7 @@
             type="text"
             name="phone_number"
             class="w-full p-2 rounded"
-            :class="client.errors.has('phone_number') ? 'border border-red': 'border'"
+            :class="client.errors.has('phone_number') ? 'border border-red-500': 'border'"
             placeholder="555-555-5555"
             v-model="client.phone_number"
           />
@@ -88,7 +88,7 @@
             type="text"
             name="website"
             class="w-full p-2 rounded"
-            :class="client.errors.has('website') ? 'border border-red': 'border'"
+            :class="client.errors.has('website') ? 'border border-red-500': 'border'"
             placeholder="https://examplesite.com"
             v-model="client.website"
           />
@@ -100,7 +100,7 @@
       </tab-panel>
 
       <tab-panel name="Work Types &amp; Rates">
-        <sort-work-type-list v-model=></sort-work-type-list>
+        <sort-work-type-list v-model="client.work_type"></sort-work-type-list>
       </tab-panel>
     </tabs-nav>
 
@@ -162,6 +162,10 @@ export default {
           "In Progress",
           "On Hold",
           "Completed"
+        ],
+        work_type: [
+          ["coding", 50],
+          ["meeting", 35]
         ]
       }),
       states: states
