@@ -96,7 +96,7 @@
       </tab-panel>
 
       <tab-panel name="Project Status Options">
-        <sort-list v-model="client.project_status_options"></sort-list>
+        <sort-status-list v-model="client.project_status_options"></sort-status-list>
       </tab-panel>
     </tabs-nav>
 
@@ -127,10 +127,10 @@ import SelectInput from "../UI/SelectInput";
 import states from "../../JSON/states.json";
 import TabsNav from "../UI/Tabs/TabsNav";
 import TabPanel from "../UI/Tabs/TabPanel";
-import SortList from "../UI/SortList";
+import SortList from "../UI/SortStatusList";
 
 export default {
-  components: { SelectInput, Form, TabsNav, TabPanel, SortList },
+  components: { SelectInput, Form, TabsNav, TabPanel, SortStatusList },
   props: ["editClient"],
   data() {
     return {

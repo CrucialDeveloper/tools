@@ -103,7 +103,7 @@
         </div>
       </tab-panel>
       <tab-panel name="Configure" class="h-full">
-        <sort-list v-model="project.task_status_options"></sort-list>
+        <sort-status-list v-model="project.task_status_options"></sort-status-list>
       </tab-panel>
       <tab-panel name="Work Types &amp; Rates">
         <div class="flex items-center justify-between mb-4">
@@ -187,7 +187,7 @@ import SelectInput from "../UI/SelectInput";
 import DatePicker from "../UI/DatePicker";
 import ContentEditor from "../UI/ContentEditor";
 import Form from "@johnlowery74/crucial-form";
-import SortList from "../UI/SortList";
+import SortStatusList from "../UI/SortStatusList";
 
 export default {
   components: {
@@ -195,7 +195,7 @@ export default {
     TabPanel,
     SelectInput,
     DatePicker,
-    SortList,
+    SortStatusList,
     ContentEditor
   },
   props: ["client", "editProject"],
