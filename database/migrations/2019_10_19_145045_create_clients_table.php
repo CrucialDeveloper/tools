@@ -25,6 +25,7 @@ class CreateClientsTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('website')->nullable();
             $table->json('project_status_options');
+            $table->json('work_type');
             $table->string('url_id')->nullable();
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();

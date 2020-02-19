@@ -12,9 +12,9 @@ class Client extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['user_id', 'company_name', 'address', 'city', 'state', 'zip', 'country', 'phone_number', 'website', 'project_status_options', 'url_id'];
+    protected $fillable = ['user_id', 'company_name', 'address', 'city', 'state', 'zip', 'country', 'phone_number', 'website', 'project_status_options', 'work_type', 'url_id'];
     protected $appends = ['path'];
-    protected $casts = ['project_status_options' => 'json'];
+    protected $casts = ['project_status_options' => 'json', 'work_type' => 'json'];
 
     public function getRouteKeyName()
     {

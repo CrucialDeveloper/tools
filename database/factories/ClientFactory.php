@@ -17,6 +17,10 @@ $factory->define(Client::class, function (Faker $faker) {
         'country' => 'USA',
         'phone_number' => $faker->phoneNumber,
         'website' => $faker->url,
-        'project_status_options' => ['New', 'Spike', 'Not Started', 'In Progress', 'Completed']
+        'project_status_options' => ['New', 'Spike', 'Not Started', 'In Progress', 'Completed'],
+        'work_type' => [
+            ['coding' => 50],
+            ['meeting' => 30]
+        ]
     ];
 });

@@ -98,6 +98,10 @@
       <tab-panel name="Project Status Options">
         <sort-status-list v-model="client.project_status_options"></sort-status-list>
       </tab-panel>
+
+      <tab-panel name="Work Types &amp; Rates">
+        <sort-work-type-list v-model=></sort-work-type-list>
+      </tab-panel>
     </tabs-nav>
 
     <div class="flex items-center justify-between mt-auto">
@@ -127,10 +131,18 @@ import SelectInput from "../UI/SelectInput";
 import states from "../../JSON/states.json";
 import TabsNav from "../UI/Tabs/TabsNav";
 import TabPanel from "../UI/Tabs/TabPanel";
-import SortList from "../UI/SortStatusList";
+import SortStatusList from "../UI/SortStatusList";
+import SortWorkTypeList from "../UI/SortWorkTypeList";
 
 export default {
-  components: { SelectInput, Form, TabsNav, TabPanel, SortStatusList },
+  components: {
+    SelectInput,
+    Form,
+    TabsNav,
+    TabPanel,
+    SortStatusList,
+    SortWorkTypeList
+  },
   props: ["editClient"],
   data() {
     return {

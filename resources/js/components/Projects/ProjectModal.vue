@@ -210,12 +210,12 @@ export default {
         priority: "",
         task_status_options: ["Not Started", "In Progress", "Completed"],
         work_type: [
-          ["Standard", "Standard", 50],
-          ["Coding", "Coding", 50],
-          ["Spike", "Spike", 35],
-          ["Meeting", "Meeting", 50],
-          ["Bug Fix", "Bug Fix", 35],
-          ["Other", "Other", 40]
+          ["Standard", 50],
+          ["Coding", 50],
+          ["Spike", 35],
+          ["Meeting", 50],
+          ["Bug Fix", 35],
+          ["Other", 40]
         ]
       }),
       new_status: "",
