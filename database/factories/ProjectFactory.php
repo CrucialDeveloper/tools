@@ -19,7 +19,7 @@ $factory->define(App\Project::class, function (Faker $faker) {
         'priority' => $faker->randomElement(['P1', 'P2', 'P3']),
         'task_status_options' => ['Not Started', 'In Progress'],
         'work_type' => [
-            ['Standard', 'Standard', 100],
+            ['test', 50],
         ]
     ];
 });
