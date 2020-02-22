@@ -58,12 +58,14 @@
       </div>
     </div>
     <div class="mt-4" v-if="mode==='stopped'">
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between mb-4">
         <select-input
-          class="mb-4 mr-4"
-          v-model="entry.work_type"
-          :options="project.work_type"
+          class="mr-4"
           placeholder="Select Work Type ..."
+          v-model="selectedWorkType"
+          @input="changedWorkType($event)"
+          :options="work_type_options"
+          :class="entry.errors.has('work_type') ? 'border border-red-500': 'border'"
         ></select-input>
         <div class="flex items-center">
           <input
@@ -104,11 +106,13 @@ export default {
       time: "",
       timerTime: null,
       pausedTime: null,
+      selectedWorkType: "",
       entry: new Form({
         start_time: null,
         end_time: null,
         work_time: 0,
         work_type: "",
+        work_rate: "",
         description: "",
         billable: "Yes"
       })
@@ -186,6 +190,21 @@ export default {
           this.$inertia.reload();
         })
         .catch(errors => console.log(errors));
+    },
+    titleCase(str) {
+      str = str.split("_");
+      str = str.map(item => {
+        return item.charAt(0).toUpperCase() + item.slice(1);
+      });
+      str = str.join(" ");
+      return str;
+    },
+    snake_case(str) {
+      return str.toLowerCase().replace(" ", "_");
+    },
+    changedWorkType(e) {
+      this.entry.work_type = e.split("@")[0].trim();
+      this.entry.work_rate = e.substring(e.indexOf("$") + 1, e.indexOf("/"));
     }
   },
   computed: {
@@ -201,6 +220,11 @@ export default {
 
       this.time = hours + ":" + minutes + ":" + seconds + "." + milliseconds;
       return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+    },
+    work_type_options() {
+      return this.project.work_type.map(type => {
+        return this.titleCase(type[0]) + " @ $" + type[1] + "/hour";
+      });
     }
   }
 };
