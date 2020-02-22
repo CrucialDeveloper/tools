@@ -96,7 +96,8 @@ class ProjectTest extends TestCase
         $this->assertDatabaseHas('projects', ['title' => $project->title]);
         $response = $this->delete("/clients/$client->url_id/projects/$project->url_id");
 
-        $this->assertDatabaseMissing('projects', ['title' => $project->title]);
+        $this->assertDatabaseHas('projects', ['title' => $project->title]);
+        $this->assertCount(0, Project::all());
     }
 
     /**

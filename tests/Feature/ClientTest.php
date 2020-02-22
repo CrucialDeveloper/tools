@@ -114,7 +114,7 @@ class ClientTest extends TestCase
 
         $response = $this->post('/clients', $client);
 
-        $this->assertDatabaseHas('clients', $client);
+        $this->assertCount(1, Client::all());
     }
 
     /**
