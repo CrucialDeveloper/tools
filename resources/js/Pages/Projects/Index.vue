@@ -152,13 +152,13 @@ export default {
     openCreateProjectModal() {
       this.$modal.show(
         ProjectModal,
-        {},
+        { client: this.client },
         {
           adaptive: true,
           height: "85%",
           width: "1000px",
           minHeight: 800,
-          minWith: 400,
+          minWidth: 400,
           scrollable: true,
           resizable: true
         }

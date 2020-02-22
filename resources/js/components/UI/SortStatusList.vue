@@ -10,7 +10,7 @@
         @click="addItem()"
       >Add Status</button>
     </div>
-    <p class="mt-4">Drag and Drop to reorder the items in the list.</p>
+    <p class>Drag and Drop to reorder the items in the list.</p>
     <ul ref="sortContainer" class="focus:outline-none" tabindex="-1">
       <li
         class="flex items-center justify-between w-56 px-2 py-1 mt-2 bg-gray-200 rounded select-none hover:bg-gray-300"

@@ -8,7 +8,7 @@
         @click.stop="cancelEdit"
       >Cancel</button>
     </div>
-    <div class="my-auto mb-4 overflow-x-hidden overflow-y-scroll">
+    <div class="my-auto mb-4">
       <div class="flex items-center mb-4">
         <label class="w-40 mr-4 font-bold text-right min-w-40" for="start_time">Start Time</label>
         <date-picker
@@ -44,8 +44,9 @@
         <label class="w-40 mr-4 font-bold text-right min-w-40" for="work_type">Work Type</label>
         <select-input
           placeholder="Select Work Type ..."
-          v-model="editedEntry.work_type"
-          :options="project.work_type"
+          v-model="selectedWorkType"
+          @input="changedWorkType($event)"
+          :options="work_type_options"
           :class="editedEntry.errors.has('work_type') ? 'border border-red-500': 'border'"
         ></select-input>
       </div>
@@ -66,15 +67,6 @@
           v-model="editedEntry.billable"
           :options="[['Yes','Yes'],['No','No']]"
           :class="editedEntry.errors.has('billable') ? 'border border-red-500': 'border'"
-        ></select-input>
-      </div>
-      <div class="flex items-center mb-4">
-        <label class="w-40 mr-4 font-bold text-right min-w-40" for="billed">Billed</label>
-        <select-input
-          placeholder="Is this Billed?"
-          v-model="editedEntry.billed"
-          :options="[['Yes','Yes'],['No','No']]"
-          :class="editedEntry.errors.has('billed') ? 'border border-red-500-500': 'border'"
         ></select-input>
       </div>
     </div>
@@ -111,12 +103,14 @@ export default {
         end_time: "",
         work_time: "",
         work_type: "",
+        work_rate: "",
         description: "",
         billable: "",
         billed: ""
       }),
       editWorkTime: false,
-      formattedWorkTime: ""
+      formattedWorkTime: "",
+      selectedWorkType: ""
     };
   },
   methods: {
@@ -155,6 +149,24 @@ export default {
         parseInt(parts[0]) * 3600000 +
         parseInt(parts[1]) * 60000 +
         parseInt(parts[2]) * 1000
+      );
+    },
+    titleCase(str) {
+      str = str.split("_");
+      str = str.map(item => {
+        return item.charAt(0).toUpperCase() + item.slice(1);
+      });
+      str = str.join(" ");
+      return str;
+    },
+    snake_case(str) {
+      return str.toLowerCase().replace(" ", "_");
+    },
+    changedWorkType(e) {
+      this.editedEntry.work_type = e.split("@")[0].trim();
+      this.editedEntry.work_rate = e.substring(
+        e.indexOf("$") + 1,
+        e.indexOf("/")
       );
     },
     saveEntry() {
@@ -203,6 +215,13 @@ export default {
         });
     }
   },
+  computed: {
+    work_type_options() {
+      return this.project.work_type.map(type => {
+        return this.titleCase(type[0]) + " @ $" + type[1] + "/hour";
+      });
+    }
+  },
   mounted() {
     if (this.entry) {
       this.formattedWorkTime = this.convertFromMilliseconds(
@@ -213,6 +232,11 @@ export default {
   created() {
     if (this.entry) {
       this.editedEntry = new Form({ ...this.entry });
+      this.selectedWorkType =
+        this.titleCase(this.entry.work_type) +
+        " @ $" +
+        this.entry.work_rate +
+        "/hour";
     }
   }
 };

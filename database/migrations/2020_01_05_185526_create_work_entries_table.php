@@ -21,6 +21,7 @@ class CreateWorkEntriesTable extends Migration
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->string('work_type');
+            $table->unsignedBigInteger('work_rate');
             $table->text('description');
             $table->bigInteger('work_time');
             $table->string('billable');

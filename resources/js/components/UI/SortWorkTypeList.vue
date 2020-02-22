@@ -30,7 +30,7 @@
         @click="addWorkType()"
       >Add Work Type</button>
     </div>
-    <p class="mt-4">Drag and Drop to reorder the items in the list.</p>
+    <p>Drag and Drop to reorder the items in the list.</p>
     <div class="w-80">
       <ol ref="sortContainer" class="focus:outline-none" tabindex="-1">
         <li v-for="item in value" :key="item[0]+item[1]">

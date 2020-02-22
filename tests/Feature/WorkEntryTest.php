@@ -40,6 +40,7 @@ class WorkEntryTest extends TestCase
             "start_time" => Carbon::createFromTimestampMs(1578361322011),
             "end_time" => Carbon::createFromTimestampMs(1578361332080),
             'work_type' => "Standard",
+            'work_rate' => '25',
             "billable" => 'Yes',
             'billed' => 'No',
             "description" => "",

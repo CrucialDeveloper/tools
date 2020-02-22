@@ -30,6 +30,7 @@ class WorkEntryController extends Controller
             "billable" => $request->billable,
             "billed" => $request->billed,
             "work_time" => $request->work_time,
+            "work_rate" => $request->work_rate,
             "client_url_id" => $client->url_id,
             "project_url_id" => $project->url_id
         ]);
@@ -55,6 +56,9 @@ class WorkEntryController extends Controller
         $entry->end_time = $request->end_time;
         $entry->description = $request->description;
         $entry->work_time = $request->work_time;
+        $entry->work_type = $request->work_type;
+        $entry->work_rate = $request->work_rate;
+
         $entry->save();
         return $entry;
     }
@@ -79,6 +83,7 @@ class WorkEntryController extends Controller
             "description" => "required",
             "billable" => "required",
             "work_time" => "required",
+            "work_rate" => "required",
         ]);
     }
 }

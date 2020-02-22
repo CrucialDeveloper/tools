@@ -14,6 +14,7 @@ $factory->define(WorkEntry::class, function (Faker $faker) {
         'start_time' => Carbon::now()->subMinutes(60)->timestamp,
         'end_time' => Carbon::now()->timestamp,
         'work_type' => 'Standard',
+        'work_rate' => 25,
         'description' => $faker->paragraph(),
         'work_time' => $faker->numberBetween($min = 1000, $max = 18000000),
         'billable' => $faker->randomElement(["Yes", "No"]),

@@ -3,7 +3,7 @@
     <h3
       class="mb-4 text-2xl"
     >{{(editProject === undefined || Object.keys(editProject).length ===0)? 'New Project' : 'Edit Project'}}</h3>
-    <tabs-nav class="flex-grow h-full pb-16 overflow-x-hidden">
+    <tabs-nav class="flex-grow h-full pb-16 overflow-x-hidden" :saveLast="false">
       <tab-panel name="Details" class="h-full">
         <div class="mb-4 overflow-y-scroll">
           <label for="name" class="block font-bold">
@@ -158,8 +158,8 @@ export default {
         start_date: "",
         due_date: "",
         priority: "",
-        task_status_options: ["Not Started", "In Progress", "Completed"],
-        work_type: []
+        task_status_options: this.client.project_status_options,
+        work_type: this.client.work_type
       })
     };
   },
@@ -203,11 +203,13 @@ export default {
     }
   },
   created() {
-    this.project.work_type = this.client.work_type;
     if (this.editProject) {
       this.project = new Form({ ...this.editProject });
     }
-    let work_types = this.client.work_type.concat(this.editProject.work_type);
+
+    if (this.project.work_type.length === 0) {
+      this.project.work_type = this.client.work_type;
+    }
   }
 };
 </script>

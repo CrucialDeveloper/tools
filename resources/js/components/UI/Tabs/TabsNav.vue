@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="flex items-center mb-4 border-b">
+    <ul class="flex items-center pl-1 my-4 border-b">
       <li
         class="mr-4"
         :class="activeTab === index ? 'border-b-4 border-blue-500 -mb-1':''"
