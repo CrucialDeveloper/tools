@@ -88,6 +88,7 @@
         :items="tasks"
         :parent="project"
         :available_status="project.task_status_options"
+        placeholder="Search Tasks ..."
         v-if="view==='kanban'"
       >
         <div slot-scope="{item}">
