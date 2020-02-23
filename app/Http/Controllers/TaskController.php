@@ -94,7 +94,6 @@ class TaskController extends Controller
     {
         $request->validate([
             'title' => ['required', $task ? Rule::unique('tasks', 'title')->ignore($task->id) : ''],
-            'description' => 'required',
             'status' => 'required',
         ]);
     }

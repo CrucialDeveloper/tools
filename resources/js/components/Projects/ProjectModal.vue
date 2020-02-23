@@ -102,7 +102,7 @@
           </div>
         </div>
       </tab-panel>
-      <tab-panel name="Configure" class="h-full">
+      <tab-panel name="Task Status Options" class="h-full">
         <sort-status-list v-model="project.task_status_options"></sort-status-list>
       </tab-panel>
       <tab-panel name="Work Types &amp; Rates">
