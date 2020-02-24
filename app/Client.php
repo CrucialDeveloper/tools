@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Contact;
 use App\Project;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Database\Eloquent\Model;
@@ -39,6 +40,11 @@ class Client extends Model
     public function projects()
     {
         return $this->hasMany(Project::class);
+    }
+
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
     }
 
     public function getPathAttribute()

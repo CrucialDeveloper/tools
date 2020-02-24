@@ -5,11 +5,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\WorkEntryController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\TaskStatusController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClientProjectController;
 
 /*
@@ -51,6 +52,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('clients/{client}/projects/{project}/comments', [CommentController::class, 'store']);
     Route::patch('/comments/{comment}', [CommentController::class, 'update']);
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
+
+    Route::post('clients/{client}/contacts', [ContactController::class, 'store']);
 
     Route::post('/clients/{client}/projects/{project}/workentry', [WorkEntryController::class, 'store']);
     Route::patch('/clients/{client}/projects/{project}/workentry/{entry}', [WorkEntryController::class, 'update']);

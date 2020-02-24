@@ -95,6 +95,10 @@
         </div>
       </tab-panel>
 
+      <tab-panel name="Contacts">
+        <contacts-tab :contacts="client.contacts"></contacts-tab>
+      </tab-panel>
+
       <tab-panel name="Project Status Options">
         <sort-status-list v-model="client.project_status_options"></sort-status-list>
       </tab-panel>
@@ -133,6 +137,7 @@ import TabsNav from "../UI/Tabs/TabsNav";
 import TabPanel from "../UI/Tabs/TabPanel";
 import SortStatusList from "../UI/SortStatusList";
 import SortWorkTypeList from "../UI/SortWorkTypeList";
+import ContactsTab from "./ContactsTab";
 
 export default {
   components: {
@@ -141,7 +146,8 @@ export default {
     TabsNav,
     TabPanel,
     SortStatusList,
-    SortWorkTypeList
+    SortWorkTypeList,
+    ContactsTab
   },
   props: ["editClient"],
   data() {

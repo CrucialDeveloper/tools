@@ -83,6 +83,9 @@
           <span class="block text-gray-500">{{client.phone_number}}</span>
         </div>
       </div>
+      <div class="flex items-center justify-between w-full">
+        <client-contact v-for="contact in displayContacts" :key="contact.id" :contact="contact"></client-contact>
+      </div>
     </div>
   </div>
 </template>
@@ -90,9 +93,10 @@
 <script>
 import GoogleMap from "../../components/UI/GoogleMap";
 import ClientModal from "./ClientModal";
+import ClientContact from "./ClientContact";
 
 export default {
-  components: { GoogleMap, ClientModal },
+  components: { GoogleMap, ClientModal, ClientContact },
   props: ["client"],
   methods: {
     editClient(client) {
@@ -108,6 +112,11 @@ export default {
           resizable: true
         }
       );
+    }
+  },
+  computed: {
+    displayContacts() {
+      return this.client.contacts.filter((contact, index) => index < 3);
     }
   }
 };
