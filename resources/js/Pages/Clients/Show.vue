@@ -84,13 +84,13 @@ export default {
         ProjectModal,
         { client: this.client },
         {
-          adaptive: true,
-          height: "85%",
+          // adaptive: true,
+          height: 400,
           width: "1000px",
-          minHeight: 800,
+          minHeight: 400,
           minWith: 400,
-          scrollable: true,
-          resizable: true
+          maxHeight: 400,
+          scrollable: true
         }
       );
     }

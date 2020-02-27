@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-full p-4">
+  <div class="flex flex-col h-full p-4 overflow-y-scroll">
     <h3
       class="mb-4 text-2xl"
     >{{(editClient === undefined || Object.keys(editClient).length ===0)? 'New Client' : 'Edit Client'}}</h3>
@@ -96,7 +96,7 @@
       </tab-panel>
 
       <tab-panel name="Contacts">
-        <contacts-tab :contacts="client.contacts"></contacts-tab>
+        <contacts-tab :contacts="client.contacts" :client="client" class="mb-4"></contacts-tab>
       </tab-panel>
 
       <tab-panel name="Project Status Options">

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-4 mr-4">
     <div class="flex items-start">
       <svg
         xmlns="http://www.w3.org/2000/svg"

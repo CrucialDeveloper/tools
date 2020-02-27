@@ -22,7 +22,9 @@ class ClientController extends Controller
             'clients' => auth()->user()->clients()->latest()->get(),
             'client' => $client->load(['projects' => function ($query) {
                 $query->latest()->take(5);
-            }, 'contacts'])
+            }, 'contacts' => function ($query) {
+                $query->orderBy('order', 'asc')->orderBy('updated_at', 'desc');
+            }])
         ]);
     }
 

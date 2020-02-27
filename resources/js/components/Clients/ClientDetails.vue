@@ -1,6 +1,6 @@
 <template>
   <div class="flex w-full p-4 bg-white rounded shadow">
-    <div class="w-1/2 mr-4">
+    <div class="w-2/5 mr-4">
       <div class="rounded" :class="client.address ? 'shadow' : ''">
         <google-map
           :client="client"
@@ -15,7 +15,7 @@
         />
       </div>
     </div>
-    <div class="w-1/2">
+    <div class="w-3/5">
       <div class="flex items-start justify-between w-full mb-4">
         <div class="flex items-center justify-between w-full">
           <h2 class="mr-4 text-2xl">{{client.company_name}}</h2>
@@ -50,7 +50,7 @@
           target="_blank"
         >Visit Website</a>
       </div>
-      <div class="flex items-start justify-between mb-4">
+      <div class="flex items-start justify-between">
         <div class="flex items-start mr-8">
           <span class="w-6 h-6 mr-4">
             <svg
@@ -83,7 +83,7 @@
           <span class="block text-gray-500">{{client.phone_number}}</span>
         </div>
       </div>
-      <div class="flex items-center justify-between w-full">
+      <div class="flex flex-wrap items-center justify-between w-full">
         <client-contact v-for="contact in displayContacts" :key="contact.id" :contact="contact"></client-contact>
       </div>
     </div>
@@ -105,9 +105,10 @@ export default {
         { editClient: client },
         {
           height: "85%",
-          width: "1000px",
-          minHeight: 500,
+          width: "50%",
+          minHeight: 800,
           minWidth: 400,
+          maxHeight: 800,
           scrollable: true,
           resizable: true
         }

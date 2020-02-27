@@ -24,6 +24,7 @@ class CreateContactsTable extends Migration
             $table->string('state');
             $table->string('zip');
             $table->string('phone_number');
+            $table->unsignedInteger('order')->default(99);
             $table->timestamps();
         });
     }

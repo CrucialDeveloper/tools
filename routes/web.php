@@ -53,7 +53,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/comments/{comment}', [CommentController::class, 'update']);
     Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
 
-    Route::post('clients/{client}/contacts', [ContactController::class, 'store']);
+    Route::post('/clients/{client}/contacts', [ContactController::class, 'store']);
+    Route::patch('/clients/{client}/contacts/{contact}', [ContactController::class, 'update']);
+    Route::patch('/clients/{client}/contacts/', [ContactController::class, 'updateOrder']);
 
     Route::post('/clients/{client}/projects/{project}/workentry', [WorkEntryController::class, 'store']);
     Route::patch('/clients/{client}/projects/{project}/workentry/{entry}', [WorkEntryController::class, 'update']);

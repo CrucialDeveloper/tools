@@ -15,6 +15,7 @@ class Contact extends Model
         'city',
         'state',
         'zip',
-        'phone_number'
+        'phone_number',
+        'order'
     ];
 }

@@ -47,4 +47,21 @@ class ContactsTest extends TestCase
 
         $this->assertDatabaseHas('contacts', $contact);
     }
+
+    /**
+     * @test
+     */
+    public function a_client_can_be_updated()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->signIn();
+        $client = $this->create(Client::class);
+        $contact = $this->create(Contact::class);
+        $contact->order = 1;
+
+        $response = $this->patch($client->path . "/contacts/" . $contact->id, $contact->toArray());
+
+        $this->assertEquals(1, Contact::first()->order);
+    }
 }
