@@ -57,7 +57,14 @@ export default {
       let vm = this;
       if (vm.search) {
         return this.options.filter(function(option) {
-          return option.toLowerCase().includes(vm.search.toLowerCase());
+          if (vm.displayIndex != null) {
+            return (
+              option[0].toLowerCase().includes(vm.search.toLowerCase()) ||
+              option[1].toLowerCase().includes(vm.search.toLowerCase())
+            );
+          } else {
+            return option.toLowerCase().includes(vm.search.toLowerCase());
+          }
         });
       }
       return this.options;
