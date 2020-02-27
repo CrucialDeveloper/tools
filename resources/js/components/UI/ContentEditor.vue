@@ -73,7 +73,7 @@ export default {
           "codeView"
         ]
       ],
-      comment: [["undo", "redo", "bold", "underline", "italic", "list", "link"]]
+      comment: [["bold", "underline", "italic", "list", "link"]]
     };
   },
   methods: {
