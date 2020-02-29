@@ -80,7 +80,13 @@
           v-model="contact.phone_number"
         />
       </div>
-      <div></div>
+      <div class="flex items-center mt-1">
+        <div class="w-48 mr-2"></div>
+        <button
+          class="w-full p-1 text-white bg-blue-500 rounded hover:bg-blue-600"
+          @click="saveClient"
+        >Save Contact</button>
+      </div>
     </div>
     <div ref="sortContainer mt-4">
       <div v-for="(contact, index) in sortedContacts" :key="contact.id" class="drag-item">
