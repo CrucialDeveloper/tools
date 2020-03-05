@@ -9,7 +9,7 @@
         >X</button>
       </div>
     </div>
-    <div class="min-h-full p-1 mt-4 bg-gray-100 rounded">
+    <div class="min-h-full p-1 my-4 bg-gray-100 rounded">
       <div class="flex flex-col w-full min-h-full md:min-w-64 lg:flex-row">
         <div
           class="w-full min-h-full px-2 pt-2 pb-4 border-t border-l border-r border-gray-200 md:max-w-md"
