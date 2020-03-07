@@ -174,6 +174,7 @@ export default {
       this.entry.description = "";
       this.entry.billable = "Yes";
       clearInterval(this.stopWatch);
+      window.localStorage.removeItem("time-entry");
     },
     openWorkEntryModal() {
       this.$modal.show(
