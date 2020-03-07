@@ -22,6 +22,16 @@
         />
       </div>
       <div class="flex items-center mt-1">
+        <label class="w-48 mr-2 text-right" for="last_name">Title</label>
+        <input
+          type="text"
+          name="title"
+          class="w-full p-2 border rounded"
+          placeholder="Doe"
+          v-model="contact.title"
+        />
+      </div>
+      <div class="flex items-center mt-1">
         <label class="w-48 mr-2 text-right" for="email">Email</label>
         <input
           type="text"
@@ -47,7 +57,7 @@
           type="text"
           name="city"
           class="w-full p-2 border rounded"
-          placeholder="ExampleTown"
+          placeholder="Example Town"
           v-model="contact.city"
         />
       </div>
@@ -76,7 +86,7 @@
           type="text"
           name="phone_number"
           class="w-full p-2 border rounded"
-          placeholder="phone_number"
+          placeholder="(555)555-5555"
           v-model="contact.phone_number"
         />
       </div>
@@ -84,13 +94,23 @@
         <div class="w-48 mr-2"></div>
         <button
           class="w-full p-1 text-white bg-blue-500 rounded hover:bg-blue-600"
-          @click="saveClient"
-        >Save Contact</button>
+          @click="saveNewContact"
+        >Save New Contact</button>
       </div>
     </div>
-    <div ref="sortContainer mt-4">
+    <div ref="sortContainer" class="mt-4">
       <div v-for="(contact, index) in sortedContacts" :key="contact.id" class="drag-item">
-        <contact-details :contact="contact" :client="client" :position="index+1"></contact-details>
+        <contact-details :contact="contact" :client="client" :position="index+1">
+          <svg
+            class="w-6 h-6 mr-4 text-gray-200 fill-current handle"
+            viewBox="0 0 1792 1792"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1411 541l-355 355 355 355 144-144q29-31 70-14 39 17 39 59v448q0 26-19 45t-45 19h-448q-42 0-59-40-17-39 14-69l144-144-355-355-355 355 144 144q31 30 14 69-17 40-59 40H192q-26 0-45-19t-19-45v-448q0-42 40-59 39-17 69 14l144 144 355-355-355-355-144 144q-19 19-45 19-12 0-24-5-40-17-40-59V192q0-26 19-45t45-19h448q42 0 59 40 17 39-14 69L541 381l355 355 355-355-144-144q-31-30-14-69 17-40 59-40h448q26 0 45 19t19 45v448q0 42-39 59-13 5-25 5-26 0-45-19z"
+            />
+          </svg>
+        </contact-details>
       </div>
     </div>
   </div>
@@ -112,6 +132,7 @@ export default {
       contact: new Form({
         first_name: "",
         last_name: "",
+        title: "",
         email: "",
         address: "",
         city: "",
@@ -123,6 +144,14 @@ export default {
     };
   },
   methods: {
+    saveNewContact() {
+      this.contact
+        .post(this.client.path + "/contacts", this.contact)
+        .then(response => {
+          this.sortedContacts = response;
+          this.contact.reset();
+        });
+    },
     move(arr, from, to) {
       var element = arr[from];
       arr.splice(from, 1);
@@ -141,17 +170,19 @@ export default {
     }
   },
   mounted() {
-    const sortable = new Sortable(this.$refs.sortContainer, {
-      handle: ".handle",
-      draggable: ".drag-item",
-      swapAnimation: {
-        duration: 100,
-        easingFunction: "ease-in-out"
-      },
-      plugins: [Plugins.SwapAnimation]
-    });
-    sortable.on("sortable:stop", e => {
-      this.setOrder(e.data.oldIndex, e.data.newIndex);
+    this.$nextTick(function() {
+      window.sortable = new Sortable(this.$refs.sortContainer, {
+        handle: ".handle",
+        draggable: ".drag-item",
+        swapAnimation: {
+          duration: 100,
+          easingFunction: "ease-in-out"
+        },
+        plugins: [Plugins.SwapAnimation]
+      });
+      sortable.on("sortable:stop", e => {
+        this.setOrder(e.data.oldIndex, e.data.newIndex);
+      });
     });
   }
 };

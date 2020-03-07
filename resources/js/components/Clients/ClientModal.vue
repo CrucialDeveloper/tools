@@ -118,12 +118,12 @@
           class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
           @click="saveClient"
           v-if="editClient === undefined || Object.keys(editClient).length===0"
-        >Save</button>
+        >Save Client</button>
         <button
           class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
           @click="updateClient"
           v-else
-        >Save</button>
+        >Save Client</button>
       </div>
     </div>
   </div>

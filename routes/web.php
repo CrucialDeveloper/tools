@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/clients/{client}/contacts', [ContactController::class, 'store']);
     Route::patch('/clients/{client}/contacts/{contact}', [ContactController::class, 'update']);
     Route::patch('/clients/{client}/contacts/', [ContactController::class, 'updateOrder']);
+    Route::delete('/clients/{client}/contacts/{contact}', [ContactController::class, 'destroy']);
 
     Route::post('/clients/{client}/projects/{project}/workentry', [WorkEntryController::class, 'store']);
     Route::patch('/clients/{client}/projects/{project}/workentry/{entry}', [WorkEntryController::class, 'update']);

@@ -18,13 +18,14 @@ class CreateContactsTable extends Migration
             $table->bigInteger('client_id');
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('title')->nullable();
             $table->string('email');
-            $table->string('address');
-            $table->string('city');
-            $table->string('state');
-            $table->string('zip');
-            $table->string('phone_number');
-            $table->unsignedInteger('order')->default(99);
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->unsignedInteger('order')->default(0);
             $table->timestamps();
         });
     }

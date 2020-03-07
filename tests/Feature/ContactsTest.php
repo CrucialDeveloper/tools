@@ -51,7 +51,7 @@ class ContactsTest extends TestCase
     /**
      * @test
      */
-    public function a_client_can_be_updated()
+    public function a_contacts_order_can_be_updated()
     {
         $this->withoutExceptionHandling();
 
@@ -63,5 +63,40 @@ class ContactsTest extends TestCase
         $response = $this->patch($client->path . "/contacts/" . $contact->id, $contact->toArray());
 
         $this->assertEquals(1, Contact::first()->order);
+    }
+
+    /**
+     * @test
+     */
+    public function a_contacts_details_can_be_updated()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->signIn();
+        $client = $this->create(Client::class);
+        $contact = $this->create(Contact::class, ['first_name' => 'New']);
+
+        $this->assertDatabaseHas('contacts', ['first_name' => 'New']);
+
+        $contact->first_name = "Changed";
+        $response = $this->patch("$client->path/contacts/$contact->id", $contact->toArray());
+
+        $this->assertDatabaseHas('contacts', ['first_name' => 'Changed']);
+    }
+
+    /**
+     * @test
+     */
+    public function a_contact_can_be_deleted()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->signIn();
+        $client = $this->create(Client::class);
+        $contact = $this->create(Contact::class, ['first_name' => 'New']);
+
+        $this->assertCount(1, Contact::all());
+        $response = $this->delete("$client->path/contacts/$contact->id");
+        $this->assertCount(0, Contact::all());
     }
 }

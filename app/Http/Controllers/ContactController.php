@@ -13,12 +13,21 @@ class ContactController extends Controller
         $contact = Contact::make($request->all());
 
         $client->contacts()->save($contact);
+
+        return $client->contacts;
     }
 
     public function update(Request $request, Client $client, Contact $contact)
     {
         $contact->update($request->all());
         $contact->save();
+        return $client->contacts;
+    }
+
+    public function destroy(Client $client, Contact $contact)
+    {
+        $contact->delete();
+        return $client->contacts;
     }
 
     public function updateOrder(Request $request, Client $client)

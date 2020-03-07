@@ -11,7 +11,10 @@
         />
       </svg>
       <div class="text-gray-500">
-        <div>{{contact.first_name}} {{contact.last_name}}</div>
+        <div>
+          {{contact.first_name}} {{contact.last_name}}
+          <span v-if="contact.title">, {{contact.title}}</span>
+        </div>
         <div class="hover:underline">
           <a :href="`mailto:${contact.email}`">{{contact.email}}</a>
         </div>
