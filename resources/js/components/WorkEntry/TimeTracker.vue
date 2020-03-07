@@ -245,6 +245,7 @@ export default {
       this.mode = new Form({
         ...JSON.parse(window.localStorage.getItem("time-entry")).mode
       });
+      this.timerTime = this.entry.start_time;
 
       if ((this.mode = "running"))
         this.stopWatch = setInterval(() => {
