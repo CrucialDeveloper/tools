@@ -131,6 +131,14 @@ export default {
       if (this.mode === "paused") {
         this.unpause();
       }
+
+      window.localStorage.setItem(
+        "time-entry",
+        JSON.stringify({
+          entry: this.entry,
+          mode: this.mode
+        })
+      );
     },
     pause() {
       if (this.mode === "paused") {
@@ -152,6 +160,7 @@ export default {
       this.mode = "stopped";
       this.entry.end_time = Date.now();
       clearInterval(this.stopWatch);
+      window.localStorage.removeItem("time-entry");
     },
     refresh() {
       this.mode = "new";
@@ -225,6 +234,22 @@ export default {
       return this.project.work_type.map(type => {
         return this.titleCase(type[0]) + " @ $" + type[1] + "/hour";
       });
+    }
+  },
+  created() {
+    if (window.localStorage.getItem("time-entry") != null) {
+      this.entry = new Form({
+        ...JSON.parse(window.localStorage.getItem("time-entry")).entry
+      });
+
+      this.mode = new Form({
+        ...JSON.parse(window.localStorage.getItem("time-entry")).mode
+      });
+
+      if ((this.mode = "running"))
+        this.stopWatch = setInterval(() => {
+          this.entry.work_time = Date.now() - this.entry.start_time;
+        }, 10);
     }
   }
 };
