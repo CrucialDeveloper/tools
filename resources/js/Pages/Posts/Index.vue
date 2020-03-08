@@ -10,8 +10,10 @@
         >
           <img src="https://picsum.photos/384/216" alt="placeholder" class="mr-0 rounded md:mr-4" />
           <div class="flex flex-col p-4 my-4">
-            <h3 class="text-xl">{{post.title}}</h3>
-            <p class>{{post.excerpt}}</p>
+            <a :href="post.path" class="text-sm cursor-pointer hover:underline">
+              <h3 class="text-xl">{{post.title}}</h3>
+            </a>
+            <p class v-html="post.excerpt"></p>
             <div class="mt-auto">
               <a
                 :href="post.path"

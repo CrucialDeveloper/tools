@@ -10,7 +10,7 @@
             <div class="hidden md:block">
               <div class="flex items-baseline ml-10">
                 <a
-                  href="#"
+                  href="/blog"
                   class="px-3 py-2 text-sm font-medium text-white bg-blue-500 rounded focus:outline-none focus:text-white"
                 >Blog</a>
                 <a
