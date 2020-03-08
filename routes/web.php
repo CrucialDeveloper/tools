@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommentController;
@@ -30,6 +31,9 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/blog', [PostController::class, 'index'])->name('post.index');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
