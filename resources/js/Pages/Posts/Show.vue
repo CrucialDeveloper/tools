@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto">
     <div class="p-8 text-white bg-gray-900">
-      <h2>{{post.title}}</h2>
+      <h2 class="text-2xl">{{post.title}}</h2>
       <div ref="videoContainer" v-if="post.video">
         <iframe
           style="width:100%;height:100%;"
