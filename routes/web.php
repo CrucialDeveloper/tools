@@ -33,6 +33,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/blog', [PostController::class, 'index'])->name('post.index');
+Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
 
 Route::group(['middleware' => 'auth'], function () {

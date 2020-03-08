@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Posts.Index', [
+        Inertia::setRootView('blog');
+        return Inertia::render('Posts/Index', [
             'posts' => Post::all()
         ]);
     }
@@ -38,7 +39,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -49,7 +49,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return Inertia::render('Posts/Show', [
+            'post' => $post
+        ]);
     }
 
     /**

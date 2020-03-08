@@ -17,5 +17,6 @@ $factory->define(Contact::class, function (Faker $faker) {
         'state' => $faker->stateAbbr,
         'zip' => $faker->postcode,
         'phone_number' => $faker->phoneNumber,
+        'order' => "0"
     ];
 });

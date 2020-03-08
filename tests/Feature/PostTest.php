@@ -11,15 +11,6 @@ class PostTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $attrib = [
-        'title' => 'A New Title',
-        'body' => 'A New Body',
-        'excerpt' => 'A New Excerpt',
-        'image' => 'https://some.site',
-        'video' => 'https://youtube.site',
-        'published_at' => null,
-    ];
-
     /**
      * @test
      */
@@ -48,10 +39,10 @@ class PostTest extends TestCase
         $user = $this->signIn();
         $post = factory(Post::class)->create();
 
-        $response = $this->get('/blog/' . $post->slug);
+        $response = $this->get("/blog/$post->slug");
 
         $this->assertArrayHasKey('post', $response->getOriginalContent()->getData()['page']['props']);
-        $this->assertEqualsCanonicalizing($post, $response->getOriginalContent()->getData()['page']['props']['post']);
+        $this->assertEqualsCanonicalizing($post->id, $response->getOriginalContent()->getData()['page']['props']['post']['id']);
     }
 
     /**
@@ -66,10 +57,10 @@ class PostTest extends TestCase
         $unpublished = factory(Post::class)->create(['published_at' => null]);
         $future = factory(Post::class)->create(['published_at' => Carbon::tomorrow()]);
 
-        $response = $this->get('/blog');
+        $posts = Post::published();
 
-        $response->assertSeeText($published->title);
-        $response->assertDontSeeText($unpublished->title);
-        $response->assertDontSeeText($future->title);
+        $this->assertTrue($posts->contains($published));
+        $this->assertFalse($posts->contains($unpublished));
+        $this->assertFalse($posts->contains($future));
     }
 }

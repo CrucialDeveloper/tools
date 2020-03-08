@@ -21,6 +21,7 @@ class ContactsTest extends TestCase
 
         $this->assertArrayHasKey('first_name', $contact);
         $this->assertArrayHasKey('last_name', $contact);
+        $this->assertArrayHasKey('title', $contact);
         $this->assertArrayHasKey('email', $contact);
         $this->assertArrayHasKey('address', $contact);
         $this->assertArrayHasKey('city', $contact);
