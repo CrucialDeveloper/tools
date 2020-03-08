@@ -24,12 +24,12 @@
         <input
           class="w-full h-full p-2 leading-tight placeholder-gray-600 border-t border-b border-l rounded-l appearance-none focus:outline-none"
           type="text"
-          placeholder="Search Projects ..."
+          :placeholder="placeholder"
           aria-label="search"
           v-model="search"
         />
         <button
-          class="block w-8 p-2 leading-tight bg-gray-200 border-t border-b border-r rounded-r fill-current hover:bg-gray300"
+          class="block w-8 p-2 leading-tight bg-gray-200 border-t border-b border-r rounded-r fill-current hover:bg-gray-300"
           type="button"
           @click="clearSearch"
         >X</button>
@@ -40,13 +40,13 @@
 
     <div ref="paginator" class="flex items-center my-4" v-if="paginator.totalPages>1">
       <button
-        class="p-1 mr-4 bg-gray-500 rounded"
+        class="p-1 mr-4 rounded"
         :disabled="paginator.currentPage===1"
         @click.prevent="paginator.currentPage=1"
       >First</button>
 
       <button
-        class="p-1 mr-4 bg-gray-500 rounded min-w-10"
+        class="p-1 mr-4 rounded min-w-10"
         v-for="page in beforePages"
         :key="page"
         @click.prevent="goToPage(page)"
@@ -58,14 +58,14 @@
       >{{paginator.currentPage}}</button>
 
       <button
-        class="p-1 mr-4 bg-gray-500 rounded min-w-10"
+        class="p-1 mr-4 rounded min-w-10"
         v-for="page in afterPages"
         :key="page"
         @click.prevent="goToPage(page)"
       >{{page}}</button>
 
       <button
-        class="p-1 bg-gray-500 rounded"
+        class="p-1 rounded"
         :disabled="paginator.currentPage===paginator.totalPages"
         @click.prevent="goToPage(paginator.totalPages)"
       >Last</button>
@@ -76,7 +76,8 @@
 <script>
 export default {
   props: {
-    items: Array
+    items: Array,
+    placeholder: String
   },
   data() {
     return {

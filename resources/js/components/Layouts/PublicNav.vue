@@ -11,19 +11,19 @@
               <div class="flex items-baseline ml-10">
                 <a
                   href="#"
-                  class="px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-md focus:outline-none focus:text-white focus:bg-gray-700"
+                  class="px-3 py-2 text-sm font-medium text-white bg-blue-500 rounded focus:outline-none focus:text-white"
                 >Blog</a>
                 <a
                   href="#"
-                  class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                  class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
                 >HTML Cleaner</a>
                 <a
                   href="#"
-                  class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                  class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
                 >Gists</a>
                 <a
                   href="#"
-                  class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                  class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
                 >Image Manipulator</a>
               </div>
             </div>
@@ -57,9 +57,9 @@
                 </div>
                 <div
                   v-show="open"
-                  class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg"
+                  class="absolute right-0 w-48 mt-2 origin-top-right rounded shadow-lg"
                 >
-                  <div class="py-1 bg-white rounded-md shadow-xs">
+                  <div class="py-1 bg-white rounded shadow-xs">
                     <a
                       href="#"
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -80,7 +80,7 @@
           <div class="flex -mr-2 md:hidden">
             <button
               @click="open = !open"
-              class="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
+              class="inline-flex items-center justify-center p-2 text-gray-400 rounded hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
             >
               <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path
@@ -108,19 +108,19 @@
         <div class="px-2 pt-2 pb-3 sm:px-3">
           <a
             href="#"
-            class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md focus:outline-none focus:text-white focus:bg-gray-700"
+            class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded focus:outline-none focus:text-white"
           >Blog</a>
           <a
             href="#"
-            class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+            class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
           >HTML Cleaner</a>
           <a
             href="#"
-            class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+            class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
           >Gists</a>
           <a
             href="#"
-            class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+            class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
           >Image Manipulator</a>
         </div>
         <div class="pt-4 pb-3 border-t border-gray-700">
@@ -140,15 +140,15 @@
           <div class="px-2 mt-3">
             <a
               href="#"
-              class="block px-3 py-2 text-base font-medium text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+              class="block px-3 py-2 text-base font-medium text-gray-400 rounded hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white"
             >Your Profile</a>
             <a
               href="#"
-              class="block px-3 py-2 mt-1 text-base font-medium text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+              class="block px-3 py-2 mt-1 text-base font-medium text-gray-400 rounded hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             >Settings</a>
             <a
               href="#"
-              class="block px-3 py-2 mt-1 text-base font-medium text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+              class="block px-3 py-2 mt-1 text-base font-medium text-gray-400 rounded hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             >Sign out</a>
           </div>
         </div>
