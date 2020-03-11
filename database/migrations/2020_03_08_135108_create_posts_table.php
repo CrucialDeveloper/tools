@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->longText('body');
             $table->longText('excerpt');
+            $table->string('byline');
             $table->string('image')->nullable();
             $table->string('video')->nullable();
             $table->dateTime('published_at')->nullable();

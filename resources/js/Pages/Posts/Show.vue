@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <div class="container py-8 mx-auto">
+    <div class="container p-8 mx-auto bg-white">
       <!-- <div class="flex flex-wrap items-center pt-1 mt-1 mb-4 text-sm">
         <span class="mr-4">
           <strong>Tags:</strong>
@@ -25,7 +25,9 @@
         >{{$tag->name}}</span>
         @endforeach
       </div>-->
-      <div v-html="post.body"></div>
+
+      <span class="text-sm text-gray-300">Posted: {{post.published_at}} by {{post.byline}}</span>
+      <div class="mt-4" v-html="post.body"></div>
     </div>
   </div>
 </template>

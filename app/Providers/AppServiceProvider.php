@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
             },
             'user' => function () {
                 return auth()->user() ? [
-                    'person' => auth()->user()->only(['email', 'first_name', 'last_name']),
+                    'person' => auth()->user()->only(['email', 'first_name', 'last_name', 'permissions']),
                     'initials' => auth()->user()->first_name[0] . auth()->user()->last_name[0]
                 ]
                     : null;

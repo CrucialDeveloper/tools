@@ -108,19 +108,23 @@
         <div class="px-2 pt-2 pb-3 sm:px-3">
           <a
             href="#"
-            class="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded focus:outline-none focus:text-white"
+            class="block px-3 py-2 text-base font-medium text-white rounded focus:outline-none focus:text-white"
+            :class="isUrl('blog')?'bg-blue-500':''"
           >Blog</a>
           <a
             href="#"
             class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
+            :class="isUrl('html-cleaner')?'bg-blue-500':''"
           >HTML Cleaner</a>
           <a
             href="#"
             class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
+            :class="isUrl('gists')?'bg-blue-500':''"
           >Gists</a>
           <a
             href="#"
             class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
+            :class="isUrl('image-manipulator')?'bg-blue-500':''"
           >Image Manipulator</a>
         </div>
         <div class="pt-4 pb-3 border-t border-gray-700">
@@ -163,6 +167,11 @@ export default {
     return {
       open: false
     };
+  },
+  methods: {
+    isUrl(str) {
+      return window.location.href.includes(str);
+    }
   }
 };
 </script>

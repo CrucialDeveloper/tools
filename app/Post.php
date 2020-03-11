@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'excerpt', 'body', 'image', 'video', 'published_at', 'slug'];
+    protected $fillable = ['title', 'excerpt', 'body', 'byline', 'image', 'video', 'published_at', 'slug'];
 
     protected $appends = ['path'];
 
     protected $dates = ['published_at'];
+
+    protected $casts = [
+        'published_at' => 'datetime:l, F jS, Y'
+    ];
+
 
     public function editPath()
     {

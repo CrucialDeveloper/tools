@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Post;
 use App\Client;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -38,6 +39,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['permissions'];
+
+    public function getPermissionsAttribute()
+    {
+
+        return [
+            'posts' => [
+                'create' => $this->can('create', Post::class),
+                'update' => $this->can('update', Post::class),
+                'delete' => $this->can('delete', Post::class),
+            ],
+        ];
+    }
+
+
 
     public function clients()
     {
@@ -61,6 +77,6 @@ class User extends Authenticatable
 
     public function timekeeping()
     {
-        return $this->hasMany(TimeKeeping::class);
+        return $this->hasMany(WorkEntry::class);
     }
 }
