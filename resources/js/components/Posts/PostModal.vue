@@ -5,7 +5,7 @@
     >{{(editPost === undefined || Object.keys(editPost).length ===0)? 'New Post' : 'Edit Post'}}</h3>
 
     <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="title">Title</label>
+      <label class="w-48 mr-2 font-bold text-right" for="title">Title</label>
       <input
         type="text"
         name="title"
@@ -16,15 +16,15 @@
       />
     </div>
     <div class="flex items-start mb-4">
-      <label class="w-48 mr-2 text-right" for="address">Excerpt</label>
+      <label class="w-48 mr-2 font-bold text-right" for="address">Excerpt</label>
       <content-editor class="w-full" v-model="post.excerpt" height="175" :default="post.excerpt"></content-editor>
     </div>
     <div class="flex items-start mb-4">
-      <label class="w-48 mr-2 text-right" for="address">Body</label>
+      <label class="w-48 mr-2 font-bold text-right" for="address">Body</label>
       <content-editor class="w-full" v-model="post.body" height="175" :default="post.body"></content-editor>
     </div>
     <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="byline">Byline</label>
+      <label class="w-48 mr-2 font-bold text-right" for="byline">Byline</label>
       <input
         type="text"
         name="byline"
@@ -35,7 +35,7 @@
       />
     </div>
     <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="state">Image Url</label>
+      <label class="w-48 mr-2 font-bold text-right" for="state">Image Url</label>
       <input
         type="text"
         name="image"
@@ -46,7 +46,7 @@
       />
     </div>
     <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="zip">Video Url</label>
+      <label class="w-48 mr-2 font-bold text-right" for="zip">Video Url</label>
       <input
         type="text"
         name="video"
@@ -57,7 +57,7 @@
       />
     </div>
     <div class="flex items-center mb-4">
-      <label class="w-48 mr-2 text-right" for="country">Published At</label>
+      <label class="w-48 mr-2 font-bold text-right" for="country">Published At</label>
       <div class="w-full">
         <date-picker
           class="p-2"
@@ -120,11 +120,11 @@ export default {
     },
     savePost() {
       this.post
-        .post("/posts", this.post)
+        .post("/blog", this.post)
         .then(response => {
-          this.post.reset();
-          this.$modal.hide(this.$parent.name);
-          this.$inertia.visit(response);
+          // this.post.reset();
+          // this.$modal.hide(this.$parent.name);
+          // this.$inertia.visit(response);
         })
         .catch(errors => {
           console.log(errors);

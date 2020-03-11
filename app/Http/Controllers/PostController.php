@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -17,18 +18,8 @@ class PostController extends Controller
     {
         Inertia::setRootView('blog');
         return Inertia::render('Posts/Index', [
-            'posts' => Post::all()
+            'posts' => Post::latest()->get()
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -39,6 +30,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize(Post::class, 'create');
+
+        $this->validateRequest($request);
+
+        $post = Post::make($request->all());
+        $post->slug = Str::slug($post->title);
+        $post->save();
+
+        return '/blog';
     }
 
     /**
@@ -52,17 +52,6 @@ class PostController extends Controller
         return Inertia::render('Posts/Show', [
             'post' => $post
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
-    {
-        //
     }
 
     /**
@@ -86,5 +75,18 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    public function validateRequest($request)
+    {
+        $request->validate([
+            'title' => 'sometimes|required',
+            'excerpt' => 'sometimes|required',
+            'body' => 'sometimes|required',
+            'byline' => 'sometimes|required',
+            'image' => 'sometimes|required',
+            'video' => 'sometimes|required',
+            'publishe_at' => 'sometimes|required',
+        ]);
     }
 }

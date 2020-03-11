@@ -4,8 +4,9 @@ namespace Tests\Feature;
 
 use App\Post;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Illuminate\Support\Str;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PostTest extends TestCase
 {
@@ -62,5 +63,30 @@ class PostTest extends TestCase
         $this->assertTrue($posts->contains($published));
         $this->assertFalse($posts->contains($unpublished));
         $this->assertFalse($posts->contains($future));
+    }
+
+    /**
+     * @test
+     */
+    public function a_post_can_be_created_from_a_post_request()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = $this->signIn(['email' => 'john@crucialdeveloper.com']);
+
+        $post = $this->make(Post::class);
+
+        $response = $this->post('/blog', $post->toArray());
+
+        $this->assertCount(1, Post::all());
+        $this->assertDatabaseHas('posts', [
+            'title' => $post->title,
+            'excerpt' => $post->excerpt,
+            'body' => $post->body,
+            'byline' => $post->byline,
+            'image' => $post->image,
+            'video' => $post->video,
+            'slug' => Str::slug($post->title)
+        ]);
     }
 }
