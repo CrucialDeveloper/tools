@@ -89,4 +89,22 @@ class PostTest extends TestCase
             'slug' => Str::slug($post->title)
         ]);
     }
+
+    /**
+     * @test
+     */
+    public function a_post_can_be_updated()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = $this->signIn(['email' => 'john@crucialdeveloper.com']);
+
+        $post = $this->create(Post::class);
+
+        $post->title = 'Updated Title';
+
+        $this->patch($post->path, $post->toArray());
+
+        $this->assertDatabaseHas('posts', ['title' => 'Updated Title']);
+    }
 }

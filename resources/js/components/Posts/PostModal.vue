@@ -1,8 +1,6 @@
 <template>
   <div class="flex flex-col h-full p-4 overflow-y-scroll">
-    <h3
-      class="mb-4 text-2xl"
-    >{{(editPost === undefined || Object.keys(editPost).length ===0)? 'New Post' : 'Edit Post'}}</h3>
+    <h3 class="mb-4 text-2xl">{{post.id>0 ? 'Edit Post' : "New Post"}}</h3>
 
     <div class="flex items-center mb-4">
       <label class="w-48 mr-2 font-bold text-right" for="title">Title</label>
@@ -76,13 +74,13 @@
         <button
           class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
           @click="savePost"
-          v-if="editPost === undefined || Object.keys(editPost).length===0"
-        >Save Post</button>
+          v-if="! post.id"
+        >Save New Post</button>
         <button
           class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600"
           @click="updatePost"
           v-else
-        >Save Post</button>
+        >Save Edited Post</button>
       </div>
     </div>
   </div>
@@ -99,7 +97,6 @@ export default {
     ContentEditor,
     DatePicker
   },
-  props: ["editPost"],
   data() {
     return {
       post: new Form({
@@ -122,9 +119,9 @@ export default {
       this.post
         .post("/blog", this.post)
         .then(response => {
-          // this.post.reset();
-          // this.$modal.hide(this.$parent.name);
-          // this.$inertia.visit(response);
+          this.post.reset();
+          this.$modal.hide(this.$parent.name);
+          this.$inertia.visit(response);
         })
         .catch(errors => {
           console.log(errors);
@@ -151,8 +148,8 @@ export default {
     }
   },
   created() {
-    if (this.editPost) {
-      this.post = new Form({ ...this.editPost });
+    if (this.$attrs.post != null) {
+      this.post = new Form({ ...this.$attrs.post });
     }
   }
 };

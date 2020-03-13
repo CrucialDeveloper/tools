@@ -35,6 +35,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/blog', [PostController::class, 'index'])->name('post.index');
 Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('post.show');
 Route::post('/blog', [PostController::class, 'store'])->name('post.create');
+Route::patch("/blog/{post:slug}", [PostController::class, 'update'])->name('post.update');
 
 
 Route::group(['middleware' => 'auth'], function () {

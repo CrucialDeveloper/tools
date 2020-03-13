@@ -3,8 +3,8 @@
     <div class="flex items-center justify-between">
       <h1 class="mr-4 text-5xl">My Writings</h1>
       <button
-        class="flex items-center justify-center w-10 h-10 text-2xl leading-none text-white bg-blue-500 rounded"
-        @click="openCreatePostModal"
+        class="flex items-center justify-center w-10 h-10 text-2xl leading-none text-white bg-blue-500 rounded hover:bg-blue-600"
+        @click="openPostModal"
         v-if="$page.user && $page.user.person.permissions.posts.create"
       >
         <span>+</span>
@@ -20,16 +20,28 @@
           >
             <img :src="post.image" alt="placeholder" class="mr-0 rounded md:mr-4" />
             <div class="flex flex-col flex-1 p-4">
-              <a :href="post.path" class="text-sm cursor-pointer hover:underline">
-                <h3 class="text-2xl">{{post.title}}</h3>
-              </a>
+              <div class="flex items-center justify-between">
+                <inertia-link :href="post.path" class="mr-4 text-sm cursor-pointer hover:underline">
+                  <h3 class="text-2xl">{{post.title}}</h3>
+                </inertia-link>
+                <button
+                  class="w-8 h-8 p-1 text-gray-200 border rounded hover:bg-gray-300"
+                  @click="openPostModal(post)"
+                >
+                  <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                    <path
+                      d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"
+                    />
+                  </svg>
+                </button>
+              </div>
               <span class="text-sm text-gray-300">Posted: {{post.published_at}} by {{post.byline}}</span>
               <p class="mt-4" v-html="post.excerpt"></p>
               <div class="mt-auto">
-                <a
+                <inertia-link
                   :href="post.path"
                   class="text-sm text-blue-500 cursor-pointer hover:underline"
-                >Read More ...</a>
+                >Read More ...</inertia-link>
               </div>
             </div>
           </div>
@@ -49,10 +61,14 @@ export default {
   components: { PublicLayout, ContentPaginator, PostModal },
   props: ["posts"],
   methods: {
-    openCreatePostModal() {
+    openPostModal(post) {
+      if (post.id === undefined) {
+        post = null;
+      }
+
       this.$modal.show(
         PostModal,
-        {},
+        { post },
         {
           height: "85%",
           width: "1000px",

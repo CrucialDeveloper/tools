@@ -9,22 +9,22 @@
             </div>
             <div class="hidden md:block">
               <div class="flex items-baseline ml-10">
-                <a
+                <inertia-link
                   href="/blog"
                   class="px-3 py-2 text-sm font-medium text-white bg-blue-500 rounded focus:outline-none focus:text-white"
-                >Blog</a>
-                <a
+                >Blog</inertia-link>
+                <inertia-link
                   href="#"
                   class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-                >HTML Cleaner</a>
-                <a
+                >HTML Cleaner</inertia-link>
+                <inertia-link
                   href="#"
                   class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-                >Gists</a>
-                <a
+                >Gists</inertia-link>
+                <inertia-link
                   href="#"
                   class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-                >Image Manipulator</a>
+                >Image Manipulator</inertia-link>
               </div>
             </div>
           </div>
