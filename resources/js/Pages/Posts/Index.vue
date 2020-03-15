@@ -40,7 +40,9 @@
                   </svg>
                 </button>
               </div>
-              <span class="text-sm text-gray-300">Posted: {{post.published_at}} by {{post.byline}}</span>
+              <span
+                class="text-sm text-gray-300"
+              >Posted: {{post.publishedAtString}} by {{post.byline}}</span>
               <p class="mt-4" v-html="post.excerpt"></p>
               <div class="mt-auto">
                 <inertia-link

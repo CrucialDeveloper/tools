@@ -61,7 +61,9 @@
           class="p-2"
           :class="post.errors.errors.start_date ? 'border-red border rounded':'border rounded w-full'"
           placeholder="Select Date Post Should Be Public ..."
-          v-model="post.start_date"
+          v-model="post.published_at"
+          value="post.published_at"
+          :enableTime="true"
         ></date-picker>
       </div>
     </div>

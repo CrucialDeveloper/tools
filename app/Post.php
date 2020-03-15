@@ -10,13 +10,13 @@ class Post extends Model
 {
     protected $fillable = ['title', 'excerpt', 'body', 'byline', 'image', 'video', 'published_at', 'slug'];
 
-    protected $appends = ['path', 'imagePath'];
+    protected $appends = ['path', 'imagePath', 'publishedAtString'];
 
     protected $dates = ['published_at'];
 
-    protected $casts = [
-        'published_at' => 'datetime:l, F jS, Y'
-    ];
+    // protected $casts = [
+    //     'published_at' => 'datetime:l, F jS, Y'
+    // ];
 
 
     public function editPath()
@@ -32,6 +32,11 @@ class Post extends Model
     public function getImagePathAttribute()
     {
         return Storage::disk('s3')->url($this->image);
+    }
+
+    public function getPublishedAtStringAttribute()
+    {
+        return Carbon::parse($this->published_at)->format('l, F jS, Y');
     }
 
     public function scopePublished()
