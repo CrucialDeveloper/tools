@@ -31,6 +31,7 @@
                 <button
                   class="w-8 h-8 p-1 text-gray-200 border rounded hover:bg-gray-300"
                   @click="openPostModal(post)"
+                  v-if="$page.user && $page.user.person.permissions.posts.update"
                 >
                   <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
                     <path
