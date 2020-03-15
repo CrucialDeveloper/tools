@@ -14,11 +14,15 @@
       <content-paginator :items="posts" placeholder="Search Posts ..." v-slot="{filteredItems}">
         <div class="flex flex-col items-center">
           <div
-            class="flex flex-col w-2/3 mt-8 bg-white rounded shadow-md md:flex-row md:w-full min-w-88"
+            class="flex flex-col mt-8 bg-white rounded shadow-md md:flex-row md:w-full"
             v-for="post in filteredItems"
             :key="post.id"
           >
-            <img :src="post.image" alt="placeholder" class="mr-0 rounded md:mr-4" />
+            <img
+              :src="post.imagePath"
+              alt="placeholder"
+              class="w-full mr-0 rounded md:mr-4 md:w-128"
+            />
             <div class="flex flex-col flex-1 p-4">
               <div class="flex items-center justify-between">
                 <inertia-link :href="post.path" class="mr-4 text-sm cursor-pointer hover:underline">
