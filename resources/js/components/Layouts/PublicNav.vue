@@ -43,7 +43,7 @@
                 </svg>
               </button>
               <div class="relative ml-3">
-                <div>
+                <!-- <div>
                   <button
                     @click="open = !open"
                     class="flex items-center max-w-xs text-sm text-white rounded-full focus:outline-none focus:shadow-solid"
@@ -54,7 +54,7 @@
                       alt
                     />
                   </button>
-                </div>
+                </div>-->
                 <div
                   v-show="open"
                   class="absolute right-0 w-48 mt-2 origin-top-right rounded shadow-lg"
@@ -129,7 +129,7 @@
         </div>
         <div class="pt-4 pb-3 border-t border-gray-700">
           <div class="flex items-center px-5">
-            <div class="flex-shrink-0">
+            <!-- <div class="flex-shrink-0">
               <img
                 class="w-10 h-10 rounded-full"
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -139,7 +139,7 @@
             <div class="ml-3">
               <div class="text-base font-medium leading-none text-white">Tom Cook</div>
               <div class="mt-1 text-sm font-medium leading-none text-gray-400">tom@example.com</div>
-            </div>
+            </div>-->
           </div>
           <div class="px-2 mt-3">
             <a
