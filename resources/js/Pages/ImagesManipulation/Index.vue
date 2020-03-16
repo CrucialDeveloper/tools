@@ -109,7 +109,7 @@
             @click="setCanvasWidth"
           >Match Width</button>
         </div>
-        <div class="p-2 bg-white border rounded shadow" v-if="selectedPreset==='Manual'">
+        <div class="p-2 bg-white border rounded shadow">
           <span class="mr-2">Crop Box Size:</span>
           <span>{{cropboxWidth}}</span>x
           <span>{{cropboxHeight}}</span>
