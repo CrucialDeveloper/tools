@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="w-screen h-screen bg-gray-200">
+  <div id="app" class="w-screen h-screen bg-gray-100">
     <div class="flex items-center p-4">
       <div class="mr-4 bg-white border rounded shadow">
         <input
