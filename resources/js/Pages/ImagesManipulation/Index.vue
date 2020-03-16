@@ -293,7 +293,12 @@ export default {
         window.cropper = new Cropper(vm.$refs.image, {
           viewMode: 1,
           // cropBoxResizable: false,
-          autoCrop: true
+          autoCrop: true,
+          wheelZoomRatio: 0.01,
+          // modal: false,
+          highlight: false,
+          background: false,
+          autoCropArea: 0.2
         });
       }, 200);
     }

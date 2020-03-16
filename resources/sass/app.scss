@@ -13,6 +13,9 @@
 
 @import "~cropperjs/dist/cropper.css";
 
+.cropper-modal {
+  opacity: .2;
+}
 
 .draggable-source--is-dragging {
   opacity: 0.5;
