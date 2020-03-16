@@ -26,7 +26,7 @@
         @endforeach
       </div>-->
 
-      <span class="text-sm text-gray-300">Posted: {{post.published_at}} by {{post.byline}}</span>
+      <span class="text-sm text-gray-300">Posted: {{post.publishedAtString}} by {{post.byline}}</span>
       <div class="mt-4" v-html="post.body"></div>
     </div>
   </div>

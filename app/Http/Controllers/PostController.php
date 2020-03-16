@@ -16,9 +16,11 @@ class PostController extends Controller
      */
     public function index()
     {
+
+
         $posts = (auth()->user() && auth()->user()->can('create', Post::class)) ? Post::latest()->get() : Post::published();
 
-        Inertia::setRootView('blog');
+        Inertia::setRootView('public');
         return Inertia::render('Posts/Index', [
             'posts' => $posts
         ]);

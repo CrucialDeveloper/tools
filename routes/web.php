@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TaskStatusController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClientProjectController;
+use App\Http\Controllers\ImageManipulationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::get('/blog', [PostController::class, 'index'])->name('post.index');
 Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('post.show');
 Route::post('/blog', [PostController::class, 'store'])->name('post.create');
 Route::patch("/blog/{post:slug}", [PostController::class, 'update'])->name('post.update');
+
+Route::get('image-manipulation', [ImageManipulationController::class, 'index']);
 
 
 Route::group(['middleware' => 'auth'], function () {
