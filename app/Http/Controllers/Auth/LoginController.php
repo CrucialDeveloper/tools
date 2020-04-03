@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Post;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -49,5 +50,16 @@ class LoginController extends Controller
         return Inertia::render('Clients/Index', [
             'clients' => auth()->user()->clients()->latest()->get()
         ]);
+    }
+
+    protected function loggedOut(\Illuminate\Http\Request $request)
+    {
+        // $posts = (auth()->user() && auth()->user()->can('create', Post::class)) ? Post::latest()->get() : Post::published();
+
+        // return Inertia::render('Posts/Index', [
+        //     'posts' => $posts
+        // ]);
+
+        return redirect('/blog');
     }
 }

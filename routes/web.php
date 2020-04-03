@@ -32,7 +32,10 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return redirect()->route('post.index');
+});
 
 Route::get('/blog', [PostController::class, 'index'])->name('post.index');
 Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('post.show');
