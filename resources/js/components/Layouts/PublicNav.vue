@@ -14,7 +14,7 @@
                   class="px-3 py-2 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
                 >Blog</inertia-link>
                 <inertia-link
-                  href="#"
+                  href="/html-cleaner"
                   class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
                 >HTML Cleaner</inertia-link>
                 <inertia-link

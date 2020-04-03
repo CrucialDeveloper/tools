@@ -11,6 +11,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\WorkEntryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TaskStatusController;
+use App\Http\Controllers\HtmlCleanerController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ClientProjectController;
 use App\Http\Controllers\ImageManipulationController;
@@ -39,6 +40,8 @@ Route::post('/blog', [PostController::class, 'store'])->name('post.create');
 Route::patch("/blog/{post:slug}", [PostController::class, 'update'])->name('post.update');
 
 Route::get('image-manipulation', [ImageManipulationController::class, 'index']);
+Route::get('html-cleaner', [HtmlCleanerController::class, 'index']);
+Route::post('html-cleaner', [HtmlCleanerController::class, 'store']);
 
 
 Route::group(['middleware' => 'auth'], function () {
