@@ -22,13 +22,13 @@
                   class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
                 >Gists</inertia-link>
                 <inertia-link
-                  href="/image-manipulation"
+                  href="/image-manipulator"
                   class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
                 >Image Manipulation</inertia-link>
               </div>
             </div>
           </div>
-          <div class="hidden md:block">
+          <!-- <div class="hidden md:block">
             <div class="flex items-center ml-4 md:ml-6">
               <button
                 class="p-1 text-gray-400 border-2 border-transparent rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700"
@@ -43,7 +43,7 @@
                 </svg>
               </button>
               <div class="relative ml-3">
-                <!-- <div>
+                <div>
                   <button
                     @click="open = !open"
                     class="flex items-center max-w-xs text-sm text-white rounded-full focus:outline-none focus:shadow-solid"
@@ -54,7 +54,7 @@
                       alt
                     />
                   </button>
-                </div>-->
+                </div>
                 <div
                   v-show="open"
                   class="absolute right-0 w-48 mt-2 origin-top-right rounded shadow-lg"
@@ -76,7 +76,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>-->
           <div class="flex -mr-2 md:hidden">
             <button
               @click="open = !open"
@@ -107,29 +107,29 @@
       <div :class="{'block': open, 'hidden': !open}" class="md:hidden">
         <div class="px-2 pt-2 pb-3 sm:px-3">
           <a
-            href="#"
-            class="block px-3 py-2 text-base font-medium text-white rounded focus:outline-none focus:text-white"
-            :class="isUrl('blog')?'bg-blue-500':''"
+            href="/blog"
+            class="block px-3 py-2 mt-1 text-base font-medium rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
+            :class="isUrl('blog')?'text-white':'text-gray-300'"
           >Blog</a>
           <a
-            href="#"
-            class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-            :class="isUrl('html-cleaner')?'bg-blue-500':''"
+            href="/html-cleaner"
+            class="block px-3 py-2 mt-1 text-base font-medium rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
+            :class="isUrl('html-cleaner')?'text-white':'text-gray-300'"
           >HTML Cleaner</a>
           <a
             href="#"
-            class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-            :class="isUrl('gists')?'bg-blue-500':''"
+            class="block px-3 py-2 mt-1 text-base font-medium rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
+            :class="isUrl('gists')?'text-white':'text-gray-300'"
           >Gists</a>
           <a
-            href="#"
-            class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-            :class="isUrl('image-manipulator')?'bg-blue-500':''"
+            href="image-manipulator"
+            class="block px-3 py-2 mt-1 text-base font-medium rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
+            :class="isUrl('image-manipulator')?'text-white':'text-gray-300'"
           >Image Manipulator</a>
         </div>
-        <div class="pt-4 pb-3 border-t border-gray-700">
+        <!-- <div class="pt-4 pb-3 border-t border-gray-700">
           <div class="flex items-center px-5">
-            <!-- <div class="flex-shrink-0">
+            <div class="flex-shrink-0">
               <img
                 class="w-10 h-10 rounded-full"
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -139,7 +139,7 @@
             <div class="ml-3">
               <div class="text-base font-medium leading-none text-white">Tom Cook</div>
               <div class="mt-1 text-sm font-medium leading-none text-gray-400">tom@example.com</div>
-            </div>-->
+            </div>
           </div>
           <div class="px-2 mt-3">
             <a
@@ -155,7 +155,7 @@
               class="block px-3 py-2 mt-1 text-base font-medium text-gray-400 rounded hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             >Sign out</a>
           </div>
-        </div>
+        </div>-->
       </div>
     </nav>
   </div>

@@ -39,7 +39,7 @@ Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('post.sho
 Route::post('/blog', [PostController::class, 'store'])->name('post.create');
 Route::patch("/blog/{post:slug}", [PostController::class, 'update'])->name('post.update');
 
-Route::get('image-manipulation', [ImageManipulationController::class, 'index']);
+Route::get('image-manipulator', [ImageManipulationController::class, 'index']);
 Route::get('html-cleaner', [HtmlCleanerController::class, 'index']);
 Route::post('html-cleaner', [HtmlCleanerController::class, 'store']);
 
