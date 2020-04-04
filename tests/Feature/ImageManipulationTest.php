@@ -17,7 +17,7 @@ class ImageManipulationTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->get('/image-manipulation');
+        $response = $this->get('/image-manipulator');
 
         $response->assertStatus(200);
     }

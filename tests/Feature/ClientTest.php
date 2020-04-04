@@ -98,7 +98,7 @@ class ClientTest extends TestCase
         $response = $this->post('/clients', $client);
 
         $response->assertStatus(302);
-        $response->assertRedirect('/');
+        $response->assertRedirect('/blog');
     }
 
     /**
