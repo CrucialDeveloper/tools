@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\AemGroupController;
 use App\Http\Controllers\WorkEntryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\TaskStatusController;
@@ -45,6 +46,9 @@ Route::patch("/blog/{post:slug}", [PostController::class, 'update'])->name('post
 Route::get('image-manipulator', [ImageManipulationController::class, 'index']);
 Route::get('html-cleaner', [HtmlCleanerController::class, 'index']);
 Route::post('html-cleaner', [HtmlCleanerController::class, 'store']);
+
+Route::get('/aem-groups', [AemGroupController::class, 'index']);
+Route::post('/aem-groups', [AemGroupController::class, 'create']);
 
 
 Route::group(['middleware' => 'auth'], function () {
