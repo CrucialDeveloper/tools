@@ -86,22 +86,56 @@
     </div>
     <div class="p-4 mt-8 bg-white rounded shadow" v-if="content">
       <h2 class="text-2xl">Content Groups</h2>
-      <table class="table-auto">
-        <thead>
-          <tr>
-            <th class="px-4 py-2">Author Group Name</th>
-            <th class="px-4 py-2">Group ID</th>
-            <th class="px-4 py-2">Member Of</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="result in content" class="border-t rounded hover:bg-gray-100" :key="result[0]">
-            <td class="px-4 py-2">{{result[0]}}</td>
-            <td class="px-4 py-2">{{result[1]}}</td>
-            <!-- <td class="px-4 py-2">{{result[0]}}</td> -->
-          </tr>
-        </tbody>
-      </table>
+      <div class="mt-4">
+        <div class="w-full bg-gray-100">
+          <h3 class="font-bold text-center">Business Unit Level</h3>
+        </div>
+        <table class="table-auto">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Author Group Name</th>
+              <th class="px-4 py-2">Group ID</th>
+              <th class="px-4 py-2">Member Of</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="border-t rounded hover:bg-gray-100"
+              v-for="result in content.bu"
+              :key="result[0]"
+            >
+              <td class="px-4 py-2">{{result[0]}}</td>
+              <td class="px-4 py-2">{{result[1]}}</td>
+              <!-- <td class="px-4 py-2">{{result[0]}}</td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-4" v-if="content.teams.length>0">
+        <div class="w-full bg-gray-100">
+          <h3 class="font-bold text-center">Team Level</h3>
+        </div>
+        <table class="table-auto">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Author Group Name</th>
+              <th class="px-4 py-2">Group ID</th>
+              <th class="px-4 py-2">Member Of</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="border-t rounded hover:bg-gray-100"
+              v-for="result in content.teams"
+              :key="result[0]"
+            >
+              <td class="px-4 py-2">{{result[0]}}</td>
+              <td class="px-4 py-2">{{result[1]}}</td>
+              <!-- <td class="px-4 py-2">{{result[0]}}</td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -114,14 +148,14 @@ export default {
   data() {
     return {
       info: new Form({
-        type: "",
-        site_name: "",
-        bu_long: "",
-        bu_short: "",
+        type: "author",
+        site_name: "pan",
+        bu_long: "Spectrum Reach",
+        bu_short: "reach",
         teams: []
       }),
       newTeam: "",
-      business_unit: "",
+      business_unit: ["Spectrum Reach", "reach"],
       functional: null,
       content: null,
       business_units: [
@@ -150,7 +184,7 @@ export default {
   methods: {
     addTeam() {
       if (this.newTeam !== "" && !this.info.teams.includes(this.newTeam)) {
-        this.info.teams.push(this.newTeam.toLowerCase());
+        this.info.teams.push(this.newTeam);
         this.newTeam = "";
       }
     },
