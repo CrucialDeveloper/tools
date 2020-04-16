@@ -17,11 +17,11 @@ class AemGroupController extends Controller
     public function create(Request $request)
     {
         $content = $this->generateContentGroups($request);
-        $functional = $this->generateAuthorGroups($request);
+        $functional = $this->generateFunctionalGroups($request);
         return ['functional' => $functional, 'content' => $content];
     }
 
-    public function generateAuthorGroups($request)
+    public function generateFunctionalGroups($request)
     {
         $this->validateRequest($request);
 
@@ -30,9 +30,9 @@ class AemGroupController extends Controller
 
         foreach ($functionalRoles as $role) {
             $group = [
-                "CMS-" . Str::title($request->site_name) .  "-Function-" . $request['bu_long'] . " " . $role,
-                "cms-" . $request->site_name . "-function-" . Str::of($role)->slug()->lower() . "-" . Str::of($request['bu_short'])->slug()->lower(),
-                // "CMS-" . $request->site_name . "-Function-" . $request['business_unit'] . " " . $role
+                "CMS-" . Str::title($request->site_name) . "-Function-" . $request['bu_long'] . " " . $role,
+                "cms-" . $request->site_name . "-function-" . Str::of($role)->studly()->lower() . "-" . Str::of($request['bu_short'])->studly()->lower(),
+                "cms-global-function-" . Str::of($role)->studly()->lower() . "-generic"
             ];
             $groups[] = $group;
         }
@@ -46,21 +46,20 @@ class AemGroupController extends Controller
         $groups = ['bu' => [], 'teams' => []];
         $contentPermissions = ['Read', 'Write'];
 
-        $name = "CMS-" . Str::title($request->site_name) .  "-Content-" . $request['bu_long'];
+        $name = "CMS-" . Str::title($request->site_name) . "-Content-" . $request['bu_long'];
         $id = "cms-" . $request->site_name . "-content-" . Str::of($request['bu_short'])->slug()->lower();
 
         foreach ($contentPermissions as $permission) {
             $group = [
-                $name  . "-" . $permission,
+                $name . "-" . $permission,
                 $id . "-" . Str::of($permission)->studly()->lower(),
-                // "CMS-" . $request->site_name . "-Function-" . $request['business_unit'] . " " . $permission
+                $permission === 'Read' ? 'cms-pan-content-generic-read' : $id . '-read'
             ];
             $groups['bu'][] = $group;
         }
 
         if (count($request->teams) > 0) {
-            $teams = $this->generateTeamGroups($request, $name, $id);
-            $groups['teams'] = $teams;
+            $groups['teams'] = $this->generateTeamGroups($request, $name, $id);
         }
 
         return $groups;
@@ -76,6 +75,7 @@ class AemGroupController extends Controller
                 $group = [
                     $name . " " . Str::of($team) . "-" . Str::of($permission)->title(),
                     $id . "-" . Str::of($team)->slug()->lower()->replace('&', '_') . "-" . Str::of($permission)->slug()->lower(),
+                    $permission === 'Read' ? $id . '-read' : $id . '-' . $team . '-read'
                 ];
                 $groups[] = $group;
             }
