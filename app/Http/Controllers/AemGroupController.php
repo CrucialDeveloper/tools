@@ -31,7 +31,7 @@ class AemGroupController extends Controller
         foreach ($functionalRoles as $role) {
             $group = [
                 "CMS-" . Str::title($request->site_name) . "-Function-" . $request['bu_long'] . " " . $role,
-                "cms-" . $request->site_name . "-function-" . Str::of($role)->studly()->lower() . "-" . Str::of($request['bu_short'])->studly()->lower(),
+                "cms-" . Str::lower($request->site_name) . "-function-" . Str::of($role)->studly()->lower() . "-" . Str::of($request['bu_short'])->studly()->lower(),
                 "cms-global-function-" . Str::of($role)->studly()->lower() . "-generic"
             ];
             $groups[] = $group;
@@ -47,7 +47,7 @@ class AemGroupController extends Controller
         $contentPermissions = ['Read', 'Write'];
 
         $name = "CMS-" . Str::title($request->site_name) . "-Content-" . $request['bu_long'];
-        $id = "cms-" . $request->site_name . "-content-" . Str::of($request['bu_short'])->slug()->lower();
+        $id = "cms-" . Str::lower($request->site_name) . "-content-" . Str::of($request['bu_short'])->slug()->lower();
 
         foreach ($contentPermissions as $permission) {
             $group = [

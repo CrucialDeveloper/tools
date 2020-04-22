@@ -194,6 +194,7 @@
                 this.info.teams.splice(this.info.teams.indexOf(team.toLowerCase()), 1);
             },
             generateNames() {
+                this.info.errors.errors = {}
                 this.info.bu_long = this.business_unit[0];
                 this.info.bu_short = this.business_unit[1];
 
