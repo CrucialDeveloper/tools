@@ -75,12 +75,17 @@
                 <tbody>
                 <tr
                     v-for="result in functional"
-                    class="border-t rounded hover:bg-gray-200"
+                    class="border-t rounded hover:bg-gray-100"
                     :key="result[0]"
                 >
                     <td class="px-4 py-2">{{result[0]}}</td>
                     <td class="px-4 py-2">{{result[1]}}</td>
-                    <td class="px-4 py-2">{{result[2]}}</td>
+                    <td class="px-4 py-2 underline">
+                        <a :href="result[3]" target="_blank">
+                            {{result[2]}}
+                        </a>
+                    </td>
+
                 </tr>
                 </tbody>
             </table>
@@ -101,7 +106,7 @@
                     </thead>
                     <tbody>
                     <tr
-                        class="border-t rounded hover:bg-gray-200"
+                        class="border-t rounded hover:bg-gray-100"
                         v-for="result in content.bu"
                         :key="result[0]"
                     >
@@ -126,7 +131,7 @@
                     </thead>
                     <tbody>
                     <tr
-                        class="border-t rounded hover:bg-gray-200"
+                        class="border-t rounded hover:bg-gray-100"
                         v-for="result in content.teams"
                         :key="result[0]"
                     >

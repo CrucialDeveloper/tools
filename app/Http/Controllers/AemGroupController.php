@@ -25,14 +25,24 @@ class AemGroupController extends Controller
     {
         $this->validateRequest($request);
 
+        $parent = [
+            'contentadmin' => 'https://author.panorama.charter.com/libs/granite/security/content/v2/groupeditor.html/home/groups/F/F1LHwuHU8FN9_sSQz7_J',
+            'powereditor' => 'https://author.panorama.charter.com/libs/granite/security/content/v2/groupeditor.html/home/groups/T/T8qk-4tZ_9nS7oJRpC_k',
+            'advancedauthor' => 'https://author.panorama.charter.com/libs/granite/security/content/v2/groupeditor.html/home/groups/I/If-4dFhBc6M_kY1kjq_b',
+            'basicauthor' => 'https://author.panorama.charter.com/libs/granite/security/content/v2/groupeditor.html/home/groups/h/hE2m-f7jAl-o7w6y_vDr',
+            'approver' => 'https://author.panorama.charter.com/libs/granite/security/content/v2/groupeditor.html/home/groups/R/R0elnsL_2Hn-q9FjCpuT',
+            'reviewer' => 'https://author.panorama.charter.com/libs/granite/security/content/v2/groupeditor.html/home/groups/R/R0elnsL_2Hn-q9FjCpuT',
+        ];
         $groups = [];
         $functionalRoles = ['Content Admin', 'Power Editor', 'Advanced Author', 'Basic Author', 'Approver', 'Reviewer'];
 
         foreach ($functionalRoles as $role) {
+            $roleId = Str::of($role)->studly()->lower();
             $group = [
                 "CMS-" . Str::title($request->site_name) . "-Function-" . $request['bu_long'] . " " . $role,
                 "cms-" . Str::lower($request->site_name) . "-function-" . Str::of($role)->studly()->lower() . "-" . Str::of($request['bu_short'])->studly()->lower(),
-                "cms-global-function-" . Str::of($role)->studly()->lower() . "-generic"
+                "cms-global-function-" . $roleId . "-generic",
+                $parent["$roleId"]
             ];
             $groups[] = $group;
         }
@@ -67,6 +77,7 @@ class AemGroupController extends Controller
 
     public function generateTeamGroups($request, $name, $id)
     {
+
         $groups = [];
         $contentPermissions = ['Read', 'Write'];
 
@@ -75,7 +86,7 @@ class AemGroupController extends Controller
                 $group = [
                     $name . " " . Str::of($team) . "-" . Str::of($permission)->title(),
                     $id . "-" . Str::of($team)->slug()->lower()->replace('&', '_') . "-" . Str::of($permission)->slug()->lower(),
-                    $permission === 'Read' ? $id . '-read' : $id . '-' . $team . '-read'
+                    $permission === 'Read' ? $id . '-read' : $id . '-' . $team . '-read',
                 ];
                 $groups[] = $group;
             }
