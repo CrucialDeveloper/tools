@@ -171,6 +171,7 @@
                     ["Corporate Security", "cps"],
                     ["Customer Ops", "custops"],
                     ["Diversity & Inclusion", "di"],
+                    ["External Communications", "extcomms"],
                     ["Field Ops", "fieldops"],
                     ["Finance", "fin"],
                     ["Government Affairs", "ga"],
@@ -181,9 +182,11 @@
                     ["Original Content", "origcont"],
                     ["Product & Technology", "prodtech"],
                     ["Programming", "prog"],
+                    ["Real Estate & Facilities", 'facilities'],
                     ["Sales & Marketing", "salesmark"],
                     ["Spectrum Enterprise", "enterprise"],
                     ["Spectrum Networks", "networks"],
+                    ["Spectrum Originals", "originals"],
                     ["Spectrum Reach", "reach"]
                 ]
             };
