@@ -1,21 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\AemGroupController;
-use App\Http\Controllers\WorkEntryController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\TaskStatusController;
 use App\Http\Controllers\HtmlCleanerController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\ClientProjectController;
 use App\Http\Controllers\ImageManipulationController;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +23,11 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/', function () {
+    return Inertia::render('Home');
+});
+
 
 Route::get('image-manipulator', [ImageManipulationController::class, 'index']);
 Route::get('html-cleaner', [HtmlCleanerController::class, 'index']);

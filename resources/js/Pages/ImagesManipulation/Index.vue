@@ -13,12 +13,14 @@
       <div class="flex items-center" v-show="originalResult">
         <div class="p-2 mr-4 bg-white border rounded shadow">
           <label class="mr-2" for>Original Width</label>
-          <span class="mr-4">{{originalWidth}}px</span>
+          <span class="mr-4">{{ originalWidth }}px</span>
           <label class="mr-2" for>Original Height</label>
-          <span>{{originalHeight}}px</span>
+          <span>{{ originalHeight }}px</span>
         </div>
 
-        <div class="flex items-center px-2 py-1 mr-4 bg-white border rounded shadow">
+        <div
+          class="flex items-center px-2 py-1 mr-4 bg-white border rounded shadow"
+        >
           <label class="mr-2">Select Preset:</label>
           <select
             class="px-4 py-1 bg-white border appearance-none"
@@ -27,8 +29,8 @@
             @blur="setCropBoxSize"
           >
             <option :value="name" v-for="(preset, name) in presets" :key="name">
-              {{name}}
-              {{preset.width}}x{{preset.height}}
+              {{ name }}
+              {{ preset.width }}x{{ preset.height }}
             </option>
           </select>
         </div>
@@ -107,12 +109,18 @@
           <button
             class="px-2 py-1 text-white bg-blue-500 rounded"
             @click="setCanvasWidth"
-          >Match Width</button>
+          >
+            Match Width
+          </button>
         </div>
-        <div class="p-2 bg-white border rounded shadow" v-if="selectedPreset==='Manual'">
+        <div
+          class="p-2 bg-white border rounded shadow"
+          v-if="selectedPreset === 'Manual'"
+        >
           <span class="mr-2">Crop Box Size:</span>
-          <span>{{cropboxWidth}}</span>x
-          <span>{{cropboxHeight}}</span>
+          <span>{{ cropboxWidth }}</span
+          >x
+          <span>{{ cropboxHeight }}</span>
         </div>
       </div>
     </div>
@@ -142,78 +150,78 @@ export default {
       presets: {
         "Primary Hero": {
           width: 606,
-          height: 545
+          height: 545,
         },
         "Secondary Hero": {
           width: 775,
-          height: 357
+          height: 357,
         },
         "Tertiary Hero": {
           width: 357,
-          height: 212
+          height: 212,
         },
         Newscard: {
           width: 398,
-          height: 211
+          height: 211,
         },
         "Hero Image": {
           width: 1280,
-          height: 350
+          height: 350,
         },
         Spotlight: {
           width: 554,
-          height: 520
+          height: 520,
         },
         "Standard Card": {
           width: 398,
-          height: 211
+          height: 211,
         },
         "Small Card": {
           width: 293,
-          height: 156
+          height: 156,
         },
         "Article Large": {
           width: 1280,
-          height: 446
+          height: 446,
         },
         "Article Medium": {
           width: 1129,
-          height: 433
+          height: 433,
         },
         "Article Small": {
           width: 501,
-          height: 336
+          height: 336,
         },
         "Mosaic - Large": {
           width: 612,
-          height: 221
+          height: 221,
         },
         "Mosaic - Medium": {
           width: 368,
-          height: 221
+          height: 221,
         },
         "Mosaic - Small": {
           width: 236,
-          height: 211
+          height: 211,
         },
         Manual: {
           width: 100,
-          height: 100
-        }
-      }
+          height: 100,
+        },
+      },
     };
   },
   methods: {
     getImage(e) {
       if (e.target.files[0]) {
         var reader = new FileReader();
-        reader.onload = e => {
+        reader.onload = (e) => {
           this.originalResult = e.target.result;
           this.$refs.image.setAttribute("src", e.target.result);
 
           var i = new Image();
           let vm = this;
-          i.onload = function() {
+          i.onload = function () {
             vm.originalWidth = i.width;
             vm.originalHeight = i.height;
           };
@@ -221,21 +229,21 @@ export default {
         };
       }
       reader.readAsDataURL(e.target.files[0]);
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.createCropper();
       });
     },
     setCanvasWidth() {
       let vm = this;
       window.cropper.setCanvasData({
-        width: vm.presets[vm.selectedPreset].width
+        width: vm.presets[vm.selectedPreset].width,
       });
     },
     setCropBoxSize() {
       let vm = this;
       window.cropper.crop();
       if (this.selectedPreset === "Manual") {
-        window.addEventListener("crop", e => {
+        window.addEventListener("crop", (e) => {
           this.presets["Manual"].width = Math.ceil(e.detail.width);
           this.cropboxWidth = Math.ceil(e.detail.width);
           this.presets["Manual"].height = Math.ceil(e.detail.height);
@@ -245,7 +253,7 @@ export default {
 
       window.cropper.setCropBoxData({
         width: vm.presets[vm.selectedPreset].width,
-        height: vm.presets[vm.selectedPreset].height
+        height: vm.presets[vm.selectedPreset].height,
       });
     },
     reset() {
@@ -273,7 +281,7 @@ export default {
       let data = window.cropper
         .getCroppedCanvas({
           width: vm.presets[vm.selectedPreset].width,
-          height: vm.presets[vm.selectedPreset].height
+          height: vm.presets[vm.selectedPreset].height,
         })
         .toDataURL();
       this.updatedResult = data;
@@ -298,33 +306,32 @@ export default {
           // modal: false,
           highlight: false,
           background: false,
-          autoCropArea: 0.2
+          autoCropArea: 0.2,
         });
       }, 200);
-    }
+    },
   },
   created() {
-    window.addEventListener("crop", e => {
+    window.addEventListener("crop", (e) => {
       this.presets["Manual"].width = Math.ceil(e.detail.width);
       this.cropboxWidth = Math.ceil(e.detail.width);
       this.presets["Manual"].height = Math.ceil(e.detail.height);
       this.cropboxHeight = Math.ceil(e.detail.height);
     });
 
-    document.onpaste = function(event) {
+    document.onpaste = function (event) {
       var items = (event.clipboardData || event.originalEvent.clipboardData)
         .items;
-      console.log(JSON.stringify(items)); // will give you the mime types
       for (index in items) {
         var item = items[index];
         if (item.kind === "file") {
           var blob = item.getAsFile();
           var reader = new FileReader();
-          reader.onload = function(event) {}; // data url!
+          reader.onload = function (event) {}; // data url!
           reader.readAsDataURL(blob);
         }
       }
     };
-  }
+  },
 };
 </script>

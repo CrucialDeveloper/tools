@@ -206,12 +206,10 @@ export default {
       axios
         .post("/aem-groups", this.info)
         .then((response) => {
-          console.log(response);
           form.functional = response.data.functional;
           form.content = response.data.content;
         })
         .catch((errors) => {
-          console.log(errors);
         });
     },
   },
