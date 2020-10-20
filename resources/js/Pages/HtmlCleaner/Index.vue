@@ -38,7 +38,6 @@
 
 <script>
 import PublicLayout from "../../components/Layouts/PublicLayout";
-import Form from "@johnlowery74/crucial-form";
 
 export default {
   layout: PublicLayout,

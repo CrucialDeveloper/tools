@@ -33,54 +33,9 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/', function () {
-    return redirect()->route('post.index');
-});
-
-Route::get('/blog', [PostController::class, 'index'])->name('post.index');
-Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('post.show');
-Route::post('/blog', [PostController::class, 'store'])->name('post.create');
-Route::patch("/blog/{post:slug}", [PostController::class, 'update'])->name('post.update');
-
 Route::get('image-manipulator', [ImageManipulationController::class, 'index']);
 Route::get('html-cleaner', [HtmlCleanerController::class, 'index']);
 Route::post('html-cleaner', [HtmlCleanerController::class, 'store']);
 
 Route::get('/aem-groups', [AemGroupController::class, 'index']);
 Route::post('/aem-groups', [AemGroupController::class, 'create']);
-
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
-    Route::get('/clients/{client}', [ClientController::class, 'show'])->name('clients.show');
-    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
-    Route::patch('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
-    Route::delete('/clients/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
-
-    Route::get('/clients/{client}/projects', [ClientProjectController::class, 'index']);
-    Route::get('/clients/{client}/projects/{project}', [ClientProjectController::class, 'show']);
-    Route::post('/clients/{client}/projects', [ClientProjectController::class, 'store']);
-    Route::patch('/clients/{client}/projects/{project}', [ClientProjectController::class, 'update']);
-    Route::delete('/clients/{client}/projects/{project}', [ClientProjectController::class, 'destroy']);
-
-    Route::post('/clients/{client}/projects/{project}/tasks', [TaskController::class, 'store']);
-    Route::patch('/clients/{client}/projects/{project}/tasks/{task}', [TaskController::class, 'update']);
-    Route::delete('/clients/{client}/projects/{project}/tasks/{task}', [TaskController::class, 'destroy']);
-    Route::post('/task/{task}', [TaskStatusController::class, 'update']);
-
-    Route::post('clients/{client}/projects/{project}/comments', [CommentController::class, 'store']);
-    Route::patch('/comments/{comment}', [CommentController::class, 'update']);
-    Route::delete('/comments/{comment}', [CommentController::class, 'destroy']);
-
-    Route::post('/clients/{client}/contacts', [ContactController::class, 'store']);
-    Route::patch('/clients/{client}/contacts/{contact}', [ContactController::class, 'update']);
-    Route::patch('/clients/{client}/contacts/', [ContactController::class, 'updateOrder']);
-    Route::delete('/clients/{client}/contacts/{contact}', [ContactController::class, 'destroy']);
-
-    Route::post('/clients/{client}/projects/{project}/workentry', [WorkEntryController::class, 'store']);
-    Route::patch('/clients/{client}/projects/{project}/workentry/{entry}', [WorkEntryController::class, 'update']);
-    Route::delete('/clients/{client}/projects/{project}/workentry/{entry}', [WorkEntryController::class, 'destroy']);
-
-    Route::get('/projects', [ProjectController::class, 'index']);
-});

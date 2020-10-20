@@ -4,7 +4,9 @@
       class="container flex flex-col w-1/4 px-8 pt-6 pb-8 mx-auto mb-4 bg-white rounded shadow-xl"
     >
       <div class="mb-4">
-        <label class="block mb-2 text-sm font-bold text-grey-800" for="username">Email</label>
+        <label class="block mb-2 text-sm font-bold text-grey-800" for="username"
+          >Email</label
+        >
         <input
           class="w-full px-3 py-2 border rounded shadow appearance-none text-grey-800"
           id="email"
@@ -15,7 +17,9 @@
         />
       </div>
       <div class="mb-6">
-        <label class="block mb-2 text-sm font-bold text-grey-800" for="password">Password</label>
+        <label class="block mb-2 text-sm font-bold text-grey-800" for="password"
+          >Password</label
+        >
         <input
           class="w-full px-3 py-2 mb-3 border rounded shadow appearance-none text-grey-800"
           id="password"
@@ -30,38 +34,40 @@
           class="px-4 py-2 font-bold text-white bg-blue-600 rounded hover:bg-blue-700"
           type="button"
           @click="signIn"
-        >Sign In</button>
+        >
+          Sign In
+        </button>
         <a
           class="inline-block text-sm font-bold align-baseline text-blue hover:text-blue-darker"
           href="#"
-        >Forgot Password?</a>
+          >Forgot Password?</a
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Form from "@johnlowery74/crucial-form";
 export default {
   data() {
     return {
       user: new Form({
         email: "",
-        password: ""
-      })
+        password: "",
+      }),
     };
   },
   methods: {
     signIn() {
       this.user
         .post("/login", this.user)
-        .then(response => {
+        .then((response) => {
           this.$inertia.visit("/clients");
         })
-        .catch(errors => {
+        .catch((errors) => {
           console.log(errors);
         });
-    }
-  }
+    },
+  },
 };
 </script>
