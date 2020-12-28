@@ -5,26 +5,25 @@
         <div class="flex items-center justify-between h-16">
           <div class="flex items-center">
             <div class="flex-shrink-0">
-              <h1 class="text-xl text-white">CrucialDev</h1>
+              <h1 class="text-xl text-white">Tools</h1>
             </div>
             <div class="hidden md:block">
               <div class="flex items-baseline ml-10">
                 <inertia-link
-                  href="/blog"
-                  class="px-3 py-2 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-                >Blog</inertia-link>
+                  href="/aem-groups"
+                  class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
+                  >AEM Group Generator</inertia-link
+                >
                 <inertia-link
                   href="/html-cleaner"
                   class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-                >HTML Cleaner</inertia-link>
-                <inertia-link
-                  href="#"
-                  class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-                >Gists</inertia-link>
+                  >HTML Cleaner</inertia-link
+                >
                 <inertia-link
                   href="/image-manipulator"
                   class="px-3 py-2 ml-4 text-sm font-medium text-gray-300 rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-                >Image Manipulation</inertia-link>
+                  >Image Manipulation</inertia-link
+                >
               </div>
             </div>
           </div>
@@ -82,9 +81,14 @@
               @click="open = !open"
               class="inline-flex items-center justify-center p-2 text-gray-400 rounded hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
             >
-              <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <svg
+                class="w-6 h-6"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
                 <path
-                  :class="{'hidden': open, 'inline-flex': !open }"
+                  :class="{ hidden: open, 'inline-flex': !open }"
                   class="inline-flex"
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -92,7 +96,7 @@
                   d="M4 6h16M4 12h16M4 18h16"
                 />
                 <path
-                  :class="{'hidden': !open, 'inline-flex': open }"
+                  :class="{ hidden: !open, 'inline-flex': open }"
                   class="hidden"
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -104,28 +108,32 @@
           </div>
         </div>
       </div>
-      <div :class="{'block': open, 'hidden': !open}" class="md:hidden">
+      <div :class="{ block: open, hidden: !open }" class="md:hidden">
         <div class="px-2 pt-2 pb-3 sm:px-3">
           <a
             href="/blog"
             class="block px-3 py-2 mt-1 text-base font-medium rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-            :class="isUrl('blog')?'text-white':'text-gray-300'"
-          >Blog</a>
+            :class="isUrl('blog') ? 'text-white' : 'text-gray-300'"
+            >Blog</a
+          >
           <a
             href="/html-cleaner"
             class="block px-3 py-2 mt-1 text-base font-medium rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-            :class="isUrl('html-cleaner')?'text-white':'text-gray-300'"
-          >HTML Cleaner</a>
+            :class="isUrl('html-cleaner') ? 'text-white' : 'text-gray-300'"
+            >HTML Cleaner</a
+          >
           <a
             href="#"
             class="block px-3 py-2 mt-1 text-base font-medium rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-            :class="isUrl('gists')?'text-white':'text-gray-300'"
-          >Gists</a>
+            :class="isUrl('gists') ? 'text-white' : 'text-gray-300'"
+            >Gists</a
+          >
           <a
             href="image-manipulator"
             class="block px-3 py-2 mt-1 text-base font-medium rounded hover:text-white hover:bg-blue-500 focus:outline-none focus:text-white"
-            :class="isUrl('image-manipulator')?'text-white':'text-gray-300'"
-          >Image Manipulator</a>
+            :class="isUrl('image-manipulator') ? 'text-white' : 'text-gray-300'"
+            >Image Manipulator</a
+          >
         </div>
         <!-- <div class="pt-4 pb-3 border-t border-gray-700">
           <div class="flex items-center px-5">
@@ -165,13 +173,13 @@
 export default {
   data() {
     return {
-      open: false
+      open: false,
     };
   },
   methods: {
     isUrl(str) {
       return window.location.href.includes(str);
-    }
-  }
+    },
+  },
 };
 </script>

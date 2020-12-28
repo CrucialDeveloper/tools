@@ -8,6 +8,6 @@
 <script>
 import PublicNav from "./PublicNav";
 export default {
-  components: { PublicNav }
+  components: { PublicNav },
 };
 </script>
