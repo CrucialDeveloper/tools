@@ -68,8 +68,8 @@
         <thead>
           <tr>
             <th class="px-4 py-2">Author Group Name</th>
-            <th class="px-4 py-2">Group ID</th>
             <th class="px-4 py-2">Member Of</th>
+            <th class="px-4 py-2">Group ID</th>
           </tr>
         </thead>
         <tbody>
@@ -78,8 +78,8 @@
             class="border-t rounded hover:bg-gray-100"
             :key="result[0]"
           >
-            <td class="px-4 py-2">{{ result[0] }}</td>
             <td class="px-4 py-2">{{ result[1] }}</td>
+            <td class="px-4 py-2">{{ result[0] }}</td>
             <td class="px-4 py-2 underline">
               <a :href="result[3]" target="_blank">
                 {{ result[2] }}
@@ -98,8 +98,8 @@
         <table class="table-auto">
           <thead>
             <tr>
-              <th class="px-4 py-2">Author Group Name</th>
               <th class="px-4 py-2">Group ID</th>
+              <th class="px-4 py-2">Author Group Name</th>
               <th class="px-4 py-2">Member Of</th>
             </tr>
           </thead>
@@ -109,8 +109,8 @@
               v-for="result in content.bu"
               :key="result[0]"
             >
-              <td class="px-4 py-2">{{ result[0] }}</td>
               <td class="px-4 py-2">{{ result[1] }}</td>
+              <td class="px-4 py-2">{{ result[0] }}</td>
               <td class="px-4 py-2">{{ result[2] }}</td>
             </tr>
           </tbody>
