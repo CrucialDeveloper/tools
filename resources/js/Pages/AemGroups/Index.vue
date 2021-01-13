@@ -85,9 +85,13 @@
                         class="border-t rounded hover:bg-gray-100"
                         :key="result[0]"
                     >
-                        <td class="px-4 py-2">{{ result[1] }}</td>
-                        <td class="px-4 py-2">{{ result[0] }}</td>
-                        <td class="px-4 py-2 underline">
+                        <td class="px-4 py-2 cursor-pointer">
+                            {{ result[1] }}
+                        </td>
+                        <td class="px-4 py-2 cursor-pointer">
+                            {{ result[0] }}
+                        </td>
+                        <td class="px-4 py-2 cursor-pointer underline">
                             <a :href="result[3]" target="_blank">
                                 {{ result[2] }}
                             </a>
@@ -119,9 +123,15 @@
                             v-for="result in content.bu"
                             :key="result[0]"
                         >
-                            <td class="px-4 py-2">{{ result[1] }}</td>
-                            <td class="px-4 py-2">{{ result[0] }}</td>
-                            <td class="px-4 py-2">{{ result[2] }}</td>
+                            <td class="px-4 py-2 cursor-pointer">
+                                {{ result[1] }}
+                            </td>
+                            <td class="px-4 py-2 cursor-pointer">
+                                {{ result[0] }}
+                            </td>
+                            <td class="px-4 py-2 cursor-pointer">
+                                {{ result[2] }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -144,9 +154,15 @@
                             v-for="result in content.teams"
                             :key="result[0]"
                         >
-                            <td class="px-4 py-2">{{ result[1] }}</td>
-                            <td class="px-4 py-2">{{ result[0] }}</td>
-                            <td class="px-4 py-2">{{ result[2] }}</td>
+                            <td class="px-4 py-2 cursor-pointer">
+                                {{ result[1] }}
+                            </td>
+                            <td class="px-4 py-2 cursor-pointer">
+                                {{ result[0] }}
+                            </td>
+                            <td class="px-4 py-2 cursor-pointer">
+                                {{ result[2] }}
+                            </td>
                         </tr>
                     </tbody>
                 </table>
