@@ -1,12 +1,13 @@
 <?php
 
+use Inertia\Inertia;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AemGroupController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HtmlCleanerController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ImageManipulationController;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,8 @@ Route::post('html-cleaner', [HtmlCleanerController::class, 'store']);
 
 Route::get('/aem-groups', [AemGroupController::class, 'index']);
 Route::post('/aem-groups', [AemGroupController::class, 'create']);
+
+
+Route::post('/campaign', function (Request $request) {
+    log($request);
+});
