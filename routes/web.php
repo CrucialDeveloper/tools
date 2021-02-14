@@ -36,8 +36,3 @@ Route::post('html-cleaner', [HtmlCleanerController::class, 'store']);
 
 Route::get('/aem-groups', [AemGroupController::class, 'index']);
 Route::post('/aem-groups', [AemGroupController::class, 'create']);
-
-
-Route::post('/campaign', function (Request $request) {
-    log($request);
-});
