@@ -84,7 +84,7 @@ class AemGroupController extends Controller
         foreach ($request->teams as $team) {
             foreach ($contentPermissions as $permission) {
                 $group = [
-                    $name . " " . Str::of($team) . "-" . Str::of($permission)->title(),
+                    $name . " " . Str::of($team)->title() . "-" . Str::of($permission)->title(),
                     $id . "-" . Str::of($team)->slug()->lower()->replace('&', '_') . "-" . Str::of($permission)->slug()->lower(),
                     $permission === 'Read' ? $id . '-read' : $id . '-' . $team . '-read',
                 ];
