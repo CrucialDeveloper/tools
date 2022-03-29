@@ -1,4 +1,11 @@
+
 module.exports = {
+    content: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+        './resources/js/**/*.vue',
+    ],
     theme: {
         extend: {
             inset: {
@@ -41,6 +48,7 @@ module.exports = {
             maxWidth: {
                 '64': '16rem',
                 '100': '25rem',
+                '1/2': '50%',
                 'screen': '100vw'
 
             },
@@ -132,7 +140,8 @@ module.exports = {
 
     },
     variants: {},
-    plugins: [],
+    plugins: [
+    ],
     corePlugins: {
         listStyleType: false,
     }
