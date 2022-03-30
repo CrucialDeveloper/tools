@@ -28,6 +28,7 @@
     "dependencies": {
         "@chenfengyuan/vue-countdown": "^2.0.0",
         "cropperjs": "^1.5.12",
+        "prettier": "^2.6.1",
         "sass-loader": "^12.6.0"
     }
 }
