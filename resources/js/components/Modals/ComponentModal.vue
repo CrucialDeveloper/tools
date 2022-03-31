@@ -39,7 +39,21 @@
                     To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                 -->
       <div
-        class="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-1/2 sm:w-full sm:p-6"
+        class="
+          relative
+          inline-block
+          align-bottom
+          bg-white
+          rounded-lg
+          px-4
+          pt-5
+          pb-4
+          text-left
+          overflow-hidden
+          transform
+          transition-all
+          sm:my-8 sm:align-middle sm:max-w-1/2 sm:w-full sm:p-6
+        "
       >
         <div>
           <div class="mt-3 text-center sm:mt-5 relative">
@@ -62,7 +76,15 @@
             <p class="mb-4">{{ activeComponent.id }} - {{ startCase(activeComponent.page) }}</p>
 
             <div
-              class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:py-5"
+              class="
+                sm:grid
+                sm:grid-cols-3
+                sm:gap-4
+                sm:items-start
+                sm:border-t
+                sm:border-gray-200
+                sm:py-5
+              "
             >
               <label for="status" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                 Status
@@ -71,8 +93,19 @@
                 <select
                   id="status"
                   name="status"
-                  class="block max-w-lg w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md p-2 border border-gray-100"
+                  class="
+                    block
+                    max-w-lg
+                    w-full
+                    focus:ring-blue-500 focus:border-blue-500
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                    p-2
+                    border border-gray-100
+                  "
                   v-model="activeComponent.status"
+                  ref="statusFocus"
                 >
                   <option value="Not Started">Not Started</option>
                   <option value="In Progress">In Progress</option>
@@ -83,7 +116,15 @@
               </div>
             </div>
             <div
-              class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:py-5"
+              class="
+                sm:grid
+                sm:grid-cols-3
+                sm:gap-4
+                sm:items-start
+                sm:border-t
+                sm:border-gray-200
+                sm:py-5
+              "
             >
               <label
                 for="assigned_to"
@@ -95,7 +136,17 @@
                 <select
                   id="assigned_to"
                   name="assigned_to"
-                  class="block max-w-lg w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md p-2 border border-gray-100"
+                  class="
+                    block
+                    max-w-lg
+                    w-full
+                    focus:ring-blue-500 focus:border-blue-500
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                    p-2
+                    border border-gray-100
+                  "
                   v-model="activeComponent.assigned_to"
                 >
                   <option value="John Lowery">John Lowery</option>
@@ -106,7 +157,15 @@
               </div>
             </div>
             <div
-              class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:py-5"
+              class="
+                sm:grid
+                sm:grid-cols-3
+                sm:gap-4
+                sm:items-start
+                sm:border-t
+                sm:border-gray-200
+                sm:py-5
+              "
             >
               <label for="notes" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >Notes</label
@@ -116,17 +175,36 @@
                   id="notes"
                   name="notes"
                   rows="5"
-                  class="block max-w-lg w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md p-2 border border-gray-100"
+                  class="
+                    block
+                    max-w-lg
+                    w-full
+                    focus:ring-blue-500 focus:border-blue-500
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                    p-2
+                    border border-gray-100
+                  "
                   placeholder="Enter notes here ..."
                   v-model="activeComponent.notes"
                 />
               </div>
             </div>
             <div
-              class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-b sm:border-gray-200 sm:py-5"
+              class="
+                sm:grid
+                sm:grid-cols-3
+                sm:gap-4
+                sm:items-start
+                sm:border-t
+                sm:border-b
+                sm:border-gray-200
+                sm:py-5
+              "
             >
               <label for="email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                Experience Fragments Path(s)
+                Experience Fragments Author URL(s)
               </label>
               <div class="mt-1 sm:mt-0 sm:col-span-2">
                 <div class="flex items-center">
@@ -134,9 +212,19 @@
                     id="experience_fragments"
                     name="experience_fragments"
                     type="experience_fragments"
-                    class="block max-w-lg w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md p-2 border border-gray-100"
+                    class="
+                      block
+                      max-w-lg
+                      w-full
+                      focus:ring-blue-500 focus:border-blue-500
+                      sm:text-sm
+                      border-gray-300
+                      rounded-md
+                      p-2
+                      border border-gray-100
+                    "
                     v-model="new_fragment"
-                    @enter="addFragment"
+                    @keyup.enter="addFragment"
                   />
                   <button
                     class="rounded-full h-8 w-8 bg-gray-500 hover:bg-gray-600 text-white ml-4"
@@ -158,7 +246,10 @@
                   </button>
                 </div>
                 <div class="flex flex-col mt-1">
-                  <p v-for="fragment in activeComponent.experience_fragment_path">
+                  <p
+                    v-for="(fragment, index) in activeComponent.experience_fragment_path"
+                    :key="index"
+                  >
                     {{ fragment }}
                   </p>
                 </div>
@@ -166,12 +257,49 @@
             </div>
           </div>
         </div>
-        <div class="mt-5 sm:mt-6">
+        <div class="mt-5 sm:mt-6 flex items-center justify-between space-x-8">
           <button
             type="button"
-            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+            class="
+              inline-flex
+              justify-center
+              w-full
+              rounded-md
+              border border-gray-200
+              px-4
+              py-2
+              bg-white
+              text-base
+              font-medium
+              hover:bg-gray-200
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+              sm:text-sm
+            "
+            @click="closeModal"
           >
-            Go back to dashboard
+            Cancel
+          </button>
+          <button
+            type="button"
+            class="
+              inline-flex
+              justify-center
+              w-full
+              rounded-md
+              border border-transparent
+              px-4
+              py-2
+              bg-blue-600
+              text-base
+              font-medium
+              text-white
+              hover:bg-blue-700
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+              sm:text-sm
+            "
+            @click="saveComponent"
+          >
+            Save
           </button>
         </div>
       </div>
@@ -181,26 +309,44 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
 import { startCase } from 'lodash'
 
 let props = defineProps({
   component: Object,
 })
-let activeComponent = ref(props.component)
+
+let activeComponent = ref({ ...props.component })
 let new_fragment = ref('')
+let statusFocus = ref(null)
 
 const addFragment = () => {
-  if (activeComponent.value.experience_fragment_path === null) {
-    activeComponent.value.experience_fragment_path = [new_fragment]
+  if (activeComponent.value.experience_fragment_path === null && new_fragment.value.length > 5) {
+    activeComponent.value.experience_fragment_path = [new_fragment.value]
+    new_fragment.value = ''
     return
   }
-  activeComponent.value.experience_fragment_path.push(new_fragment)
+
+  new_fragment.value.length > 5 &&
+    activeComponent.value.experience_fragment_path.push(new_fragment.value)
   new_fragment.value = ''
+}
+
+const saveComponent = () => {
+  Inertia.post(`/components/${activeComponent.value.id}`, activeComponent.value, {
+    preserveScroll: true,
+  })
+  closeModal()
 }
 
 const closeModal = () => {
   activeComponent.value = null
+  new_fragment.value = ''
   let event = new CustomEvent('close-edit-modal')
   window.dispatchEvent(event)
 }
+
+onMounted(() => {
+  statusFocus.value.focus()
+})
 </script>

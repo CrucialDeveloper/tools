@@ -2,7 +2,7 @@
 <template>
   <div class="px-4 mx-24 max-w-screen" ref="noscroll">
     <div class="sm:flex sm:items-center">
-      <div class="sm:flex-auto">
+      <div class="sm:flex-auto relative">
         <h1 class="text-xl font-semibold text-gray-900">Reference Components Migration</h1>
         <p class="mt-2 text-sm text-gray-700">
           A list of all pages that have a reference or dynamic reference component as content
@@ -18,59 +18,198 @@
                 <tr>
                   <th
                     scope="col"
-                    class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+                    class="
+                      sticky
+                      top-0
+                      z-10
+                      border-b border-gray-300
+                      bg-slate
+                      py-3.5
+                      px-2
+                      text-left text-sm
+                      font-semibold
+                      text-white
+                      backdrop-blur backdrop-filter
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   ></th>
                   <th
                     scope="col"
-                    class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 w-64"
+                    class="
+                      sticky
+                      top-0
+                      z-10
+                      border-b border-gray-300
+                      bg-slate
+                      py-3.5
+                      px-2
+                      text-left text-sm
+                      font-semibold
+                      text-white
+                      backdrop-blur backdrop-filter
+                      sm:pl-6
+                      lg:pl-8
+                      w-64
+                    "
                   >
                     Page
                   </th>
                   <th
                     scope="col"
-                    class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+                    class="
+                      sticky
+                      top-0
+                      z-10
+                      border-b border-gray-300
+                      bg-slate
+                      py-3.5
+                      px-2
+                      text-left text-sm
+                      font-semibold
+                      text-white
+                      backdrop-blur backdrop-filter
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     Team Site
                   </th>
                   <th
                     scope="col"
-                    class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+                    class="
+                      sticky
+                      top-0
+                      z-10
+                      border-b border-gray-300
+                      bg-slate
+                      py-3.5
+                      px-2
+                      text-left text-sm
+                      font-semibold
+                      text-white
+                      backdrop-blur backdrop-filter
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     Team
                   </th>
                   <th
                     scope="col"
-                    class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+                    class="
+                      sticky
+                      top-0
+                      z-10
+                      border-b border-gray-300
+                      bg-slate
+                      py-3.5
+                      px-2
+                      text-left text-sm
+                      font-semibold
+                      text-white
+                      backdrop-blur backdrop-filter
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     Urls
                   </th>
                   <th
                     scope="col"
-                    class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+                    class="
+                      sticky
+                      top-0
+                      z-10
+                      border-b border-gray-300
+                      bg-slate
+                      py-3.5
+                      px-2
+                      text-left text-sm
+                      font-semibold
+                      text-white
+                      backdrop-blur backdrop-filter
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     Status
                   </th>
                   <th
                     scope="col"
-                    class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+                    class="
+                      sticky
+                      top-0
+                      z-10
+                      border-b border-gray-300
+                      bg-slate
+                      py-3.5
+                      px-2
+                      text-left text-sm
+                      font-semibold
+                      text-white
+                      backdrop-blur backdrop-filter
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     Assigned To
                   </th>
                   <th
                     scope="col"
-                    class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 w-80"
+                    class="
+                      sticky
+                      top-0
+                      z-10
+                      border-b border-gray-300
+                      bg-slate
+                      py-3.5
+                      px-2
+                      text-left text-sm
+                      font-semibold
+                      text-white
+                      backdrop-blur backdrop-filter
+                      sm:pl-6
+                      lg:pl-8
+                      w-80
+                    "
                   >
                     Notes
                   </th>
                   <th
                     scope="col"
-                    class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+                    class="
+                      sticky
+                      top-0
+                      z-10
+                      border-b border-gray-300
+                      bg-slate
+                      py-3.5
+                      px-2
+                      text-left text-sm
+                      font-semibold
+                      text-white
+                      backdrop-blur backdrop-filter
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     Fragments
                   </th>
                   <th
                     scope="col"
-                    class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8"
+                    class="
+                      sticky
+                      top-0
+                      z-10
+                      border-b border-gray-300
+                      bg-slate
+                      py-3.5
+                      px-2
+                      backdrop-blur backdrop-filter
+                      sm:pr-6
+                      lg:pr-8
+                    "
                   >
                     <span class="sr-only">Edit</span>
                   </th>
@@ -79,27 +218,82 @@
               <tbody class="bg-white">
                 <tr v-for="component in components" :key="component.id">
                   <td
-                    class="border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    class="
+                      align-top
+                      border-b border-gray-200
+                      py-4
+                      pl-4
+                      pr-3
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     {{ component.id }}
                   </td>
                   <td
-                    class="border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    class="
+                      align-top
+                      border-b border-gray-200
+                      py-4
+                      pl-4
+                      pr-3
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     {{ startCase(component.page) }}
                   </td>
                   <td
-                    class="border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    class="
+                      align-top
+                      border-b border-gray-200
+                      py-4
+                      pl-4
+                      pr-3
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     {{ component.team_site }}
                   </td>
                   <td
-                    class="border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    class="
+                      align-top
+                      border-b border-gray-200
+                      py-4
+                      pl-4
+                      pr-3
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     {{ startCase(component.team) }}
                   </td>
                   <td
-                    class="border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    class="
+                      align-top
+                      border-b border-gray-200
+                      py-4
+                      pl-4
+                      pr-3
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     <div>
                       <a
@@ -120,28 +314,91 @@
                   </td>
 
                   <td
-                    class="border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    class="
+                      align-top
+                      border-b border-gray-200
+                      py-4
+                      pl-4
+                      pr-3
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     {{ component.status }}
                   </td>
 
                   <td
-                    class="border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    class="
+                      align-top
+                      border-b border-gray-200
+                      py-4
+                      pl-4
+                      pr-3
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     {{ component.assigned_to }}
                   </td>
                   <td
-                    class="border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    class="
+                      align-top
+                      border-b border-gray-200
+                      py-4
+                      pl-4
+                      pr-3
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
-                    {{ component.Notes }}
+                    {{ component.notes }}
                   </td>
                   <td
-                    class="border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    class="
+                      align-top
+                      border-b border-gray-200
+                      py-4
+                      pl-4
+                      pr-3
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      sm:pl-6
+                      lg:pl-8
+                      w-96
+                    "
                   >
-                    {{ component.experience_fragment_path }}
+                    <ul>
+                      <li
+                        v-for="(fragment, index) in component.experience_fragment_path"
+                        :key="index"
+                      >
+                        {{ fragment }}
+                      </li>
+                    </ul>
                   </td>
                   <td
-                    class="border-b border-gray-200 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                    class="
+                      align-top
+                      border-b border-gray-200
+                      py-4
+                      pl-4
+                      pr-3
+                      text-sm
+                      font-medium
+                      text-gray-900
+                      sm:pl-6
+                      lg:pl-8
+                    "
                   >
                     <button
                       class="text-blue-600 hover:text-blue-900 p-2"
@@ -163,6 +420,8 @@
 
 <script>
 import PublicLayout from '@/components/Layouts/PublicLayout'
+import { Inertia } from '@inertiajs/inertia'
+
 export default {
   layout: PublicLayout,
 }
@@ -176,6 +435,7 @@ import { startCase } from 'lodash'
 let props = defineProps({
   components: Object,
 })
+
 let showModal = ref(false)
 let activeComponent = ref({})
 let noscroll = ref(null)

@@ -38,4 +38,5 @@ Route::post('html-cleaner', [HtmlCleanerController::class, 'store']);
 Route::get('/aem-groups', [AemGroupController::class, 'index']);
 Route::post('/aem-groups', [AemGroupController::class, 'create']);
 
-Route::get('/components', [ComponentController::class, 'index']);
+Route::get('/components', [ComponentController::class, 'index'])->name('components.index');
+Route::post('/components/{component}', [ComponentController::class, 'update']);

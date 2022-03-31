@@ -135,12 +135,7 @@
                 focus:outline-none focus:bg-gray-700 focus:text-white
               "
             >
-              <svg
-                class="w-6 h-6"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
+              <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path
                   :class="{ hidden: open, 'inline-flex': !open }"
                   class="inline-flex"
@@ -264,11 +259,11 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/inertia-vue3";
-import { ref } from "vue";
+import { Link } from '@inertiajs/inertia-vue3'
+import { ref } from 'vue'
 
-let open = ref(false);
+let open = ref(false)
 const isUrl = (str) => {
-  return window.location.href.includes(str);
-};
+  return window.location.href.includes(str)
+}
 </script>
