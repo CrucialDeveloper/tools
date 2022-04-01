@@ -1,6 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="px-4 mx-24 max-w-screen" ref="noscroll">
+  <div class="px-8 max-w-screen overflow-hidden" ref="noscroll">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto relative">
         <h2 class="text-2xl font-semibold text-gray-900">Reference Components Migration</h2>
@@ -11,10 +11,10 @@
     </div>
     <div class="mt-2 text-sm">
       <h3 class="underline text-base">Filters:</h3>
-      <div class="mt-4 space-y-4">
-        <div class="flex items-center">
+      <div class="mt-4 space-y-4 divide-y-3 xl:divide-y-0 divide-gray-200">
+        <div class="grid grid-cols-[100px_100%] gap-4">
           <h4 class="w-24 text-right">Team Site:</h4>
-          <div class="flex items-center space-x-4 ml-4">
+          <div class="flex items-center justify-start space-x-4 width-full">
             <button
               @click="setTeamSiteFilter('Yes')"
               class="rounded px-4"
@@ -40,9 +40,9 @@
           </div>
         </div>
 
-        <div class="flex items-center">
+        <div class="grid grid-cols-[100px_1fr] gap-4 pt-4 xl:pt-0">
           <h4 class="w-24 text-right">Team:</h4>
-          <div class="flex items-center space-x-4 ml-4">
+          <div class="grid sm:grid-cols-3 xl:grid-cols-8 gap-x-4 gap-y-2">
             <button
               @click="setTeamFilter('spectrum-reach')"
               class="border border-gray-500 rounded px-4"
@@ -111,9 +111,9 @@
             </button>
           </div>
         </div>
-        <div class="flex items-center">
+        <div class="grid grid-cols-[100px_1fr] gap-4 pt-4 xl:pt-0">
           <h4 class="w-24 text-right">Status:</h4>
-          <div class="flex items-center space-x-4 ml-4">
+          <div class="grid sm:grid-cols-3 xl:grid-cols-8 gap-x-4 gap-y-2">
             <button
               @click="setStatusFilter('Not Started')"
               class="border border-gray-500 rounded px-4"
@@ -172,9 +172,9 @@
           </div>
         </div>
 
-        <div class="flex items-center">
+        <div class="grid grid-cols-[100px_1fr] gap-4 pt-4 xl:pt-0">
           <h4 class="w-24 text-right">Assigned To:</h4>
-          <div class="flex items-center space-x-4 ml-4">
+          <div class="grid sm:grid-cols-3 xl:grid-cols-8 gap-x-4 gap-y-2">
             <button
               @click="setAssignedFilter('John Lowery')"
               class="border border-gray-500 rounded px-4"
@@ -222,7 +222,7 @@
           </div>
         </div>
 
-        <div class="flex items-center">
+        <div class="grid grid-cols-[100px_100%] pt-4 xl:pt-0">
           <h4 class="w-24 text-right">Keyword:</h4>
           <div class="flex items-center space-x-4 ml-4 w-96">
             <input
@@ -236,167 +236,231 @@
           </div>
         </div>
       </div>
-      <div class="mt-8 flex flex-col">
-        <div class="-my-2 -mx-4 sm:-mx-6 lg:-mx-8">
-          <div class="inline-block min-w-full py-2 align-middle">
-            <div class="shadow-sm ring-1 ring-black ring-opacity-5">
-              <table class="min-w-full border-separate text-sm" style="border-spacing: 0">
-                <thead class="bg-slate text-white">
-                  <tr>
-                    <th
-                      scope="col"
-                      class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
-                    ></th>
-                    <th
-                      scope="col"
-                      class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 w-64"
-                    >
-                      Page
-                    </th>
-                    <th
-                      scope="col"
-                      class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
-                    >
-                      Team Site
-                    </th>
-                    <th
-                      scope="col"
-                      class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
-                    >
-                      Team
-                    </th>
-                    <th
-                      scope="col"
-                      class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
-                    >
-                      Urls
-                    </th>
-                    <th
-                      scope="col"
-                      class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
-                    >
-                      Status
-                    </th>
-                    <th
-                      scope="col"
-                      class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
-                    >
-                      Assigned To
-                    </th>
-                    <th
-                      scope="col"
-                      class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 w-80"
-                    >
-                      Notes
-                    </th>
-                    <th
-                      scope="col"
-                      class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
-                    >
-                      Fragments
-                    </th>
-                    <th
-                      scope="col"
-                      class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8"
-                    >
-                      <span class="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white">
-                  <tr v-for="component in shownComponents" :key="component.id">
-                    <td
-                      class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
-                    >
-                      {{ component.id }}
-                    </td>
-                    <td
-                      class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
-                    >
-                      {{ startCase(component.page) }}
-                    </td>
-                    <td
-                      class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
-                    >
-                      {{ component.team_site }}
-                    </td>
-                    <td
-                      class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
-                    >
-                      {{ startCase(component.team) }}
-                    </td>
-                    <td
-                      class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
-                    >
-                      <div>
-                        <a
-                          class="underline text-blue-600 hover:blue-900"
-                          :href="component.view_path"
-                          target="_blank"
-                          >View Page in AEM</a
-                        >
-                      </div>
-                      <div>
-                        <a
-                          class="underline text-blue-600 hover:blue-900"
-                          :href="component.edit_path"
-                          target="_blank"
-                          >Edit Page in AEM</a
-                        >
-                      </div>
-                    </td>
+    </div>
+    <div class="mt-8 hidden lg:block">
+      <table class="min-w-full max-w-full border-separate text-sm" style="border-spacing: 0">
+        <thead class="bg-slate text-white">
+          <tr>
+            <th
+              scope="col"
+              class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+            ></th>
+            <th
+              scope="col"
+              class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 w-64"
+            >
+              Page
+            </th>
+            <th
+              scope="col"
+              class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+            >
+              Team Site
+            </th>
+            <th
+              scope="col"
+              class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+            >
+              Team
+            </th>
+            <th
+              scope="col"
+              class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+            >
+              Urls
+            </th>
+            <th
+              scope="col"
+              class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+            >
+              Status
+            </th>
+            <th
+              scope="col"
+              class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+            >
+              Assigned To
+            </th>
+            <th
+              scope="col"
+              class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8 w-80"
+            >
+              Notes
+            </th>
+            <th
+              scope="col"
+              class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 text-left text-sm font-semibold text-white backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
+            >
+              Fragments
+            </th>
+            <th
+              scope="col"
+              class="sticky top-0 z-10 border-b border-gray-300 bg-slate py-3.5 px-2 backdrop-blur backdrop-filter sm:pr-6 lg:pr-8"
+            >
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr v-for="component in shownComponents" :key="component.id">
+            <td
+              class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+            >
+              {{ component.id }}
+            </td>
+            <td
+              class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+            >
+              {{ startCase(component.page) }}
+            </td>
+            <td
+              class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+            >
+              {{ component.team_site }}
+            </td>
+            <td
+              class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+            >
+              {{ startCase(component.team) }}
+            </td>
+            <td
+              class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+            >
+              <div>
+                <a
+                  class="underline text-blue-600 hover:blue-900"
+                  :href="component.view_path"
+                  target="_blank"
+                  >View Page in AEM</a
+                >
+              </div>
+              <div>
+                <a
+                  class="underline text-blue-600 hover:blue-900"
+                  :href="component.edit_path"
+                  target="_blank"
+                  >Edit Page in AEM</a
+                >
+              </div>
+            </td>
 
-                    <td
-                      class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
-                    >
-                      {{ component.status }}
-                    </td>
+            <td
+              class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+            >
+              {{ component.status }}
+            </td>
 
-                    <td
-                      class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
-                    >
-                      {{ component.assigned_to }}
-                    </td>
-                    <td
-                      class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
-                    >
-                      {{ component.notes }}
-                    </td>
-                    <td
-                      class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8 w-96"
-                    >
-                      <ul>
-                        <li
-                          v-for="(fragment, index) in component.experience_fragment_path"
-                          :key="index"
-                        >
-                          <a :href="fragment" target="_blank" class="underline text-blue-500">{{
-                            fragment
-                          }}</a>
-                        </li>
-                      </ul>
-                    </td>
-                    <td
-                      class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
-                    >
-                      <button
-                        class="text-blue-600 hover:text-blue-900 p-2"
-                        @click="editComponent(component)"
-                      >
-                        Edit
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <td
+              class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+            >
+              {{ component.assigned_to }}
+            </td>
+            <td
+              class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+            >
+              {{ component.notes }}
+            </td>
+            <td
+              class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8 w-96"
+            >
+              <ul>
+                <li v-for="(fragment, index) in component.experience_fragment_path" :key="index">
+                  <a :href="fragment" target="_blank" class="underline text-blue-500">{{
+                    fragment
+                  }}</a>
+                </li>
+              </ul>
+            </td>
+            <td
+              class="align-top border-b border-gray-200 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+            >
+              <button
+                class="text-blue-600 hover:text-blue-900 p-2"
+                @click="editComponent(component)"
+              >
+                Edit
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-8 border-t-2 border-gray-500 block lg:hidden">
+      <div
+        class="bg-white shadow overflow-hidden sm:rounded-lg mt-4"
+        v-for="component in shownComponents"
+        :key="component.id"
+      >
+        <div class="border-t border-gray-200 px-4 py-5 sm:px-6 relative">
+          <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+              <dt class="text-sm font-medium text-gray-500">Page</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ startCase(component.page) }}</dd>
             </div>
-          </div>
+            <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">Team Site</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ component.team_site }}</dd>
+            </div>
+            <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">Team</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ component.team }}</dd>
+            </div>
+
+            <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">Status</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ component.status }}</dd>
+            </div>
+            <div class="sm:col-span-1">
+              <dt class="text-sm font-medium text-gray-500">Assigned To</dt>
+              <dd class="mt-1 text-sm text-gray-900">
+                {{ component.assigned_to }}
+              </dd>
+            </div>
+            <div class="sm:col-span-2">
+              <dt class="text-sm font-medium text-gray-500">Notes</dt>
+              <dd class="mt-1 text-sm text-gray-900">{{ component.notes }}</dd>
+            </div>
+            <div class="sm:col-span-2">
+              <dt class="text-sm font-medium text-gray-500">URLs</dt>
+              <dd class="mt-1 text-sm text-gray-900">
+                <p>
+                  <a
+                    class="underline text-blue-500 hover:text-blue-600"
+                    :href="component.view_path"
+                    >{{ component.view_path }}</a
+                  >
+                </p>
+                <p>
+                  <a
+                    class="underline text-blue-500 hover:text-blue-600"
+                    :href="component.edit_path"
+                    >{{ component.edit_path }}</a
+                  >
+                </p>
+              </dd>
+            </div>
+            <div class="sm:col-span-2">
+              <dt class="text-sm font-medium text-gray-500">Fragments</dt>
+              <dd class="mt-1 text-sm text-gray-900">
+                <p v-for="(fragment, index) in component.experience_fragment_path" :key="index">
+                  <a class="underline text-blue-500 hover:bg-blue-600" :href="fragment">
+                    {{ fragment }}
+                  </a>
+                </p>
+              </dd>
+            </div>
+          </dl>
+          <button
+            class="text-blue-600 hover:text-blue-900 p-2 absolute top-0 right-0"
+            @click="editComponent(component)"
+          >
+            Edit
+          </button>
         </div>
       </div>
-      <component-modal v-if="showModal" :component="activeComponent" />
     </div>
+    <component-modal v-if="showModal" :component="activeComponent" />
   </div>
-  <div></div>
 </template>
 
 <script>
