@@ -221,6 +221,20 @@
             </button>
           </div>
         </div>
+
+        <div class="flex items-center">
+          <h4 class="w-24 text-right">Keyword:</h4>
+          <div class="flex items-center space-x-4 ml-4 w-96">
+            <input
+              type="text"
+              name="keywordFilter"
+              id="keywordFilter"
+              class="shadow-sm border border-gray-500 focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md py-2 px-4"
+              placeholder="Search for ..."
+              v-model="keywordFilter"
+            />
+          </div>
+        </div>
       </div>
       <div class="mt-8 flex flex-col">
         <div class="-my-2 -mx-4 sm:-mx-6 lg:-mx-8">
@@ -396,7 +410,7 @@ export default {
 
 <script setup>
 import ComponentModal from '@/components/Modals/ComponentModal'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { startCase } from 'lodash'
 
 let props = defineProps({
@@ -412,6 +426,7 @@ let teamSiteFilter = ref('')
 let teamFilter = ref([])
 let statusFilter = ref([])
 let assignedFilter = ref([])
+let keywordFilter = ref('')
 
 const editComponent = (component) => {
   activeComponent.value = component
@@ -463,6 +478,8 @@ const setAssignedFilter = (name) => {
   applyFilters()
 }
 
+watch(keywordFilter, () => applyFilters())
+
 const applyFilters = () => {
   shownComponents.value = props.components
   if (teamSiteFilter.value != '') {
@@ -486,6 +503,17 @@ const applyFilters = () => {
   if (assignedFilter.value.length > 0) {
     shownComponents.value = shownComponents.value.filter((component) => {
       return assignedFilter.value.includes(component.assigned_to)
+    })
+  }
+
+  if (keywordFilter.value.length > 0) {
+    shownComponents.value = shownComponents.value.filter((component) => {
+      return (
+        component.page.toLowerCase().includes(keywordFilter.value.toLowerCase()) ||
+        component.notes.toLowerCase().includes(keywordFilter.value.toLowerCase()) ||
+        component.view_path.toLowerCase().includes(keywordFilter.value.toLowerCase()) ||
+        component.edit_path.toLowerCase().includes(keywordFilter.value.toLowerCase())
+      )
     })
   }
 }

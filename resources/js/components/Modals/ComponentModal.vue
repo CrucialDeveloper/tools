@@ -59,7 +59,9 @@
             </button>
           </div>
           <div>
-            <p class="mb-4">{{ activeComponent.id }} - {{ startCase(activeComponent.page) }}</p>
+            <p class="mb-4 font-bold">
+              {{ activeComponent.id }} - {{ startCase(activeComponent.page) }}
+            </p>
 
             <div
               class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:py-5"
@@ -126,7 +128,10 @@
             <div
               class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-b sm:border-gray-200 sm:py-5"
             >
-              <label for="email" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+              <label
+                for="experience_fragments"
+                class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+              >
                 Experience Fragments Author URL(s)
               </label>
               <div class="mt-1 sm:mt-0 sm:col-span-2">
