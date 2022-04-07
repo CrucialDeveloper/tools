@@ -109,6 +109,28 @@
             >
               Field Operations
             </button>
+            <button
+              @click="setTeamFilter('benefits-main')"
+              class="border border-gray-500 rounded px-4"
+              :class="
+                teamFilter.includes('benefits-main')
+                  ? 'bg-blue-500 hover:bg-blue:600 border text-white border-blue-500'
+                  : 'border border-gray-500 hover:bg-blue-600 hover:text-white'
+              "
+            >
+              Benefits Main
+            </button>
+            <button
+              @click="setTeamFilter('benefits-hawaii')"
+              class="border border-gray-500 rounded px-4"
+              :class="
+                teamFilter.includes('benefits-hawaii')
+                  ? 'bg-blue-500 hover:bg-blue:600 border text-white border-blue-500'
+                  : 'border border-gray-500 hover:bg-blue-600 hover:text-white'
+              "
+            >
+              Benefits Hawaii
+            </button>
           </div>
         </div>
         <div class="grid grid-cols-[100px_1fr] gap-4 pt-4 xl:pt-0">
