@@ -39,7 +39,21 @@
                           To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                       -->
       <div
-        class="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden transform transition-all sm:my-8 sm:align-middle sm:max-w-1/2 sm:w-full sm:p-6"
+        class="
+          relative
+          inline-block
+          align-bottom
+          bg-white
+          rounded-lg
+          px-4
+          pt-5
+          pb-4
+          text-left
+          overflow-hidden
+          transform
+          transition-all
+          sm:my-8 sm:align-middle sm:max-w-1/2 sm:w-full sm:p-6
+        "
       >
         <div>
           <div class="mt-3 text-center sm:mt-5 relative">
@@ -64,7 +78,15 @@
             </p>
 
             <div
-              class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:py-5"
+              class="
+                sm:grid
+                sm:grid-cols-3
+                sm:gap-4
+                sm:items-start
+                sm:border-t
+                sm:border-gray-200
+                sm:py-5
+              "
             >
               <label for="status" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                 Status
@@ -73,7 +95,17 @@
                 <select
                   id="status"
                   name="status"
-                  class="block max-w-lg w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md p-2 border border-gray-100"
+                  class="
+                    block
+                    max-w-lg
+                    w-full
+                    focus:ring-blue-500 focus:border-blue-500
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                    p-2
+                    border border-gray-100
+                  "
                   v-model="activeComponent.status"
                   ref="statusFocus"
                 >
@@ -86,7 +118,15 @@
               </div>
             </div>
             <div
-              class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:py-5"
+              class="
+                sm:grid
+                sm:grid-cols-3
+                sm:gap-4
+                sm:items-start
+                sm:border-t
+                sm:border-gray-200
+                sm:py-5
+              "
             >
               <label
                 for="assigned_to"
@@ -98,7 +138,17 @@
                 <select
                   id="assigned_to"
                   name="assigned_to"
-                  class="block max-w-lg w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md p-2 border border-gray-100"
+                  class="
+                    block
+                    max-w-lg
+                    w-full
+                    focus:ring-blue-500 focus:border-blue-500
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                    p-2
+                    border border-gray-100
+                  "
                   v-model="activeComponent.assigned_to"
                 >
                   <option value="John Lowery">John Lowery</option>
@@ -109,7 +159,15 @@
               </div>
             </div>
             <div
-              class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:py-5"
+              class="
+                sm:grid
+                sm:grid-cols-3
+                sm:gap-4
+                sm:items-start
+                sm:border-t
+                sm:border-gray-200
+                sm:py-5
+              "
             >
               <label for="notes" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >Notes</label
@@ -119,14 +177,33 @@
                   id="notes"
                   name="notes"
                   rows="5"
-                  class="block max-w-lg w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md p-2 border border-gray-100"
+                  class="
+                    block
+                    max-w-lg
+                    w-full
+                    focus:ring-blue-500 focus:border-blue-500
+                    sm:text-sm
+                    border-gray-300
+                    rounded-md
+                    p-2
+                    border border-gray-100
+                  "
                   placeholder="Enter notes here ..."
                   v-model="activeComponent.notes"
                 />
               </div>
             </div>
             <div
-              class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-b sm:border-gray-200 sm:py-5"
+              class="
+                sm:grid
+                sm:grid-cols-3
+                sm:gap-4
+                sm:items-start
+                sm:border-t
+                sm:border-b
+                sm:border-gray-200
+                sm:py-5
+              "
             >
               <label
                 for="experience_fragments"
@@ -140,7 +217,17 @@
                     id="experience_fragments"
                     name="experience_fragments"
                     type="experience_fragments"
-                    class="block max-w-lg w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border-gray-300 rounded-md p-2 border border-gray-100"
+                    class="
+                      block
+                      max-w-lg
+                      w-full
+                      focus:ring-blue-500 focus:border-blue-500
+                      sm:text-sm
+                      border-gray-300
+                      rounded-md
+                      p-2
+                      border border-gray-100
+                    "
                     v-model="new_fragment"
                     @keyup.enter="addFragment"
                   />
@@ -178,14 +265,43 @@
         <div class="mt-5 sm:mt-6 flex items-center justify-between space-x-8">
           <button
             type="button"
-            class="inline-flex justify-center w-full rounded-md border border-gray-200 px-4 py-2 bg-white text-base font-medium hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+            class="
+              inline-flex
+              justify-center
+              w-full
+              rounded-md
+              border border-gray-200
+              px-4
+              py-2
+              bg-white
+              text-base
+              font-medium
+              hover:bg-gray-200
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+              sm:text-sm
+            "
             @click="closeModal"
           >
             Cancel
           </button>
           <button
             type="button"
-            class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+            class="
+              inline-flex
+              justify-center
+              w-full
+              rounded-md
+              border border-transparent
+              px-4
+              py-2
+              bg-blue-600
+              text-base
+              font-medium
+              text-white
+              hover:bg-blue-700
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+              sm:text-sm
+            "
             @click="saveComponent"
           >
             Save
@@ -224,6 +340,7 @@ const addFragment = () => {
 const saveComponent = () => {
   Inertia.post(`/components/${activeComponent.value.id}`, activeComponent.value, {
     preserveScroll: true,
+    preserveState: false,
   })
   closeModal()
 }
