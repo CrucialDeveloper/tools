@@ -937,6 +937,7 @@ const getFilters = () => {
 
 onMounted(() => {
   getFilters();
+  applyFilters();
   window.addEventListener("close-edit-modal", () => {
     showModal.value = false;
     document.body.style.overflow = "auto";
