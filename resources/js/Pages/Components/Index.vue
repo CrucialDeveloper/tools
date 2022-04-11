@@ -3,9 +3,12 @@
   <div class="px-8 max-w-screen overflow-hidden" ref="noscroll">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto relative">
-        <h2 class="text-2xl font-semibold text-gray-900">Reference Components Migration</h2>
+        <h2 class="text-2xl font-semibold text-gray-900">
+          Reference Components Migration
+        </h2>
         <p class="mt-2 text-sm text-gray-700">
-          A list of all pages that have a reference or dynamic reference component as content
+          A list of all pages that have a reference or dynamic reference
+          component as content
         </p>
       </div>
     </div>
@@ -271,7 +274,10 @@
       </div>
     </div>
     <div class="mt-8 hidden lg:block">
-      <table class="min-w-full max-w-full border-separate text-sm" style="border-spacing: 0">
+      <table
+        class="min-w-full max-w-full border-separate text-sm"
+        style="border-spacing: 0"
+      >
         <thead class="bg-slate text-white">
           <tr>
             <th
@@ -636,10 +642,18 @@
               "
             >
               <ul>
-                <li v-for="(fragment, index) in component.experience_fragment_path" :key="index">
-                  <a :href="fragment" target="_blank" class="underline text-blue-500">{{
-                    fragment
-                  }}</a>
+                <li
+                  v-for="(
+                    fragment, index
+                  ) in component.experience_fragment_path"
+                  :key="index"
+                >
+                  <a
+                    :href="fragment"
+                    target="_blank"
+                    class="underline text-blue-500"
+                    >{{ fragment }}</a
+                  >
                 </li>
               </ul>
             </td>
@@ -678,11 +692,15 @@
           <dl class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div class="sm:col-span-2">
               <dt class="text-sm font-medium text-gray-500">Page</dt>
-              <dd class="mt-1 text-sm text-gray-900">{{ startCase(component.page) }}</dd>
+              <dd class="mt-1 text-sm text-gray-900">
+                {{ startCase(component.page) }}
+              </dd>
             </div>
             <div class="sm:col-span-1">
               <dt class="text-sm font-medium text-gray-500">Team Site</dt>
-              <dd class="mt-1 text-sm text-gray-900">{{ component.team_site }}</dd>
+              <dd class="mt-1 text-sm text-gray-900">
+                {{ component.team_site }}
+              </dd>
             </div>
             <div class="sm:col-span-1">
               <dt class="text-sm font-medium text-gray-500">Team</dt>
@@ -725,8 +743,16 @@
             <div class="sm:col-span-2">
               <dt class="text-sm font-medium text-gray-500">Fragments</dt>
               <dd class="mt-1 text-sm text-gray-900">
-                <p v-for="(fragment, index) in component.experience_fragment_path" :key="index">
-                  <a class="underline text-blue-500 hover:bg-blue-600" :href="fragment">
+                <p
+                  v-for="(
+                    fragment, index
+                  ) in component.experience_fragment_path"
+                  :key="index"
+                >
+                  <a
+                    class="underline text-blue-500 hover:bg-blue-600"
+                    :href="fragment"
+                  >
                     {{ fragment }}
                   </a>
                 </p>
@@ -747,128 +773,164 @@
 </template>
 
 <script>
-import PublicLayout from '@/components/Layouts/PublicLayout'
-import { Inertia } from '@inertiajs/inertia'
+import PublicLayout from "@/components/Layouts/PublicLayout";
+import { Inertia } from "@inertiajs/inertia";
 
 export default {
   layout: PublicLayout,
-}
+};
 </script>
 
 <script setup>
-import ComponentModal from '@/components/Modals/ComponentModal'
-import { ref, onMounted, watch } from 'vue'
-import { startCase } from 'lodash'
+import ComponentModal from "@/components/Modals/ComponentModal";
+import { ref, onMounted, watch, nextTick } from "vue";
+import { startCase } from "lodash";
 
 let props = defineProps({
   components: Object,
-})
+});
 
-let shownComponents = ref({ ...props.components })
+let shownComponents = ref({ ...props.components });
 
-let showModal = ref(false)
-let activeComponent = ref({})
-let noscroll = ref(null)
-let teamSiteFilter = ref('')
-let teamFilter = ref([])
-let statusFilter = ref([])
-let assignedFilter = ref([])
-let keywordFilter = ref('')
+let showModal = ref(false);
+let activeComponent = ref({});
+let noscroll = ref(null);
+let teamSiteFilter = ref("");
+let teamFilter = ref([]);
+let statusFilter = ref([]);
+let assignedFilter = ref([]);
+let keywordFilter = ref("");
 
 const editComponent = (component) => {
-  activeComponent.value = component
-  document.body.style.overflow = 'hidden'
-  showModal.value = true
-}
+  activeComponent.value = component;
+  document.body.style.overflow = "hidden";
+  showModal.value = true;
+};
 
 const setTeamSiteFilter = (value) => {
   if (teamSiteFilter.value === value) {
-    teamSiteFilter.value = ''
-    applyFilters()
-    return
+    teamSiteFilter.value = "";
+    localStorage.setItem(
+      "teamSiteFilter",
+      JSON.stringify(teamSiteFilter.value)
+    );
+    applyFilters();
+    return;
   }
-  teamSiteFilter.value = value
+  teamSiteFilter.value = value;
 
-  applyFilters()
-}
+  localStorage.setItem("teamSiteFilter", JSON.stringify(teamSiteFilter.value));
+  applyFilters();
+};
 
 const setTeamFilter = (team) => {
   if (teamFilter.value.includes(team)) {
     teamFilter.value = teamFilter.value.filter((item) => {
-      return item != team
-    })
+      return item != team;
+    });
   } else {
-    teamFilter.value.push(team)
+    teamFilter.value.push(team);
   }
-  applyFilters()
-}
+  localStorage.setItem("teamFilter", JSON.stringify(teamFilter.value));
+  applyFilters();
+};
 
 const setStatusFilter = (status) => {
   if (statusFilter.value.includes(status)) {
     statusFilter.value = statusFilter.value.filter((item) => {
-      return item != status
-    })
+      return item != status;
+    });
   } else {
-    statusFilter.value.push(status)
+    statusFilter.value.push(status);
   }
-  applyFilters()
-}
+  localStorage.setItem("statusFilter", JSON.stringify(statusFilter.value));
+  applyFilters();
+};
 
 const setAssignedFilter = (name) => {
   if (assignedFilter.value.includes(name)) {
     assignedFilter.value = assignedFilter.value.filter((item) => {
-      return item != name
-    })
+      return item != name;
+    });
   } else {
-    assignedFilter.value.push(name)
+    assignedFilter.value.push(name);
   }
-  applyFilters()
-}
+  localStorage.setItem("assignedFilter", JSON.stringify(assignedFilter.value));
+  applyFilters();
+};
 
-watch(keywordFilter, () => applyFilters())
+watch(keywordFilter, () => applyFilters());
 
 const applyFilters = () => {
-  shownComponents.value = props.components
-  if (teamSiteFilter.value != '') {
+  shownComponents.value = props.components;
+  if (teamSiteFilter.value != "") {
     shownComponents.value = shownComponents.value.filter((component) => {
-      return component.team_site === teamSiteFilter.value
-    })
+      return component.team_site === teamSiteFilter.value;
+    });
   }
 
   if (teamFilter.value.length > 0) {
     shownComponents.value = shownComponents.value.filter((component) => {
-      return teamFilter.value.includes(component.team)
-    })
+      return teamFilter.value.includes(component.team);
+    });
   }
 
   if (statusFilter.value.length > 0) {
     shownComponents.value = shownComponents.value.filter((component) => {
-      return statusFilter.value.includes(component.status)
-    })
+      return statusFilter.value.includes(component.status);
+    });
   }
 
   if (assignedFilter.value.length > 0) {
     shownComponents.value = shownComponents.value.filter((component) => {
-      return assignedFilter.value.includes(component.assigned_to)
-    })
+      return assignedFilter.value.includes(component.assigned_to);
+    });
   }
 
-  if (keywordFilter.value.length > 0) {
+  if (keywordFilter.value.length >= 0) {
+    localStorage.setItem("keywordFilter", JSON.stringify(keywordFilter.value));
     shownComponents.value = shownComponents.value.filter((component) => {
       return (
-        component.page.toLowerCase().includes(keywordFilter.value.toLowerCase()) ||
-        component.notes.toLowerCase().includes(keywordFilter.value.toLowerCase()) ||
-        component.view_path.toLowerCase().includes(keywordFilter.value.toLowerCase()) ||
-        component.edit_path.toLowerCase().includes(keywordFilter.value.toLowerCase())
-      )
-    })
+        (component.page &&
+          component.page
+            .toLowerCase()
+            .includes(keywordFilter.value.toLowerCase())) ||
+        (component.notes &&
+          component.notes
+            .toLowerCase()
+            .includes(keywordFilter.value.toLowerCase())) ||
+        (component.view_path &&
+          component.view_path
+            .toLowerCase()
+            .includes(keywordFilter.value.toLowerCase())) ||
+        (component.edit_path &&
+          component.edit_path
+            .toLowerCase()
+            .includes(keywordFilter.value.toLowerCase()))
+      );
+    });
   }
-}
+};
+
+const getFilters = () => {
+  console.log("called");
+  teamSiteFilter.value = JSON.parse(localStorage.getItem("teamSiteFilter"));
+  teamFilter.value = JSON.parse(localStorage.getItem("teamFilter"));
+  statusFilter.value = JSON.parse(localStorage.getItem("statusFilter"));
+  assignedFilter.value = JSON.parse(localStorage.getItem("assignedFilter"));
+  keywordFilter.value = JSON.parse(localStorage.getItem("keywordFilter"));
+};
 
 onMounted(() => {
-  window.addEventListener('close-edit-modal', () => {
-    showModal.value = false
-    document.body.style.overflow = 'auto'
-  })
-})
+  getFilters();
+  applyFilters();
+  window.addEventListener("close-edit-modal", () => {
+    showModal.value = false;
+    document.body.style.overflow = "auto";
+    nextTick(() => {
+      getFilters();
+      applyFilters();
+    });
+  });
+});
 </script>

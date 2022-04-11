@@ -24,6 +24,6 @@ class ComponentController extends Controller
         $component->experience_fragment_path = $request->experience_fragment_path;
         $component->save();
 
-        return Redirect::back()->with(['components' => Component::all()]);
+        return Redirect::route('components.index')->with(['components' => Component::all()]);
     }
 }

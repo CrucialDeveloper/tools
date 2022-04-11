@@ -6,7 +6,17 @@
     aria-modal="true"
   >
     <div
-      class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+      class="
+        flex
+        items-end
+        justify-center
+        min-h-screen
+        pt-4
+        px-4
+        pb-20
+        text-center
+        sm:block sm:p-0
+      "
     >
       <!--
                         Background overlay, show/hide based on modal state.
@@ -24,7 +34,9 @@
       ></div>
 
       <!-- This element is to trick the browser into centering the modal contents. -->
-      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true"
+      <span
+        class="hidden sm:inline-block sm:align-middle sm:h-screen"
+        aria-hidden="true"
         >&#8203;</span
       >
 
@@ -57,10 +69,16 @@
       >
         <div>
           <div class="mt-3 text-center sm:mt-5 relative">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+            <h3
+              class="text-lg leading-6 font-medium text-gray-900"
+              id="modal-title"
+            >
               Edit Component/Page Item
             </h3>
-            <button class="w-6 h-6 text-gray-500 absolute right-0 top-0" @click="closeModal">
+            <button
+              class="w-6 h-6 text-gray-500 absolute right-0 top-0"
+              @click="closeModal"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -68,7 +86,11 @@
                 stroke="currentColor"
                 stroke-width="2"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -88,7 +110,10 @@
                 sm:py-5
               "
             >
-              <label for="status" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+              <label
+                for="status"
+                class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+              >
                 Status
               </label>
               <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -169,7 +194,9 @@
                 sm:py-5
               "
             >
-              <label for="notes" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+              <label
+                for="notes"
+                class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >Notes</label
               >
               <div class="mt-1 sm:mt-0 sm:col-span-2">
@@ -232,7 +259,15 @@
                     @keyup.enter="addFragment"
                   />
                   <button
-                    class="rounded-full h-8 w-8 bg-gray-500 hover:bg-gray-600 text-white ml-4"
+                    class="
+                      rounded-full
+                      h-8
+                      w-8
+                      bg-gray-500
+                      hover:bg-gray-600
+                      text-white
+                      ml-4
+                    "
                     @click="addFragment"
                   >
                     <svg
@@ -252,7 +287,9 @@
                 </div>
                 <div class="flex flex-col mt-1">
                   <p
-                    v-for="(fragment, index) in activeComponent.experience_fragment_path"
+                    v-for="(
+                      fragment, index
+                    ) in activeComponent.experience_fragment_path"
                     :key="index"
                   >
                     {{ fragment }}
@@ -277,7 +314,10 @@
               text-base
               font-medium
               hover:bg-gray-200
-              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+              focus:outline-none
+              focus:ring-2
+              focus:ring-offset-2
+              focus:ring-blue-500
               sm:text-sm
             "
             @click="closeModal"
@@ -299,7 +339,10 @@
               font-medium
               text-white
               hover:bg-blue-700
-              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
+              focus:outline-none
+              focus:ring-2
+              focus:ring-offset-2
+              focus:ring-blue-500
               sm:text-sm
             "
             @click="saveComponent"
@@ -313,46 +356,53 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
-import { startCase } from 'lodash'
+import { onMounted, ref, nextTick } from "vue";
+import { Inertia } from "@inertiajs/inertia";
+import { startCase } from "lodash";
 
 let props = defineProps({
   component: Object,
-})
+});
 
-let activeComponent = ref({ ...props.component })
-let new_fragment = ref('')
-let statusFocus = ref(null)
+let activeComponent = ref({ ...props.component });
+let new_fragment = ref("");
+let statusFocus = ref(null);
 
 const addFragment = () => {
-  if (activeComponent.value.experience_fragment_path === null && new_fragment.value.length > 5) {
-    activeComponent.value.experience_fragment_path = [new_fragment.value]
-    new_fragment.value = ''
-    return
+  if (
+    activeComponent.value.experience_fragment_path === null &&
+    new_fragment.value.length > 5
+  ) {
+    activeComponent.value.experience_fragment_path = [new_fragment.value];
+    new_fragment.value = "";
+    return;
   }
 
   new_fragment.value.length > 5 &&
-    activeComponent.value.experience_fragment_path.push(new_fragment.value)
-  new_fragment.value = ''
-}
+    activeComponent.value.experience_fragment_path.push(new_fragment.value);
+  new_fragment.value = "";
+};
 
 const saveComponent = () => {
-  Inertia.post(`/components/${activeComponent.value.id}`, activeComponent.value, {
-    preserveScroll: true,
-    preserveState: false,
-  })
-  closeModal()
-}
+  Inertia.post(
+    `/components/${activeComponent.value.id}`,
+    activeComponent.value,
+    {
+      preserveScroll: true,
+      preserveState: ["components"],
+    }
+  );
+  closeModal();
+};
 
 const closeModal = () => {
-  activeComponent.value = null
-  new_fragment.value = ''
-  let event = new CustomEvent('close-edit-modal')
-  window.dispatchEvent(event)
-}
+  activeComponent.value = null;
+  new_fragment.value = "";
+  let event = new CustomEvent("close-edit-modal");
+  window.dispatchEvent(event);
+};
 
 onMounted(() => {
-  statusFocus.value.focus()
-})
+  statusFocus.value.focus();
+});
 </script>
