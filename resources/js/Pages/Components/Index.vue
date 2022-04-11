@@ -913,17 +913,30 @@ const applyFilters = () => {
 };
 
 const getFilters = () => {
-  console.log("called");
-  teamSiteFilter.value = JSON.parse(localStorage.getItem("teamSiteFilter"));
-  teamFilter.value = JSON.parse(localStorage.getItem("teamFilter"));
-  statusFilter.value = JSON.parse(localStorage.getItem("statusFilter"));
-  assignedFilter.value = JSON.parse(localStorage.getItem("assignedFilter"));
-  keywordFilter.value = JSON.parse(localStorage.getItem("keywordFilter"));
+  teamSiteFilter.value =
+    localStorage.getItem("teamSiteFilter") !== null
+      ? JSON.parse(localStorage.getItem("teamSiteFilter"))
+      : [];
+  teamFilter.value =
+    localStorage.getItem("teamFilter") !== null
+      ? JSON.parse(localStorage.getItem("teamFilter"))
+      : [];
+  statusFilter.value =
+    localStorage.getItem("statusFilter") !== null
+      ? JSON.parse(localStorage.getItem("statusFilter"))
+      : [];
+  assignedFilter.value =
+    localStorage.getItem("assignedFilter") !== null
+      ? JSON.parse(localStorage.getItem("assignedFilter"))
+      : [];
+  keywordFilter.value =
+    localStorage.getItem("keywordFilter") !== null
+      ? JSON.parse(localStorage.getItem("keywordFilter"))
+      : "";
 };
 
 onMounted(() => {
   getFilters();
-  applyFilters();
   window.addEventListener("close-edit-modal", () => {
     showModal.value = false;
     document.body.style.overflow = "auto";
