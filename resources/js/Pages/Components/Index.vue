@@ -575,6 +575,14 @@
                   >Edit Page in AEM</a
                 >
               </div>
+              <div>
+                <a
+                  class="underline text-blue-600 hover:blue-900"
+                  :href="getSitePath(component.view_path)"
+                  target="_blank"
+                  >View in Sites</a
+                >
+              </div>
             </td>
 
             <td
@@ -738,6 +746,13 @@
                     >{{ component.edit_path }}</a
                   >
                 </p>
+                <p>
+                  <a
+                    class="underline text-blue-500 hover:text-blue-600"
+                    :href="getSitePath(component.view_path)"
+                    >{{ getSitePath(component.view_path) }}</a
+                  >
+                </p>
               </dd>
             </div>
             <div class="sm:col-span-2">
@@ -857,6 +872,12 @@ const setAssignedFilter = (name) => {
   }
   localStorage.setItem("assignedFilter", JSON.stringify(assignedFilter.value));
   applyFilters();
+};
+
+const getSitePath = (path) => {
+  return `https://author.panorama.charter.com/sites.html${
+    path.split(".com")[1]
+  }`;
 };
 
 watch(keywordFilter, () => applyFilters());
