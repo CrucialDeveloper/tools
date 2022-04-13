@@ -12,7 +12,7 @@ class ComponentController extends Controller
     public function index()
     {
         return Inertia::render('Components/Index', [
-            'components' => Component::all()
+            'components' => Component::orderBy('page')->get()
         ]);
     }
 
@@ -24,6 +24,6 @@ class ComponentController extends Controller
         $component->experience_fragment_path = $request->experience_fragment_path;
         $component->save();
 
-        return Redirect::route('components.index')->with(['components' => Component::all()]);
+        return Redirect::route('components.index')->with(['components' => Component::orderBy('page')->get()]);
     }
 }
