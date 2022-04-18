@@ -1,9 +1,16 @@
 <template>
   <public-layout>
-    <div class="container p-8 mx-auto flex items-center justify-between">
+    <div class="container grid grid-cols-1 md:grid-cols-2 p-8 gap-4">
       <Link
         href="/aem-groups"
-        class="border border-transparent hover:border-blue-500 bg-white p-4 rounded shadow"
+        class="
+          border border-transparent
+          hover:border-blue-500
+          bg-white
+          p-4
+          rounded
+          shadow
+        "
       >
         <div class="">
           <h2 class="text-2xl">AEM Groups Generator</h2>
@@ -12,7 +19,14 @@
       </Link>
       <Link
         href="/html-cleaner"
-        class="border border-transparent hover:border-blue-500 bg-white p-4 rounded shadow"
+        class="
+          border border-transparent
+          hover:border-blue-500
+          bg-white
+          p-4
+          rounded
+          shadow
+        "
       >
         <div>
           <h2 class="text-2xl">HTML Cleaner</h2>
@@ -21,7 +35,14 @@
       </Link>
       <Link
         href="/image-manipulator"
-        class="border border-transparent hover:border-blue-500 bg-white p-4 rounded shadow"
+        class="
+          border border-transparent
+          hover:border-blue-500
+          bg-white
+          p-4
+          rounded
+          shadow
+        "
       >
         <div>
           <h2 class="text-2xl">Image Manipulator</h2>
@@ -30,11 +51,20 @@
       </Link>
       <Link
         href="/components"
-        class="border border-transparent hover:border-blue-500 bg-white p-4 rounded shadow"
+        class="
+          border border-transparent
+          hover:border-blue-500
+          bg-white
+          p-4
+          rounded
+          shadow
+        "
       >
         <div>
           <h2 class="text-2xl">Reference Component Migration</h2>
-          <p>Tracker the Reference component migration to Experience Fragments</p>
+          <p>
+            Tracker the Reference component migration to Experience Fragments
+          </p>
         </div>
       </Link>
     </div>
@@ -42,6 +72,6 @@
 </template>
 
 <script setup>
-import PublicLayout from '../components/Layouts/PublicLayout'
-import { Link } from '@inertiajs/inertia-vue3'
+import PublicLayout from "../components/Layouts/PublicLayout";
+import { Link } from "@inertiajs/inertia-vue3";
 </script>
